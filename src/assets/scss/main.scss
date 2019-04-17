@@ -26,6 +26,7 @@
 	boxModel: 'border'
 ));
 
+// JON-made
 
 #logo-vector {
 	height: 13%;
@@ -38,13 +39,16 @@
 }
 
 .brothers {
-	padding-top: 3%;
 	background-color: white;
 
 	img {
 		position: relative;
 		overflow: hidden;
 	}
+}
+
+.rush {
+	background-color: white;
 }
 
 #fixed-nav-bar {
@@ -55,6 +59,8 @@
 	top: 0; /* Position the navbar at the top of the page */
 	width: 100%; /* Full width */
 }
+
+///////// End Jon-made
 
 	body {
 		background: _palette(bg);
@@ -964,7 +970,7 @@
 		@include padding(9em, 0, (0,0,_size(element-margin),0));
 		@include dark(#4686a0);
 		background-attachment:	fixed;
-		background-image:		url('../images/student-union.jpg');
+		background-image:		url('../images/student-union-cropped.png');
 		background-position:	top left;
 		background-size:		cover;
 		overflow: hidden;
