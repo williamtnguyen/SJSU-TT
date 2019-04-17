@@ -1,42 +1,22 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React from 'react'
+import logo from '../assets/images/thetatau.png'
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
+class Header extends React.Component {
+    render() {
+        return (
+            <section id="header">
+                <div className="inner">
+                    <img id="logo-vector" src={logo} alt="Logo"></img>
+                    <h1> <strong>Theta Tau</strong> 
+                    </h1>
+                    <p><b>Co-ed Professional Engineering Fraternity | SJSU Chapter</b></p>
+                    <ul className="actions">
+                        <li><a href="#one" className="button scrolly">Rush</a></li>
+                    </ul>
+                </div>
+            </section>
+        )
+    }
 }
 
 export default Header
