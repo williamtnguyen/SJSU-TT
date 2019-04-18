@@ -27,19 +27,53 @@
 ));
 
 // JON-made
+.left-text {
+	display: inline-block;
+	h3 {
+		text-align: left;
+	}
+	p {
+		text-align: left;
+	}
+}
+
+.pillars-pic {
+	min-height: 220px;
+	object-fit: cover;
+}
+
+nav {
+	a {
+		padding: 0px 10px;
+		border-bottom: 0px;
+	}
+	
+	a:hover {
+		color: gray;
+	}
+}
+
+.history-text {
+	max-width: 70%;
+	position: relative;
+	text-align: left;
+	display: inline-block;
+}
 
 #logo-vector {
-	height: 13%;
-    width: 13%;
+	height: 17%;
+    width: 17%;
 }
 
 #mark {
-	padding-top: 20%;
 	max-width: 100%;
 }
 
+#extend-height {
+	height: 150px;
+}
+
 .brothers {
-	background-color: white;
 
 	img {
 		position: relative;
@@ -47,17 +81,36 @@
 	}
 }
 
-.rush {
+.rush .brothers .about {
 	background-color: white;
 }
 
+// NAV BAR STUFF
+.nav-left {
+	color: #883a3a;
+	float:left;
+}
+.nav-right {
+	color: #883a3a;
+	float: right;
+}
 #fixed-nav-bar {
+	border-top: 3px solid #883a3a;
+	font-size: 100%;
 	background-color: white;
-	height: 5%;
+	height: 7%;
 	z-index: 9999;
 	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the top of the page */
 	width: 100%; /* Full width */
+	overflow: hidden;
+	display: inline-block;
+}
+
+#inner-nav {
+	padding-left: 2%;
+	padding-right: 7%;
+	padding-top: 1.2%;
 }
 
 ///////// End Jon-made
@@ -503,6 +556,7 @@
 		border: 0;
 		display: inline-block;
 		position: relative;
+		
 
 		img {
 			border-radius: _size(border-radius);
@@ -965,14 +1019,41 @@
 
 /* Header */
 
+	.home-background {
+		background-image:		url('../images/student-union.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.rush-background {
+		background-image:		url('../images/towerlawn.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.brothers-background {
+		background-image:		url('../images/davidson.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+
+
+	.about-background {
+		background-image:		url('../images/gradbuilding.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
 
 	#header {
 		@include padding(9em, 0, (0,0,_size(element-margin),0));
-		@include dark(#4686a0);
+		@include dark(#883a3a);
 		background-attachment:	fixed;
-		background-image:		url('../images/student-union-cropped.png');
 		background-position:	top left;
-		background-size:		cover;
+		background-size:		fill;
 		overflow: hidden;
 		position: relative;
 		text-align: center;
@@ -1014,6 +1095,7 @@
 				@include vendor('transform', 'translateY(0)');
 				opacity: 1;
 			}
+
 		}
 
 		&:after {
@@ -1056,7 +1138,7 @@
 
 	#footer {
 		@include padding(6em, 0, (0,0,_size(element-margin),0));
-		@include dark(#4686a0);
+		@include dark(#883a3a);
 		background-attachment:	fixed,							fixed,							fixed;
 		background-color:	#883a3a;
 		background-position:	top left,						center center,					center center;
