@@ -19,6 +19,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "heroku-postbuild": "gatsby build",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
