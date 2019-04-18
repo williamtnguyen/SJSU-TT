@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
-import NavBar from "../components/navbar";
 import Layout from '../components/layout';
+import "../assets/scss/main.scss";
 
 import pic02 from '../assets/images/pic02.jpg'
 import pic04 from '../assets/images/pic04.jpg'
@@ -17,7 +17,6 @@ class Homepage extends React.Component {
         return (
             <Layout>
                 <Helmet title={siteTitle} />
-                <NavBar></NavBar>
                 <div id="page-wrapper">
                 <section className="main style1">
 
