@@ -36,6 +36,6 @@
     "url": "https://github.com/gatsbyjs/gatsby-starter-photon"
   },
   "engines": {
-    "node": "10.x"
+    "node": "8.x"
   }
 }
