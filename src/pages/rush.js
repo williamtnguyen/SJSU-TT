@@ -18,6 +18,7 @@ class Rush extends React.Component {
                 <h1> <strong>Rush Fall 2019</strong> 
                 </h1>
                 <p><b>Theta Tau Blah Chapter</b></p>
+                <div id="extend-height"></div>
             </section>
 
             <div className="rush">

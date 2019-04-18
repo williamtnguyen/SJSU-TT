@@ -17,6 +17,7 @@ class About extends React.Component {
                 <h1> <strong>About Us</strong> 
                 </h1>
                 <p><b>Theta Tau Blah Chapter</b></p>
+                <div id="extend-height"></div>
             </section>
 
             <div className="about">

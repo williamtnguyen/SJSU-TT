@@ -19,6 +19,7 @@ class Brothers extends React.Component {
                 <h1> <strong>Meet the Brothers</strong> 
                 </h1>
                 <p><b>Theta Tau Blah Chapter</b></p>
+                <div id="extend-height"></div>
             </div>
             </section>
 
