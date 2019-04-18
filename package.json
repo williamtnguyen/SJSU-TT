@@ -15,10 +15,12 @@
     "react-helmet": "^5.2.0"
   },
   "keywords": [
+    "heroku",
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
+    "start": "gatsby build",
     "heroku-postbuild": "gatsby build",
     "build": "gatsby build",
     "develop": "gatsby develop",
