@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-
+import NavBar from "../components/navbar";
 import Layout from '../components/layout';
 
 import pic01 from '../assets/images/pic01.jpg'
@@ -8,8 +8,8 @@ import pic02 from '../assets/images/pic02.jpg'
 import pic03 from '../assets/images/pic03.jpg'
 import pic04 from '../assets/images/pic04.jpg'
 
+import intelTour from '../assets/images/intel.png'
 import mark from '../assets/images/mark.jpg'
-import brotherhoodPic from '../assets/images/brotherhood.png'
 import pledgeEventPic from '../assets/images/pledge-event-cropped.png'
 
 class Homepage extends React.Component {
@@ -19,17 +19,9 @@ class Homepage extends React.Component {
         return (
             <Layout>
                 <Helmet title={siteTitle} />
+                <NavBar></NavBar>
                 <div id="page-wrapper">
-                <section id="one" className="main style1">
-
-                {/* Custom nav bar made by jon */}
-                <nav id="fixed-nav-bar">
-                    <a href="#">Theta Tau | SJSU</a>
-                    <a href="#home">Home</a>
-                    <a href="#home">About</a>
-                    <a href="brothers">Brothers</a>
-                    <a href="rush">Rush</a>
-                </nav>
+                <section className="main style1">
 
                     <div className="grid-wrapper">
                         <div className="col-6">
@@ -51,11 +43,11 @@ class Homepage extends React.Component {
                         </div>
                         <div className="col-7">
                             <header className="major">
-                                <h2>A Message From Our Founder</h2>
+                                <h2>A Message From Our Founding Regent</h2>
                             </header>
-                            <p>"Theta Tau is so great. So so great. I love Theta Tau. It's my baby."</p>
-                            <p>Blandit faucibus proin. Ac aliquam integer adipiscing enim non praesent vis commodo nunc phasellus cubilia ac risus accumsan. Accumsan blandit. Lobortis phasellus non lobortis dit varius mi varius accumsan lobortis. Blandit ante aliquam lacinia lorem lobortis semper morbi col faucibus vitae integer placerat accumsan orci eu mi odio tempus adipiscing adipiscing adipiscing curae consequat feugiat etiam dolore.</p>
-                            <p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
+                            <p>"Hi, I’m Mark and I started a chapter of Theta Tau here at SJSU because I’m a firm believer in building things that matter. Theta Tau is a professional engineering fraternity that combines two of the things that I think matter most: career and community. Come check us out!"</p>
+                            <p> ~ Mark Muendelein, Mechanical Engineering '19</p>
+                            
                         </div>
                     </div>
                 </section>
@@ -70,7 +62,7 @@ class Homepage extends React.Component {
                         </div>
 
                         <div className="col-4">
-                            <span className="image fit"><img src={pic02} alt="" /></span>
+                            <span className="image fit"><img className="pillars-pic" src={pic02} alt="" /></span>
                             <h3>Brotherhood</h3>
                             <p>We forge lifelong bonds of fraternal friendship, a journey that develops and delivers a network of lasting personal and professional relationships. We foster an inviting, safe, and social environment in which our members become lifelong friends.</p>
                             <ul className="actions">
@@ -78,7 +70,7 @@ class Homepage extends React.Component {
                             </ul>
                         </div>
                         <div className="col-4">
-                            <span className="image fit"><img src={pic03} alt="" /></span>
+                            <span className="image fit"><img className="pillars-pic" src={intelTour} alt="" /></span>
                             <h3>Professionalism</h3>
                             <p>We develop and nurture engineers with strong communication, problem-solving, collaboration, and leadership skills that we demonstrate in our profession, our community, and in our lives.</p>
                             <ul className="actions">
@@ -86,7 +78,7 @@ class Homepage extends React.Component {
                             </ul>
                         </div>
                         <div className="col-4">
-                            <span className="image fit"><img src={pic04} alt="" /></span>
+                            <span className="image fit"><img className="pillars-pic" src={pic04} alt="" /></span>
                             <h3>Community Service</h3>
                             <p>We are known for our service to our college, university and the larger community. Our service projects create a unifying environment for learning and personal growth for our members.</p>
                             <ul className="actions">

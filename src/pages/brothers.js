@@ -13,7 +13,7 @@ class Brothers extends React.Component {
             <section>
             <Helmet title={siteTitle} />
             <NavBar></NavBar>
-            <section id="header">
+            <section id="header" class="brothers-background">
             <div className="inner">
                 <img id="logo-vector" src={logo} alt="Logo"></img>
                 <h1> <strong>Meet the Brothers</strong> 

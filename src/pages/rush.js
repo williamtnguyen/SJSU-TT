@@ -13,18 +13,17 @@ class Rush extends React.Component {
             <section>
             <Helmet title={siteTitle} />
             <NavBar></NavBar>
-            <section id="header">
-            <div className="inner">
+            <section id="header" class="rush-background">
                 <img id="logo-vector" src={logo} alt="Logo"></img>
                 <h1> <strong>Rush Fall 2019</strong> 
                 </h1>
                 <p><b>Theta Tau Blah Chapter</b></p>
-            </div>
             </section>
 
             <div className="rush">
 
             <section className="main style1 special">
+
                     <div className="grid-wrapper">
                         <div className="col-12">
                             <header className="major">
@@ -43,7 +42,7 @@ class Rush extends React.Component {
                     </div>
 
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: What is a Professional Fraternity?</b></h3>
                         </div>
@@ -52,25 +51,29 @@ class Rush extends React.Component {
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
-                            <h3><b>Q: What is Rush?</b></h3>
+                            <h3><b>Q: What are the Requirements to Rush?</b></h3>
                         </div>
                         <div className="col-12">
                             <p>Rush is an opportunity for you to learn more about Theta Tau by meeting both our active and graduated brothers. Rush consists of multiple events that will give you a taste of what our fraternity stands for, whether you are a good fit for us, and whether we are a good fit for you. At the end of rush, we extend a limited number of interviews and bids. Those who receive bids can then decide whether or not they would like to pledge. Rushing is completely free of charge and there are no obligations.</p>
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: Who can Rush?</b></h3>
                         </div>
                         <div className="col-12">
-                            <p>Testing</p>
+                            <p><li>Must be an SJSU student</li>
+                                <li>Major must be Abet accredited </li>
+                                <li>Must have a minimum 2.0 GPA </li>
+                                <li>Must have at least 2 semesters remaining at SJSU (one to pledge and one to be an active brother)</li>
+                            </p>
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: Why join Theta Tau?</b></h3>
                         </div>
@@ -79,7 +82,7 @@ class Rush extends React.Component {
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: Is Rush Mandatory to Apply?</b></h3>
                         </div>
@@ -89,7 +92,7 @@ class Rush extends React.Component {
                     </div>
 
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: What is Pledging?</b></h3>
                         </div>
@@ -98,7 +101,7 @@ class Rush extends React.Component {
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: What is a Bid?</b></h3>
                         </div>
@@ -107,7 +110,7 @@ class Rush extends React.Component {
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: How does Theta Tau decide who receives a Bid?</b></h3>
                         </div>
@@ -116,7 +119,7 @@ class Rush extends React.Component {
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: Does Theta Tau Haze?</b></h3>
                         </div>
@@ -125,7 +128,7 @@ class Rush extends React.Component {
                         </div>
                     </div>
 
-                    <div className="grid-wrapper">
+                    <div className="grid-wrapper left-text">
                         <div className="col-12">
                             <h3><b>Q: If I don’t receive a bid, can I rush again the next semester?</b></h3>
                         </div>
