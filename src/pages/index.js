@@ -3,9 +3,7 @@ import Helmet from "react-helmet";
 import NavBar from "../components/navbar";
 import Layout from '../components/layout';
 
-import pic01 from '../assets/images/pic01.jpg'
 import pic02 from '../assets/images/pic02.jpg'
-import pic03 from '../assets/images/pic03.jpg'
 import pic04 from '../assets/images/pic04.jpg'
 
 import intelTour from '../assets/images/intel.png'
@@ -66,7 +64,7 @@ class Homepage extends React.Component {
                             <h3>Brotherhood</h3>
                             <p>We forge lifelong bonds of fraternal friendship, a journey that develops and delivers a network of lasting personal and professional relationships. We foster an inviting, safe, and social environment in which our members become lifelong friends.</p>
                             <ul className="actions">
-                                <li><a href="#" className="button">More</a></li>
+                                <li><a href="/" className="button">More</a></li>
                             </ul>
                         </div>
                         <div className="col-4">
@@ -74,7 +72,7 @@ class Homepage extends React.Component {
                             <h3>Professionalism</h3>
                             <p>We develop and nurture engineers with strong communication, problem-solving, collaboration, and leadership skills that we demonstrate in our profession, our community, and in our lives.</p>
                             <ul className="actions">
-                                <li><a href="#" className="button">More</a></li>
+                                <li><a href="/" className="button">More</a></li>
                             </ul>
                         </div>
                         <div className="col-4">
@@ -82,7 +80,7 @@ class Homepage extends React.Component {
                             <h3>Community Service</h3>
                             <p>We are known for our service to our college, university and the larger community. Our service projects create a unifying environment for learning and personal growth for our members.</p>
                             <ul className="actions">
-                                <li><a href="#" className="button">More</a></li>
+                                <li><a href="/" className="button">More</a></li>
                             </ul>
                         </div>
 
@@ -96,8 +94,8 @@ class Homepage extends React.Component {
                         </header>
                         <p><b>Check us out at Rush!</b></p>
                         <ul className="actions uniform">
-                            <li><a href="#" className="button special">Subscribe</a></li>
-                            <li><a href="#" className="button">Rush Fall 2019</a></li>
+                            <li><a href="/" className="button special">Subscribe</a></li>
+                            <li><a href="/" className="button">Rush Fall 2019</a></li>
                         </ul>   
                     </div>
                    
