@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "gatsby"
 
 class NavBar extends React.Component {
     render() {
@@ -6,13 +7,13 @@ class NavBar extends React.Component {
             <section id="fixed-nav-bar">
                 <nav id="inner-nav">
                     <div class="nav-left">
-                        <a href="/">Theta Tau | SJSU</a>
+                        <Link to="/">Theta Tau | SJSU</Link>
                     </div>
                     <div class="nav-right">
-                        <a href="/">Home</a>
-                        <a href="/about">About</a>
-                        <a href="/brothers">Brothers</a>
-                        <a href="/rush">Rush</a>
+                        <Link to="/">Home</Link>
+                        <Link to="/about">About</Link>
+                        <Link to="/brothers">Brothers</Link>
+                        <Link to="/rush">Rush</Link>
                     </div>
                 </nav>
             </section>
