@@ -2,8 +2,8 @@
 @import 'libs 2/functions';
 @import 'libs 2/mixins';
 @import "libs 2/skel";
-@import url('../css/font-awesome.min.css');
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic");
+@import url('../css/font-awesome.min.css');
 
 @import "css-grid";
 /*
@@ -27,6 +27,7 @@
 ));
 
 // JON-made
+
 .left-text {
 	display: inline-block;
 	h3 {
@@ -128,9 +129,9 @@ nav {
 
 	body, input, select, textarea {
 		color: _palette(fg);
-		font-family: _font(family);
+		font-family: _font(family) !important;
 		font-size: 16pt;
-		font-weight: _font(weight);
+		font-weight: _font(weight) !important;
 		line-height: 1.65em;
 	}
 

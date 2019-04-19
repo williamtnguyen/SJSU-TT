@@ -37,19 +37,22 @@ class Homepage extends React.Component {
                 </section>
 
                 <section id="two" className="main style2">
-                    <div className="grid-wrapper">
-                        <div id="mark" className="col-4">
-                        <span className="image fit"> <img src={mark} alt=""></img></span>
-                        </div>
-                        <div className="col-7">
-                            <header className="major">
-                                <h2>A Message From Our Founding Regent</h2>
-                            </header>
-                            <p>"Hi, I’m Mark and I started a chapter of Theta Tau here at SJSU because I’m a firm believer in building things that matter. Theta Tau is a professional engineering fraternity that combines two of the things that I think matter most: career and community. Come check us out!"</p>
-                            <p> ~ Mark Muendelein, Mechanical Engineering '19</p>
-                            
-                        </div>
-                    </div>
+                    <Container>
+                        <Col>
+                            <Row>
+                                <Col md={5} sm={12}>
+                                    <span className="image fit"> <img src={mark} alt=""></img></span>
+                                    </Col>
+                                <Col md={7} sm={12}>
+                                    <header className="major">
+                                        <h2>A Message From Our Founding Regent</h2>
+                                    </header>
+                                    <p>"Hi, I’m Mark and I started a chapter of Theta Tau here at SJSU because I’m a firm believer in building things that matter. Theta Tau is a professional engineering fraternity that combines two of the things that I think matter most: career and community. Come check us out!"</p>
+                                    <p> ~ Mark Muendelein, Mechanical Engineering '19</p>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Container>
                 </section>
 
                 <section id="three" className="main style1 special">
