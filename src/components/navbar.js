@@ -7,32 +7,35 @@ import { Link as GatsbyLink} from "gatsby"
 class NavBar extends React.Component {
     render() {
         return (
-            <Navbar style={{padding: "20px 10px", backgroundColor:"#883a3a"}}>
+            <Navbar expand="lg" style={{padding: "20px 10px", backgroundColor:"#883a3a"}}>
                 <GatsbyLink to="/">
                     <span className="navbar-brand mb-0 h1" style={{color:"white"}}>Theta Tau | SJSU</span>
                 </GatsbyLink>
-                <Nav>
-                    <Nav.Item >
-                        <GatsbyLink to="/" >
-                            Home
-                        </GatsbyLink>
-                    </Nav.Item>
-                    <Nav.Item> 
-                        <GatsbyLink to="/about">
-                            About
-                        </GatsbyLink>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <GatsbyLink to="/brothers">
-                            Brothers
-                        </GatsbyLink>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <GatsbyLink to="/rush">
-                            Rush
-                        </GatsbyLink>
-                    </Nav.Item>
-                </Nav>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav>
+                        <Nav.Item >
+                            <GatsbyLink to="/" >
+                                Home
+                            </GatsbyLink>
+                        </Nav.Item>
+                        <Nav.Item> 
+                            <GatsbyLink to="/about">
+                                About
+                            </GatsbyLink>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <GatsbyLink to="/brothers">
+                                Brothers
+                            </GatsbyLink>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <GatsbyLink to="/rush">
+                                Rush
+                            </GatsbyLink>
+                        </Nav.Item>
+                    </Nav>
+                </Navbar.Collapse>
           </Navbar>
         )
     }
