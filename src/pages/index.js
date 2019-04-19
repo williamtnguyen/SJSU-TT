@@ -2,6 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import Layout from '../components/layout';
 import "../assets/scss/main.scss";
+import 'bootstrap';
 
 import pic02 from '../assets/images/pic02.jpg'
 import pic04 from '../assets/images/pic04.jpg'

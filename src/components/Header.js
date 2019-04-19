@@ -4,7 +4,7 @@ import logo from '../assets/images/thetatau.png'
 class Header extends React.Component {
     render() {
         return (
-            <section id="header" class ="home-background">
+            <section id="header" className="home-background">
                 <div className="inner">
                     <img id="logo-vector" src={logo} alt="Logo"></img>
                     <h1> <strong>Theta Tau</strong> 

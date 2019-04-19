@@ -13,7 +13,7 @@ class Rush extends React.Component {
             <section>
             <Helmet title={siteTitle} />
             <NavBar></NavBar>
-            <section id="header" class="rush-background">
+            <section id="header" className="rush-background">
                 <img id="logo-vector" src={logo} alt="Logo"></img>
                 <h1> <strong>Rush Fall 2019</strong> 
                 </h1>

@@ -12,7 +12,7 @@ class About extends React.Component {
             <section>
             <Helmet title={siteTitle} />
             <NavBar></NavBar>
-            <section id="header" class="about-background">
+            <section id="header" className="about-background">
                 <img id="logo-vector" src={logo} alt="Logo"></img>
                 <h1> <strong>About Us</strong> 
                 </h1>
