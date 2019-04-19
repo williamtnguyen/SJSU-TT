@@ -1,7 +1,28 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+import webpack from 'webpack'
 
-// You can delete this file if you're not using it
+exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
+  const config = {
+    plugins: [
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery',
+      }),
+    ],
+  };
+  if (stage === 'build-html') {
+    config.module = {
+      rules: [
+        {
+          test: require.resolve('bootstrap'),
+          use: loaders.null(),
+        },
+        {
+          test: require.resolve('jquery'),
+          use: loaders.null(),
+        },
+      ],
+    };
+  }
+  actions.setWebpackConfig(config);
+};

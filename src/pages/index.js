@@ -1,8 +1,11 @@
 import React from "react";
 import Helmet from "react-helmet";
 import Layout from '../components/layout';
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 import "../assets/scss/main.scss";
-import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import pic02 from '../assets/images/pic02.jpg'
 import pic04 from '../assets/images/pic04.jpg'
@@ -20,7 +23,6 @@ class Homepage extends React.Component {
                 <Helmet title={siteTitle} />
                 <div id="page-wrapper">
                 <section className="main style1">
-
                     <div className="grid-wrapper">
                         <div className="col-6">
                             <header className="major">
@@ -51,40 +53,38 @@ class Homepage extends React.Component {
                 </section>
 
                 <section id="three" className="main style1 special">
-                    <div className="grid-wrapper">
-                        <div className="col-12">
-                            <header className="major">
-                                <h2>Our 3 Pillars</h2>
-                            </header>
-                            <p>The purpose of Theta Tau is to develop and maintain a high standard of professional interest amongst its members, and to unite them in a strong bond of fraternal fellowship.</p>
-                        </div>
-
-                        <div className="col-4">
-                            <span className="image fit"><img className="pillars-pic" src={pic02} alt="" /></span>
-                            <h3>Brotherhood</h3>
-                            <p>We forge lifelong bonds of fraternal friendship, a journey that develops and delivers a network of lasting personal and professional relationships. We foster an inviting, safe, and social environment in which our members become lifelong friends.</p>
-                            <ul className="actions">
-                                <li><a href="/" className="button">More</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-4">
-                            <span className="image fit"><img className="pillars-pic" src={intelTour} alt="" /></span>
-                            <h3>Professionalism</h3>
-                            <p>We develop and nurture engineers with strong communication, problem-solving, collaboration, and leadership skills that we demonstrate in our profession, our community, and in our lives.</p>
-                            <ul className="actions">
-                                <li><a href="/" className="button">More</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-4">
-                            <span className="image fit"><img className="pillars-pic" src={pic04} alt="" /></span>
-                            <h3>Community Service</h3>
-                            <p>We are known for our service to our college, university and the larger community. Our service projects create a unifying environment for learning and personal growth for our members.</p>
-                            <ul className="actions">
-                                <li><a href="/" className="button">More</a></li>
-                            </ul>
-                        </div>
-
-                    </div>
+                    <Container>
+                        <header className="major">
+                            <h2>Our 3 Pillars</h2>
+                        </header>
+                        <p>The purpose of Theta Tau is to develop and maintain a high standard of professional interest amongst its members, and to unite them in a strong bond of fraternal fellowship.</p>
+                        <Row>
+                            <Col sm={4}>
+                                <span className="image fit"><img className="pillars-pic" src={pic02} alt="" /></span>
+                                <h3>Brotherhood</h3>
+                                <p>We forge lifelong bonds of fraternal friendship, a journey that develops and delivers a network of lasting personal and professional relationships. We foster an inviting, safe, and social environment in which our members become lifelong friends.</p>
+                                <ul className="actions">
+                                    <li><a href="/" className="button">More</a></li>
+                                </ul>
+                            </Col>
+                            <Col sm={4}>
+                                <span className="image fit"><img className="pillars-pic" src={intelTour} alt="" /></span>
+                                <h3>Professionalism</h3>
+                                <p>We develop and nurture engineers with strong communication, problem-solving, collaboration, and leadership skills that we demonstrate in our profession, our community, and in our lives.</p>
+                                <ul className="actions">
+                                    <li><a href="/" className="button">More</a></li>
+                                </ul>
+                            </Col>
+                            <Col sm={4}>
+                                <span className="image fit"><img className="pillars-pic" src={pic04} alt="" /></span>
+                                <h3>Community Service</h3>
+                                <p>We are known for our service to our college, university and the larger community. Our service projects create a unifying environment for learning and personal growth for our members.</p>
+                                <ul className="actions">
+                                    <li><a href="/" className="button">More</a></li>
+                                </ul>
+                            </Col>
+                        </Row>
+                    </Container>
                 </section>
 
                 <section id="four" className="main style2 special">

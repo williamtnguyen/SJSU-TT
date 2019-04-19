@@ -22,7 +22,9 @@
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
-    "prettier": "^1.14.2"
+    "css-loader": "^2.1.1",
+    "prettier": "^1.14.2",
+    "webpack": "^4.30.0"
   },
   "keywords": [
     "gatsby"
