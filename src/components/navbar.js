@@ -1,22 +1,39 @@
 import React from 'react'
-import { Link } from "gatsby"
+import { Item } from "gatsby"
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import { Link as GatsbyLink} from "gatsby"
 
 class NavBar extends React.Component {
     render() {
         return (
-            <section id="fixed-nav-bar">
-                <nav id="inner-nav">
-                    <div class="nav-left">
-                        <Link to="/">Theta Tau | SJSU</Link>
-                    </div>
-                    <div class="nav-right">
-                        <Link to="/">Home</Link>
-                        <Link to="/about">About</Link>
-                        <Link to="/brothers">Brothers</Link>
-                        <Link to="/rush">Rush</Link>
-                    </div>
-                </nav>
-            </section>
+            <Navbar bg="light" style={{color: "#883a3a"}}>
+            <GatsbyLink to="/">
+                <span className="navbar-brand mb-0 h1">Theta Tau | SJSU</span>
+            </GatsbyLink>
+            <Nav>
+                <Nav.Item>
+                    <GatsbyLink to="/">
+                        Home
+                    </GatsbyLink>
+                </Nav.Item>
+                <Nav.Item> 
+                    <GatsbyLink to="/about">
+                        About
+                    </GatsbyLink>
+                </Nav.Item>
+                <Nav.Item>
+                    <GatsbyLink to="/brothers">
+                        Brothers
+                    </GatsbyLink>
+                </Nav.Item>
+                <Nav.Item>
+                    <GatsbyLink to="/rush">
+                        Rush
+                    </GatsbyLink>
+                </Nav.Item>
+            </Nav>
+          </Navbar>
         )
     }
 }

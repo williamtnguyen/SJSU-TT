@@ -14,8 +14,10 @@
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.10",
     "gatsby-plugin-sass": "^2.0.11",
+    "jquery": "^3.4.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.5",
+    "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.5",
     "react-helmet": "^5.2.0"
   },
