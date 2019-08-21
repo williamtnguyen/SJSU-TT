@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from '../components/navbar';
+import NavBar from '../components/NavBar';
 import Helmet from "react-helmet";
 import logo from '../assets/images/thetatau.png'
 import Footer from "../components/Footer";
