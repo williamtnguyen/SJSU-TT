@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react';
 
 class Footer extends React.Component {
   render() {
@@ -41,11 +41,12 @@ class Footer extends React.Component {
               --Ecclesiastes 9:10
             </p>
           </small>
-          &copy; 2019 | ΘT @ SJSU<li>Made with ❤ by Jonathan Wong</li>
+          &copy; 2019 | ΘT @ SJSU
+          <li>Made with ❤ by Jonathan Wong</li>
         </ul>
       </section>
-    )
+    );
   }
 }
 
-export default Footer
+export default Footer;

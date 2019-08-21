@@ -42,6 +42,7 @@
     "format": "pretty-quick --format",
     "heroku-postbuild": "gatsby build",
     "lint": "eslint ./ --ext .js,.jsx",
+    "lint-fix": "yarn lint --fix && pretty-quick",
     "start": "gatsby serve",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
@@ -52,6 +53,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
+      "yarn lint --fix",
       "pretty-quick --staged",
       "eslint src/ --fix",
       "git add"

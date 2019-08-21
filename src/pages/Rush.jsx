@@ -1,13 +1,13 @@
-import React from "react"
-import NavBar from "../components/NavBar"
-import Helmet from "react-helmet"
-import logo from "../assets/images/thetatau.png"
-import Footer from "../components/Footer"
-import rushSchedule from "../assets/images/rush-sp-2019.jpg"
+import React from 'react';
+import Helmet from 'react-helmet';
+import NavBar from '../components/NavBar';
+import logo from '../assets/images/thetatau.png';
+import Footer from '../components/Footer';
+import rushSchedule from '../assets/images/rush-sp-2019.jpg';
 
 class Rush extends React.Component {
   render() {
-    const siteTitle = "Theta Tau | SJSU"
+    const siteTitle = 'Theta Tau | SJSU';
 
     return (
       <section>
@@ -16,7 +16,7 @@ class Rush extends React.Component {
         <section id="header" className="rush-background">
           <img id="logo-vector" src={logo} alt="Logo" />
           <h1>
-            {" "}
+            {' '}
             <strong>Rush Fall 2019</strong>
           </h1>
           <p>
@@ -33,7 +33,7 @@ class Rush extends React.Component {
                   <h2>Theta Tau Rush Schedule</h2>
                 </header>
                 <span className="image fit">
-                  {" "}
+                  {' '}
                   <img src={rushSchedule} alt="" />
                 </span>
               </div>
@@ -111,7 +111,7 @@ class Rush extends React.Component {
               </div>
               <div className="col-12">
                 <p>
-                  {" "}
+                  {' '}
                   Whether you’re a freshman or a junior, Theta Tau offers many
                   benefits socially, professionally, and academically. Theta Tau
                   is a diverse group of engineers who grow close together while
@@ -229,8 +229,8 @@ class Rush extends React.Component {
 
         <Footer />
       </section>
-    )
+    );
   }
 }
 
-export default Rush
+export default Rush;

@@ -1,5 +1,5 @@
-import React from "react"
-import logo from "../assets/images/thetatau.png"
+import React from 'react';
+import logo from '../assets/images/thetatau.png';
 
 class Header extends React.Component {
   render() {
@@ -8,7 +8,7 @@ class Header extends React.Component {
         <div className="inner">
           <img id="logo-vector" src={logo} alt="Logo" />
           <h1>
-            {" "}
+            {' '}
             <strong>Theta Tau</strong>
           </h1>
           <p>
@@ -24,8 +24,8 @@ class Header extends React.Component {
           </ul>
         </div>
       </section>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;

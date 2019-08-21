@@ -1,13 +1,13 @@
-import React from "react"
-import NavBar from "../components/NavBar"
-import Helmet from "react-helmet"
-import logo from "../assets/images/thetatau.png"
-import Footer from "../components/Footer"
-import pic02 from "../assets/images/pic02.jpg"
+import React from 'react';
+import Helmet from 'react-helmet';
+import NavBar from '../components/NavBar';
+import logo from '../assets/images/thetatau.png';
+import Footer from '../components/Footer';
+import pic02 from '../assets/images/pic02.jpg';
 
 class Brothers extends React.Component {
   render() {
-    const siteTitle = "Theta Tau | SJSU"
+    const siteTitle = 'Theta Tau | SJSU';
 
     return (
       <section>
@@ -17,7 +17,7 @@ class Brothers extends React.Component {
           <div className="inner">
             <img id="logo-vector" src={logo} alt="Logo" />
             <h1>
-              {" "}
+              {' '}
               <strong>Meet the Brothers</strong>
             </h1>
             <p>
@@ -141,8 +141,8 @@ class Brothers extends React.Component {
         </div>
         <Footer />
       </section>
-    )
+    );
   }
 }
 
-export default Brothers
+export default Brothers;

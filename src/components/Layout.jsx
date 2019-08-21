@@ -1,41 +1,41 @@
-import React from "react"
+import React from 'react';
 
-import Header from "./Header"
-import Footer from "./Footer"
-import NavBar from "./NavBar"
+import Header from './Header';
+import Footer from './Footer';
+import NavBar from './NavBar';
 
 class Template extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      loading: "is-loading",
-    }
+      loading: 'is-loading'
+    };
   }
 
   componentDidMount() {
     this.timeoutId = setTimeout(() => {
-      this.setState({ loading: "" })
-    }, 100)
+      this.setState({ loading: '' });
+    }, 100);
   }
 
   componentWillUnmount() {
     if (this.timeoutId) {
-      clearTimeout(this.timeoutId)
+      clearTimeout(this.timeoutId);
     }
   }
 
   render() {
-    const { children } = this.props
+    const { children, loading } = this.props;
 
     return (
-      <div className={`body ${this.state.loading}`}>
+      <div className={`body ${loading}`}>
         <NavBar />
         <Header />
         {children}
         <Footer />
       </div>
-    )
+    );
   }
 }
 
-export default Template
+export default Template;

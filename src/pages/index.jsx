@@ -1,22 +1,22 @@
-import React from "react"
-import Helmet from "react-helmet"
-import Layout from "../components/Layout"
-import Container from "react-bootstrap/Container"
-import Col from "react-bootstrap/Col"
-import Row from "react-bootstrap/Row"
-import "../assets/scss/main.scss"
-import "bootstrap/dist/css/bootstrap.min.css"
+import React from 'react';
+import Helmet from 'react-helmet';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Layout from '../components/Layout';
+import '../assets/scss/main.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import pic02 from "../assets/images/pic02.jpg"
-import pic04 from "../assets/images/pic04.jpg"
+import pic02 from '../assets/images/pic02.jpg';
+import pic04 from '../assets/images/pic04.jpg';
 
-import intelTour from "../assets/images/intel.png"
-import mark from "../assets/images/mark.jpg"
-import pledgeEventPic from "../assets/images/pledge-event-cropped.png"
+import intelTour from '../assets/images/intel.png';
+import mark from '../assets/images/mark.jpg';
+import pledgeEventPic from '../assets/images/pledge-event-cropped.png';
 
 class Homepage extends React.Component {
   render() {
-    const siteTitle = "Theta Tau | SJSU"
+    const siteTitle = 'Theta Tau | SJSU';
 
     return (
       <Layout>
@@ -50,7 +50,7 @@ class Homepage extends React.Component {
                 <Row>
                   <Col md={5} sm={12}>
                     <span className="image fit">
-                      {" "}
+                      {' '}
                       <img src={mark} alt="" />
                     </span>
                   </Col>
@@ -169,8 +169,8 @@ class Homepage extends React.Component {
           </section>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
-export default Homepage
+export default Homepage;

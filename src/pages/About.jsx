@@ -1,15 +1,12 @@
-import React from "react"
-import NavBar from "../components/NavBar"
-import Helmet from "react-helmet"
-import logo from "../assets/images/thetatau.png"
-import Footer from "../components/Footer"
-import Container from "react-bootstrap/Container"
-import Col from "react-bootstrap/Col"
-import Row from "react-bootstrap/Row"
+import React from 'react';
+import Helmet from 'react-helmet';
+import Footer from '../components/Footer';
+import logo from '../assets/images/thetatau.png';
+import NavBar from '../components/NavBar';
 
 class About extends React.Component {
   render() {
-    const siteTitle = "Theta Tau | SJSU"
+    const siteTitle = 'Theta Tau | SJSU';
 
     return (
       <section>
@@ -18,7 +15,7 @@ class About extends React.Component {
         <section id="header" className="about-background">
           <img id="logo-vector" src={logo} alt="Logo" />
           <h1>
-            {" "}
+            {' '}
             <strong>About Us</strong>
           </h1>
           <p>
@@ -61,7 +58,8 @@ class About extends React.Component {
                   are interested in building friendships, improving their
                   professional lives, and becoming the strong foundation upon
                   which the fraternity is built. Are you the person we are
-                  looking for?{" "}
+                  looking for?
+                  {' '}
                 </p>
               </div>
             </div>
@@ -108,8 +106,8 @@ class About extends React.Component {
 
         <Footer />
       </section>
-    )
+    );
   }
 }
 
-export default About
+export default About;

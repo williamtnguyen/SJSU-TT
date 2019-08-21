@@ -1,18 +1,18 @@
-import React from "react"
-import { Item } from "gatsby"
-import Navbar from "react-bootstrap/Navbar"
-import Nav from "react-bootstrap/Nav"
-import { Link as GatsbyLink } from "gatsby"
+import React from 'react';
+import { Item, Link as GatsbyLink } from 'gatsby';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+
 
 class NavBar extends React.Component {
   render() {
     return (
       <Navbar
         expand="lg"
-        style={{ padding: "20px 10px", backgroundColor: "#883a3a" }}
+        style={{ padding: '20px 10px', backgroundColor: '#883a3a' }}
       >
         <GatsbyLink to="/">
-          <span className="navbar-brand mb-0 h1" style={{ color: "white" }}>
+          <span className="navbar-brand mb-0 h1" style={{ color: 'white' }}>
             Theta Tau | SJSU
           </span>
         </GatsbyLink>
@@ -34,8 +34,8 @@ class NavBar extends React.Component {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    )
+    );
   }
 }
 
-export default NavBar
+export default NavBar;
