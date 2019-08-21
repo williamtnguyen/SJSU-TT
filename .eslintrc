@@ -7,8 +7,10 @@
 	"extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+		"eslint-config-react-app",
     "airbnb"
 	],
+	"plugins": ["react-hooks",],
 	"rules": {
 		"no-unexpected-multiline": 2,
 		"react/sort-comp": ["error", {
