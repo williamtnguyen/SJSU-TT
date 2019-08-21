@@ -1,0 +1,23 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"jest": true
+	},
+	"extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+		"eslint-config-react-app",
+    "airbnb"
+	],
+	"plugins": ["react-hooks",],
+	"rules": {
+		"no-unexpected-multiline": 2,
+		"react/sort-comp": ["error", {
+			"order": ["type-annotations", "constructor", "static-methods", "everything-else", "lifecycle", "render"]
+		}],
+		"comma-dangle": ["error", "never"],
+    "react/jsx-wrap-multilines": ["error", {"declaration": false, "assignment": false}],
+    "no-unneeded-ternary": 0
+	}
+}
