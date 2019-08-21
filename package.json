@@ -4,8 +4,7 @@
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
   "engines": {
-    "node": "10.15.x",
-    "yarn": "1.15.x"
+    "node": "10"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",

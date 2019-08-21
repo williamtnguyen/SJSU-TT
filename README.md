@@ -1,4 +1,4 @@
-# gatsby-starter-photon
+# SJSU Theta Tau Website [![Build Status](https://travis-ci.org/sjsuthetatau/sjsuthetatau-website.svg?branch=master)](https://travis-ci.org/sjsuthetatau/sjsuthetatau-website)
 Gatsby.js V2 starter based on the Photon site template, designed by HTML5 UP. Check out https://codebushi.com/gatsby-starters/ for more Gatsby starters and templates.
 
 ## Preview
