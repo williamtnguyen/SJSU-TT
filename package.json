@@ -22,7 +22,14 @@
   },
   "devDependencies": {
     "css-loader": "^2.1.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.4",
     "prettier": "^1.14.2",
+    "pretty-quick": "^1.11.1",
     "webpack": "^4.30.0"
   },
   "keywords": [
@@ -32,8 +39,9 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write '**/*.js'",
+    "format": "pretty-quick --format",
     "heroku-postbuild": "gatsby build",
+    "lint": "eslint ./ --ext .js,.jsx",
     "start": "gatsby serve",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
@@ -41,5 +49,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/gatsbyjs/gatsby-starter-photon"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "pretty-quick --staged",
+      "eslint src/ --fix",
+      "git add"
+    ]
   }
 }
