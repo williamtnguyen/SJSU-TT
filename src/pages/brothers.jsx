@@ -20,9 +20,9 @@ class Brothers extends React.Component {
               {' '}
               <strong>Meet the Brothers</strong>
             </h1>
-            <p>
-              <b>Theta Tau Blah Chapter</b>
-            </p>
+            {/* <p>
+              <b>Theta Tau Chapter</b>
+            </p> */}
             <div id="extend-height" />
           </div>
         </section>
