@@ -1,9 +1,10 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
 import NavBar from '../components/NavBar';
 import logo from '../assets/images/thetatau.png';
 import Footer from '../components/Footer';
-import rushSchedule from '../assets/images/rush-sp-2019.jpg';
+import rushSchedule from '../assets/images/rush-fall-2019.jpg';
 
 class Rush extends React.Component {
   render() {
@@ -20,7 +21,7 @@ class Rush extends React.Component {
             <strong>Rush Fall 2019</strong>
           </h1>
           <p>
-            <b>Theta Tau Blah Chapter</b>
+            <b>Theta Tau SJSU Colony</b>
           </p>
           <div id="extend-height" />
         </section>
@@ -30,7 +31,7 @@ class Rush extends React.Component {
             <div className="grid-wrapper">
               <div className="col-12">
                 <header className="major">
-                  <h2>Theta Tau Rush Schedule</h2>
+                  <h2>Fall 2019 Rush Schedule</h2>
                 </header>
                 <span className="image fit">
                   {' '}

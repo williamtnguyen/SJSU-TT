@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
 import Container from 'react-bootstrap/Container';
@@ -7,10 +8,9 @@ import Layout from '../components/Layout';
 import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import pic02 from '../assets/images/pic02.jpg';
-import pic04 from '../assets/images/pic04.jpg';
-
-import intelTour from '../assets/images/intel.png';
+import brotherhood from '../assets/images/brotherhood.jpg';
+import professional from '../assets/images/professional.jpg';
+import community from '../assets/images/rush-tabling-cropped.jpg';
 import mark from '../assets/images/mark.jpg';
 import pledgeEventPic from '../assets/images/pledge-event-cropped.png';
 
@@ -23,7 +23,31 @@ class Homepage extends React.Component {
         <Helmet title={siteTitle} />
         <div id="page-wrapper">
           <section className="main style1">
-            <div className="grid-wrapper">
+          <Container>
+              <Col>
+                <Row>
+                <Col md={7} sm={12}>
+                    <header className="major">
+                      <h2>About Theta Tau</h2>
+                    </header>
+                    <p>
+                    Theta Tau is the largest and oldest Co-ed Engineering
+                    Fraternity in the United States. The purpose of Theta Tau is
+                    to develop and maintain a high standard of professional
+                    interest among its members, and to unite them in a strong bond
+                    of fraternal fellowship.
+                    </p>
+                  </Col>
+                  <Col md={5} sm={12}>
+                    <span className="image fit">
+                      {' '}
+                      <img src={pledgeEventPic} alt="" />
+                    </span>
+                  </Col>
+                </Row>
+              </Col>
+            </Container>
+            {/* <div className="grid-wrapper">
               <div className="col-6">
                 <header className="major">
                   <h2>About Theta Tau</h2>
@@ -41,7 +65,7 @@ class Homepage extends React.Component {
                   <img src={pledgeEventPic} alt="" />
                 </span>
               </div>
-            </div>
+            </div> */}
           </section>
 
           <section id="two" className="main style2">
@@ -85,7 +109,7 @@ class Homepage extends React.Component {
               <Row>
                 <Col sm={4}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={pic02} alt="" />
+                    <img className="pillars-pic" src={brotherhood} alt="" />
                   </span>
                   <h3>Brotherhood</h3>
                   <p>
@@ -105,7 +129,7 @@ class Homepage extends React.Component {
                 </Col>
                 <Col sm={4}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={intelTour} alt="" />
+                    <img className="pillars-pic" src={professional} alt="" />
                   </span>
                   <h3>Professionalism</h3>
                   <p>
@@ -124,7 +148,7 @@ class Homepage extends React.Component {
                 </Col>
                 <Col sm={4}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={pic04} alt="" />
+                    <img className="pillars-pic" src={community} alt="" />
                   </span>
                   <h3>Community Service</h3>
                   <p>
@@ -160,7 +184,7 @@ class Homepage extends React.Component {
                   </a>
                 </li>
                 <li>
-                  <a href="/" className="button">
+                  <a href="/rush" className="button">
                     Rush Fall 2019
                   </a>
                 </li>
