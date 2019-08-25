@@ -371,19 +371,19 @@ class Brothers extends React.Component {
                     </li>
                   </ul>
                 </Col>
-                {/* <Col sm={3}>
+                <Col sm={3}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={maan} alt="" />
+                    <img className="pillars-pic" src={sarah} alt="" />
                   </span>
                   <p>
-                    Maan Singh
+                    Sarah Lau
                   </p>
                   <ul className="actions">
                     <li>
                     </li>
                   </ul>
                 </Col>
-                <Col sm={3}>
+                {/* <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={gordon} alt="" />
                   </span>
