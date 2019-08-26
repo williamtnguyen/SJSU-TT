@@ -11,9 +11,7 @@ class Footer extends React.Component {
             </a>
           </li>
           <li>
-            <a
-              href="https://www.facebook.com/ThetaTauSJ/"
-              className="icon alt fa-facebook"
+            <a href="https://www.facebook.com/ThetaTauSJ/" className="icon alt fa-facebook"
             >
               <span className="label">Facebook</span>
             </a>
@@ -42,7 +40,7 @@ class Footer extends React.Component {
             </p>
           </small>
           &copy; 2019 | ΘT @ SJSU
-          <li>Made with ❤ by Jonathan Wong</li>
+          <li>Made with ❤ by Jonathan Wong & John Tran</li>
         </ul>
       </section>
     );

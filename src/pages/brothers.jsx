@@ -46,6 +46,7 @@ import maan from "../assets/images/headshots/maan.jpg"
 // Headshots of Alpha Class
 
 import jon from "../assets/images/headshots/jon.jpg"
+import john from "../assets/images/headshots/john.jpg"
 import priscilla from "../assets/images/headshots/priscilla.jpg"
 import klin from "../assets/images/headshots/klin.jpg"
 import liz from "../assets/images/headshots/liz.jpg"
@@ -349,10 +350,10 @@ class Brothers extends React.Component {
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={kchu} alt="" />
+                    <img className="pillars-pic" src={john} alt="" />
                   </span>
                   <p>
-                    Kevin Chu
+                    John Tran
                   </p>
                   <ul className="actions">
                     <li>
@@ -383,18 +384,18 @@ class Brothers extends React.Component {
                     </li>
                   </ul>
                 </Col>
-                {/* <Col sm={3}>
+                <Col sm={3}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={gordon} alt="" />
+                    <img className="pillars-pic" src={kchu} alt="" />
                   </span>
                   <p>
-                    Gordon Ly
+                    Kevin Chu
                   </p>
                   <ul className="actions">
                     <li>
                     </li>
                   </ul>
-                </Col> */}
+                </Col>
               </Row>
 
             </Container>
