@@ -121,9 +121,10 @@ class Homepage extends React.Component {
                   </p>
                   <ul className="actions">
                     <li>
-                      <a href="/" className="button">
+
+                      {/* <a href="/" className="button">
                         More
-                      </a>
+                      </a> */}
                     </li>
                   </ul>
                 </Col>
@@ -140,9 +141,9 @@ class Homepage extends React.Component {
                   </p>
                   <ul className="actions">
                     <li>
-                      <a href="/" className="button">
+                      {/* <a href="/" className="button">
                         More
-                      </a>
+                      </a> */}
                     </li>
                   </ul>
                 </Col>
@@ -159,9 +160,9 @@ class Homepage extends React.Component {
                   </p>
                   <ul className="actions">
                     <li>
-                      <a href="/" className="button">
+                      {/* <a href="/" className="button">
                         More
-                      </a>
+                      </a> */}
                     </li>
                   </ul>
                 </Col>
@@ -175,18 +176,19 @@ class Homepage extends React.Component {
                 <h2>Interested in joining?</h2>
               </header>
               <p>
-                <b>Check us out at Rush!</b>
+                <b>Check us out at Rush every semester!</b>
               </p>
               <ul className="actions uniform">
                 <li>
-                  <a href="/" className="button special">
+                  {/* <a href="/" className="button special">
                     Subscribe
                   </a>
                 </li>
                 <li>
                   <a href="/rush" className="button">
+                    
                     Rush Fall 2019
-                  </a>
+                  </a> */}
                 </li>
               </ul>
             </div>

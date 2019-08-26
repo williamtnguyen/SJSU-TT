@@ -5,11 +5,11 @@ class Footer extends React.Component {
     return (
       <section id="footer">
         <ul className="icons">
-          <li>
+          {/* <li>
             <a href="/" className="icon alt fa-twitter">
               <span className="label">Twitter</span>
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="https://www.facebook.com/ThetaTauSJ/" className="icon alt fa-facebook"
             >
@@ -21,11 +21,11 @@ class Footer extends React.Component {
               <span className="label">Instagram</span>
             </a>
           </li>
-          <li>
+          {/* <li>
             <a href="/" className="icon alt fa-github">
               <span className="label">GitHub</span>
             </a>
-          </li>
+          </li> */}
           <li>
             <a href="mailto:sjsuthetatau@gmail.com" className="icon alt fa-envelope">
               <span className="label">Email</span>

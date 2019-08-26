@@ -15,11 +15,8 @@ class Header extends React.Component {
             <b>Co-ed Professional Engineering Fraternity | SJSU Chapter</b>
           </p>
           <div id="extend-height" />
-          <ul className="actions">
+          <ul className="">
             <li>
-              <a href="rush" className="button scrolly">
-                Rush
-              </a>
             </li>
           </ul>
         </div>
