@@ -1,23 +1,30 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import NavBar from '../components/NavBar';
-import logo from '../assets/images/thetatau.png';
 import Footer from '../components/Footer';
-import rushSchedule from '../assets/images/rush-fall-2019.jpg';
 
 class Rush extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
-
+    const { logo, rushSchedule } = this.props.data;
     return (
       <section>
         <Helmet title={siteTitle} />
         <NavBar />
         <section id="header" className="rush-background">
-          <img id="logo-vector" src={logo} alt="Logo" />
+          <Img
+            fluid={logo.childImageSharp.fluid}
+            alt="Theta Tau Logo"
+            style={{
+              margin: 'auto',
+              width: '17%',
+              minWidth: '100px'
+            }}
+          />
           <h1>
-            {' '}
             <strong>Rush Fall 2019</strong>
           </h1>
           <p>
@@ -34,8 +41,7 @@ class Rush extends React.Component {
                   <h2>Fall 2019 Rush Schedule</h2>
                 </header>
                 <span className="image fit">
-                  {' '}
-                  <img src={rushSchedule} alt="" />
+                  <Img fluid={rushSchedule.childImageSharp.fluid} alt="Theta Tau Logo" />
                 </span>
               </div>
             </div>
@@ -227,11 +233,29 @@ class Rush extends React.Component {
             </div>
           </section>
         </div>
-
         <Footer />
       </section>
     );
   }
 }
+
+export const query = graphql`
+  query {
+    logo: file(relativePath: { eq: "thetatau.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    rushSchedule: file(relativePath: { eq: "rush-fall-2019.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
 
 export default Rush;
