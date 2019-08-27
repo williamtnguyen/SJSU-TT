@@ -23,10 +23,10 @@ class Homepage extends React.Component {
         <Helmet title={siteTitle} />
         <div id="page-wrapper">
           <section className="main style1">
-          <Container>
+            <Container>
               <Col>
                 <Row>
-                <Col md={7} sm={12}>
+                  <Col md={7} sm={12}>
                     <header className="major">
                       <h2>About Theta Tau</h2>
                     </header>
@@ -186,7 +186,7 @@ class Homepage extends React.Component {
                 </li>
                 <li>
                   <a href="/rush" className="button">
-                    
+
                     Rush Fall 2019
                   </a> */}
                 </li>

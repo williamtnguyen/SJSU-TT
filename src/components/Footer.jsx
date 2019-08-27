@@ -11,7 +11,9 @@ class Footer extends React.Component {
             </a>
           </li> */}
           <li>
-            <a href="https://www.facebook.com/ThetaTauSJ/" className="icon alt fa-facebook"
+            <a
+              href="https://www.facebook.com/ThetaTauSJ/"
+              className="icon alt fa-facebook"
             >
               <span className="label">Facebook</span>
             </a>

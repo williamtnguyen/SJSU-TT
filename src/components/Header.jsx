@@ -16,8 +16,7 @@ class Header extends React.Component {
           </p>
           <div id="extend-height" />
           <ul className="">
-            <li>
-            </li>
+            <li />
           </ul>
         </div>
       </section>
