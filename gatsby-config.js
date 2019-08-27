@@ -1,7 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'SJSU Theta Tau Website',
-    description: 'A Gatsby.js Starter based on Photon by HTML5 UP'
+    title: 'SJSU Theta Tau Website'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -18,6 +17,14 @@ module.exports = {
       }
     },
     'gatsby-plugin-sass',
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/assets/images`
+      }
+    }
   ]
 };
