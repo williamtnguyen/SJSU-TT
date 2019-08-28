@@ -1,22 +1,32 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import Footer from '../components/Footer';
-import logo from '../assets/images/thetatau.png';
 import NavBar from '../components/NavBar';
 
 class About extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
-
+    const {
+      logo
+    } = this.props.data;
     return (
       <section>
         <Helmet title={siteTitle} />
         <NavBar />
         <section id="header" className="about-background">
-          <img id="logo-vector" src={logo} alt="Logo" />
+          <Img
+            fluid={logo.childImageSharp.fluid}
+            alt="Theta Tau Logo"
+            style={{
+              margin: 'auto',
+              width: '17%',
+              minWidth: '100px'
+            }}
+          />
           <h1>
-            {' '}
             <strong>About Us</strong>
           </h1>
           <p>
@@ -110,5 +120,17 @@ class About extends React.Component {
     );
   }
 }
+
+export const query = graphql`
+  query {
+    logo: file(relativePath: { eq: "thetatau.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
 
 export default About;

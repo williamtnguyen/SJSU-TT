@@ -1,86 +1,87 @@
 /* eslint-disable react/prefer-stateless-function */
-import React from "react";
+import React from 'react';
+import Helmet from 'react-helmet';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import NavBar from '../components/NavBar';
-import Helmet from "react-helmet";
-import logo from '../assets/images/thetatau.png'
-import Footer from "../components/Footer";
-import pic02 from "../assets/images/pic02.jpg"
+import logo from '../assets/images/thetatau.png';
+import Footer from '../components/Footer';
+import pic02 from '../assets/images/pic02.jpg';
 import pic04 from '../assets/images/pic04.jpg';
 
 import intelTour from '../assets/images/intel.png';
 import pledgeEventPic from '../assets/images/pledge-event-cropped.png';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 // Headshots of Founding Fathers
-import ari from "../assets/images/headshots/aris.jpg"
-import mark from "../assets/images/headshots/mark.jpg"
-import darpan from "../assets/images/headshots/darpan.jpg"
-import james from "../assets/images/headshots/james.jpg"
-import serena from "../assets/images/headshots/serena.jpg"
-import pancho from "../assets/images/headshots/pancho.jpg"
-import sophia from "../assets/images/headshots/sophia.jpg"
-import eriny from "../assets/images/headshots/eriny.jpg"
-import erinb from "../assets/images/headshots/erinb.jpg"
-import jeson from "../assets/images/headshots/jeson.jpg"
-import domingo from "../assets/images/headshots/domingo.jpg"
-import emerson from "../assets/images/headshots/emerson.jpg"
-import anthony from "../assets/images/headshots/anthony.jpg"
-import meng from "../assets/images/headshots/meng.jpg"
-import ada from "../assets/images/headshots/ada.jpg"
-import eric from "../assets/images/headshots/eric.jpg"
-import andrew from "../assets/images/headshots/andrewp.jpg"
-import aby from "../assets/images/headshots/aby.jpg"
-import binh from "../assets/images/headshots/binh.jpg"
-import patricia from "../assets/images/headshots/patricia.jpg"
-import brianna from "../assets/images/headshots/brianna.jpg"
-import sarah from "../assets/images/headshots/sarah.jpg"
-import austin from "../assets/images/headshots/austin.jpg"
-import jameson from "../assets/images/headshots/jameson.jpg"
-import isaiah from "../assets/images/headshots/isaiah.jpg"
-import cameron from "../assets/images/headshots/cameron.jpg"
-import gordon from "../assets/images/headshots/gordon.jpg"
-import maan from "../assets/images/headshots/maan.jpg"
+import ari from '../assets/images/headshots/aris.jpg';
+import mark from '../assets/images/headshots/mark.jpg';
+import darpan from '../assets/images/headshots/darpan.jpg';
+import james from '../assets/images/headshots/james.jpg';
+import serena from '../assets/images/headshots/serena.jpg';
+import pancho from '../assets/images/headshots/pancho.jpg';
+import sophia from '../assets/images/headshots/sophia.jpg';
+import eriny from '../assets/images/headshots/eriny.jpg';
+import erinb from '../assets/images/headshots/erinb.jpg';
+import jeson from '../assets/images/headshots/jeson.jpg';
+import domingo from '../assets/images/headshots/domingo.jpg';
+import emerson from '../assets/images/headshots/emerson.jpg';
+import anthony from '../assets/images/headshots/anthony.jpg';
+import meng from '../assets/images/headshots/meng.jpg';
+import ada from '../assets/images/headshots/ada.jpg';
+import eric from '../assets/images/headshots/eric.jpg';
+import andrew from '../assets/images/headshots/andrewp.jpg';
+import aby from '../assets/images/headshots/aby.jpg';
+import binh from '../assets/images/headshots/binh.jpg';
+import patricia from '../assets/images/headshots/patricia.jpg';
+import brianna from '../assets/images/headshots/brianna.jpg';
+import sarah from '../assets/images/headshots/sarah.jpg';
+import austin from '../assets/images/headshots/austin.jpg';
+import jameson from '../assets/images/headshots/jameson.jpg';
+import isaiah from '../assets/images/headshots/isaiah.jpg';
+import cameron from '../assets/images/headshots/cameron.jpg';
+import gordon from '../assets/images/headshots/gordon.jpg';
+import maan from '../assets/images/headshots/maan.jpg';
 
 // Headshots of Alpha Class
 
-import jon from "../assets/images/headshots/jon.jpg"
-import john from "../assets/images/headshots/john.jpg"
-import priscilla from "../assets/images/headshots/priscilla.jpg"
-import klin from "../assets/images/headshots/klin.jpg"
-import liz from "../assets/images/headshots/liz.jpg"
-import antonio from "../assets/images/headshots/antonio.jpg"
-import jeanelle from "../assets/images/headshots/jeanelle.jpg"
-import klam from "../assets/images/headshots/klam.jpg"
-import kchu from "../assets/images/headshots/kchu.jpg"
-import nick from "../assets/images/headshots/nick.jpg"
-import raul from "../assets/images/headshots/raul.jpg"
-import esther from "../assets/images/headshots/esther.jpg"
+import jon from '../assets/images/headshots/jon.jpg';
+import john from '../assets/images/headshots/john.jpg';
+import priscilla from '../assets/images/headshots/priscilla.jpg';
+import klin from '../assets/images/headshots/klin.jpg';
+import liz from '../assets/images/headshots/liz.jpg';
+import antonio from '../assets/images/headshots/antonio.jpg';
+import jeanelle from '../assets/images/headshots/jeanelle.jpg';
+import klam from '../assets/images/headshots/klam.jpg';
+import kchu from '../assets/images/headshots/kchu.jpg';
+import nick from '../assets/images/headshots/nick.jpg';
+import raul from '../assets/images/headshots/raul.jpg';
+import esther from '../assets/images/headshots/esther.jpg';
 
 class Brothers extends React.Component {
-    render() {
-        const siteTitle = "Theta Tau | SJSU";
+  render() {
+    const siteTitle = 'Theta Tau | SJSU';
 
-        return (
-            <section>
-            <Helmet title={siteTitle} />
-            <NavBar></NavBar>
-            <section id="header" class="brothers-background">
-            <div className="inner">
-                <img id="logo-vector" src={logo} alt="Logo"></img>
-                <h1> <strong>Meet the Brothers</strong> 
-                </h1>
-                <p><b>Theta Tau SJSU Colony</b></p>
-                <div id="extend-height"></div>
-            </div>
-            </section>
-            
-            <div className="brothers">
-                
-                
-  
-                <section id="three" className="main style1 special">
+    return (
+      <section>
+        <Helmet title={siteTitle} />
+        <NavBar />
+        <section id="header" className="brothers-background">
+          <div className="inner">
+            <img id="logo-vector" src={logo} alt="Logo" />
+            <h1>
+              {' '}
+              <strong>Meet the Brothers</strong>
+            </h1>
+            <p><b>Theta Tau SJSU Colony</b></p>
+            <div id="extend-height" />
+          </div>
+        </section>
+
+        <div className="brothers">
+
+
+          <section id="three" className="main style1 special">
             <Container>
               <header className="major">
                 <h2>Active Brothers</h2>
@@ -94,8 +95,7 @@ class Brothers extends React.Component {
                     Darpan Goyal
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -106,8 +106,7 @@ class Brothers extends React.Component {
                     Jonathan Wong
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -118,8 +117,7 @@ class Brothers extends React.Component {
                     Francisco Sanchez
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -130,12 +128,10 @@ class Brothers extends React.Component {
                     Erin Yang
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
-
 
 
               <Row>
@@ -147,8 +143,7 @@ class Brothers extends React.Component {
                     Antonio Cervantes
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -159,8 +154,7 @@ class Brothers extends React.Component {
                     Priscilla Ng
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -171,8 +165,7 @@ class Brothers extends React.Component {
                     Elizabeth Huang
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -183,13 +176,10 @@ class Brothers extends React.Component {
                     Kevin Lin
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
-
-
 
 
               <Row>
@@ -201,8 +191,7 @@ class Brothers extends React.Component {
                     Ada La
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -213,8 +202,7 @@ class Brothers extends React.Component {
                     Meng Lo
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -225,8 +213,7 @@ class Brothers extends React.Component {
                     Cameron Lofy
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -237,8 +224,7 @@ class Brothers extends React.Component {
                     Austin McNiff
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
@@ -252,8 +238,7 @@ class Brothers extends React.Component {
                     Jeanelle Bentajado
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -264,8 +249,7 @@ class Brothers extends React.Component {
                     Kevin Lam
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -276,8 +260,7 @@ class Brothers extends React.Component {
                     Maan Singh
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -288,8 +271,7 @@ class Brothers extends React.Component {
                     Gordon Ly
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
@@ -304,8 +286,7 @@ class Brothers extends React.Component {
                     Jameson Au
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -316,8 +297,7 @@ class Brothers extends React.Component {
                     Raul Gonzalez
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -328,8 +308,7 @@ class Brothers extends React.Component {
                     Brianna Felix
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -340,8 +319,7 @@ class Brothers extends React.Component {
                     Patricia Dela Cruz
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
@@ -356,8 +334,7 @@ class Brothers extends React.Component {
                     John Tran
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -368,8 +345,7 @@ class Brothers extends React.Component {
                     Nicholas Ong
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -380,8 +356,7 @@ class Brothers extends React.Component {
                     Sarah Lau
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -392,8 +367,7 @@ class Brothers extends React.Component {
                     Kevin Chu
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
@@ -414,8 +388,7 @@ class Brothers extends React.Component {
                     Mark Muendelein
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -426,8 +399,7 @@ class Brothers extends React.Component {
                     James-Jimenez
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -438,8 +410,7 @@ class Brothers extends React.Component {
                     Serena Pascual
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -450,8 +421,7 @@ class Brothers extends React.Component {
                     Ari Koumis
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
@@ -466,8 +436,7 @@ class Brothers extends React.Component {
                     Sophia Tan
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -478,8 +447,7 @@ class Brothers extends React.Component {
                     Jeson Retumalta
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -490,8 +458,7 @@ class Brothers extends React.Component {
                     Anthony Pun
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -502,8 +469,7 @@ class Brothers extends React.Component {
                     Emerson Ye
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
@@ -518,8 +484,7 @@ class Brothers extends React.Component {
                     Erin Bui
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -530,8 +495,7 @@ class Brothers extends React.Component {
                     Domingo Castro
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -542,8 +506,7 @@ class Brothers extends React.Component {
                     Andrew Phan
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -554,12 +517,10 @@ class Brothers extends React.Component {
                     Binh Do
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
-
 
 
               <Row>
@@ -571,8 +532,7 @@ class Brothers extends React.Component {
                     Isaih Gosiengfiao
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -583,8 +543,7 @@ class Brothers extends React.Component {
                     Aby Samuel
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -595,8 +554,7 @@ class Brothers extends React.Component {
                     Eric Tong
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
                 <Col sm={3}>
@@ -607,22 +565,21 @@ class Brothers extends React.Component {
                     Esther Kuan
                   </p>
                   <ul className="actions">
-                    <li>
-                    </li>
+                    <li />
                   </ul>
                 </Col>
               </Row>
 
             </Container>
           </section>
-                
 
-            </div>
-            <Footer></Footer>
-            </section>
-            
-        );
-    }
+
+        </div>
+        <Footer />
+      </section>
+
+    );
+  }
 }
 
 export default Brothers;

@@ -4,29 +4,27 @@ import Helmet from 'react-helmet';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import '../assets/scss/main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import brotherhood from '../assets/images/brotherhood.jpg';
-import professional from '../assets/images/professional.jpg';
-import community from '../assets/images/rush-tabling-cropped.jpg';
-import mark from '../assets/images/mark.jpg';
-import pledgeEventPic from '../assets/images/pledge-event-cropped.png';
-
 class Homepage extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
-
+    const {
+      brotherhood, professional, community, mark, pledgeEventPic
+    } = this.props.data;
     return (
       <Layout>
         <Helmet title={siteTitle} />
         <div id="page-wrapper">
           <section className="main style1">
-          <Container>
+            <Container>
               <Col>
                 <Row>
-                <Col md={7} sm={12}>
+                  <Col md={7} sm={12}>
                     <header className="major">
                       <h2>About Theta Tau</h2>
                     </header>
@@ -40,8 +38,7 @@ class Homepage extends React.Component {
                   </Col>
                   <Col md={5} sm={12}>
                     <span className="image fit">
-                      {' '}
-                      <img src={pledgeEventPic} alt="" />
+                      <Img fluid={pledgeEventPic.childImageSharp.fluid} alt="Pledge Event Pic" />
                     </span>
                   </Col>
                 </Row>
@@ -62,7 +59,7 @@ class Homepage extends React.Component {
               </div>
               <div className="col-6">
                 <span className="image fit">
-                  <img src={pledgeEventPic} alt="" />
+                  <<Img fluid={pledgeEventPic.childImageSharp.fluid} />
                 </span>
               </div>
             </div> */}
@@ -74,8 +71,7 @@ class Homepage extends React.Component {
                 <Row>
                   <Col md={5} sm={12}>
                     <span className="image fit">
-                      {' '}
-                      <img src={mark} alt="" />
+                      <Img fluid={mark.childImageSharp.fluid} alt="Founder Mark" />
                     </span>
                   </Col>
                   <Col md={7} sm={12}>
@@ -109,7 +105,7 @@ class Homepage extends React.Component {
               <Row>
                 <Col sm={4}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={brotherhood} alt="" />
+                    <Img fluid={brotherhood.childImageSharp.fluid} alt="Brotherhood event" />
                   </span>
                   <h3>Brotherhood</h3>
                   <p>
@@ -130,7 +126,7 @@ class Homepage extends React.Component {
                 </Col>
                 <Col sm={4}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={professional} alt="" />
+                    <Img fluid={professional.childImageSharp.fluid} alt="Professional event" />
                   </span>
                   <h3>Professionalism</h3>
                   <p>
@@ -149,7 +145,7 @@ class Homepage extends React.Component {
                 </Col>
                 <Col sm={4}>
                   <span className="image fit">
-                    <img className="pillars-pic" src={community} alt="" />
+                    <Img fluid={community.childImageSharp.fluid} alt="Community event" />
                   </span>
                   <h3>Community Service</h3>
                   <p>
@@ -186,7 +182,7 @@ class Homepage extends React.Component {
                 </li>
                 <li>
                   <a href="/rush" className="button">
-                    
+
                     Rush Fall 2019
                   </a> */}
                 </li>
@@ -198,5 +194,46 @@ class Homepage extends React.Component {
     );
   }
 }
+
+
+export const query = graphql`
+  query {
+    brotherhood: file(relativePath: { eq: "brotherhood.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    professional: file(relativePath: { eq: "professional.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    community: file(relativePath: { eq: "rush-tabling-cropped.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    mark: file(relativePath: { eq: "mark.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    pledgeEventPic: file(relativePath: { eq: "pledge-event-cropped.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
 
 export default Homepage;

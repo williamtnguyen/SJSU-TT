@@ -1,14 +1,33 @@
 import React from 'react';
-import logo from '../assets/images/thetatau.png';
+import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
-class Header extends React.Component {
-  render() {
-    return (
+const Header = () => (
+  <StaticQuery
+    query={graphql`
+  query {
+    logo: file(relativePath: { eq: "thetatau.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  },
+`}
+    render={(data) => (
       <section id="header" className="home-background">
         <div className="inner">
-          <img id="logo-vector" src={logo} alt="Logo" />
+          <Img
+            fluid={data.logo.childImageSharp.fluid}
+            alt="Theta Tau Logo"
+            style={{
+              margin: 'auto',
+              width: '17%',
+              minWidth: '100px'
+            }}
+          />
           <h1>
-            {' '}
             <strong>Theta Tau</strong>
           </h1>
           <p>
@@ -16,13 +35,13 @@ class Header extends React.Component {
           </p>
           <div id="extend-height" />
           <ul className="">
-            <li>
-            </li>
+            <li />
           </ul>
         </div>
       </section>
-    );
-  }
-}
+    )}
+  />
+);
+
 
 export default Header;
