@@ -3,7 +3,6 @@ import { Link as GatsbyLink } from 'gatsby';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-
 class NavBar extends React.Component {
   render() {
     return (
