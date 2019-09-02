@@ -7,8 +7,6 @@ import Row from 'react-bootstrap/Row';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
-import '../assets/scss/main.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Homepage extends React.Component {
   render() {
