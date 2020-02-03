@@ -19,7 +19,7 @@ class Footer extends React.Component {
             </a>
           </li>
           <li>
-            <a href="/" className="icon alt fa-instagram">
+            <a href="https://www.instagram.com/sjsuthetatau/" className="icon alt fa-instagram">
               <span className="label">Instagram</span>
             </a>
           </li>
@@ -41,7 +41,7 @@ class Footer extends React.Component {
               --Ecclesiastes 9:10
             </p>
           </small>
-          &copy; 2019 | ΘT @ SJSU
+          &copy; 2020 | ΘT @ SJSU
           <li>Made with ❤ by Jonathan Wong & John Tran</li>
         </ul>
       </section>

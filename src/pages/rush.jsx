@@ -25,7 +25,7 @@ class Rush extends React.Component {
             }}
           />
           <h1>
-            <strong>Rush Fall 2019</strong>
+            <strong>Rush Spring 2020</strong>
           </h1>
           <p>
             <b>Theta Tau SJSU Colony</b>
@@ -38,7 +38,7 @@ class Rush extends React.Component {
             <div className="grid-wrapper">
               <div className="col-12">
                 <header className="major">
-                  <h2>Fall 2019 Rush Schedule</h2>
+                  <h2>Spring 2020 Rush Schedule</h2>
                 </header>
                 <span className="image fit">
                   <Img fluid={rushSchedule.childImageSharp.fluid} alt="Theta Tau Logo" />
@@ -248,7 +248,7 @@ export const query = graphql`
         }
       }
     }
-    rushSchedule: file(relativePath: { eq: "rush-fall-2019.jpg" }) {
+    rushSchedule: file(relativePath: { eq: "springrushschedule.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
