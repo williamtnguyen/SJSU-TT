@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
 
 exports.onCreateWebpackConfig = ({ actions, stage, loaders }) => {
   const config = {
