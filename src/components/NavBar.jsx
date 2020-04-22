@@ -63,13 +63,14 @@ class NavBar extends React.Component {
               <GatsbyLink to="/">Home</GatsbyLink>
             </Nav.Item>
             <Nav.Item>
-              <GatsbyLink to="/about">Who We Are</GatsbyLink>
+              <GatsbyLink to="/about">About</GatsbyLink>
             </Nav.Item>
-
-            <NavDropdown title="Rush" className="navdropdown">
-              <Nav.Item>
-                <GatsbyLink to="/rush">Rushing</GatsbyLink>
-              </Nav.Item>
+            <Nav.Item>
+              <GatsbyLink to="/brothers">Brothers</GatsbyLink>
+            </Nav.Item>
+            <Nav.Item>
+              <GatsbyLink to="/rush">Rush</GatsbyLink>
+            </Nav.Item>
               <Nav.Item>
               <a href="https://forms.gle/vpZQPmBSQcVA2MeJ8">Apply</a>
               </Nav.Item>
