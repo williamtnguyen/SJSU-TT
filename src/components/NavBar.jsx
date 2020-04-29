@@ -4,6 +4,7 @@ import { Link as GatsbyLink } from 'gatsby';
 //import Nav from 'react-bootstrap/Nav';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import firebase, { auth, provider } from '../services/firebase.js';
+import { linkLoginRequest, checkLinkLogin, isLoggedIn, getUser } from '../services/auth.js';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -14,12 +15,9 @@ class NavBar extends React.Component {
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
   }
+
   login() {
-    auth.signInWithPopup(provider).then((result) => {
-      this.setState({
-          user: result.user
-      })
-    })
+    //Breaks if this function is removed
   }
   logout() {
     auth.signOut().then((result) => {
@@ -36,12 +34,24 @@ class NavBar extends React.Component {
     })
   }
 
+  
+  
+
   render() {
+    if(isLoggedIn())
+    {
+      loggedInUser = getUser();
+      if(loggedInUser) {
+        this.setState({
+          user: result.user
+        })
+      }
+    }
     let authButton = this.state.user ?
       <GatsbyLink onClick={this.logout}>Log Out</GatsbyLink> :
-      <GatsbyLink onClick={this.login}>Log In</GatsbyLink>
+      <GatsbyLink to="/login">Log In</GatsbyLink>
     let userInfo = this.state.user ?
-      <GatsbyLink> {this.state.user.email} </GatsbyLink> :
+      <GatsbyLink> {this.state.user.email} {this.state.user.uid} </GatsbyLink> :
       null
     
     return (
