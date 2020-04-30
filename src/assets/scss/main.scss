@@ -1562,15 +1562,12 @@ nav {
 			border-radius: 50%;
 		}
 
-		button:focus{
-			background-color:#A52A2A;
-
-			
-		}
+		
 		button {
-			transition-duration: 0.4s;
+			transition-duration: 0.35s;
 		  }
 		button:hover {
+			background-color:#A52A2A;
 			border: .5px solid #ffcccb; 
 			
 		  }
