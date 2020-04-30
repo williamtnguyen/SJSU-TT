@@ -926,6 +926,24 @@ nav {
 		}
 	}
 
+	// Brofile Page
+#brofile {
+    margin: 2em 0;
+ 
+    .brofile-info {
+        margin: 2em 0;
+    }
+ 
+    .brofile-links > * {
+        margin: 1em 0;
+        width: 132px;
+    }
+ 
+    .col-6 {
+        max-width: 100%;
+    }
+}
+
 // Dark (mixin)
 
 	@mixin dark($color-this-bg: _palette(dark, bg)) {
