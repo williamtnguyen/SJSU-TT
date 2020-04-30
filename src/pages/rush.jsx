@@ -3,13 +3,26 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import Alert from 'react-bootstrap/Alert';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { BsFillCalendarFill } from 'react-icons/bs';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import '../../node_modules/react-vertical-timeline-component/style.min.css';
 
 class Rush extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      open: false
+    };
+  }
+
   render() {
     const siteTitle = 'Theta Tau | SJSU';
     const { logo, rushSchedule } = this.props.data;
+    const { open } = this.state;
     return (
       <section>
         <Helmet title={siteTitle} />
@@ -25,7 +38,7 @@ class Rush extends React.Component {
             }}
           />
           <h1>
-            <strong>Rush Spring 2020</strong>
+            <strong>Rush</strong>
           </h1>
           <p>
             <b>Theta Tau SJSU Colony</b>
@@ -37,23 +50,81 @@ class Rush extends React.Component {
           <section className="main style1 special">
             <div className="grid-wrapper">
               <div className="col-12">
+                <Alert variant="danger">
+                  <Alert.Heading>Applications for Spring 2020 are now closed.</Alert.Heading>
+                  <p>
+                    Please check us out again in Fall 2020!
+                  </p>
+                </Alert>
+              </div>
+            </div>
+          </section>
+
+          {/* <div className="grid-wrapper">
+              <div className="col-12">
                 <header className="major">
-                  <h2>Spring 2020 Rush Schedule</h2>
+                  <h2>Rush Schedule</h2>
                 </header>
                 <span className="image fit">
                   <Img fluid={rushSchedule.childImageSharp.fluid} alt="Theta Tau Logo" />
                 </span>
               </div>
-            </div>
+            </div> */}
 
+          <div className="grid-wrapper">
+            <div className="col-12">
+              <header className="major special">
+                <h2>Schedule</h2>
+              </header>
+              <VerticalTimeline>
+                <VerticalTimelineElement
+                  className="vertical-timeline-element--work"
+                  date="Jan 29th, Wed 7PM"
+                  iconStyle={{ background: 'rgb(128,0,0)', color: '#fff' }}
+                  icon={<BsFillCalendarFill />}
+                >
+                  <h3 className="vertical-timeline-element-title">Info Night</h3>
+                  <p>SU Meeting Room 1B</p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                  className="vertical-timeline-element--work"
+                  date="Jan 30th, Thur 7PM"
+                  iconStyle={{ background: 'rgb(128,0,0)', color: '#fff' }}
+                  icon={<BsFillCalendarFill />}
+                >
+                  <h3 className="vertical-timeline-element-title">Game Night</h3>
+                  <p>SU Meeting Room 2A</p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                  className="vertical-timeline-element--work"
+                  date="Feb 5th, Wed 8:30PM"
+                  iconStyle={{ background: 'rgb(128,0,0)', color: '#fff' }}
+                  icon={<BsFillCalendarFill />}
+                >
+                  <h3 className="vertical-timeline-element-title">Alumni Speaker</h3>
+                  <p>SU Meeting Room 4B</p>
+                </VerticalTimelineElement>
+                <VerticalTimelineElement
+                  className="vertical-timeline-element--education"
+                  date="Feb 6th, Thur 6PM"
+                  iconStyle={{ background: 'rgb(128,0,0)', color: '#fff' }}
+                  icon={<BsFillCalendarFill />}
+                >
+                  <h3 className="vertical-timeline-element-title">Yogurtland</h3>
+                  <p>125 E San Carlos St</p>
+                </VerticalTimelineElement>
+              </VerticalTimeline>
+            </div>
+          </div>
+
+          <section className="main style1 special">
             <div className="grid-wrapper">
               <div className="col-12">
                 <header className="major">
-                  <h2>Rush FAQ</h2>
+                  <h2>FAQ</h2>
                 </header>
               </div>
             </div>
-
             <div className="grid-wrapper left-text">
               <div className="col-12">
                 <h3>

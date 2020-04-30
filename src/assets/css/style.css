@@ -8,3 +8,14 @@
 body {
     font-family: 'PT Serif', serif;
 }
+
+.vertical-timeline::before {
+    /* this is the vertical line */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 18px;
+    height: 100%;
+    width: 4px;
+    background: #696969 !important;
+  }
