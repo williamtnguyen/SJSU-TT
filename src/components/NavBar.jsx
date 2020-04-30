@@ -51,9 +51,10 @@ class NavBar extends React.Component {
       <GatsbyLink onClick={this.logout}>Log Out</GatsbyLink> :
       <GatsbyLink to="/login">Log In</GatsbyLink>
     let userInfo = this.state.user ?
-      <GatsbyLink to="/brofile"> {this.state.user.email} {this.state.user.uid} </GatsbyLink> :
+      <GatsbyLink to={'/brofile'} state={{ id : this.state.user.uid }}> 
+      {this.state.user.email} {this.state.user.uid} </GatsbyLink> :
       null
-    
+    //console.log(userInfo);
     return (
       
       <Navbar

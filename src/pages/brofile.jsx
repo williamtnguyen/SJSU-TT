@@ -1,35 +1,61 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import NavBar from '../components/NavBar';
-import logo from '../assets/images/thetatau.png';
 import Footer from '../components/Footer';
 import firebase, {auth, provider, firestore } from '../services/firebase';
+import { Link as GatsbyLink } from 'gatsby';
 
 import jon from '../assets/images/headshots/jon.jpg';
 
 class Brofile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      gradyear: '',
+      major: '',
+      bio: '',
+      userId: ''
+    }
+  }
+
+  componentDidMount() {
+    const ref = firebase.firestore().collection('brothers').doc('8gp4dr9eO7gfTj8S8YPkRLQFlq12');
+    ref.get().then((doc) => {
+      if (doc.exists) {
+        const brother = doc.data();
+        this.setState({
+          name: brother.name,
+          gradyear: brother.gradyear,
+          major: brother.major, 
+          bio: brother.bio,
+          userid: brother.userid
+        });
+      } else {
+        console.log("No such document!");
+      }
+    });
+  }
 
   render() {
     const siteTitle = 'Theta Tau | SJSU';
-
     var db = firebase.firestore();
-    db.collection("brothers").onSnapshot(function(querySnapshot) {
-      var brothers = [];
-  
-      querySnapshot.forEach(function(doc) {
-        brothers.push(doc.data().name);
-  
-        //List of fields which we pull from brothers database (name, year, major, bio etc)
-        var name = doc.data().name;
-        var major = doc.data().major;
-        var bio = doc.data().bio;
-      });
-    });
-
+    const id = this.props.location.state.id;
+    db.collection("brothers").doc(id)
+        .get()
+        .then(function(doc) {
+            if (doc.exists) {
+            console.log("Document data:", doc.data());
+            setData(doc.data())
+            } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    // Edit Portion
     return (
       <section>
         <Helmet title={siteTitle} />
@@ -37,27 +63,27 @@ class Brofile extends React.Component {
         <section id="brofile">
           <div className="grid-wrapper">
             <div className="col-3">
-              <span class="image brofile">
+              <span className="image brofile">
                 <img className="pillars-pic" src={jon} alt=""/>
               </span>
               <div className="brofile-info">
-                <h3>Class</h3>
+                <h3 className="brofile-info--class">Class</h3>
                 <p>Alpha</p>    
                 <h3>Major</h3>
-                <p>Computer Science</p>
+                <p>{this.state.major}</p>
                 <h3>Position</h3>
                 <p>Vice Regent</p>
               </div>
             </div>
             <div className="col-6">
-                <h1>Jonathan Wong</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi debitis nesciunt doloribus laudantium aut itaque quibusdam consectetur inventore aliquam dolorem rem quod id, voluptate recusandae voluptatibus nobis molestiae quisquam? Iure!</p>
+                <h1>{this.state.name}</h1>
+                <p>{this.state.bio}</p>
             </div>
             <div className="col-3">
-                <div class="brofile-links">
-                <a href="https://www.linkedin.com/in/jonathanchiwong/" class="button brofile">LinkedIn</a>
-                <a href="https://github.com/joncwong" class="button brofile">Github</a>
-                <a href="" class="button brofile">Resume</a>
+                <div className="brofile-links">
+                <a href="https://www.linkedin.com/in/jonathanchiwong/" className="button brofile">LinkedIn</a>
+                <a href="https://github.com/joncwong" className="button brofile">Github</a>
+                <GatsbyLink to="/edit" className="button brofile small edit">Edit</GatsbyLink>
                 </div>
             </div>
           </div>

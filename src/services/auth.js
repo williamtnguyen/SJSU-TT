@@ -30,7 +30,7 @@ var actionCodeSettings = {
 
 
 //requests an link be set to user's email for 1 click login
-export function linkLoginRequest(email){
+export function linkLoginRequest(email) {
 
   firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   .then(function() {
