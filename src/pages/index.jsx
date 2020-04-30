@@ -1,12 +1,15 @@
+/* eslint-disable react/jsx-indent */
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
+import '../assets/css/style.css';
 
 class Homepage extends React.Component {
   render() {
@@ -24,7 +27,7 @@ class Homepage extends React.Component {
                 <Row>
                   <Col md={7} sm={12}>
                     <header className="major">
-                      <h2>About Theta Tau</h2>
+                      <h2>About Us</h2>
                     </header>
                     <p>
                     Theta Tau is the largest and oldest Co-ed Engineering
@@ -75,6 +78,7 @@ class Homepage extends React.Component {
                   <Col md={7} sm={12}>
                     <header className="major">
                       <h2>A Message From Our Founding Regent</h2>
+                      <p>Mark Muendelein, Mechanical Engineering '19</p>
                     </header>
                     <p>
                       "Hi, I’m Mark and I started a chapter of Theta Tau here at
@@ -83,7 +87,6 @@ class Homepage extends React.Component {
                       that combines two of the things that I think matter most:
                       career and community. Come check us out!"
                     </p>
-                    <p> ~ Mark Muendelein, Mechanical Engineering '19</p>
                   </Col>
                 </Row>
               </Col>
@@ -95,11 +98,6 @@ class Homepage extends React.Component {
               <header className="major">
                 <h2>Our 3 Pillars</h2>
               </header>
-              <p>
-                The purpose of Theta Tau is to develop and maintain a high
-                standard of professional interest amongst its members, and to
-                unite them in a strong bond of fraternal fellowship.
-              </p>
               <Row>
                 <Col sm={4}>
                   <span className="image fit">
@@ -169,9 +167,11 @@ class Homepage extends React.Component {
               <header className="major">
                 <h2>Interested in joining?</h2>
               </header>
-              <p>
+              {/* <p>
                 <b>Check us out at Rush every semester!</b>
-              </p>
+              </p> */}
+             <Button href="/rush" variant="secondary" size="lg">SPRING RUSH</Button>
+
               <ul className="actions uniform">
                 <li>
                   {/* <a href="/" className="button special">
@@ -203,28 +203,28 @@ export const query = graphql`
         }
       }
     }
-    professional: file(relativePath: { eq: "professional.jpg" }) {
+    professional: file(relativePath: { eq: "professional_test.JPG" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    community: file(relativePath: { eq: "rush-tabling-cropped.jpg" }) {
+    community: file(relativePath: { eq: "commservice.JPG" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    mark: file(relativePath: { eq: "mark.jpg" }) {
+    mark: file(relativePath: { eq: "mark 2.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    pledgeEventPic: file(relativePath: { eq: "pledge-event-cropped.png" }) {
+    pledgeEventPic: file(relativePath: { eq: "aboutus.JPG" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid

@@ -131,7 +131,7 @@ nav {
 
 	body, input, select, textarea {
 		color: _palette(fg);
-		font-family: _font(family) !important;
+		font-family: _font(family);
 		font-size: 16pt;
 		font-weight: _font(weight) !important;
 		line-height: 1.65em;
@@ -1043,7 +1043,7 @@ nav {
 /* Header */
 
 	.home-background {
-		background-image:		url('../images/student-union.jpg');
+		background-image:		url('../images/ttmain_test2.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -1153,7 +1153,7 @@ nav {
 	}
 
 	#four {
-		background-image:		url('../images/student-union.jpg');
+		background-image:		url('../images/rush.jpg');
 		background-position:	top left,
 	}
 
