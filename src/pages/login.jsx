@@ -1,40 +1,38 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 import Img from 'gatsby-image';
+import { Collapse } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
-import { navigate } from "gatsby";
-import { handleLogin, isLoggedIn } from "../services/auth";
-import { linkLoginRequest } from '../services/auth.js';
-import {Collapse} from 'react-bootstrap';
+
+import { handleLogin, isLoggedIn, linkLoginRequest } from '../services/auth';
+
 
 class Login extends React.Component {
-  
-  /* Handles login form*/
+  /* Handles login form */
   state = {
-    email: "",
-    submitted : false
+    email: '',
+    submitted: false
   }
-  handleInputChange = event => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
+
+  handleInputChange = (event) => {
+    const { target } = event;
+    const { value } = target;
+    const { name } = target;
     this.setState({
-      [name]: value,
-    })
+      [name]: value
+    });
   }
-  handleSubmit = event => {
-    event.preventDefault()
+
+  handleSubmit = (event) => {
+    event.preventDefault();
     linkLoginRequest(this.state.email);
     this.setState({
-      submitted: true,
-    })
-
-    
+      submitted: true
+    });
   }
-  
 
 
   render() {
@@ -66,42 +64,41 @@ class Login extends React.Component {
           </p>
 
 
-          
         </section>
         <div className="login">
           <section className="main style1 special">
             <div className="grid-wrapper left-text">
               <div>
                 <Collapse in={!this.state.submitted}>
-                <form name = "loginForm" onSubmit={this.handleSubmit}>
-                  <label>
-                    <h3>Email</h3>
-                  </label>
-                  <br></br>
-                  <label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      defaultValue={this.state.email}
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                  <br></br>
-                  <label>
-                  <button type="submit">Send Me A Login Link</button>
-                  </label>
-                </form>
+                  <form name="loginForm" onSubmit={this.handleSubmit}>
+                    <label>
+                      <h3>Email</h3>
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        defaultValue={this.state.email}
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+                    <br />
+                    <label>
+                      <button type="submit">Send Me A Login Link</button>
+                    </label>
+                  </form>
                 </Collapse>
-                
+
                 <Collapse in={this.state.submitted}>
                   <a>A link to login was sent to your email address</a>
-                
+
                 </Collapse>
               </div>
             </div>
 
-            
+
           </section>
         </div>
 
@@ -124,4 +121,3 @@ export const query = graphql`
 `;
 
 export default Login;
-

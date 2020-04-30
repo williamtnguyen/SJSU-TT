@@ -1,65 +1,71 @@
 import React from 'react';
 import { Link as GatsbyLink } from 'gatsby';
-//import Navbar from 'react-bootstrap/Navbar';
-//import Nav from 'react-bootstrap/Nav';
+// import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/Nav';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import firebase, { auth, provider } from '../services/firebase.js';
-import { linkLoginRequest, checkLinkLogin, isLoggedIn, getUser } from '../services/auth.js';
+import {
+  linkLoginRequest, checkLinkLogin, isLoggedIn, getUser
+} from '../services/auth.js';
 
 class NavBar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       user: null
-    }
-    this.login = this.login.bind(this)
-    this.logout = this.logout.bind(this)
+    };
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   login() {
-    //Breaks if this function is removed
+    // Breaks if this function is removed
   }
+
   logout() {
     auth.signOut().then((result) => {
       this.setState({
         user: null
-      })
-    })
+      });
+    });
   }
+
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({user})
+        this.setState({ user });
       }
-    })
+    });
   }
 
-  
-  
 
   render() {
-    if(isLoggedIn())
-    {
+    if (isLoggedIn()) {
       loggedInUser = getUser();
-      if(loggedInUser) {
+      if (loggedInUser) {
         this.setState({
           user: result.user
-        })
+        });
       }
     }
-    let authButton = this.state.user ?
-      <GatsbyLink onClick={this.logout}>Log Out</GatsbyLink> :
-      <GatsbyLink to="/login">Log In</GatsbyLink>
-    let userInfo = this.state.user ?
-      <GatsbyLink to={'/brofile'} state={{ id : this.state.user.uid }}> 
-      {this.state.user.email} {this.state.user.uid} </GatsbyLink> :
-      null
-    //console.log(userInfo);
+    const authButton = this.state.user
+      ? <GatsbyLink onClick={this.logout}>Log Out</GatsbyLink>
+      : <GatsbyLink to="/login">Log In</GatsbyLink>;
+    const userInfo = this.state.user
+      ? <GatsbyLink to="/brofile" state={{ id: this.state.user.uid }}>
+        {this.state.user.email}
+        {' '}
+        {this.state.user.uid}
+        {' '}
+
+        </GatsbyLink>
+      : null;
+    // console.log(userInfo);
     return (
-      
+
       <Navbar
         expand="lg"
-        variant = "dark"
+        variant="dark"
         style={{ padding: '20px 10px', backgroundColor: '#883a3a' }}
       >
         <GatsbyLink to="/">
@@ -85,9 +91,9 @@ class NavBar extends React.Component {
             <Nav.Item>
               <a href="https://forms.gle/vpZQPmBSQcVA2MeJ8">Apply</a>
             </Nav.Item>
-            
+
             <Nav.Item>
-              {authButton}  
+              {authButton}
             </Nav.Item>
             <Nav.Item>
               {userInfo}

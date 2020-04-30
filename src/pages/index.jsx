@@ -27,11 +27,11 @@ class Homepage extends React.Component {
                       <h2>About Theta Tau</h2>
                     </header>
                     <p>
-                    Theta Tau is the largest and oldest Co-ed Engineering
-                    Fraternity in the United States. The purpose of Theta Tau is
-                    to develop and maintain a high standard of professional
-                    interest among its members, and to unite them in a strong bond
-                    of fraternal fellowship.
+                      Theta Tau is the largest and oldest Co-ed Engineering
+                      Fraternity in the United States. The purpose of Theta Tau is
+                      to develop and maintain a high standard of professional
+                      interest among its members, and to unite them in a strong bond
+                      of fraternal fellowship.
                     </p>
                   </Col>
                   <Col md={5} sm={12}>
