@@ -77,6 +77,7 @@ class Homepage extends React.Component {
                   <span className="image fit">
                     <Img fluid={brotherhood.childImageSharp.fluid} alt="Brotherhood event" />
                   </span>
+                  <hr />
                   <h3>Brotherhood</h3>
                   <p>
                     We forge lifelong bonds of fraternal friendship, a journey
@@ -98,6 +99,7 @@ class Homepage extends React.Component {
                   <span className="image fit">
                     <Img fluid={professional.childImageSharp.fluid} alt="Professional event" />
                   </span>
+                  <hr />
                   <h3>Professionalism</h3>
                   <p>
                     We develop and nurture engineers with strong communication,
@@ -117,6 +119,7 @@ class Homepage extends React.Component {
                   <span className="image fit">
                     <Img fluid={community.childImageSharp.fluid} alt="Community event" />
                   </span>
+                  <hr />
                   <h3>Community Service</h3>
                   <p>
                     We are known for our service to our college, university and
