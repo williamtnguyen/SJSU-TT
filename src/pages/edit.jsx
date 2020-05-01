@@ -59,14 +59,7 @@ class edit extends React.Component {
     }
 
     handleSubmit = (event) => {
-      const { id } = this.props.location.state;
       event.preventDefault();
-      console.log('submitted!!');
-      console.log(this.state.userid);
-      if (this.state.userid == id) /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
-      {
-        console.log(this.state.gradyear);
-      }
       const db = firebase.firestore();
       db.collection('brothers').doc(this.state.userid).update({
         name: this.state.name,
@@ -92,7 +85,7 @@ class edit extends React.Component {
 
       const db = firebase.firestore();
       const { id } = this.props.location.state;
-      db.collection('brothers').doc(id) /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
+      db.collection('brothers').doc(this.state.userid) /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
         .get()
         .then((doc) => {
           if (doc.exists) {
