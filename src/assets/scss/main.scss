@@ -941,7 +941,28 @@ nav {
  
     .col-6 {
         max-width: 100%;
-    }
+	}
+	
+	.edit {
+		position: absolute;
+		bottom: 0;
+	}
+}
+
+// Edit Brofile Page
+#edit {
+	margin: 2em 0;
+
+	h2 {
+		margin: 1em 0;
+	}
+	input[type="text"] {
+		width: 20em;
+	}
+
+	.bio {
+		margin: 0 0 0 5em;
+	}
 }
 
 // Dark (mixin)

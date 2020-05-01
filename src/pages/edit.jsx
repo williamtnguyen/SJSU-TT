@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { Link as GatsbyLink } from 'gatsby';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -27,7 +28,8 @@ class edit extends React.Component {
   }
 
   componentDidMount() {
-    const ref = firebase.firestore().collection('brothers').doc('8gp4dr9eO7gfTj8S8YPkRLQFlq12'); /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
+    const { id } = this.props.location.state;
+    const ref = firebase.firestore().collection('brothers').doc(id); /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
     ref.get().then((doc) => {
       if (doc.exists) {
         const brother = doc.data();
@@ -58,12 +60,6 @@ class edit extends React.Component {
 
     handleSubmit = (event) => {
       event.preventDefault();
-      console.log('submitted!!');
-      console.log(this.state.userid);
-      if (this.state.userid == '8gp4dr9eO7gfTj8S8YPkRLQFlq12') /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
-      {
-        console.log(this.state.gradyear);
-      }
       const db = firebase.firestore();
       db.collection('brothers').doc(this.state.userid).update({
         name: this.state.name,
@@ -88,8 +84,8 @@ class edit extends React.Component {
       }
 
       const db = firebase.firestore();
-
-      db.collection('brothers').doc('8gp4dr9eO7gfTj8S8YPkRLQFlq12') /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
+      const { id } = this.props.location.state;
+      db.collection('brothers').doc(this.state.userid) /* <-------  THIS IS WHERE UNIQUE USER ID WOULD GO */
         .get()
         .then((doc) => {
           if (doc.exists) {
@@ -166,7 +162,10 @@ class edit extends React.Component {
                     <br />
 
                     <label>
-                      <button type="submit">Submit</button>
+                      <button type="submit">
+                        <GatsbyLink to="/brofile" />
+                        Submit
+                      </button>
                     </label>
                   </div>
                   <br />
