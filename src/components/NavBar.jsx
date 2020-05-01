@@ -83,6 +83,9 @@ class NavBar extends React.Component {
             <Nav.Item>
               <GatsbyLink to="/brothers">Brothers</GatsbyLink>
             </Nav.Item>
+            Nav.Item>
+              <GatsbyLink to="/familytree">Family Tree</GatsbyLink>
+            </Nav.Item>
             <Nav.Item>
               <GatsbyLink to="/rush">Rush</GatsbyLink>
             </Nav.Item>
