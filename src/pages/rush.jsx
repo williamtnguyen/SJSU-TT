@@ -11,18 +11,9 @@ import Footer from '../components/Footer';
 import '../../node_modules/react-vertical-timeline-component/style.min.css';
 
 class Rush extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      open: false
-    };
-  }
-
   render() {
     const siteTitle = 'Theta Tau | SJSU';
     const { logo, rushSchedule } = this.props.data;
-    const { open } = this.state;
     return (
       <section>
         <Helmet title={siteTitle} />

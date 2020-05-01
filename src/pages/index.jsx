@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
@@ -72,7 +73,7 @@ class Homepage extends React.Component {
                 <h2>Our 3 Pillars</h2>
               </header>
               <Row>
-                <Col sm={4}>
+                <Col lg={4}>
                   <span className="image fit">
                     <Img fluid={brotherhood.childImageSharp.fluid} alt="Brotherhood event" />
                   </span>
@@ -93,7 +94,7 @@ class Homepage extends React.Component {
                     </li>
                   </ul>
                 </Col>
-                <Col sm={4}>
+                <Col lg={4}>
                   <span className="image fit">
                     <Img fluid={professional.childImageSharp.fluid} alt="Professional event" />
                   </span>
@@ -112,7 +113,7 @@ class Homepage extends React.Component {
                     </li>
                   </ul>
                 </Col>
-                <Col sm={4}>
+                <Col lg={4}>
                   <span className="image fit">
                     <Img fluid={community.childImageSharp.fluid} alt="Community event" />
                   </span>
@@ -170,7 +171,7 @@ class Homepage extends React.Component {
               {/* <p>
                 <b>Check us out at Rush every semester!</b>
               </p> */}
-             <Button href="/rush" variant="secondary" size="lg">SPRING RUSH</Button>
+             <Button href="/rush" variant="secondary" size="lg">RUSH</Button>
 
               <ul className="actions uniform">
                 <li>
@@ -196,7 +197,7 @@ class Homepage extends React.Component {
 
 export const query = graphql`
   query {
-    brotherhood: file(relativePath: { eq: "brotherhood.jpg" }) {
+    brotherhood: file(relativePath: { eq: "brotherhood_test.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -210,7 +211,7 @@ export const query = graphql`
         }
       }
     }
-    community: file(relativePath: { eq: "commservice.JPG" }) {
+    community: file(relativePath: { eq: "commservice_test.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
