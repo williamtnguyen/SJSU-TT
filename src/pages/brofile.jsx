@@ -17,7 +17,8 @@ class Brofile extends React.Component {
       major: '',
       bio: '',
       userId: '',
-      linkedin: ''
+      linkedin: '',
+      position: ''
     };
   }
 
@@ -33,7 +34,8 @@ class Brofile extends React.Component {
           major: brother.major,
           bio: brother.bio,
           userid: brother.userid,
-          linkedin: brother.linkedin
+          linkedin: brother.linkedin,
+          position: brother.position
         });
       } else {
         console.log('No such document!');
@@ -75,7 +77,7 @@ class Brofile extends React.Component {
                 <h3>Major</h3>
                 <p>{this.state.major}</p>
                 <h3>Position</h3>
-                <p>Vice Regent</p>
+                <p>{this.state.position}</p>
               </div>
             </div>
             <div className="col-6">
