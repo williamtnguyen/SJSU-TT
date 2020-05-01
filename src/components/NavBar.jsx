@@ -55,8 +55,6 @@ class NavBar extends React.Component {
       ? <GatsbyLink to="/brofile" state={{ id: this.state.user.uid }}>
         {this.state.user.email}
         {' '}
-        {this.state.user.uid}
-        {' '}
 
         </GatsbyLink>
       : null;

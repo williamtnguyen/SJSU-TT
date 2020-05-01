@@ -8,11 +8,12 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "gatsby": "^2.21.5",
+    "firebase": "^7.14.2",
+    "gatsby": "^2.14.0",
     "gatsby-image": "^2.2.14",
     "gatsby-plugin-manifest": "^2.2.9",
     "gatsby-plugin-offline": "^2.2.10",
-    "gatsby-plugin-react-helmet": "^3.1.5",
+    "gatsby-plugin-react-helmet": "^3.3.0",
     "gatsby-plugin-sass": "^2.1.12",
     "gatsby-plugin-sharp": "^2.2.18",
     "gatsby-source-filesystem": "^2.1.18",
@@ -23,7 +24,7 @@
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
-    "typescript": "^3.8.3",
+    "react-router-dom": "^5.1.2",
     "webpack": "^4.39.2"
   },
   "devDependencies": {
@@ -38,8 +39,8 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "husky": "^3.0.4",
-    "lint-staged": "^9.2.4",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "prettier": "^1.14.2",
     "pretty-quick": "^1.11.1"
   },
@@ -63,13 +64,7 @@
     "url": "https://github.com/gatsbyjs/gatsby-starter-photon"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "yarn lint --fix",
-      "pretty-quick --staged",
-      "eslint src/ --fix",
-      "git add",
-      "eslint --fix"
-    ]
+    "*.{js,jsx}": "eslint --cache --fix"
   },
   "husky": {
     "hooks": {

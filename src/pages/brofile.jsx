@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import firebase, { auth, provider, firestore } from '../services/firebase';
 
-import jon from '../assets/images/headshots/jon.jpg';
+import derek from '../assets/images/headshots/derekhuang.jpg';
 
 class Brofile extends React.Component {
   constructor(props) {
@@ -16,12 +16,14 @@ class Brofile extends React.Component {
       gradyear: '',
       major: '',
       bio: '',
-      userId: ''
+      userId: '',
+      linkedin: ''
     };
   }
 
   componentDidMount() {
-    const ref = firebase.firestore().collection('brothers').doc('8gp4dr9eO7gfTj8S8YPkRLQFlq12');
+    const { id } = this.props.location.state;
+    const ref = firebase.firestore().collection('brothers').doc(id);
     ref.get().then((doc) => {
       if (doc.exists) {
         const brother = doc.data();
@@ -30,7 +32,8 @@ class Brofile extends React.Component {
           gradyear: brother.gradyear,
           major: brother.major,
           bio: brother.bio,
-          userid: brother.userid
+          userid: brother.userid,
+          linkedin: brother.linkedin
         });
       } else {
         console.log('No such document!');
@@ -56,7 +59,6 @@ class Brofile extends React.Component {
       .catch((error) => {
         console.log('Error getting document:', error);
       });
-    // Edit Portion
     return (
       <section>
         <Helmet title={siteTitle} />
@@ -65,7 +67,7 @@ class Brofile extends React.Component {
           <div className="grid-wrapper">
             <div className="col-3">
               <span className="image brofile">
-                <img className="pillars-pic" src={jon} alt="" />
+                <img className="pillars-pic" src={derek} alt="" />
               </span>
               <div className="brofile-info">
                 <h3 className="brofile-info--class">Class</h3>
@@ -82,9 +84,8 @@ class Brofile extends React.Component {
             </div>
             <div className="col-3">
               <div className="brofile-links">
-                <a href="https://www.linkedin.com/in/jonathanchiwong/" className="button brofile">LinkedIn</a>
-                <a href="https://github.com/joncwong" className="button brofile">Github</a>
-                <GatsbyLink to="/edit" className="button brofile small edit">Edit</GatsbyLink>
+                <a href={this.state.linkedin} className="button brofile">LinkedIn</a>
+                <GatsbyLink to="/edit" state={{ id }} className="button brofile small edit">Edit</GatsbyLink>
               </div>
             </div>
           </div>

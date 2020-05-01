@@ -10,8 +10,11 @@ export const getUser = () => {
 
 export const isLoggedIn = () => {
   const user = getUser();
-  return !!user.username;
-};
+  if(user)
+  {
+    return !!user.username;
+  }
+}
 
 
 export const logout = (callback) => {

@@ -30,9 +30,7 @@ const Header = () => (
           <h1>
             <strong>Theta Tau</strong>
           </h1>
-          <p>
-            <b>Co-ed Professional Engineering Fraternity | SJSU Chapter</b>
-          </p>
+          <h5>Co-ed Professional Engineering Fraternity | SJSU Chapter</h5>
           <div id="extend-height" />
           <ul className="">
             <li />
