@@ -1,9 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { Link as GatsbyLink } from 'gatsby';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { Link as GatsbyLink } from 'gatsby';
 import firebase, { auth, provider, firestore } from '../services/firebase';
 import {
   linkLoginRequest, checkLinkLogin, isLoggedIn, getUser
@@ -113,7 +113,7 @@ class edit extends React.Component {
           <Helmet title={siteTitle} />
           <NavBar />
           <section id="edit">
-      <form name="loginForm" onSubmit={this.handleSubmit}>
+            <form name="loginForm" onSubmit={this.handleSubmit}>
 
               <div className="grid-wrapper">
                 <div className="col-4">
@@ -170,7 +170,9 @@ class edit extends React.Component {
 
                     <label>
                       <button type="submit">
-                      <GatsbyLink to="/brofile" />Submit</button>
+                        <GatsbyLink to="/brofile" />
+                        Submit
+                      </button>
                     </label>
                   </div>
                   <br />

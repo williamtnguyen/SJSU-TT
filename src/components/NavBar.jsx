@@ -56,7 +56,7 @@ class NavBar extends React.Component {
         {this.state.user.email}
         {' '}
 
-        </GatsbyLink>
+      </GatsbyLink>
       : null;
     // console.log(userInfo);
     return (
