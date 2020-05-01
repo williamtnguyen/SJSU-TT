@@ -87,7 +87,8 @@ class NavBar extends React.Component {
               <GatsbyLink to="/rush">Rush</GatsbyLink>
             </Nav.Item>
             <Nav.Item>
-              <a href="https://forms.gle/vpZQPmBSQcVA2MeJ8">Apply</a>
+              <a href="/rush">Apply</a>
+              {/* <a href="https://forms.gle/vpZQPmBSQcVA2MeJ8">Apply</a> */}
             </Nav.Item>
 
             <Nav.Item>

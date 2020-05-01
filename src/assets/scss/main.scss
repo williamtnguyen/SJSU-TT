@@ -1064,21 +1064,21 @@ nav {
 /* Header */
 
 	.home-background {
-		background-image:		url('../images/ttmain_test2.jpg');
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/ttmain_test2.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
 	}
 
 	.rush-background {
-		background-image:		url('../images/towerlawn.jpg');
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/towerlawn.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
 	}
 
 	.brothers-background {
-		background-image:		url('../images/davidson.jpg');
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/davidson.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -1086,7 +1086,7 @@ nav {
 
 
 	.about-background {
-		background-image:		url('../images/gradbuilding.jpg');
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/gradbuilding.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -1174,7 +1174,7 @@ nav {
 	}
 
 	#four {
-		background-image:		url('../images/rush.jpg');
+		background-image:		linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/rush.jpg');
 		background-position:	top left,
 	}
 

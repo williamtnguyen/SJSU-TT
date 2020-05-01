@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
@@ -66,7 +67,76 @@ class Homepage extends React.Component {
             </div> */}
           </section>
 
-          <section id="two" className="main style2">
+          <section id="two" className="main style2 special">
+            <Container>
+              <header className="major">
+                <h2>Our 3 Pillars</h2>
+              </header>
+              <Row>
+                <Col lg={4}>
+                  <span className="image fit">
+                    <Img fluid={brotherhood.childImageSharp.fluid} alt="Brotherhood event" />
+                  </span>
+                  <h3>Brotherhood</h3>
+                  <p>
+                    We forge lifelong bonds of fraternal friendship, a journey
+                    that develops and delivers a network of lasting personal and
+                    professional relationships. We foster an inviting, safe, and
+                    social environment in which our members become lifelong
+                    friends.
+                  </p>
+                  <ul className="actions">
+                    <li>
+
+                      {/* <a href="/" className="button">
+                        More
+                      </a> */}
+                    </li>
+                  </ul>
+                </Col>
+                <Col lg={4}>
+                  <span className="image fit">
+                    <Img fluid={professional.childImageSharp.fluid} alt="Professional event" />
+                  </span>
+                  <h3>Professionalism</h3>
+                  <p>
+                    We develop and nurture engineers with strong communication,
+                    problem-solving, collaboration, and leadership skills that
+                    we demonstrate in our profession, our community, and in our
+                    lives.
+                  </p>
+                  <ul className="actions">
+                    <li>
+                      {/* <a href="/" className="button">
+                        More
+                      </a> */}
+                    </li>
+                  </ul>
+                </Col>
+                <Col lg={4}>
+                  <span className="image fit">
+                    <Img fluid={community.childImageSharp.fluid} alt="Community event" />
+                  </span>
+                  <h3>Community Service</h3>
+                  <p>
+                    We are known for our service to our college, university and
+                    the larger community. Our service projects create a unifying
+                    environment for learning and personal growth for our
+                    members.
+                  </p>
+                  <ul className="actions">
+                    <li>
+                      {/* <a href="/" className="button">
+                        More
+                      </a> */}
+                    </li>
+                  </ul>
+                </Col>
+              </Row>
+            </Container>
+          </section>
+
+          <section id="three" className="main style1">
             <Container>
               <Col>
                 <Row>
@@ -93,75 +163,6 @@ class Homepage extends React.Component {
             </Container>
           </section>
 
-          <section id="three" className="main style1 special">
-            <Container>
-              <header className="major">
-                <h2>Our 3 Pillars</h2>
-              </header>
-              <Row>
-                <Col sm={4}>
-                  <span className="image fit">
-                    <Img fluid={brotherhood.childImageSharp.fluid} alt="Brotherhood event" />
-                  </span>
-                  <h3>Brotherhood</h3>
-                  <p>
-                    We forge lifelong bonds of fraternal friendship, a journey
-                    that develops and delivers a network of lasting personal and
-                    professional relationships. We foster an inviting, safe, and
-                    social environment in which our members become lifelong
-                    friends.
-                  </p>
-                  <ul className="actions">
-                    <li>
-
-                      {/* <a href="/" className="button">
-                        More
-                      </a> */}
-                    </li>
-                  </ul>
-                </Col>
-                <Col sm={4}>
-                  <span className="image fit">
-                    <Img fluid={professional.childImageSharp.fluid} alt="Professional event" />
-                  </span>
-                  <h3>Professionalism</h3>
-                  <p>
-                    We develop and nurture engineers with strong communication,
-                    problem-solving, collaboration, and leadership skills that
-                    we demonstrate in our profession, our community, and in our
-                    lives.
-                  </p>
-                  <ul className="actions">
-                    <li>
-                      {/* <a href="/" className="button">
-                        More
-                      </a> */}
-                    </li>
-                  </ul>
-                </Col>
-                <Col sm={4}>
-                  <span className="image fit">
-                    <Img fluid={community.childImageSharp.fluid} alt="Community event" />
-                  </span>
-                  <h3>Community Service</h3>
-                  <p>
-                    We are known for our service to our college, university and
-                    the larger community. Our service projects create a unifying
-                    environment for learning and personal growth for our
-                    members.
-                  </p>
-                  <ul className="actions">
-                    <li>
-                      {/* <a href="/" className="button">
-                        More
-                      </a> */}
-                    </li>
-                  </ul>
-                </Col>
-              </Row>
-            </Container>
-          </section>
-
           <section id="four" className="main style2 special">
             <div className="container">
               <header className="major">
@@ -170,7 +171,7 @@ class Homepage extends React.Component {
               {/* <p>
                 <b>Check us out at Rush every semester!</b>
               </p> */}
-             <Button href="/rush" variant="secondary" size="lg">SPRING RUSH</Button>
+             <Button href="/rush" variant="secondary" size="lg">RUSH</Button>
 
               <ul className="actions uniform">
                 <li>
@@ -196,7 +197,7 @@ class Homepage extends React.Component {
 
 export const query = graphql`
   query {
-    brotherhood: file(relativePath: { eq: "brotherhood.jpg" }) {
+    brotherhood: file(relativePath: { eq: "brotherhood_test.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -210,7 +211,7 @@ export const query = graphql`
         }
       }
     }
-    community: file(relativePath: { eq: "commservice.JPG" }) {
+    community: file(relativePath: { eq: "commservice_test.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
