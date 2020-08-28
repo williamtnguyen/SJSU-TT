@@ -5,16 +5,16 @@ import Img from 'gatsby-image';
 const Header = () => (
   <StaticQuery
     query={graphql`
-  query {
-    logo: file(relativePath: { eq: "thetatau.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
+      query {
+        logo: file(relativePath: { eq: "thetatau.png" }) {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
-    }
-  },
-`}
+    `}
     render={(data) => (
       <section id="header" className="home-background">
         <div className="inner">
@@ -42,6 +42,5 @@ const Header = () => (
     )}
   />
 );
-
 
 export default Header;

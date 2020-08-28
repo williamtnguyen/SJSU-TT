@@ -63,9 +63,8 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "yarn lint --fix",
       "pretty-quick --staged",
-      "eslint src/ --fix",
+      "eslint ./ --fix",
       "git add",
       "eslint --fix"
     ]

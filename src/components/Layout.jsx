@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Header from './Header';
 import Footer from './Footer';
 import NavBar from './NavBar';
@@ -8,13 +7,13 @@ class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: 'is-loading'
+      loading: true
     };
   }
 
   componentDidMount() {
     this.timeoutId = setTimeout(() => {
-      this.setState({ loading: '' });
+      this.setState({ loading: false });
     }, 100);
   }
 
@@ -25,10 +24,11 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children, loading } = this.props;
+    const { children } = this.props;
+    const { loading } = this.state;
 
     return (
-      <div className={`body ${loading}`}>
+      <div className={`body ${loading ? 'is-loading' : ''}`}>
         <NavBar />
         <Header />
         {children}

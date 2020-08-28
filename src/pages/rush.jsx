@@ -9,7 +9,9 @@ import Footer from '../components/Footer';
 class Rush extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
-    const { logo, rushSchedule } = this.props.data;
+    const { data } = this.props;
+    const { logo, rushSchedule } = data;
+
     return (
       <section>
         <Helmet title={siteTitle} />
@@ -41,7 +43,10 @@ class Rush extends React.Component {
                   <h2>Spring 2020 Rush Schedule</h2>
                 </header>
                 <span className="image fit">
-                  <Img fluid={rushSchedule.childImageSharp.fluid} alt="Theta Tau Logo" />
+                  <Img
+                    fluid={rushSchedule.childImageSharp.fluid}
+                    alt="Theta Tau Logo"
+                  />
                 </span>
               </div>
             </div>

@@ -11,9 +11,11 @@ import Layout from '../components/Layout';
 class Homepage extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
+    const { data } = this.props;
     const {
       brotherhood, professional, community, mark, pledgeEventPic
-    } = this.props.data;
+    } = data;
+
     return (
       <Layout>
         <Helmet title={siteTitle} />
@@ -27,16 +29,19 @@ class Homepage extends React.Component {
                       <h2>About Theta Tau</h2>
                     </header>
                     <p>
-                    Theta Tau is the largest and oldest Co-ed Engineering
-                    Fraternity in the United States. The purpose of Theta Tau is
-                    to develop and maintain a high standard of professional
-                    interest among its members, and to unite them in a strong bond
-                    of fraternal fellowship.
+                      Theta Tau is the largest and oldest Co-ed Engineering
+                      Fraternity in the United States. The purpose of Theta Tau
+                      is to develop and maintain a high standard of professional
+                      interest among its members, and to unite them in a strong
+                      bond of fraternal fellowship.
                     </p>
                   </Col>
                   <Col md={5} sm={12}>
                     <span className="image fit">
-                      <Img fluid={pledgeEventPic.childImageSharp.fluid} alt="Pledge Event Pic" />
+                      <Img
+                        fluid={pledgeEventPic.childImageSharp.fluid}
+                        alt="Pledge Event Pic"
+                      />
                     </span>
                   </Col>
                 </Row>
@@ -69,7 +74,10 @@ class Homepage extends React.Component {
                 <Row>
                   <Col md={5} sm={12}>
                     <span className="image fit">
-                      <Img fluid={mark.childImageSharp.fluid} alt="Founder Mark" />
+                      <Img
+                        fluid={mark.childImageSharp.fluid}
+                        alt="Founder Mark"
+                      />
                     </span>
                   </Col>
                   <Col md={7} sm={12}>
@@ -103,7 +111,10 @@ class Homepage extends React.Component {
               <Row>
                 <Col sm={4}>
                   <span className="image fit">
-                    <Img fluid={brotherhood.childImageSharp.fluid} alt="Brotherhood event" />
+                    <Img
+                      fluid={brotherhood.childImageSharp.fluid}
+                      alt="Brotherhood event"
+                    />
                   </span>
                   <h3>Brotherhood</h3>
                   <p>
@@ -115,7 +126,6 @@ class Homepage extends React.Component {
                   </p>
                   <ul className="actions">
                     <li>
-
                       {/* <a href="/" className="button">
                         More
                       </a> */}
@@ -124,7 +134,10 @@ class Homepage extends React.Component {
                 </Col>
                 <Col sm={4}>
                   <span className="image fit">
-                    <Img fluid={professional.childImageSharp.fluid} alt="Professional event" />
+                    <Img
+                      fluid={professional.childImageSharp.fluid}
+                      alt="Professional event"
+                    />
                   </span>
                   <h3>Professionalism</h3>
                   <p>
@@ -143,7 +156,10 @@ class Homepage extends React.Component {
                 </Col>
                 <Col sm={4}>
                   <span className="image fit">
-                    <Img fluid={community.childImageSharp.fluid} alt="Community event" />
+                    <Img
+                      fluid={community.childImageSharp.fluid}
+                      alt="Community event"
+                    />
                   </span>
                   <h3>Community Service</h3>
                   <p>
@@ -192,7 +208,6 @@ class Homepage extends React.Component {
     );
   }
 }
-
 
 export const query = graphql`
   query {

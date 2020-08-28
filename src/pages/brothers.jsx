@@ -7,11 +7,6 @@ import Row from 'react-bootstrap/Row';
 import NavBar from '../components/NavBar';
 import logo from '../assets/images/thetatau.png';
 import Footer from '../components/Footer';
-import pic02 from '../assets/images/pic02.jpg';
-import pic04 from '../assets/images/pic04.jpg';
-
-import intelTour from '../assets/images/intel.png';
-import pledgeEventPic from '../assets/images/pledge-event-cropped.png';
 
 // Headshots of Founding Fathers
 import ari from '../assets/images/headshots/aris.jpg';
@@ -73,14 +68,14 @@ class Brothers extends React.Component {
               {' '}
               <strong>Meet the Brothers</strong>
             </h1>
-            <p><b>Theta Tau SJSU Colony</b></p>
+            <p>
+              <b>Theta Tau SJSU Colony</b>
+            </p>
             <div id="extend-height" />
           </div>
         </section>
 
         <div className="brothers">
-
-
           <section id="three" className="main style1 special">
             <Container>
               <header className="major">
@@ -91,9 +86,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={darpan} alt="" />
                   </span>
-                  <p>
-                    Darpan Goyal
-                  </p>
+                  <p>Darpan Goyal</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -102,9 +95,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={jon} alt="" />
                   </span>
-                  <p>
-                    Jonathan Wong
-                  </p>
+                  <p>Jonathan Wong</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -113,9 +104,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={pancho} alt="" />
                   </span>
-                  <p>
-                    Francisco Sanchez
-                  </p>
+                  <p>Francisco Sanchez</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -124,24 +113,19 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={eriny} alt="" />
                   </span>
-                  <p>
-                    Erin Yang
-                  </p>
+                  <p>Erin Yang</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={antonio} alt="" />
                   </span>
-                  <p>
-                    Antonio Cervantes
-                  </p>
+                  <p>Antonio Cervantes</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -150,9 +134,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={priscilla} alt="" />
                   </span>
-                  <p>
-                    Priscilla Ng
-                  </p>
+                  <p>Priscilla Ng</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -161,9 +143,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={liz} alt="" />
                   </span>
-                  <p>
-                    Elizabeth Huang
-                  </p>
+                  <p>Elizabeth Huang</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -172,24 +152,19 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={klin} alt="" />
                   </span>
-                  <p>
-                    Kevin Lin
-                  </p>
+                  <p>Kevin Lin</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={ada} alt="" />
                   </span>
-                  <p>
-                    Ada La
-                  </p>
+                  <p>Ada La</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -198,9 +173,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={meng} alt="" />
                   </span>
-                  <p>
-                    Meng Lo
-                  </p>
+                  <p>Meng Lo</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -209,9 +182,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={cameron} alt="" />
                   </span>
-                  <p>
-                    Cameron Lofy
-                  </p>
+                  <p>Cameron Lofy</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -220,9 +191,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={austin} alt="" />
                   </span>
-                  <p>
-                    Austin McNiff
-                  </p>
+                  <p>Austin McNiff</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -234,9 +203,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={jeanelle} alt="" />
                   </span>
-                  <p>
-                    Jeanelle Bentajado
-                  </p>
+                  <p>Jeanelle Bentajado</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -245,9 +212,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={klam} alt="" />
                   </span>
-                  <p>
-                    Kevin Lam
-                  </p>
+                  <p>Kevin Lam</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -256,9 +221,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={maan} alt="" />
                   </span>
-                  <p>
-                    Maan Singh
-                  </p>
+                  <p>Maan Singh</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -267,24 +230,19 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={gordon} alt="" />
                   </span>
-                  <p>
-                    Gordon Ly
-                  </p>
+                  <p>Gordon Ly</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={jameson} alt="" />
                   </span>
-                  <p>
-                    Jameson Au
-                  </p>
+                  <p>Jameson Au</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -293,9 +251,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={raul} alt="" />
                   </span>
-                  <p>
-                    Raul Gonzalez
-                  </p>
+                  <p>Raul Gonzalez</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -304,9 +260,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={brianna} alt="" />
                   </span>
-                  <p>
-                    Brianna Felix
-                  </p>
+                  <p>Brianna Felix</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -315,24 +269,19 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={patricia} alt="" />
                   </span>
-                  <p>
-                    Patricia Dela Cruz
-                  </p>
+                  <p>Patricia Dela Cruz</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={john} alt="" />
                   </span>
-                  <p>
-                    John Tran
-                  </p>
+                  <p>John Tran</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -341,9 +290,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={nick} alt="" />
                   </span>
-                  <p>
-                    Nicholas Ong
-                  </p>
+                  <p>Nicholas Ong</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -352,9 +299,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={sarah} alt="" />
                   </span>
-                  <p>
-                    Sarah Lau
-                  </p>
+                  <p>Sarah Lau</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -363,15 +308,12 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={kchu} alt="" />
                   </span>
-                  <p>
-                    Kevin Chu
-                  </p>
+                  <p>Kevin Chu</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
-
             </Container>
 
             {/* ALUMNI  */}
@@ -384,9 +326,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={mark} alt="" />
                   </span>
-                  <p>
-                    Mark Muendelein
-                  </p>
+                  <p>Mark Muendelein</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -395,9 +335,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={james} alt="" />
                   </span>
-                  <p>
-                    James-Jimenez
-                  </p>
+                  <p>James-Jimenez</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -406,9 +344,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={serena} alt="" />
                   </span>
-                  <p>
-                    Serena Pascual
-                  </p>
+                  <p>Serena Pascual</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -417,24 +353,19 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={ari} alt="" />
                   </span>
-                  <p>
-                    Ari Koumis
-                  </p>
+                  <p>Ari Koumis</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={sophia} alt="" />
                   </span>
-                  <p>
-                    Sophia Tan
-                  </p>
+                  <p>Sophia Tan</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -443,9 +374,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={jeson} alt="" />
                   </span>
-                  <p>
-                    Jeson Retumalta
-                  </p>
+                  <p>Jeson Retumalta</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -454,9 +383,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={anthony} alt="" />
                   </span>
-                  <p>
-                    Anthony Pun
-                  </p>
+                  <p>Anthony Pun</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -465,24 +392,19 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={emerson} alt="" />
                   </span>
-                  <p>
-                    Emerson Ye
-                  </p>
+                  <p>Emerson Ye</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={erinb} alt="" />
                   </span>
-                  <p>
-                    Erin Bui
-                  </p>
+                  <p>Erin Bui</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -491,9 +413,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={domingo} alt="" />
                   </span>
-                  <p>
-                    Domingo Castro
-                  </p>
+                  <p>Domingo Castro</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -502,9 +422,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={andrew} alt="" />
                   </span>
-                  <p>
-                    Andrew Phan
-                  </p>
+                  <p>Andrew Phan</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -513,24 +431,19 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={binh} alt="" />
                   </span>
-                  <p>
-                    Binh Do
-                  </p>
+                  <p>Binh Do</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
 
-
               <Row>
                 <Col sm={3}>
                   <span className="image fit">
                     <img className="pillars-pic" src={isaiah} alt="" />
                   </span>
-                  <p>
-                    Isaih Gosiengfiao
-                  </p>
+                  <p>Isaih Gosiengfiao</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -539,9 +452,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={aby} alt="" />
                   </span>
-                  <p>
-                    Aby Samuel
-                  </p>
+                  <p>Aby Samuel</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -550,9 +461,7 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={eric} alt="" />
                   </span>
-                  <p>
-                    Eric Tong
-                  </p>
+                  <p>Eric Tong</p>
                   <ul className="actions">
                     <li />
                   </ul>
@@ -561,23 +470,17 @@ class Brothers extends React.Component {
                   <span className="image fit">
                     <img className="pillars-pic" src={esther} alt="" />
                   </span>
-                  <p>
-                    Esther Kuan
-                  </p>
+                  <p>Esther Kuan</p>
                   <ul className="actions">
                     <li />
                   </ul>
                 </Col>
               </Row>
-
             </Container>
           </section>
-
-
         </div>
         <Footer />
       </section>
-
     );
   }
 }

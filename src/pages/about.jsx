@@ -9,9 +9,9 @@ import NavBar from '../components/NavBar';
 class About extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
-    const {
-      logo
-    } = this.props.data;
+    const { data } = this.props;
+    const { logo } = data;
+
     return (
       <section>
         <Helmet title={siteTitle} />
