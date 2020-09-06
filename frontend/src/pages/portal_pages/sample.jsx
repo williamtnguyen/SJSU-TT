@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 const Sample = (props) => {
   const [person, setPerson] = useState();
@@ -15,7 +16,6 @@ const Sample = (props) => {
       <h1 className="text-center">
         this a sample dynamic page rendered on the client side
       </h1>
-      {/* eslint-disable-next-line operator-linebreak */}
       {resultsAmount && (
         <h2 className="text-center">
           the variable passed is:
@@ -26,6 +26,14 @@ const Sample = (props) => {
       <pre>{JSON.stringify(person, null, 2)}</pre>
     </div>
   );
+};
+
+Sample.propTypes = {
+  resultsAmount: PropTypes.number,
+};
+
+Sample.defaultProps = {
+  resultsAmount: 1,
 };
 
 export default Sample;

@@ -3,6 +3,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
@@ -23,7 +24,7 @@ class About extends React.Component {
             style={{
               margin: 'auto',
               width: '17%',
-              minWidth: '100px'
+              minWidth: '100px',
             }}
           />
           <h1>
@@ -69,8 +70,7 @@ class About extends React.Component {
                   are interested in building friendships, improving their
                   professional lives, and becoming the strong foundation upon
                   which the fraternity is built. Are you the person we are
-                  looking for?
-                  {' '}
+                  looking for?{' '}
                 </p>
               </div>
             </div>
@@ -132,5 +132,15 @@ export const query = graphql`
     }
   }
 `;
+
+About.propTypes = {
+  data: PropTypes.shape({
+    logo: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default About;

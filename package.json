@@ -5,11 +5,13 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./ --ext .js,.jsx"
+    "lint": "npm run lint:server && npm run lint:frontend",
+    "lint:server": "eslint ./ --ext .js",
+    "lint:frontend": "cd frontend && eslint ./ --ext .jsx"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com-williamtnguyen:williamtnguyen/SJSU-TT-v3.git"
+    "url": "git@github.com:williamtnguyen/SJSU-TT-v3.git"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +20,16 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "eslint-plugin-react": "^7.20.6"
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "prettier": "^2.1.1"
   }
 }

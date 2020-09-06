@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'SJSU Theta Tau Website'
+    title: 'SJSU Theta Tau Website',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -13,8 +13,8 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/assets/images/website-icon.png' // This path is relative to the root of the site.
-      }
+        icon: 'src/assets/images/website-icon.png', // This path is relative to the root of the site.
+      },
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-offline',
@@ -23,8 +23,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/assets/images`
-      }
-    }
-  ]
+        path: `${__dirname}/src/assets/images`,
+      },
+    },
+  ],
 };

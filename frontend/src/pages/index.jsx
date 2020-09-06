@@ -1,6 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -12,9 +13,7 @@ class Homepage extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
     const { data } = this.props;
-    const {
-      brotherhood, professional, community, mark, pledgeEventPic
-    } = data;
+    const { brotherhood, professional, community, mark, pledgeEventPic } = data;
 
     return (
       <Layout>
@@ -248,5 +247,35 @@ export const query = graphql`
     }
   }
 `;
+
+Homepage.propTypes = {
+  data: PropTypes.shape({
+    brotherhood: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+    professional: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+    community: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+    mark: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+    pledgeEventPic: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default Homepage;

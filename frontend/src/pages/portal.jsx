@@ -7,8 +7,7 @@ import Sample from './portal_pages/sample';
 const Portal = () => {
   return (
     <Router basepath="/portal">
-      <Sample exact path="/sample/:resultsAmount" />
-      <Sample exact path="/sample/" />
+      <Sample exact path="/sample/:?resultsAmount" />
     </Router>
   );
 };

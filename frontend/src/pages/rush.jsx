@@ -2,6 +2,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
@@ -23,7 +24,7 @@ class Rush extends React.Component {
             style={{
               margin: 'auto',
               width: '17%',
-              minWidth: '100px'
+              minWidth: '100px',
             }}
           />
           <h1>
@@ -262,5 +263,20 @@ export const query = graphql`
     }
   }
 `;
+
+Rush.propTypes = {
+  data: PropTypes.shape({
+    logo: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+    rushSchedule: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.element.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default Rush;

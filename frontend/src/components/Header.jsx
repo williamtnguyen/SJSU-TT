@@ -24,7 +24,7 @@ const Header = () => (
             style={{
               margin: 'auto',
               width: '17%',
-              minWidth: '100px'
+              minWidth: '100px',
             }}
           />
           <h1>
