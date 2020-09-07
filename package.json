@@ -4,6 +4,9 @@
   "description": "SJSU TT's new dynamic website/registry portal",
   "main": "server.js",
   "scripts": {
+    "dev:server": "npm start",
+    "dev:frontend": "cd frontend && gatsby develop",
+    "install-frontend": "npm install --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npm run lint:server && npm run lint:frontend",
     "lint:server": "eslint ./ --ext .js",
