@@ -5,15 +5,19 @@ const BrotherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
   major: {
     type: String,
     required: true,
   },
-  position: {
-    type: String,
-    required: true,
-  },
-  graduateYear: {
+  graduatingYear: {
     type: Number,
     required: true,
   },
@@ -21,13 +25,9 @@ const BrotherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  position: {
     type: String,
     required: true,
-  },
-  password: {
-    type: String,
-    default: `${this.pledgeClass}-${this.graduateYear}`,
   },
   biography: {
     type: String,

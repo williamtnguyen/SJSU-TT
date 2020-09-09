@@ -1,5 +1,9 @@
 const Validator = require('validator');
 
+/**
+ * Checks if any errors were populated during input validation
+ * @param errors the error object populated in function below
+ */
 function isNoErrors(errors) {
   return Object.keys(errors).length === 0;
 }
@@ -11,25 +15,23 @@ function isNoErrors(errors) {
 function validateRegisterInput(data) {
   const errors = {};
 
-  if (Validator.isEmpty(data.name)) {
+  if (Validator.isEmpty(String(data.name))) {
     errors.name = 'Name field is required';
   }
-  if (Validator.isEmpty(data.major)) {
+  if (Validator.isEmpty(String(data.major))) {
     errors.name = 'Major field is required';
   }
-  if (Validator.isEmpty(data.position)) {
+  if (Validator.isEmpty(String(data.position))) {
     errors.position = 'Position field is required';
   }
-  if (Validator.isEmpty(data.graduateYear)) {
+  if (Validator.isEmpty(String(data.graduatingYear))) {
     errors.graduateYear = 'Graduate year field is required';
   }
-  if (Validator.isEmpty(data.pledgeClass)) {
+  if (Validator.isEmpty(String(data.pledgeClass))) {
     errors.pledgeClass = 'Pledge class field is required';
   }
-  if (Validator.isEmpty(data.email)) {
+  if (Validator.isEmpty(String(data.email))) {
     errors.email = 'Email field is required';
-  } else if (!Validator.isEmail(data.email)) {
-    errors.email = 'Email field must be valid';
   }
 
   return {

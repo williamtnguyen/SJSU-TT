@@ -2,6 +2,10 @@ module.exports = {
   siteMetadata: {
     title: 'SJSU Theta Tau Website',
   },
+  proxy: {
+    prefix: '/api',
+    url: 'http://localhost:5000',
+  },
   plugins: [
     'gatsby-plugin-react-helmet',
     {

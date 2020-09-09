@@ -28,6 +28,9 @@
     "react/no-unescaped-entities": 0,
     "react/jsx-one-expression-per-line": [0],
     "import/newline-after-import": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "react/no-unused-state": "warn",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/destructuring-assignment": "off"
   }
 }
