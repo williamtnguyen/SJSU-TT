@@ -19,11 +19,12 @@ brotherController.post('/', (req, res) => {
 
     const newBrother = new Brother({
       name: req.body.name,
-      major: req.body.major,
-      position: req.body.position,
-      graduateYear: req.body.graduateYear,
-      pledgeClass: req.body.pledgeClass,
       email: req.body.email,
+      password: `${req.body.pledgeClass}-${req.body.graduatingYear}`,
+      major: req.body.major,
+      graduatingYear: req.body.graduatingYear,
+      pledgeClass: req.body.pledgeClass,
+      position: req.body.position,
     });
 
     newBrother
@@ -34,3 +35,5 @@ brotherController.post('/', (req, res) => {
       });
   });
 });
+
+module.exports = brotherController;
