@@ -17,6 +17,8 @@ $ npm install
 $ npm run install-frontend
 ```
 
+Lastly, navigate to the `/config` folder and make a copy of the `secrets.example.json` file and name it `secrets.json`. Please reach out for the MongoDB connection string.
+
 ## Running the application
 
 The client/server paradigm means the frontend and backend are separate applications that communicate to eachother. To run the full-stack application, we need to start both servers:
@@ -27,15 +29,26 @@ $ npm run dev:frontend
 $ npm run dev:server
 ```
 
-If everything works, the terminal running the backend will respond with `Server started on port 5000`, and the terminal running the frontend will respond with `success Building development bundle`.
-Visit `http://localhost:8000` to use open the development environment
+If everything works, the terminal running the backend will respond with
+
+```
+Server started on port 5000
+```
+
+and the terminal running the frontend will respond with
+
+```
+success Building development bundle - X.XXXs
+```
+
+Visit `http://localhost:8000` to open the development environment
 
 ## How do I start on an assigned task?
 
 - You will be assigned a task via the `Issues` section of this repository.
   - The description of the task will usually have pretty clear high-level sub-tasks that will help you break down the task at hand.
   - If there is any confusion, please reach out for clarification/guidance!
-- Make use of the `Wiki` section of this repository to understand the Git development workflow and how to structure your commits.
+- Make use of the [`Wiki`](https://github.com/williamtnguyen/SJSU-TT-v3/wiki) section of this repository to understand the code structure and Git development workflow/how to structure your commits.
   - _It is important that you understand these steps before starting anything_
 - Make a new local branch, then do the task
 - Before submitting a pull request (PR):
