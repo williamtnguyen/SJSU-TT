@@ -4,7 +4,11 @@ const brotherController = express.Router();
 const Brother = require('./brother');
 const validateRegisterInput = require('../util/form-validation/register');
 
-// CREATE Brother endpoint
+/**
+ * Register Endpoint
+ * @route POST api/brothers/
+ * @desc register a brother
+ */
 brotherController.post('/', (req, res) => {
   // Form input validation
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -35,5 +39,11 @@ brotherController.post('/', (req, res) => {
       });
   });
 });
+
+/**
+ * Login Endpoint
+ * @route POST api/brothers/login
+ * @desc login a brother
+ */
 
 module.exports = brotherController;

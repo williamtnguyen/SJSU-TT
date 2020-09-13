@@ -29,7 +29,7 @@ class Register extends Component {
       pledgeClass: this.state.pledgeClass,
       position: this.state.position,
     };
-    console.log(brotherObject);
+
     axios
       .post('/api/brothers/', brotherObject)
       .then((response) => console.log(response))
