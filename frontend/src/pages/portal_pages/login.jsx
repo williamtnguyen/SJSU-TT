@@ -23,7 +23,7 @@ class Login extends Component {
     };
 
     axios
-      .post('/api/brothers/login')
+      .post('/api/brothers/login', brotherData)
       .then((response) => console.log(response))
       .catch((error) => {
         throw new Error(`Error: ${error}`);
@@ -60,6 +60,9 @@ class Login extends Component {
                 value={this.state.password}
               />
             </div>
+            <button type="submit" className="btn btn-warning">
+              Submit
+            </button>
           </form>
         </div>
       </section>

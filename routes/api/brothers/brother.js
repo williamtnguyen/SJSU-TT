@@ -1,6 +1,24 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const BrotherSchema = new mongoose.Schema({
+const {
+  MajorEnum,
+  PledgeClassEnum,
+  PositionEnum,
+} = require('../util/enums/brother-enums');
+
+/**
+ * Checks if any Brother instance is currently pledging
+ */
+function isCurrentlyPledging() {
+  const pledgeClasses = Object.values(PledgeClassEnum);
+  if (this.pledgeClass === pledgeClasses[pledgeClasses.length - 1]) {
+    return true;
+  }
+  return false;
+}
+
+const BrotherSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -16,6 +34,7 @@ const BrotherSchema = new mongoose.Schema({
   major: {
     type: String,
     required: true,
+    enum: Object.values(MajorEnum),
   },
   graduatingYear: {
     type: Number,
@@ -24,15 +43,22 @@ const BrotherSchema = new mongoose.Schema({
   pledgeClass: {
     type: String,
     required: true,
+    enum: Object.values(PledgeClassEnum),
   },
   position: {
     type: String,
     required: true,
+    enum: Object.values(PositionEnum),
   },
   biography: {
     type: String,
     required: false,
   },
+  demeritCount: {
+    type: Number,
+    default: 15,
+    required: isCurrentlyPledging,
+  },
 });
 
-module.exports = mongoose.model('Brother', BrotherSchema);
+module.exports = mongoose.model('Brothers', BrotherSchema);

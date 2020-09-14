@@ -1,15 +1,20 @@
 const express = require('express');
 const brotherController = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const { SecretOrKey } = JSON.parse(fs.readFileSync('config/secrets.json'));
 
 const Brother = require('./brother');
 const validateRegisterInput = require('../util/form-validation/register');
+const validateLoginInput = require('../util/form-validation/login');
 
 /**
- * Register Endpoint
+ * REGISTER Endpoint
  * @route POST api/brothers/
  * @desc register a brother
  */
-brotherController.post('/', (req, res) => {
+brotherController.post('/register', (req, res) => {
   // Form input validation
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
@@ -31,6 +36,11 @@ brotherController.post('/', (req, res) => {
       position: req.body.position,
     });
 
+    // Hash password before storing in database
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(newBrother.password, salt);
+    newBrother.password = hash;
+
     newBrother
       .save()
       .then((storedBrother) => res.status(200).json(storedBrother))
@@ -41,9 +51,48 @@ brotherController.post('/', (req, res) => {
 });
 
 /**
- * Login Endpoint
+ * LOGIN Endpoint
  * @route POST api/brothers/login
  * @desc login a brother
  */
+brotherController.post('/login', (req, res) => {
+  // Form input validation
+  const { errors, isValid } = validateLoginInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  Brother.findOne({ email: req.body.email }).then((brother) => {
+    if (!brother) {
+      return res.status(404).json({ emailnotfound: 'Email not found' });
+    }
+
+    const isMatch = bcrypt.compareSync(req.body.password, brother.password);
+    if (isMatch) {
+      // Create JWT payload
+      const payload = {
+        id: brother.id,
+        name: brother.name,
+      };
+      // Sign token
+      jwt.sign(
+        payload,
+        SecretOrKey,
+        { expiresIn: 31556926 },
+        (error, token) => {
+          if (error) {
+            throw new Error(error);
+          }
+          res.json({
+            success: true,
+            token: `Bearer ${token}`,
+          });
+        }
+      );
+    } else {
+      return res.status(400).json({ passwordincorrect: 'Password incorrect' });
+    }
+  });
+});
 
 module.exports = brotherController;

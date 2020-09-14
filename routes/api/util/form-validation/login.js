@@ -14,34 +14,22 @@ function convertFieldsToString(requestBody) {
 }
 
 /**
- * Takes in registration form input from frontend and checks validity
+ * Takes in login form input from frontend and checks validity
  * @param requestBody the data object holding all form inputs as fields
  */
-function validateRegisterInput(requestBody) {
+function validateLoginInput(requestBody) {
   const errors = {};
 
   // Convert empty fields to empty strings (Validator only works with strings)
   const data = convertFieldsToString(requestBody);
 
-  if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name field is required';
-  }
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Email field is required';
   } else if (!Validator.isEmail(data.email)) {
     errors.email = 'Email field must be valid';
   }
-  if (Validator.isEmpty(data.major)) {
-    errors.name = 'Major field is required';
-  }
-  if (Validator.isEmpty(data.graduatingYear)) {
-    errors.graduateYear = 'Graduate year field is required';
-  }
-  if (Validator.isEmpty(data.pledgeClass)) {
-    errors.pledgeClass = 'Pledge class field is required';
-  }
-  if (Validator.isEmpty(data.position)) {
-    errors.position = 'Position field is required';
+  if (Validator.isEmpty(data.password)) {
+    errors.password = 'Password field is required';
   }
 
   return {
@@ -50,4 +38,4 @@ function validateRegisterInput(requestBody) {
   };
 }
 
-module.exports = validateRegisterInput;
+module.exports = validateLoginInput;

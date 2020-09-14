@@ -21,7 +21,7 @@ class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const brotherObject = {
+    const brotherData = {
       name: this.state.name,
       email: this.state.email,
       major: this.state.major,
@@ -31,7 +31,7 @@ class Register extends Component {
     };
 
     axios
-      .post('/api/brothers/', brotherObject)
+      .post('/api/brothers/register', brotherData)
       .then((response) => console.log(response))
       .catch((error) => {
         throw new Error(`Error: ${error}`);
