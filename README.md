@@ -33,6 +33,7 @@ If everything works, the terminal running the backend will respond with
 
 ```
 Server started on port 5000
+MongoDB successfully connected...
 ```
 
 and the terminal running the frontend will respond with

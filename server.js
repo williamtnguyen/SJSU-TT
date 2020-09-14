@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fs = require('fs');
+const passport = require('passport');
 
 // Middleware for parsing form inputs
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,6 +25,10 @@ mongoose
   .catch((error) => {
     throw new Error(`Error: ${error}`);
   });
+
+// Passport config (JWT extraction from request headers)
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 // Start server
 const PORT = process.env.PORT || 5000;
