@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import registerStyles from './register.module.scss';
 
+import {
+  MajorEnum,
+  PledgeClassEnum,
+  PositionEnum,
+} from '../../../../routes/api/util/enums/brother-enums';
+
 class Register extends Component {
   constructor() {
     super();
@@ -12,6 +18,7 @@ class Register extends Component {
       graduatingYear: 2020,
       pledgeClass: 'Alpha',
       position: 'Member',
+      errors: {},
     };
   }
 
@@ -21,6 +28,7 @@ class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     const brotherData = {
       name: this.state.name,
       email: this.state.email,
@@ -39,13 +47,15 @@ class Register extends Component {
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
       <section className={registerStyles.root}>
         <div className="container">
           <h1>
             <b>Register</b> a new brother
           </h1>
-          <form onSubmit={(event) => this.handleSubmit(event)}>
+          <form noValidate onSubmit={(event) => this.handleSubmit(event)}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -55,6 +65,7 @@ class Register extends Component {
                 placeholder="Enter name"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.name}
+                error={errors.name}
               />
             </div>
             <div className="form-group">
@@ -66,6 +77,7 @@ class Register extends Component {
                 placeholder="Enter email"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.email}
+                error={errors.email}
               />
             </div>
             <div className="form-group">
@@ -75,18 +87,11 @@ class Register extends Component {
                 id="major"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.major}
+                error={errors.major}
               >
-                <option>Aerospace Engineering</option>
-                <option>Biomedical Engineering</option>
-                <option>Civil Engineering</option>
-                <option>Computer Engineering</option>
-                <option>Computer Science</option>
-                <option>Electrical Engineering</option>
-                <option>General Engineering</option>
-                <option>Industrial Engineering</option>
-                <option>Math</option>
-                <option>Mechanical Engineering</option>
-                <option>Software Engineering</option>
+                {Object.values(MajorEnum).map((major) => (
+                  <option key={major}>{major}</option>
+                ))}
               </select>
             </div>
             <div className="form-group">
@@ -98,6 +103,7 @@ class Register extends Component {
                 placeholder="Enter graduating year"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.graduatingYear}
+                error={errors.graduatingYear}
               />
             </div>
             <div className="form-group">
@@ -107,11 +113,11 @@ class Register extends Component {
                 id="pledgeClass"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.pledgeClass}
+                error={errors.pledgeClass}
               >
-                <option>Alpha</option>
-                <option>Beta</option>
-                <option>Gamma</option>
-                <option>Delta</option>
+                {Object.values(PledgeClassEnum).map((pledgeClass) => (
+                  <option key={pledgeClass}>{pledgeClass}</option>
+                ))}
               </select>
             </div>
             <div className="form-group">
@@ -121,9 +127,11 @@ class Register extends Component {
                 id="position"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.position}
+                error={errors.position}
               >
-                <option>Member</option>
-                <option>breh</option>
+                {Object.values(PositionEnum).map((position) => (
+                  <option key={position}>{position}</option>
+                ))}
               </select>
             </div>
             <button type="submit" className="btn btn-warning">

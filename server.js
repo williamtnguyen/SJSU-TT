@@ -23,7 +23,7 @@ mongoose
   })
   .then(() => console.log('MongoDB successfully connected...'))
   .catch((error) => {
-    throw new Error(`Error: ${error}`);
+    throw new Error(error);
   });
 
 // Passport config (JWT extraction from request headers)
@@ -34,7 +34,7 @@ require('./config/passport')(passport);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, (error) => {
   if (error) {
-    throw new Error(`Error: ${error}`);
+    throw new Error(error);
   }
   console.log(`Server started on port ${PORT}`);
 });

@@ -1,19 +1,24 @@
 import React from 'react';
 import { Router } from '@reach/router';
 
+// Redux global state
+import { Provider } from 'react-redux';
+import store from '../redux/store';
+
 import Sample from './portal_pages/sample';
 import Register from './portal_pages/register';
 import Login from './portal_pages/login';
 
-// eslint-disable-next-line arrow-body-style
 const Portal = () => {
   return (
-    <Router basepath="/portal">
-      <Sample exact path="/sample" />
-      <Sample exact path="/sample/:resultsAmount" />
-      <Register exact path="/register" />
-      <Login exact path="/login" />
-    </Router>
+    <Provider store={store}>
+      <Router basepath="/portal">
+        <Sample exact path="/sample" />
+        <Sample exact path="/sample/:resultsAmount" />
+        <Register exact path="/register" />
+        <Login exact path="/login" />
+      </Router>
+    </Provider>
   );
 };
 
