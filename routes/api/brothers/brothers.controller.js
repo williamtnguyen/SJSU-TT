@@ -11,7 +11,7 @@ const validateLoginInput = require('../util/form-validation/login');
 
 /**
  * REGISTER Endpoint
- * @route POST api/brothers/
+ * @route POST api/brothers/register
  * @desc register a brother
  */
 brotherController.post('/register', (req, res) => {

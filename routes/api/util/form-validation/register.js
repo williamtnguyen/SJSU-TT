@@ -35,7 +35,7 @@ function validateRegisterInput(requestBody) {
     errors.name = 'Major field is required';
   }
   if (Validator.isEmpty(data.graduatingYear)) {
-    errors.graduateYear = 'Graduate year field is required';
+    errors.graduatingYear = 'Graduate year field is required';
   }
   if (Validator.isEmpty(data.pledgeClass)) {
     errors.pledgeClass = 'Pledge class field is required';

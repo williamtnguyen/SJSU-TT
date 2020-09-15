@@ -8,6 +8,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      errors: {},
     };
   }
 
@@ -31,6 +32,8 @@ class Login extends Component {
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
       <section className={loginStyles.root}>
         <div className="container">
@@ -47,6 +50,7 @@ class Login extends Component {
                 placeholder="Enter email"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.email}
+                error={errors.email}
               />
             </div>
             <div className="form-group">
@@ -58,6 +62,7 @@ class Login extends Component {
                 placeholder="Enter password"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.password}
+                error={errors.password}
               />
             </div>
             <button type="submit" className="btn btn-warning">

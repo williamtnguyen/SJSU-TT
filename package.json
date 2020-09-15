@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "dev:server": "nodemon server.js",
-    "dev:frontend": "cd frontend && gatsby develop",
+    "dev:frontend": "npm run develop --prefix frontend",
     "install-frontend": "npm install --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npm run lint:server && npm run lint:frontend",
     "lint:server": "eslint ./ --ext .js",
-    "lint:frontend": "cd frontend && eslint ./ --ext .jsx"
+    "lint:frontend": "npm run lint --prefix frontend"
   },
   "repository": {
     "type": "git",

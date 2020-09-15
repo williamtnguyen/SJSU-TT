@@ -20,6 +20,7 @@ const PledgeClassEnum = Object.freeze({
 });
 
 const PositionEnum = Object.freeze({
+  Member: 'Member',
   Academic: 'Academic',
   Brotherhood: 'Brotherhood',
   CommunityService: 'Community Service',
