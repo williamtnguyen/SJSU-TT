@@ -15,9 +15,11 @@ Next, install dependencies for backend and frontend (_Note: you'll need to have 
 ```
 $ npm install
 $ npm run install-frontend
+$ npm i -g gatsby-cli
 ```
 
-Lastly, navigate to the `/config` folder and make a copy of the `secrets.example.json` file and name it `secrets.json`. Please reach out for the MongoDB connection string.
+Next, navigate to the `/config` folder and make a copy of the `secrets.example.json` file and name it `secrets.json`. Please reach out for the secret file contents.
+Lastly, please install Redux DevTools browser extension [here](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en). If you use a different browser, Google it or we can figure it out :)
 
 ## Running the application
 
