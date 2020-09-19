@@ -8,7 +8,6 @@ const { SecretOrKey } = JSON.parse(fs.readFileSync('config/secrets.json'));
 const Brother = require('./brother');
 const validateRegisterInput = require('../util/form-validation/register');
 const validateLoginInput = require('../util/form-validation/login');
-const brother = require('./brother');
 
 /**
  * GET Endpoint
