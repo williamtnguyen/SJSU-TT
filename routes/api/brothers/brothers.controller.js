@@ -8,6 +8,21 @@ const { SecretOrKey } = JSON.parse(fs.readFileSync('config/secrets.json'));
 const Brother = require('./brother');
 const validateRegisterInput = require('../util/form-validation/register');
 const validateLoginInput = require('../util/form-validation/login');
+const brother = require('./brother');
+
+/**
+ * GET Endpoint
+ * @route GET api/brothers
+ * @desc retrieve all brothers
+ */
+brotherController.get('/', (req, res) => {
+  Brother.find({}, (err, allBrothers) => {
+    if (err) {
+      return res.status(404).json({ message: `No brothers found: ${err}` });
+    }
+    res.status(200).json(allBrothers);
+  });
+});
 
 /**
  * REGISTER Endpoint
