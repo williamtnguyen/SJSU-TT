@@ -10,6 +10,20 @@ const validateRegisterInput = require('../util/form-validation/register');
 const validateLoginInput = require('../util/form-validation/login');
 
 /**
+ * GET Endpoint
+ * @route GET api/brothers
+ * @desc retrieve all brothers
+ */
+brotherController.get('/', (req, res) => {
+  Brother.find({}, (err, allBrothers) => {
+    if (err) {
+      return res.status(404).json({ message: `No brothers found: ${err}` });
+    }
+    res.status(200).json(allBrothers);
+  });
+});
+
+/**
  * REGISTER Endpoint
  * @route POST api/brothers/register
  * @desc register a brother
