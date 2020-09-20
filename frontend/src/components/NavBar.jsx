@@ -3,7 +3,6 @@ import { Link as GatsbyLink } from 'gatsby';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-// eslint-disable-next-line arrow-body-style
 const NavBar = () => {
   return (
     <Navbar

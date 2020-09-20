@@ -3,7 +3,6 @@ import { SET_CURRENT_BROTHER } from '../actions/types';
 const initialState = {
   isAuthenticated: false,
   user: {},
-  loading: false,
 };
 
 /**
@@ -18,7 +17,7 @@ export default function (state = initialState, action) {
     case SET_CURRENT_BROTHER:
       return {
         ...state,
-        isAuthenticated: isEmpty(action.payload),
+        isAuthenticated: !isEmpty(action.payload),
         user: action.payload,
       };
     default:

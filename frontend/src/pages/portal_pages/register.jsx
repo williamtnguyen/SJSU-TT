@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { registerBrother } from '../../redux/actions/authActions';
 import registerStyles from './register.module.scss';
 
 import {
@@ -22,6 +25,12 @@ class Register extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.errors !== prevProps.errors && this.props.errors) {
+      this.setState({ errors: this.props.errors });
+    }
+  }
+
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
@@ -29,6 +38,7 @@ class Register extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    // Create brother object
     const brotherData = {
       name: this.state.name,
       email: this.state.email,
@@ -38,12 +48,8 @@ class Register extends Component {
       position: this.state.position,
     };
 
-    axios
-      .post('/api/brothers/register', brotherData)
-      .then((response) => console.log(response))
-      .catch((error) => {
-        throw new Error(`Error: ${error}`);
-      });
+    // Make API call and set global state
+    this.props.registerBrother(brotherData);
   }
 
   render() {
@@ -60,79 +66,97 @@ class Register extends Component {
               <label htmlFor="name">Name</label>
               <input
                 type="text"
-                className="form-control"
                 id="name"
                 placeholder="Enter name"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.name}
                 error={errors.name}
+                className={classnames('form-control', {
+                  'is-invalid': errors.name,
+                })}
               />
+              <span className="invalid-feedback">{errors.name}</span>
             </div>
             <div className="form-group">
               <label htmlFor="email">Email address</label>
               <input
                 type="email"
-                className="form-control"
                 id="email"
                 placeholder="Enter email"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.email}
                 error={errors.email}
+                className={classnames('form-control', {
+                  'is-invalid': errors.email,
+                })}
               />
+              <span className="invalid-feedback">{errors.email}</span>
             </div>
             <div className="form-group">
               <label htmlFor="major">Major</label>
               <select
-                className="form-control"
                 id="major"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.major}
                 error={errors.major}
+                className={classnames('form-control', {
+                  'is-invalid': errors.major,
+                })}
               >
                 {Object.values(MajorEnum).map((major) => (
                   <option key={major}>{major}</option>
                 ))}
               </select>
+              <span className="invalid-feedback">{errors.major}</span>
             </div>
             <div className="form-group">
               <label htmlFor="name">Graduating year</label>
               <input
                 type="number"
-                className="form-control"
                 id="graduatingYear"
                 placeholder="Enter graduating year"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.graduatingYear}
                 error={errors.graduatingYear}
+                className={classnames('form-control', {
+                  'is-invalid': errors.graduatingYear,
+                })}
               />
+              <span className="invalid-feedback">{errors.graduatingYear}</span>
             </div>
             <div className="form-group">
               <label htmlFor="pledgeClass">Pledge class</label>
               <select
-                className="form-control"
                 id="pledgeClass"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.pledgeClass}
                 error={errors.pledgeClass}
+                className={classnames('form-control', {
+                  'is-invalid': errors.pledgeClass,
+                })}
               >
                 {Object.values(PledgeClassEnum).map((pledgeClass) => (
                   <option key={pledgeClass}>{pledgeClass}</option>
                 ))}
               </select>
+              <span className="invalid-feedback">{errors.pledgeClass}</span>
             </div>
             <div className="form-group">
               <label htmlFor="position">Position</label>
               <select
-                className="form-control"
                 id="position"
                 onChange={(event) => this.handleChange(event)}
                 value={this.state.position}
                 error={errors.position}
+                className={classnames('form-control', {
+                  'is-invalid': errors.position,
+                })}
               >
                 {Object.values(PositionEnum).map((position) => (
                   <option key={position}>{position}</option>
                 ))}
               </select>
+              <span className="invalid-feedback">{errors.position}</span>
             </div>
             <button type="submit" className="btn btn-warning">
               Submit
@@ -144,4 +168,33 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  registerBrother: PropTypes.func.isRequired,
+  auth: PropTypes.shape({
+    isAuthenticated: PropTypes.bool,
+    user: PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+    }),
+  }),
+  errors: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    major: PropTypes.string,
+    graduatingYear: PropTypes.number,
+    pledgeClass: PropTypes.string,
+    position: PropTypes.string,
+  }),
+};
+
+Register.defaultProps = {
+  auth: {},
+  errors: {},
+};
+
+const mapStateToProps = (reduxState) => ({
+  auth: reduxState.auth,
+  errors: reduxState.errors,
+});
+
+export default connect(mapStateToProps, { registerBrother })(Register);
