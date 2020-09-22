@@ -32,6 +32,8 @@
     "react/no-unused-state": "warn",
     "jsx-a11y/label-has-associated-control": "off",
     "react/destructuring-assignment": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "react/no-did-update-set-state": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }

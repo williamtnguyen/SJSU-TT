@@ -9,6 +9,10 @@ function convertFieldsToString(requestBody) {
   const sanitizedData = requestBody;
   Object.keys(sanitizedData).forEach((key) => {
     sanitizedData[key] = !isEmpty(sanitizedData[key]) ? sanitizedData[key] : '';
+    // Casting number input to string
+    if (typeof sanitizedData[key] === 'number') {
+      sanitizedData[key] = String(sanitizedData[key]);
+    }
   });
   return sanitizedData;
 }
@@ -32,10 +36,12 @@ function validateRegisterInput(requestBody) {
     errors.email = 'Email field must be valid';
   }
   if (Validator.isEmpty(data.major)) {
-    errors.name = 'Major field is required';
+    errors.major = 'Major field is required';
   }
   if (Validator.isEmpty(data.graduatingYear)) {
     errors.graduatingYear = 'Graduate year field is required';
+  } else if (!Validator.isNumeric(data.graduatingYear)) {
+    errors.graduatingYear = 'Graduate year must be a number';
   }
   if (Validator.isEmpty(data.pledgeClass)) {
     errors.pledgeClass = 'Pledge class field is required';

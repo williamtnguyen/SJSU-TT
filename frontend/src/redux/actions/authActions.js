@@ -5,7 +5,7 @@ import setAuthToken from '../../util/setAuthToken';
 import { GET_ERRORS, SET_CURRENT_BROTHER } from './types';
 
 // Helper function
-const setCurrentUser = (decodedToken) => {
+export const setCurrentUser = (decodedToken) => {
   return {
     type: SET_CURRENT_BROTHER,
     payload: decodedToken,
@@ -13,25 +13,26 @@ const setCurrentUser = (decodedToken) => {
 };
 
 // REGISTER Brother action
-const registerBrother = (brotherData) => (dispatch) => {
+export const registerBrother = (brotherData) => (dispatch) => {
   axios
     .post('/api/brothers/register', brotherData)
-    .then((res) => res.status(200).send('Brother Registered!'))
-    .catch((error) =>
+    .then((response) => console.log(response))
+    .catch((error) => {
+      console.log(error);
       dispatch({
         type: GET_ERRORS,
         payload: error.response.data,
-      })
-    );
+      });
+    });
 };
 
 // LOGIN Brother action
-const loginBrother = (brotherData) => (dispatch) => {
+export const loginBrother = (brotherData) => (dispatch) => {
   axios
     .post('/api/brothers/login', brotherData)
-    .then((res) => {
+    .then((response) => {
       // Store token in localStorage, then as auth header in all axios requests
-      const { token } = res.data;
+      const { token } = response.data;
       localStorage.setItem('authToken', token);
       setAuthToken(token);
 
@@ -45,11 +46,9 @@ const loginBrother = (brotherData) => (dispatch) => {
 };
 
 // LOGOUT Brother action
-const logoutBrother = () => (dispatch) => {
+export const logoutBrother = () => (dispatch) => {
   // Remove JWT from localStorage, auth header, and clear current logged-in brother
   localStorage.removeItem('authToken');
   setAuthToken(false);
   dispatch(setCurrentUser({}));
 };
-
-export { registerBrother, loginBrother, logoutBrother };
