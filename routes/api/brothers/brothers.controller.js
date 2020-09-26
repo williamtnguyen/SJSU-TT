@@ -43,6 +43,7 @@ brotherController.post('/register', (req, res) => {
     const newBrother = new Brother({
       name: req.body.name,
       email: req.body.email,
+      studentID: req.body.studentID,
       password: `${req.body.pledgeClass}-${req.body.graduatingYear}`,
       major: req.body.major,
       graduatingYear: req.body.graduatingYear,

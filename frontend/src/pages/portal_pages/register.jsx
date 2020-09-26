@@ -17,6 +17,7 @@ class Register extends Component {
     this.state = {
       name: '',
       email: '',
+      studentID: '',
       major: 'Aerospace Engineering',
       graduatingYear: 2020,
       pledgeClass: 'Alpha',
@@ -42,6 +43,7 @@ class Register extends Component {
     const brotherData = {
       name: this.state.name,
       email: this.state.email,
+      studentID: this.state.studentID,
       major: this.state.major,
       graduatingYear: this.state.graduatingYear,
       pledgeClass: this.state.pledgeClass,
@@ -91,6 +93,21 @@ class Register extends Component {
                 })}
               />
               <span className="invalid-feedback">{errors.email}</span>
+            </div>
+            <div className="form-group">
+              <label htmlFor="studentID">Student ID</label>
+              <input
+                type="number"
+                id="studentID"
+                placeholder="Enter Student ID (Numeric values only)"
+                onChange={(event) => this.handleChange(event)}
+                value={this.state.studentID}
+                error={errors.studentID}
+                className={classnames('form-control', {
+                  'is-invalid': errors.studentID,
+                })}
+              />
+              <span className="invalid-feedback">{errors.studentID}</span>
             </div>
             <div className="form-group">
               <label htmlFor="major">Major</label>
@@ -180,8 +197,9 @@ Register.propTypes = {
   errors: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
+    studentID: PropTypes.string,
     major: PropTypes.string,
-    graduatingYear: PropTypes.number,
+    graduatingYear: PropTypes.string,
     pledgeClass: PropTypes.string,
     position: PropTypes.string,
   }),
