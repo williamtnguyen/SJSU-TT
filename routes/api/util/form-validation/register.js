@@ -35,6 +35,13 @@ function validateRegisterInput(requestBody) {
   } else if (!Validator.isEmail(data.email)) {
     errors.email = 'Email field must be valid';
   }
+  if (Validator.isEmpty(data.studentID)) {
+    errors.studentID = 'Student ID is required';
+  } else if (!Validator.isNumeric(data.studentID)) {
+    errors.studentID = 'Student ID must be a number';
+  } else if (!Validator.isLength(data.studentID, { min: 9, max: 9 })) {
+    errors.studentID = 'Student ID must be 9 characters';
+  }
   if (Validator.isEmpty(data.major)) {
     errors.major = 'Major field is required';
   }
@@ -42,6 +49,8 @@ function validateRegisterInput(requestBody) {
     errors.graduatingYear = 'Graduate year field is required';
   } else if (!Validator.isNumeric(data.graduatingYear)) {
     errors.graduatingYear = 'Graduate year must be a number';
+  } else if (!Validator.isLength(data.graduatingYear, { min: 4, max: 4 })) {
+    errors.graduatingYear = 'Graduate year must be valid year';
   }
   if (Validator.isEmpty(data.pledgeClass)) {
     errors.pledgeClass = 'Pledge class field is required';

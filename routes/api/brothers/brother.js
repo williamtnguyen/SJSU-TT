@@ -27,6 +27,10 @@ const BrotherSchema = new Schema({
     type: String,
     required: true,
   },
+  studentID: {
+    type: Number,
+    required: true,
+  },
   password: {
     type: String,
     required: true,
