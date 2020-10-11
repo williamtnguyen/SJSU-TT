@@ -49,6 +49,7 @@ brotherController.post('/register', (req, res) => {
       graduatingYear: req.body.graduatingYear,
       pledgeClass: req.body.pledgeClass,
       position: req.body.position,
+      imagePath: `frontend/src/assets/images/headshots/${req.body.studentID}.jpg`,
     });
 
     // Hash password before storing in database
