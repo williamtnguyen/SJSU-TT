@@ -63,6 +63,10 @@ const BrotherSchema = new Schema({
     default: 15,
     required: isCurrentlyPledging,
   },
+  imagePath: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Brothers', BrotherSchema);
