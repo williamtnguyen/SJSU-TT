@@ -111,4 +111,28 @@ brotherController.post('/login', (req, res) => {
   });
 });
 
+/**
+ * EDIT Endpoint
+ * @route PUT api/borthers/edit
+ * @desc edit a bro page
+ */
+brotherController.put('/:brotherID', (req, res) => {
+  // Form validation
+  const { errors, isValid } = validateLoginInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  Brother.findById(req.params.brotherID, (err, foundBrother) => {
+    if (err) {
+      return console.log('Could not find the Brother in the DB: ${err}')
+    }
+
+    // Form fields: 
+    // update brother password
+    // update brother bio
+
+  });
+});
+
 module.exports = brotherController;
