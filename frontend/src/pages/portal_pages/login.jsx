@@ -22,7 +22,7 @@ class Login extends Component {
       this.props.auth.isAuthenticated !== prevProps.auth.isAuthenticated &&
       this.props.auth.isAuthenticated
     ) {
-      navigate('/');
+      navigate('/portal/dashboard');
     }
     if (this.props.errors !== prevProps.errors && this.props.errors) {
       this.setState({ errors: this.props.errors });
@@ -52,50 +52,54 @@ class Login extends Component {
     return (
       <section className={loginStyles.root}>
         <div className="container">
-          <h1>
-            <b>Login</b> broski
-          </h1>
-          <form noValidate onSubmit={(event) => this.handleSubmit(event)}>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter email"
-                onChange={(event) => this.handleChange(event)}
-                value={this.state.email}
-                error={errors.email}
-                className={classnames('form-control', {
-                  'is-invalid': errors.email || errors.emailnotfound,
-                })}
-              />
-              <span className="invalid-feedback">
-                {errors.email}
-                {errors.emailnotfound}
-              </span>
+          <div className="card">
+            <div className="card-body">
+              <h1>
+                <b>Login</b> broski
+              </h1>
+              <form noValidate onSubmit={(event) => this.handleSubmit(event)}>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email"
+                    onChange={(event) => this.handleChange(event)}
+                    value={this.state.email}
+                    error={errors.email}
+                    className={classnames('form-control', {
+                      'is-invalid': errors.email || errors.emailnotfound,
+                    })}
+                  />
+                  <span className="invalid-feedback">
+                    {errors.email}
+                    {errors.emailnotfound}
+                  </span>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    onChange={(event) => this.handleChange(event)}
+                    value={this.state.password}
+                    error={errors.password}
+                    className={classnames('form-control', {
+                      'is-invalid': errors.password || errors.passwordincorrect,
+                    })}
+                  />
+                  <span className="invalid-feedback">
+                    {errors.password}
+                    {errors.passwordincorrect}
+                  </span>
+                </div>
+                <button type="submit" className="btn btn-warning">
+                  Submit
+                </button>
+              </form>
             </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Enter password"
-                onChange={(event) => this.handleChange(event)}
-                value={this.state.password}
-                error={errors.password}
-                className={classnames('form-control', {
-                  'is-invalid': errors.password || errors.passwordincorrect,
-                })}
-              />
-              <span className="invalid-feedback">
-                {errors.password}
-                {errors.passwordincorrect}
-              </span>
-            </div>
-            <button type="submit" className="btn btn-warning">
-              Submit
-            </button>
-          </form>
+          </div>
         </div>
       </section>
     );

@@ -5,7 +5,7 @@ import setAuthToken from '../../util/setAuthToken';
 import { GET_ERRORS, SET_CURRENT_BROTHER } from './types';
 
 // Helper function
-export const setCurrentUser = (decodedToken) => {
+export const setCurrentBrother = (decodedToken) => {
   return {
     type: SET_CURRENT_BROTHER,
     payload: decodedToken,
@@ -38,7 +38,7 @@ export const loginBrother = (brotherData) => (dispatch) => {
 
       // Decode token to get user data in payload, then store in redux state
       const decodedToken = jwtDecode(token);
-      dispatch(setCurrentUser(decodedToken));
+      dispatch(setCurrentBrother(decodedToken));
     })
     .catch((error) =>
       dispatch({ type: GET_ERRORS, payload: error.response.data })
@@ -50,5 +50,5 @@ export const logoutBrother = () => (dispatch) => {
   // Remove JWT from localStorage, auth header, and clear current logged-in brother
   localStorage.removeItem('authToken');
   setAuthToken(false);
-  dispatch(setCurrentUser({}));
+  dispatch(setCurrentBrother({}));
 };
