@@ -20,8 +20,6 @@ $ npm i -g gatsby-cli
 
 Next, navigate to the `/config` folder and make a copy of the `secrets.example.json` file and name it `secrets.json`. Please reach out for the secret file contents.
 
-Lastly, please install Redux DevTools browser extension [here](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en). If you use a different browser, Google it or we can figure it out :)
-
 ## Running the application
 
 The client/server paradigm means the frontend and backend are separate applications that communicate to eachother. To run the full-stack application, we need to start both servers:
