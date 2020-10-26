@@ -20,7 +20,7 @@ const persistLogin = () => {
     const currentTime = Date.now() / 1000;
     if (decodedToken.exp < currentTime) {
       store.dispatch(logoutBrother());
-      window.location.href = './portal/login';
+      window.location.href = './login';
     }
   }
 };

@@ -2,9 +2,9 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../../util/setAuthToken';
 
-import { GET_ERRORS, SET_CURRENT_BROTHER } from './types';
+import { GET_ERRORS, SET_CURRENT_BROTHER, REGISTER_BROTHER } from './types';
 
-// Helper function
+// Helper function: this sets the currently logged in user
 export const setCurrentBrother = (decodedToken) => {
   return {
     type: SET_CURRENT_BROTHER,
@@ -12,11 +12,24 @@ export const setCurrentBrother = (decodedToken) => {
   };
 };
 
+// Helper function: when someone registers a user, this helps showing the success message
+export const updateRegisterSuccessMessage = (registeredBrother) => {
+  return {
+    type: REGISTER_BROTHER,
+    payload: {
+      registeredBrother,
+    },
+  };
+};
+
 // REGISTER Brother action
 export const registerBrother = (brotherData) => (dispatch) => {
   axios
     .post('/api/brothers/register', brotherData)
-    .then((response) => console.log(response))
+    .then((response) => {
+      console.log(response);
+      dispatch(updateRegisterSuccessMessage(brotherData.name));
+    })
     .catch((error) => {
       console.log(error);
       dispatch({

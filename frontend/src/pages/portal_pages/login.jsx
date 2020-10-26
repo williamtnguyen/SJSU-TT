@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { loginBrother } from '../../redux/actions/authActions';
+import Navbar from '../../components/NavBar';
 import loginStyles from './login.module.scss';
 
 class Login extends Component {
@@ -14,6 +15,12 @@ class Login extends Component {
       password: '',
       errors: {},
     };
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      window.location.href = './dashboard';
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -50,58 +57,62 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <section className={loginStyles.root}>
-        <div className="container">
-          <div className="card">
-            <div className="card-body">
-              <h1>
-                <b>Login</b> broski
-              </h1>
-              <form noValidate onSubmit={(event) => this.handleSubmit(event)}>
-                <div className="form-group">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter email"
-                    onChange={(event) => this.handleChange(event)}
-                    value={this.state.email}
-                    error={errors.email}
-                    className={classnames('form-control', {
-                      'is-invalid': errors.email || errors.emailnotfound,
-                    })}
-                  />
-                  <span className="invalid-feedback">
-                    {errors.email}
-                    {errors.emailnotfound}
-                  </span>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password"
-                    onChange={(event) => this.handleChange(event)}
-                    value={this.state.password}
-                    error={errors.password}
-                    className={classnames('form-control', {
-                      'is-invalid': errors.password || errors.passwordincorrect,
-                    })}
-                  />
-                  <span className="invalid-feedback">
-                    {errors.password}
-                    {errors.passwordincorrect}
-                  </span>
-                </div>
-                <button type="submit" className="btn btn-warning">
-                  Submit
-                </button>
-              </form>
+      <div>
+        <Navbar />
+        <section className={loginStyles.root}>
+          <div className="container" style={{ maxWidth: '500px' }}>
+            <div className="card">
+              <div className="card-body">
+                <h1 className="mb-3">
+                  <b>Login</b> broski
+                </h1>
+                <form noValidate onSubmit={(event) => this.handleSubmit(event)}>
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      placeholder="Enter email"
+                      onChange={(event) => this.handleChange(event)}
+                      value={this.state.email}
+                      error={errors.email}
+                      className={classnames('form-control', {
+                        'is-invalid': errors.email || errors.emailnotfound,
+                      })}
+                    />
+                    <span className="invalid-feedback">
+                      {errors.email}
+                      {errors.emailnotfound}
+                    </span>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      placeholder="Enter password"
+                      onChange={(event) => this.handleChange(event)}
+                      value={this.state.password}
+                      error={errors.password}
+                      className={classnames('form-control', {
+                        'is-invalid':
+                          errors.password || errors.passwordincorrect,
+                      })}
+                    />
+                    <span className="invalid-feedback">
+                      {errors.password}
+                      {errors.passwordincorrect}
+                    </span>
+                  </div>
+                  <button type="submit" className="btn btn-warning">
+                    Submit
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     );
   }
 }
