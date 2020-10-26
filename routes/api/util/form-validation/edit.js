@@ -7,16 +7,26 @@ const isEmpty = require('is-empty');
  */
 function validateEditInput(requestBody) {
   const errors = {};
+  let emptyCount = 0;
+  // If all fields empty, don't update to database
+  requestBody.forEach((field) => {
+    if (isEmpty(field)) emptyCount += 1;
+  });
+  if (emptyCount === Object.keys(requestBody).length) {
+    errors.empty = 'All fields left blank';
+  }
   // Only validate email and gradYear because they have more strict input
-  if (!Validator.isEmail(requestBody.email)) {
+  if (!isEmpty(requestBody.email) && !Validator.isEmail(requestBody.email)) {
     errors.email = 'Email field must be valid';
   }
-  if (!Validator.isNumeric(requestBody.graduatingYear)) {
-    errors.graduatingYear = 'Graduate year must be a number';
-  } else if (
-    !Validator.isLength(requestBody.graduatingYear, { min: 4, max: 4 })
-  ) {
-    errors.graduatingYear = 'Graduate year must be valid year';
+  if (!isEmpty(requestBody.graduatingYear)) {
+    if (!Validator.isNumeric(requestBody.graduatingYear)) {
+      errors.graduatingYear = 'Graduate year must be a number';
+    } else if (
+      !Validator.isLength(requestBody.graduatingYear, { min: 4, max: 4 })
+    ) {
+      errors.graduatingYear = 'Graduate year must be valid year';
+    }
   }
   return {
     errors,
