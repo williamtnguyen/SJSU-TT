@@ -8,6 +8,7 @@ const { SecretOrKey } = JSON.parse(fs.readFileSync('config/secrets.json'));
 const Brother = require('./brother');
 const validateRegisterInput = require('../util/form-validation/register');
 const validateLoginInput = require('../util/form-validation/login');
+const validateEditInput = require('../util/form-validation/edit');
 
 /**
  * GET Endpoint
@@ -108,6 +109,62 @@ brotherController.post('/login', (req, res) => {
     } else {
       return res.status(400).json({ passwordincorrect: 'Password incorrect' });
     }
+  });
+});
+
+/**
+ * EDIT Endpoint
+ * @route PUT api/brothers/edit
+ * @desc edit a bro page
+ */
+brotherController.put('/:brotherID', (req, res) => {
+  // Form validation
+  const { errors, isValid } = validateEditInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  Brother.findById(req.params.brotherID, (err, foundBrother) => {
+    if (err) {
+      return console.log(`Could not find the Brother in the DB: ${err}`);
+    }
+
+    // update brother password, bio, email, major, position, gradYear
+    const newPassword = req.body.password;
+    const newBio = req.body.biography;
+    const newEmail = req.body.email;
+    const newMajor = req.body.major;
+    const newPosition = req.body.position;
+    const newGradYear = req.body.graduatingYear;
+
+    // Account for empty fields
+    if (newPassword !== '') {
+      foundBrother.password = newPassword;
+    }
+    if (newBio !== '') {
+      foundBrother.biography = newBio;
+    }
+    if (newEmail !== '') {
+      foundBrother.email = newEmail;
+    }
+    if (newMajor !== '') {
+      foundBrother.major = newMajor;
+    }
+    if (newPosition !== '') {
+      foundBrother.position = newPosition;
+    }
+    if (newGradYear !== '') {
+      foundBrother.graduatingYear = newGradYear;
+    }
+    foundBrother.save();
+    res.json({
+      updatedPassword: newPassword,
+      updatedBiography: newBio,
+      updatedEmail: newEmail,
+      updatedMajor: newMajor,
+      updatedPosition: newPosition,
+      updatedGradYear: newGradYear,
+    });
   });
 });
 
