@@ -13,20 +13,26 @@ app.use(bodyParser.json());
 const routes = require('./routes/api');
 app.use('/api', routes);
 
-// Connecting to MongoDB
-const { MongoURI } = JSON.parse(fs.readFileSync('./config/secrets.json'));
-mongoose
-  .connect(MongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then(() => console.log('MongoDB successfully connected...'))
-  .catch((error) => {
-    throw new Error(error);
-  });
+/**
+ * Connect to MongoDB:
+ * - If running development environment, use MongoDB Atlas
+ * - If running production, spin up MongoDB base docker image
+ *  */
+if (process.env.NODE_ENV === 'development') {
+  const { MongoURI } = JSON.parse(fs.readFileSync('./config/secrets.json'));
+  mongoose
+    .connect(MongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    .then(() => console.log('Development mode: Connected to MongoDB Atlas'))
+    .catch((error) => {
+      throw new Error(error);
+    });
+}
 
-// Passport config (JWT extraction from request headers)
+// Passport.js config (JWT extraction from request headers)
 app.use(passport.initialize());
 require('./config/passport')(passport);
 

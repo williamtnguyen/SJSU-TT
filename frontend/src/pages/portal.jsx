@@ -1,9 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Router } from '@reach/router';
-
-// Redux global state
-import { Provider } from 'react-redux';
-import store from '../redux/store';
 
 import Sample from './portal_pages/sample';
 import Register from './portal_pages/register';
@@ -13,20 +9,20 @@ import Dashboard from './portal_pages/dashboard';
 
 import persistLogin from '../util/persist-login';
 
-// Checks localStorage for JWT and ensures authorized users can visit PrivateRoutes
-persistLogin();
-
 const Portal = () => {
+  useEffect(() => {
+    // Checks localStorage for JWT and ensures authorized users can visit PrivateRoutes
+    persistLogin();
+  }, []);
+
   return (
-    <Provider store={store}>
-      <Router basepath="/portal">
-        <Sample exact path="/sample" />
-        <Sample exact path="/sample/:resultsAmount" />
-        <Login exact path="/login" />
-        <PrivateRoute exact path="/register" component={Register} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      </Router>
-    </Provider>
+    <Router basepath="/portal">
+      <Sample exact path="/sample" />
+      <Sample exact path="/sample/:resultsAmount" />
+      <Login exact path="/login" />
+      <PrivateRoute exact path="/register" component={Register} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
+    </Router>
   );
 };
 

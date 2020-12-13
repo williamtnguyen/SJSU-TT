@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import store from '../../redux/store';
 import Navbar from '../../components/NavBar';
 import { logoutBrother } from '../../redux/actions/authActions';
 
 const Dashboard = (props) => {
   const handleLogout = () => {
-    store.dispatch(logoutBrother());
+    props.logoutBrother();
   };
 
   return (
@@ -60,6 +59,7 @@ const Dashboard = (props) => {
 };
 
 Dashboard.propTypes = {
+  logoutBrother: PropTypes.func.isRequired,
   auth: PropTypes.shape({
     isAuthenticated: PropTypes.bool,
     user: PropTypes.shape({
@@ -73,8 +73,8 @@ Dashboard.defaultProps = {
   auth: {},
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
+const mapStateToProps = (reduxState) => ({
+  auth: reduxState.auth,
 });
 
-export default connect(mapStateToProps, {})(Dashboard);
+export default connect(mapStateToProps, { logoutBrother })(Dashboard);

@@ -10,7 +10,7 @@ import {
   MajorEnum,
   PledgeClassEnum,
   PositionEnum,
-} from '../../../../routes/api/util/enums/brother-enums';
+} from '../../../../server/routes/api/util/enums/brother-enums';
 
 class Register extends Component {
   constructor() {

@@ -1,0 +1,25 @@
+{
+  "env": {
+    "commonjs": true,
+    "node": true
+  },
+  "extends": [
+    "eslint-config-airbnb-base",
+    "prettier",
+    "plugin:node/recommended"
+  ],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "func-names": "off",
+    "no-process-exit": "off",
+    "import/newline-after-import": "off",
+    "consistent-return": "off",
+    "no-param-reassign": "off"
+  }
+}

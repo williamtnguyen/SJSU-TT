@@ -1,0 +1,39 @@
+{
+  "name": "sjsu-tt-v3",
+  "version": "1.0.0",
+  "description": "SJSU TT's new dynamic website/registry portal",
+  "main": "server.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "gatsby-cli": "^2.12.99",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.3",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.2.1"
+  }
+}
