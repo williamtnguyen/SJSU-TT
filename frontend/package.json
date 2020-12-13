@@ -54,7 +54,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "format": "pretty-quick --format",
     "heroku-postbuild": "gatsby build",
     "lint": "eslint ./ --ext .jsx",
