@@ -4,10 +4,14 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const passport = require('passport');
+const AWS = require('aws-sdk');
 
 // Middleware for parsing form inputs
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Set configuration for AWS
+AWS.config.loadFromPath('./config/secrets.json');
 
 // Serving all routes under prefix 'localhost:5000/api/*'
 const routes = require('./routes/api');

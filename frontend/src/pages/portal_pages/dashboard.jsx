@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { navigate } from 'gatsby';
 import Navbar from '../../components/NavBar';
 import { logoutBrother } from '../../redux/actions/authActions';
 
@@ -38,7 +39,7 @@ const Dashboard = (props) => {
           <h5>Possible actions:</h5>
           <button
             onClick={() => {
-              window.location.href = './register';
+              navigate('/portal/register');
             }}
             type="button"
             className="btn btn-warning mb-3"
