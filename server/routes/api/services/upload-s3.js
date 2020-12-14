@@ -19,7 +19,9 @@ const fileFilter = (req, file, callback) => {
 };
 
 // Middleware that parses 'imageFile' field in request body
-const fileMiddleware = multer({ storage, fileFilter }).single('imageFile');
+const fileMiddleware = multer({ storage, fileFilter, limits: {
+	fileSize: 1024 * 1024 * 5 // 5MB max file size
+} }).single('imageFile');
 
 /**
  * Uploads to an S3 bucket
