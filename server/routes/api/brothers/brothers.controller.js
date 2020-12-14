@@ -9,6 +9,7 @@ const Brother = require('./brother');
 const validateRegisterInput = require('../util/form-validation/register');
 const validateLoginInput = require('../util/form-validation/login');
 const validateEditInput = require('../util/form-validation/edit');
+const { fileMiddleware, uploadToS3 } = require('../services/upload-s3');
 
 /**
  * GET Endpoint
@@ -27,19 +28,25 @@ brotherController.get('/', (req, res) => {
 /**
  * REGISTER Endpoint
  * @route POST api/brothers/register
+ * @param fileMiddleware multer middleware that parses form data (for file uploads)
  * @desc register a brother
  */
-brotherController.post('/register', (req, res) => {
+brotherController.post('/register', fileMiddleware, async (req, res) => {
   // Form input validation
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
-  Brother.findOne({ email: req.body.email }).then((brother) => {
+  Brother.findOne({ email: req.body.email }, async (brother) => {
     if (brother) {
       return res.status(400).json({ email: 'Email already exists' });
     }
+
+    let fileExtension = req.file.originalname.split('.');
+    fileExtension = fileExtension[fileExtension.length - 1];
+    const filePath = `${req.body.pledgeClass}/${req.body.studentID}.${fileExtension}`;
+    await uploadToS3('brother-headshots', filePath, req.file.buffer);
 
     const newBrother = new Brother({
       name: req.body.name,
@@ -50,7 +57,7 @@ brotherController.post('/register', (req, res) => {
       graduatingYear: req.body.graduatingYear,
       pledgeClass: req.body.pledgeClass,
       position: req.body.position,
-      imagePath: `frontend/src/assets/images/headshots/${req.body.studentID}.jpg`,
+      imagePath: filePath,
     });
 
     // Hash password before storing in database

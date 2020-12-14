@@ -33,7 +33,7 @@ const NavBar = () => {
             <a href="https://forms.gle/vpZQPmBSQcVA2MeJ8">Apply</a>
           </Nav.Item>
           <Nav.Item>
-            <GatsbyLink to="/portal/dashboard">Login</GatsbyLink>
+            <GatsbyLink to="/portal/dashboard">Dashboard</GatsbyLink>
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>

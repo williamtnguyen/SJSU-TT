@@ -24,8 +24,9 @@ export const updateRegisterSuccessMessage = (registeredBrother) => {
 
 // REGISTER Brother action
 export const registerBrother = (brotherData) => (dispatch) => {
+  const formData = makeFormData(brotherData);
   axios
-    .post('/api/brothers/register', brotherData)
+    .post('/api/brothers/register', formData)
     .then((response) => {
       console.log(response);
       dispatch(updateRegisterSuccessMessage(brotherData.name));
@@ -37,6 +38,17 @@ export const registerBrother = (brotherData) => (dispatch) => {
         payload: error.response.data,
       });
     });
+};
+
+// Creates a FormData object to pass to Register endpoint (allows for file inputs)
+export const makeFormData = (brotherData) => {
+  const formData = new FormData();
+  const entries = Object.entries(brotherData);
+
+  for (const [key, value] of entries) {
+    formData.append(key, value);
+  }
+  return formData;
 };
 
 // LOGIN Brother action
