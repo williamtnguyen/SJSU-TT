@@ -34,6 +34,17 @@ if (process.env.NODE_ENV === 'development') {
     .catch((error) => {
       throw new Error(error);
     });
+} else if (process.env.NODE_ENV === 'production') {
+  mongoose
+    .connect('mongodb://mongodb-container:27017/sjsu-tt-database', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    .then(() => console.log('Production mode: Connected to MongoDB container'))
+    .catch((error) => {
+      throw new Error(error);
+    });
 }
 
 // Passport.js config (JWT extraction from request headers)
