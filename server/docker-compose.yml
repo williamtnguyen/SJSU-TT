@@ -1,0 +1,32 @@
+version: '3'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sjsu-tt-backend
+    container_name: sjsu-tt-express-server
+    environment:
+      - NODE_ENV=production
+    restart: always
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongodb
+    networks:
+      - sjsu-tt-backend-network
+  mongodb:
+    # pulls mongodb base docker image
+    image: mongo
+    container_name: mongodb-container
+    # binds ~/data/db path in host system's HDD to /data/db in container
+    volumes:
+      - ~/data/db:/data/db
+    ports:
+      - '27017:27017'
+    networks:
+      - sjsu-tt-backend-network
+
+networks:
+  sjsu-tt-backend-network:
+    driver: bridge
