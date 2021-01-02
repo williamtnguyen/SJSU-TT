@@ -12,16 +12,38 @@ const validateEditInput = require('../util/form-validation/edit');
 const { fileMiddleware, uploadToS3 } = require('../services/upload-s3');
 
 /**
- * GET Endpoint
+ * GET Endpoint (all brothers)
  * @route GET api/brothers
  * @desc retrieve all brothers
  */
 brotherController.get('/', (req, res) => {
-  Brother.find({}, (err, allBrothers) => {
-    if (err) {
-      return res.status(404).json({ message: `No brothers found: ${err}` });
+  Brother.find({}, (error, allBrothers) => {
+    if (error) {
+      return res.status(404).json({ message: `No brothers found: ${error}` });
     }
     res.status(200).json(allBrothers);
+  });
+});
+
+/**
+ * GET Endpoint (one brother)
+ * @route GET api/brothers/:brotherId
+ * @desc retrieve info about brother with brotherId
+ */
+brotherController.get('/:brotherId', (req, res) => {
+  const { brotherId } = req.params;
+
+  Brother.findById(brotherId, (error, brother) => {
+    if (error) {
+      return res.status(404).json({ message: `No brother found: ${error}` });
+    }
+
+    res.status(200).json({
+      email: brother.email,
+      biography: brother.biography,
+      major: brother.major,
+      graduatingYear: brother.graduatingYear,
+    });
   });
 });
 
@@ -57,6 +79,7 @@ brotherController.post('/register', fileMiddleware, async (req, res) => {
       graduatingYear: req.body.graduatingYear,
       pledgeClass: req.body.pledgeClass,
       position: req.body.position,
+      biography: '',
       imagePath: filePath,
     });
 
@@ -114,7 +137,7 @@ brotherController.post('/login', (req, res) => {
         }
       );
     } else {
-      return res.status(400).json({ passwordincorrect: 'Password incorrect' });
+      return res.status(400).json({ password: 'Password incorrect' });
     }
   });
 });
@@ -124,54 +147,34 @@ brotherController.post('/login', (req, res) => {
  * @route PUT api/brothers/edit
  * @desc edit a bro page
  */
-brotherController.put('/:brotherID', (req, res) => {
+brotherController.put('/:brotherId', (req, res) => {
+  const { brotherId } = req.params;
+  const delta = req.body;
+
   // Form validation
   const { errors, isValid } = validateEditInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
-  Brother.findById(req.params.brotherID, (err, foundBrother) => {
-    if (err) {
-      return console.log(`Could not find the Brother in the DB: ${err}`);
+  Brother.findById(brotherId, (error, foundBrother) => {
+    if (error) {
+      return console.log(`Could not find the Brother in the DB: ${error}`);
     }
 
-    // update brother password, bio, email, major, position, gradYear
-    const newPassword = req.body.password;
-    const newBio = req.body.biography;
-    const newEmail = req.body.email;
-    const newMajor = req.body.major;
-    const newPosition = req.body.position;
-    const newGradYear = req.body.graduatingYear;
+    if (
+      delta.password &&
+      bcrypt.compareSync(delta.password, foundBrother.password)
+    ) {
+      return res.status(400).json({ password: 'Cannot reuse password' });
+    }
 
-    // Account for empty fields
-    if (newPassword !== '') {
-      foundBrother.password = newPassword;
-    }
-    if (newBio !== '') {
-      foundBrother.biography = newBio;
-    }
-    if (newEmail !== '') {
-      foundBrother.email = newEmail;
-    }
-    if (newMajor !== '') {
-      foundBrother.major = newMajor;
-    }
-    if (newPosition !== '') {
-      foundBrother.position = newPosition;
-    }
-    if (newGradYear !== '') {
-      foundBrother.graduatingYear = newGradYear;
-    }
-    foundBrother.save();
-    res.json({
-      updatedPassword: newPassword,
-      updatedBiography: newBio,
-      updatedEmail: newEmail,
-      updatedMajor: newMajor,
-      updatedPosition: newPosition,
-      updatedGradYear: newGradYear,
+    Object.entries(delta).forEach(([key, value]) => {
+      foundBrother[key] = value;
     });
+    foundBrother.save();
+
+    res.status(200).json(foundBrother);
   });
 });
 

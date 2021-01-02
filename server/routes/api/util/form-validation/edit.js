@@ -7,14 +7,7 @@ const isEmpty = require('is-empty');
  */
 function validateEditInput(requestBody) {
   const errors = {};
-  let emptyCount = 0;
-  // If all fields empty, don't update to database
-  requestBody.forEach((field) => {
-    if (isEmpty(field)) emptyCount += 1;
-  });
-  if (emptyCount === Object.keys(requestBody).length) {
-    errors.empty = 'All fields left blank';
-  }
+
   // Only validate email and gradYear because they have more strict input
   if (!isEmpty(requestBody.email) && !Validator.isEmail(requestBody.email)) {
     errors.email = 'Email field must be valid';

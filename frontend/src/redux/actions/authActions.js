@@ -2,27 +2,17 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../../util/setAuthToken';
 
-import { GET_ERRORS, SET_CURRENT_BROTHER, REGISTER_BROTHER } from './types';
+import {
+  GET_ERRORS,
+  SET_CURRENT_BROTHER,
+  REGISTER_BROTHER,
+  EDIT_BROTHER,
+} from './types';
 
-// Helper function: this sets the currently logged in user
-export const setCurrentBrother = (decodedToken) => {
-  return {
-    type: SET_CURRENT_BROTHER,
-    payload: decodedToken,
-  };
-};
-
-// Helper function: when someone registers a user, this helps showing the success message
-export const updateRegisterSuccessMessage = (registeredBrother) => {
-  return {
-    type: REGISTER_BROTHER,
-    payload: {
-      registeredBrother,
-    },
-  };
-};
-
-// REGISTER Brother action
+/**
+ * Register Brother action
+ * @param {*} brotherData register inputs
+ */
 export const registerBrother = (brotherData) => (dispatch) => {
   const formData = makeFormData(brotherData);
   axios
@@ -51,7 +41,20 @@ export const makeFormData = (brotherData) => {
   return formData;
 };
 
-// LOGIN Brother action
+// Helper function: when someone registers a user, this helps showing the success message
+export const updateRegisterSuccessMessage = (registeredBrother) => {
+  return {
+    type: REGISTER_BROTHER,
+    payload: {
+      registeredBrother,
+    },
+  };
+};
+
+/**
+ * LOGIN Brother endpoint
+ * @param {*} brotherData login inputs
+ */
 export const loginBrother = (brotherData) => (dispatch) => {
   axios
     .post('/api/brothers/login', brotherData)
@@ -66,11 +69,51 @@ export const loginBrother = (brotherData) => (dispatch) => {
       dispatch(setCurrentBrother(decodedToken));
     })
     .catch((error) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
       dispatch({ type: GET_ERRORS, payload: error.response.data })
     );
 };
 
-// LOGOUT Brother action
+// Helper function: this sets the currently logged in user
+export const setCurrentBrother = (decodedToken) => {
+  return {
+    type: SET_CURRENT_BROTHER,
+    payload: decodedToken,
+  };
+};
+
+/**
+ * EDIT Brother action
+ * @param {*} brotherData edit inputs
+ */
+export const editBrother = (brotherId, brotherName, editedFields) => (
+  dispatch
+) => {
+  axios
+    .put(`/api/brothers/${brotherId}`, editedFields)
+    .then((response) => {
+      console.log(response);
+      dispatch(updateEditSuccessMessage(brotherName));
+    })
+    .catch((error) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      dispatch({ type: GET_ERRORS, payload: error.response.data })
+    );
+};
+
+// Helper function: when someone edits their profile, this helps showing the success message
+export const updateEditSuccessMessage = (editedBrother) => {
+  return {
+    type: EDIT_BROTHER,
+    payload: {
+      editedBrother,
+    },
+  };
+};
+
+/**
+ * LOGOUT Brother action
+ */
 export const logoutBrother = () => (dispatch) => {
   // Remove JWT from localStorage, auth header, and clear current logged-in brother
   localStorage.removeItem('authToken');
