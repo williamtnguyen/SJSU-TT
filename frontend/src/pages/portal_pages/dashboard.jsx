@@ -1,9 +1,55 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { navigate } from 'gatsby';
-import Navbar from '../../components/NavBar';
+import { Link } from '@reach/router';
 import { logoutBrother } from '../../redux/actions/authActions';
+import Navbar from '../../components/NavBar';
+import dashboardStyles from './dashboard.module.scss';
+
+const TaskBar = (props) => {
+  return (
+    <div className={dashboardStyles.task__bar}>
+      <h3 className={dashboardStyles.task__bar__title}>ΘΤ Portal</h3>
+      <div>
+        <Link
+          to="/portal/dashboard"
+          className={dashboardStyles.task__bar__item}
+        >
+          Home
+        </Link>
+      </div>
+      <div>
+        <Link to="/portal/edit" className={dashboardStyles.task__bar__item}>
+          Edit profile
+        </Link>
+      </div>
+      <div>
+        <Link
+          to="/portal/dashboard"
+          className={dashboardStyles.task__bar__item}
+        >
+          Demerit pledge
+        </Link>
+      </div>
+      <div>
+        <Link to="/portal/register" className={dashboardStyles.task__bar__item}>
+          Register brother
+        </Link>
+      </div>
+      <div>
+        <div
+          role="button"
+          onClick={() => props.handleLogout()}
+          onKeyPress={() => props.handleLogout()}
+          tabIndex={0}
+          className={dashboardStyles.task__bar__item}
+        >
+          Logout
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Dashboard = (props) => {
   const handleLogout = () => {
@@ -13,50 +59,32 @@ const Dashboard = (props) => {
   return (
     <div>
       <Navbar />
-      <div
-        className="container"
-        style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
-        }}
-      >
-        <div className="mb-5">
-          <h1 className="mb-3">Hi, {props.auth.user.name}</h1>
-          <h4>
-            This is the dashboard. Only authenticated members can see this page
-          </h4>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <h5>Possible actions:</h5>
-          <button
-            onClick={() => {
-              navigate('/portal/register');
-            }}
-            type="button"
-            className="btn btn-warning mb-3"
-          >
-            Register a Brother
-          </button>
-          <button
-            onClick={handleLogout}
-            type="button"
-            className="btn btn-warning"
-          >
-            Logout
-          </button>
+      <div className={dashboardStyles.root}>
+        <div className={`${dashboardStyles.body} row no-gutters`}>
+          <div className="col-md-2">
+            <TaskBar handleLogout={handleLogout} />
+          </div>
+          <div className="col-md-10">
+            <div className={dashboardStyles.calendar__container}>
+              <iframe
+                title="tt-events-calendar"
+                src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23E4C441&amp;ctz=America%2FLos_Angeles&amp;src=c2pzdS5lZHVfZzFpYTJsYzZmYmVnMGxyNTdvaDlsM2Q2ZzhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%233F51B5&amp;mode=MONTH&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0"
+                style={{ border: 'solid 1px #777' }}
+                width="1000"
+                height="600"
+                frameBorder={0}
+                scrolling="no"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
+};
+
+TaskBar.propTypes = {
+  handleLogout: PropTypes.func.isRequired,
 };
 
 Dashboard.propTypes = {

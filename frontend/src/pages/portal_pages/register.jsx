@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { navigate } from '@reach/router';
 import classnames from 'classnames';
 import { registerBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
@@ -34,6 +35,10 @@ const Register = (props) => {
       setErrors(props.errors);
     }
   }, [props]);
+
+  const redirectToDashboard = () => {
+    navigate('/portal/dashboard');
+  };
 
   const handleChange = (event) => {
     switch (event.target.id) {
@@ -98,6 +103,13 @@ const Register = (props) => {
             marginBottom: '50px',
           }}
         >
+          <button
+            onClick={() => redirectToDashboard()}
+            type="button"
+            className="btn mb-3 text-white"
+          >
+            ← Back to dashboard
+          </button>
           <div className="card">
             <div className="card-body">
               <h1 className="mb-3">

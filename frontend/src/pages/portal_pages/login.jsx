@@ -55,8 +55,9 @@ const Login = (props) => {
           <div className="card">
             <div className="card-body">
               <h1 className="mb-3">
-                <b>Login</b> broski
+                <b>Login</b>
               </h1>
+              <p>SJSU Theta Tau Actives Only</p>
               <form noValidate onSubmit={(event) => handleSubmit(event)}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
