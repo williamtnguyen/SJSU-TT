@@ -20,6 +20,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/no-did-update-set-state": "off",
     "operator-linebreak": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "comma-dangle": "off"
   }
 }

@@ -197,7 +197,7 @@ const Register = (props) => {
                         <option key={pledgeClassListItem}>
                           {pledgeClassListItem}
                         </option>
-                      ),
+                      )
                     )}
                   </select>
                   <span className="invalid-feedback">{errors.pledgeClass}</span>

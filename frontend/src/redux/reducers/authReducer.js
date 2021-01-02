@@ -1,4 +1,8 @@
-import { SET_CURRENT_BROTHER, REGISTER_BROTHER } from '../actions/types';
+import {
+  SET_CURRENT_BROTHER,
+  REGISTER_BROTHER,
+  EDIT_BROTHER,
+} from '../actions/types';
 
 const initialState = {
   isAuthenticated: false,
@@ -25,6 +29,12 @@ export default function (state = initialState, action) {
         ...state,
         wasRegistered: true,
         registeredBrother: action.payload.registeredBrother,
+      };
+    case EDIT_BROTHER:
+      return {
+        ...state,
+        wasEdited: true,
+        editedBrother: action.payload.editedBrother,
       };
     default:
       return state;

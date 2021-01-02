@@ -4,17 +4,16 @@ import rootReducer from './reducers';
 
 const initialState = {};
 const middleware = [thunk];
+const composeEnhancers =
+  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : compose;
 
 // Creates a Redux store that holds the complete state tree of the app
 const store = createStore(
   rootReducer,
   initialState,
-  compose(
-    applyMiddleware(...middleware)
-    // Uncomment this if you want to use Redux devtools
-    // eslint-disable-next-line no-underscore-dangle
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  composeEnhancers(applyMiddleware(...middleware))
 );
 
 export default store;
