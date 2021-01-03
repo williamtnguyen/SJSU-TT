@@ -31,13 +31,17 @@ const fileMiddleware = multer({
  * Uploads to an S3 bucket
  * @param {*} bucketName name of bucket
  * @param {*} key name of file
- * @param {*} buffer the file
+ * @param {*} buffer the file in memory
+ * @param {*} mimetype the mime type of the file
  */
-const uploadToS3 = async (bucketName, key, buffer) => {
+const uploadToS3 = async (bucketName, key, buffer, mimetype) => {
   const uploadParams = {
     Bucket: bucketName,
     Key: key,
     Body: buffer,
+    ContentType: mimetype,
+    ContentDisposition: 'inline',
+    ACL: 'public-read',
   };
 
   const putResult = S3.putObject(uploadParams).promise();

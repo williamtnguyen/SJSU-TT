@@ -68,7 +68,12 @@ brotherController.post('/register', fileMiddleware, async (req, res) => {
     let fileExtension = req.file.originalname.split('.');
     fileExtension = fileExtension[fileExtension.length - 1];
     const filePath = `${req.body.pledgeClass}/${req.body.studentID}.${fileExtension}`;
-    await uploadToS3('brother-headshots', filePath, req.file.buffer);
+    await uploadToS3(
+      'brother-headshots',
+      filePath,
+      req.file.buffer,
+      req.file.mimetype
+    );
 
     const newBrother = new Brother({
       name: req.body.name,
