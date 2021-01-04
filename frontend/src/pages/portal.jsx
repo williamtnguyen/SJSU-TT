@@ -24,9 +24,6 @@ const Portal = () => {
       <Sample path="/sample" />
       <Sample path="/sample/:resultsAmount" />
       <Login path="/login" />
-      <Dashboard path="/dashboard" />
-      <Register path="/register" />
-      <Edit path="/edit" />
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/register" component={Register} />
       <PrivateRoute path="/edit" component={Edit} />
