@@ -6,7 +6,29 @@ import { logoutBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
 import dashboardStyles from './dashboard.module.scss';
 
-const TaskBar = (props) => {
+import {
+  PledgeClassEnum,
+  PositionEnum,
+} from '../../../../server/routes/api/util/enums/brother-enums';
+
+/**
+ * Tells if the logged in user can view a TaskBar item with expectedPosition
+ * @param {*} expectedPosition the position that can use the TaskBar item
+ * @param {*} actualPosition the actual position of the logged in user
+ */
+const positionHasFeature = (expectedPosition, actualPosition) => {
+  return (
+    actualPosition === PositionEnum.Webmaster ||
+    actualPosition === expectedPosition
+  );
+};
+
+const isCurrentlyPledging = (pledgeClass) => {
+  const pledgeClasses = Object.values(PledgeClassEnum);
+  return pledgeClass === pledgeClasses[pledgeClasses.length - 1];
+};
+
+const TaskBar = ({ pledgeClass, position, handleLogout }) => {
   return (
     <div className={dashboardStyles.task__bar}>
       <h3 className={dashboardStyles.task__bar__title}>ΘΤ Portal</h3>
@@ -23,24 +45,31 @@ const TaskBar = (props) => {
           Edit profile
         </Link>
       </div>
-      <div>
-        <Link
-          to="/portal/dashboard"
-          className={dashboardStyles.task__bar__item}
-        >
-          Demerit pledge
-        </Link>
-      </div>
-      <div>
-        <Link to="/portal/register" className={dashboardStyles.task__bar__item}>
-          Register brother
-        </Link>
-      </div>
+      {!isCurrentlyPledging(pledgeClass) && (
+        <div>
+          <Link
+            to="/portal/dashboard"
+            className={dashboardStyles.task__bar__item}
+          >
+            Demerit pledge
+          </Link>
+        </div>
+      )}
+      {positionHasFeature(PledgeClassEnum.Webmaster, position) && (
+        <div>
+          <Link
+            to="/portal/register"
+            className={dashboardStyles.task__bar__item}
+          >
+            Register brother
+          </Link>
+        </div>
+      )}
       <div>
         <div
           role="button"
-          onClick={() => props.handleLogout()}
-          onKeyPress={() => props.handleLogout()}
+          onClick={() => handleLogout()}
+          onKeyPress={() => handleLogout()}
           tabIndex={0}
           className={dashboardStyles.task__bar__item}
         >
@@ -62,7 +91,11 @@ const Dashboard = (props) => {
       <div className={dashboardStyles.root}>
         <div className={`${dashboardStyles.body} row no-gutters`}>
           <div className="col-md-2">
-            <TaskBar handleLogout={handleLogout} />
+            <TaskBar
+              pledgeClass={props.auth.user.pledgeClass}
+              position={props.auth.user.position}
+              handleLogout={handleLogout}
+            />
           </div>
           <div className="col-md-10">
             <div className={dashboardStyles.calendar__container}>
@@ -85,6 +118,13 @@ const Dashboard = (props) => {
 
 TaskBar.propTypes = {
   handleLogout: PropTypes.func.isRequired,
+  pledgeClass: PropTypes.string,
+  position: PropTypes.string,
+};
+
+TaskBar.defaultProps = {
+  pledgeClass: '',
+  position: '',
 };
 
 Dashboard.propTypes = {
@@ -94,6 +134,8 @@ Dashboard.propTypes = {
     user: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
+      pledgeClass: PropTypes.string,
+      position: PropTypes.string,
     }),
   }),
 };

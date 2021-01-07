@@ -125,6 +125,8 @@ brotherController.post('/login', (req, res) => {
       const payload = {
         id: brother.id,
         name: brother.name,
+        pledgeClass: brother.pledgeClass,
+        position: brother.position,
       };
       // Sign token
       jwt.sign(payload, SecretOrKey, { expiresIn: 7200 }, (error, token) => {
