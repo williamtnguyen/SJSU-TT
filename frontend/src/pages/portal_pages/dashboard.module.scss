@@ -1,0 +1,59 @@
+.root {
+  height: 100vh;
+  width: 100vw;
+  background-color: #883a3a;
+  color: #ffffff;
+  padding: 50px;
+}
+
+.body {
+  height: 100%;
+  width: 100%;
+  background-color: #ededed;
+  border-radius: 5px;
+}
+
+.task__bar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid lightgray;
+  background-color: #ffffff;
+
+  border-radius: 5px;
+}
+
+.task__bar__title {
+  text-align: center;
+  margin: 30px 0 30px 0;
+  font-weight: 300;
+}
+
+.task__bar > div {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid lightgray;
+
+  &:first-of-type {
+    border-top: 1px solid lightgray;
+  }
+}
+
+.task__bar__item {
+  border-bottom: none;
+  color: #404040;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.calendar__container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
