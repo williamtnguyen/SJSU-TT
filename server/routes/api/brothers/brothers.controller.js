@@ -125,22 +125,19 @@ brotherController.post('/login', (req, res) => {
       const payload = {
         id: brother.id,
         name: brother.name,
+        pledgeClass: brother.pledgeClass,
+        position: brother.position,
       };
       // Sign token
-      jwt.sign(
-        payload,
-        SecretOrKey,
-        { expiresIn: 31556926 },
-        (error, token) => {
-          if (error) {
-            throw new Error(error);
-          }
-          res.json({
-            success: true,
-            token: `Bearer ${token}`,
-          });
+      jwt.sign(payload, SecretOrKey, { expiresIn: 7200 }, (error, token) => {
+        if (error) {
+          throw new Error(error);
         }
-      );
+        res.json({
+          success: true,
+          token: `Bearer ${token}`,
+        });
+      });
     } else {
       return res.status(400).json({ password: 'Password incorrect' });
     }
