@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Link } from '@reach/router';
 import { logoutBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
@@ -80,10 +81,17 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
   );
 };
 
-const DashboardContent = ({ name, pledgeClass, position }) => {
+const DashboardContent = ({
+  name,
+  studentID,
+  pledgeClass,
+  position,
+  major,
+  graduatingYear,
+}) => {
   return (
     <div className={`${dashboardStyles.dashboard__content} row no-gutters`}>
-      <div className="col-md-8">
+      <div className="col-md-7">
         <div className={dashboardStyles.profile__container}>
           <div className={dashboardStyles.profile__content}>
             <div className={dashboardStyles.profile__picture}>
@@ -95,6 +103,10 @@ const DashboardContent = ({ name, pledgeClass, position }) => {
             </div>
             <h1>{name}</h1>
             <div className={dashboardStyles.profile__item}>
+              <h6>Student ID:</h6>
+              <span>{studentID}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
               <h6>Pledge Class:</h6>
               <span>{pledgeClass}</span>
             </div>
@@ -104,11 +116,11 @@ const DashboardContent = ({ name, pledgeClass, position }) => {
             </div>
             <div className={dashboardStyles.profile__item}>
               <h6>Major:</h6>
-              <span>{position}</span>
+              <span>{major}</span>
             </div>
             <div className={dashboardStyles.profile__item}>
               <h6>Graduating Year:</h6>
-              <span>{position}</span>
+              <span>{graduatingYear}</span>
             </div>
           </div>
         </div>
@@ -118,6 +130,27 @@ const DashboardContent = ({ name, pledgeClass, position }) => {
 };
 
 const Dashboard = (props) => {
+  const [brotherData, setBrotherData] = useState({});
+  const [fetchError, setFetchError] = useState(false);
+
+  useEffect(() => {
+    if (props.auth.user.id) {
+      fetchBrotherData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.auth.user.id]);
+
+  const fetchBrotherData = async () => {
+    try {
+      const apiResponse = await axios.get(
+        `/api/brothers/dashboard/${props.auth.user.id}`
+      );
+      setBrotherData(apiResponse.data);
+    } catch (error) {
+      setFetchError(true);
+    }
+  };
+
   const handleLogout = () => {
     props.logoutBrother();
   };
@@ -129,17 +162,22 @@ const Dashboard = (props) => {
         <div className={`${dashboardStyles.body} row no-gutters`}>
           <div className="col-md-2">
             <TaskBar
-              pledgeClass={props.auth.user.pledgeClass}
-              position={props.auth.user.position}
+              pledgeClass={brotherData.pledgeClass}
+              position={brotherData.position}
               handleLogout={handleLogout}
             />
           </div>
           <div className="col-md-10">
-            <DashboardContent
-              name={props.auth.user.name}
-              pledgeClass={props.auth.user.pledgeClass}
-              position={props.auth.user.position}
-            />
+            {!fetchError && (
+              <DashboardContent
+                name={props.auth.user.name}
+                studentID={brotherData.studentID}
+                pledgeClass={brotherData.pledgeClass}
+                position={brotherData.position}
+                major={brotherData.major}
+                graduatingYear={brotherData.graduatingYear}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -160,14 +198,20 @@ TaskBar.defaultProps = {
 
 DashboardContent.propTypes = {
   name: PropTypes.string,
+  studentID: PropTypes.number,
   pledgeClass: PropTypes.string,
   position: PropTypes.string,
+  major: PropTypes.string,
+  graduatingYear: PropTypes.number,
 };
 
 DashboardContent.defaultProps = {
   name: '',
+  studentID: -1,
   pledgeClass: '',
   position: '',
+  major: '',
+  graduatingYear: -1,
 };
 
 Dashboard.propTypes = {
@@ -177,8 +221,6 @@ Dashboard.propTypes = {
     user: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      pledgeClass: PropTypes.string,
-      position: PropTypes.string,
     }),
   }),
 };

@@ -35,12 +35,12 @@ brotherController.get(
 );
 
 /**
- * GET Endpoint (one brother)
- * @route GET api/brothers/:brotherId
- * @desc retrieve info about brother with brotherId
+ * GET Endpoint for dashboard (one brother)
+ * @route GET api/brothers/dashboard/:brotherId
+ * @desc retrieve all info about brother with brotherId
  */
 brotherController.get(
-  '/:brotherId',
+  '/dashboard/:brotherId',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { brotherId } = req.params;
@@ -50,12 +50,7 @@ brotherController.get(
         return res.status(404).json({ message: `No brother found: ${error}` });
       }
 
-      res.status(200).json({
-        email: brother.email,
-        biography: brother.biography,
-        major: brother.major,
-        graduatingYear: brother.graduatingYear,
-      });
+      res.status(200).json(brother);
     });
   }
 );
@@ -142,8 +137,6 @@ brotherController.post('/login', (req, res) => {
       const payload = {
         id: brother.id,
         name: brother.name,
-        pledgeClass: brother.pledgeClass,
-        position: brother.position,
       };
       // Sign token
       jwt.sign(payload, SecretOrKey, { expiresIn: 7200 }, (error, token) => {
@@ -197,6 +190,32 @@ brotherController.put(
       foundBrother.save();
 
       res.status(200).json(foundBrother);
+    });
+  }
+);
+
+/**
+ * GET Endpoint for edit form (one brother)
+ * @route GET api/brothers/edit/:brotherId
+ * @desc retrieve specific form info about brother with brotherId
+ */
+brotherController.get(
+  '/edit/:brotherId',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { brotherId } = req.params;
+
+    Brother.findById(brotherId, (error, brother) => {
+      if (error) {
+        return res.status(404).json({ message: `No brother found: ${error}` });
+      }
+
+      res.status(200).json({
+        email: brother.email,
+        biography: brother.biography,
+        major: brother.major,
+        graduatingYear: brother.graduatingYear,
+      });
     });
   }
 );
