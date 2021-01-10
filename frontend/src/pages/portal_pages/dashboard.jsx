@@ -7,8 +7,6 @@ import { logoutBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
 import dashboardStyles from './dashboard.module.scss';
 
-import { HEADSHOT_S3_BUCKET_URL } from '../../config/secrets.json';
-
 import {
   PledgeClassEnum,
   PositionEnum,
@@ -100,7 +98,7 @@ const DashboardContent = ({
             <div className={dashboardStyles.profile__picture}>
               <img
                 className="img-thumbnail"
-                src={`${HEADSHOT_S3_BUCKET_URL}/${imagePath}`}
+                src={`${process.env.HEADSHOT_S3_BUCKET_URL}/${imagePath}`}
                 alt="headshot"
               />
             </div>
