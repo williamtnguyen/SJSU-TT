@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Router } from '@reach/router';
+import Helmet from 'react-helmet';
 
 import Sample from './portal_pages/sample';
 import Login from './portal_pages/login';
@@ -19,15 +20,19 @@ const Portal = () => {
     persistLogin();
   }, []);
 
+  const siteTitle = 'Theta Tau | SJSU';
   return (
-    <Router basepath="/portal">
-      <Sample path="/sample" />
-      <Sample path="/sample/:resultsAmount" />
-      <Login path="/login" />
-      <PrivateRoute path="/dashboard" component={Dashboard} />
-      <PrivateRoute path="/register" component={Register} />
-      <PrivateRoute path="/edit" component={Edit} />
-    </Router>
+    <>
+      <Helmet title={siteTitle} />
+      <Router basepath="/portal">
+        <Sample path="/sample" />
+        <Sample path="/sample/:resultsAmount" />
+        <Login path="/login" />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/register" component={Register} />
+        <PrivateRoute path="/edit" component={Edit} />
+      </Router>
+    </>
   );
 };
 

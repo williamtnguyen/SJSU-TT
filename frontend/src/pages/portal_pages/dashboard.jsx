@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Link } from '@reach/router';
 import { logoutBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
@@ -80,7 +81,77 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
   );
 };
 
+const DashboardContent = ({
+  name,
+  studentID,
+  pledgeClass,
+  position,
+  major,
+  graduatingYear,
+  imagePath,
+}) => {
+  return (
+    <div className={`${dashboardStyles.dashboard__content} row no-gutters`}>
+      <div className="col-md-7">
+        <div className={dashboardStyles.profile__container}>
+          <div className={dashboardStyles.profile__content}>
+            <div className={dashboardStyles.profile__picture}>
+              <img
+                className="img-thumbnail"
+                src={`${process.env.HEADSHOT_S3_BUCKET_URL}/${imagePath}`}
+                alt="headshot"
+              />
+            </div>
+            <h1>{name}</h1>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Student ID:</h6>
+              <span>{studentID}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Pledge Class:</h6>
+              <span>{pledgeClass}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Position:</h6>
+              <span>{position}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Major:</h6>
+              <span>{major}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Graduating Year:</h6>
+              <span>{graduatingYear}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Dashboard = (props) => {
+  const [brotherData, setBrotherData] = useState({});
+  const [fetchError, setFetchError] = useState(false);
+
+  useEffect(() => {
+    if (props.auth.user.id) {
+      fetchBrotherData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.auth.user.id]);
+
+  const fetchBrotherData = async () => {
+    try {
+      const apiResponse = await axios.get(
+        `/api/brothers/dashboard/${props.auth.user.id}`
+      );
+      setBrotherData(apiResponse.data);
+    } catch (error) {
+      setFetchError(true);
+    }
+  };
+
   const handleLogout = () => {
     props.logoutBrother();
   };
@@ -92,23 +163,23 @@ const Dashboard = (props) => {
         <div className={`${dashboardStyles.body} row no-gutters`}>
           <div className="col-md-2">
             <TaskBar
-              pledgeClass={props.auth.user.pledgeClass}
-              position={props.auth.user.position}
+              pledgeClass={brotherData.pledgeClass}
+              position={brotherData.position}
               handleLogout={handleLogout}
             />
           </div>
           <div className="col-md-10">
-            <div className={dashboardStyles.calendar__container}>
-              <iframe
-                title="tt-events-calendar"
-                src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23E4C441&amp;ctz=America%2FLos_Angeles&amp;src=c2pzdS5lZHVfZzFpYTJsYzZmYmVnMGxyNTdvaDlsM2Q2ZzhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%233F51B5&amp;mode=MONTH&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0"
-                style={{ border: 'solid 1px #777' }}
-                width="1000"
-                height="600"
-                frameBorder={0}
-                scrolling="no"
+            {!fetchError && (
+              <DashboardContent
+                name={props.auth.user.name}
+                studentID={brotherData.studentID}
+                pledgeClass={brotherData.pledgeClass}
+                position={brotherData.position}
+                major={brotherData.major}
+                graduatingYear={brotherData.graduatingYear}
+                imagePath={brotherData.imagePath}
               />
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -127,6 +198,26 @@ TaskBar.defaultProps = {
   position: '',
 };
 
+DashboardContent.propTypes = {
+  name: PropTypes.string,
+  studentID: PropTypes.number,
+  pledgeClass: PropTypes.string,
+  position: PropTypes.string,
+  major: PropTypes.string,
+  graduatingYear: PropTypes.number,
+  imagePath: PropTypes.string,
+};
+
+DashboardContent.defaultProps = {
+  name: '',
+  studentID: -1,
+  pledgeClass: '',
+  position: '',
+  major: '',
+  graduatingYear: -1,
+  imagePath: '',
+};
+
 Dashboard.propTypes = {
   logoutBrother: PropTypes.func.isRequired,
   auth: PropTypes.shape({
@@ -134,8 +225,6 @@ Dashboard.propTypes = {
     user: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      pledgeClass: PropTypes.string,
-      position: PropTypes.string,
     }),
   }),
 };
