@@ -22,29 +22,36 @@ app.use('/api', routes);
  * - If running development environment, use MongoDB Atlas
  * - If running production, spin up MongoDB base docker image
  *  */
-if (process.env.NODE_ENV === 'development') {
-  const { MongoURI } = JSON.parse(fs.readFileSync('./config/secrets.json'));
-  mongoose
-    .connect(MongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    })
-    .then(() => console.log('Development mode: Connected to MongoDB Atlas'))
-    .catch((error) => {
-      throw new Error(error);
-    });
-} else if (process.env.NODE_ENV === 'production') {
-  mongoose
-    .connect('mongodb://mongodb-container:27017/sjsu-tt-database', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    })
-    .then(() => console.log('Production mode: Connected to MongoDB container'))
-    .catch((error) => {
-      throw new Error(error);
-    });
+const { MongoURI } = JSON.parse(fs.readFileSync('./config/secrets.json'));
+switch (process.env.NODE_ENV) {
+  case 'development':
+    mongoose
+      .connect(MongoURI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      })
+      .then(() => console.log('Development mode: Connected to MongoDB Atlas'))
+      .catch((error) => {
+        throw new Error(error);
+      });
+    break;
+  case 'production':
+    mongoose
+      .connect('mongodb://mongodb-container:27017/sjsu-tt-database', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      })
+      .then(() =>
+        console.log('Production mode: Connected to MongoDB container')
+      )
+      .catch((error) => {
+        throw new Error(error);
+      });
+    break;
+  default:
+    console.error('NODE_ENV not specified');
 }
 
 // Passport.js config (JWT extraction from request headers)
