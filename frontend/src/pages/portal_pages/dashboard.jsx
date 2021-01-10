@@ -7,6 +7,8 @@ import { logoutBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
 import dashboardStyles from './dashboard.module.scss';
 
+import { HEADSHOT_S3_BUCKET_URL } from '../../config/secrets.json';
+
 import {
   PledgeClassEnum,
   PositionEnum,
@@ -88,6 +90,7 @@ const DashboardContent = ({
   position,
   major,
   graduatingYear,
+  imagePath,
 }) => {
   return (
     <div className={`${dashboardStyles.dashboard__content} row no-gutters`}>
@@ -97,7 +100,7 @@ const DashboardContent = ({
             <div className={dashboardStyles.profile__picture}>
               <img
                 className="img-thumbnail"
-                src="https://brother-headshots.s3-us-west-1.amazonaws.com/Alpha/123456789.jpg"
+                src={`${HEADSHOT_S3_BUCKET_URL}/${imagePath}`}
                 alt="headshot"
               />
             </div>
@@ -176,6 +179,7 @@ const Dashboard = (props) => {
                 position={brotherData.position}
                 major={brotherData.major}
                 graduatingYear={brotherData.graduatingYear}
+                imagePath={brotherData.imagePath}
               />
             )}
           </div>
@@ -203,6 +207,7 @@ DashboardContent.propTypes = {
   position: PropTypes.string,
   major: PropTypes.string,
   graduatingYear: PropTypes.number,
+  imagePath: PropTypes.string,
 };
 
 DashboardContent.defaultProps = {
@@ -212,6 +217,7 @@ DashboardContent.defaultProps = {
   position: '',
   major: '',
   graduatingYear: -1,
+  imagePath: '',
 };
 
 Dashboard.propTypes = {
