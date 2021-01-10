@@ -1,5 +1,6 @@
 .root {
   height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background-color: #883a3a;
   color: #ffffff;
@@ -55,4 +56,61 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.dashboard__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.profile__container {
+  height: 100%;
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__content {
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+
+  h1 {
+    font-weight: 300;
+    margin: 25px 0;
+  }
+}
+
+.profile__picture {
+  display: flex;
+  justify-content: center;
+}
+
+.profile__picture img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  margin-top: -100px;
+}
+
+.profile__item {
+  margin-bottom: 5px;
+
+  h6 {
+    display: inline;
+    margin-right: 5px;
+  }
+
+  span {
+    color: #555;
+  }
 }

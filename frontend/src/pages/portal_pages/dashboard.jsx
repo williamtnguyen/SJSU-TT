@@ -80,6 +80,43 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
   );
 };
 
+const DashboardContent = ({ name, pledgeClass, position }) => {
+  return (
+    <div className={`${dashboardStyles.dashboard__content} row no-gutters`}>
+      <div className="col-md-8">
+        <div className={dashboardStyles.profile__container}>
+          <div className={dashboardStyles.profile__content}>
+            <div className={dashboardStyles.profile__picture}>
+              <img
+                className="img-thumbnail"
+                src="https://brother-headshots.s3-us-west-1.amazonaws.com/Alpha/123456789.jpg"
+                alt="headshot"
+              />
+            </div>
+            <h1>{name}</h1>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Pledge Class:</h6>
+              <span>{pledgeClass}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Position:</h6>
+              <span>{position}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Major:</h6>
+              <span>{position}</span>
+            </div>
+            <div className={dashboardStyles.profile__item}>
+              <h6>Graduating Year:</h6>
+              <span>{position}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Dashboard = (props) => {
   const handleLogout = () => {
     props.logoutBrother();
@@ -98,17 +135,11 @@ const Dashboard = (props) => {
             />
           </div>
           <div className="col-md-10">
-            <div className={dashboardStyles.calendar__container}>
-              <iframe
-                title="tt-events-calendar"
-                src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23E4C441&amp;ctz=America%2FLos_Angeles&amp;src=c2pzdS5lZHVfZzFpYTJsYzZmYmVnMGxyNTdvaDlsM2Q2ZzhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%233F51B5&amp;mode=MONTH&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0"
-                style={{ border: 'solid 1px #777' }}
-                width="1000"
-                height="600"
-                frameBorder={0}
-                scrolling="no"
-              />
-            </div>
+            <DashboardContent
+              name={props.auth.user.name}
+              pledgeClass={props.auth.user.pledgeClass}
+              position={props.auth.user.position}
+            />
           </div>
         </div>
       </div>
@@ -123,6 +154,18 @@ TaskBar.propTypes = {
 };
 
 TaskBar.defaultProps = {
+  pledgeClass: '',
+  position: '',
+};
+
+DashboardContent.propTypes = {
+  name: PropTypes.string,
+  pledgeClass: PropTypes.string,
+  position: PropTypes.string,
+};
+
+DashboardContent.defaultProps = {
+  name: '',
   pledgeClass: '',
   position: '',
 };
