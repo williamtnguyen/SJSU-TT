@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fs = require('fs');
-const passport = require('passport');
 const AWS = require('aws-sdk');
 
 // Middleware for parsing form inputs
@@ -53,10 +52,6 @@ switch (process.env.NODE_ENV) {
   default:
     console.error('NODE_ENV not specified');
 }
-
-// Passport.js config (JWT extraction from request headers)
-app.use(passport.initialize());
-require('./config/passport')(passport);
 
 // Start server
 const PORT = process.env.PORT || 5000;
