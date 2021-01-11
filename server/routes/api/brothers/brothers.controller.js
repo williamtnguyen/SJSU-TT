@@ -45,7 +45,6 @@ brotherController.get(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { page } = req.params;
-    console.log(req.user);
 
     // Respond with only needed fields for the page
     let responseObject;
@@ -173,10 +172,9 @@ brotherController.post('/login', (req, res) => {
  * @desc edit a bro page
  */
 brotherController.put(
-  '/:brotherId',
+  '/me',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { brotherId } = req.params;
     const delta = req.body;
 
     // Form validation
@@ -185,25 +183,19 @@ brotherController.put(
       return res.status(400).json(errors);
     }
 
-    Brother.findById(brotherId, (error, foundBrother) => {
-      if (error) {
-        return console.log(`Could not find the Brother in the DB: ${error}`);
-      }
+    if (
+      delta.password &&
+      bcrypt.compareSync(delta.password, req.user.password)
+    ) {
+      return res.status(400).json({ password: 'Cannot reuse password' });
+    }
 
-      if (
-        delta.password &&
-        bcrypt.compareSync(delta.password, foundBrother.password)
-      ) {
-        return res.status(400).json({ password: 'Cannot reuse password' });
-      }
-
-      Object.entries(delta).forEach(([key, value]) => {
-        foundBrother[key] = value;
-      });
-      foundBrother.save();
-
-      res.status(200).json(foundBrother);
+    Object.entries(delta).forEach(([key, value]) => {
+      req.user[key] = value;
     });
+    req.user.save();
+
+    res.status(200).json(req.user);
   }
 );
 
