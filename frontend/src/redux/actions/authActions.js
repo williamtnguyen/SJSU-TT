@@ -90,7 +90,7 @@ export const editBrother = (brotherId, brotherName, editedFields) => (
   dispatch
 ) => {
   axios
-    .put(`/api/brothers/${brotherId}`, editedFields)
+    .put('/api/brothers/me', editedFields)
     .then((response) => {
       console.log(response);
       dispatch(updateEditSuccessMessage(brotherName));
