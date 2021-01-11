@@ -143,9 +143,7 @@ const Dashboard = (props) => {
 
   const fetchBrotherData = async () => {
     try {
-      const apiResponse = await axios.get(
-        `/api/brothers/dashboard/${props.auth.user.id}`
-      );
+      const apiResponse = await axios.get('/api/brothers/me/dashboard');
       setBrotherData(apiResponse.data);
     } catch (error) {
       setFetchError(true);

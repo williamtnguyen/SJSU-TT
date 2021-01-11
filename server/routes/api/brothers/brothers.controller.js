@@ -35,23 +35,36 @@ brotherController.get(
 );
 
 /**
- * GET Endpoint for dashboard (one brother)
- * @route GET api/brothers/dashboard/:brotherId
- * @desc retrieve all info about brother with brotherId
+ * GET Endpoint (one brother)
+ * @route GET api/brothers/me/:page
+ * @desc retrieve all info needed about brother depending on what page
  */
 brotherController.get(
-  '/dashboard/:brotherId',
+  '/me/:page',
+  // passport.authenticate() validates the JWT in request header and gives req.user object
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { brotherId } = req.params;
+    const { page } = req.params;
+    console.log(req.user);
 
-    Brother.findById(brotherId, (error, brother) => {
-      if (error) {
-        return res.status(404).json({ message: `No brother found: ${error}` });
-      }
-
-      res.status(200).json(brother);
-    });
+    // Respond with only needed fields for the page
+    let responseObject;
+    switch (page) {
+      case 'dashboard':
+        responseObject = req.user;
+        break;
+      case 'edit':
+        responseObject = {
+          email: req.user.email,
+          biography: req.user.biography,
+          major: req.user.major,
+          graduatingYear: req.user.graduatingYear,
+        };
+        break;
+      default:
+        console.error(`Unknown page parameter passed, ${page}`);
+    }
+    res.status(200).json(responseObject);
   }
 );
 
@@ -190,32 +203,6 @@ brotherController.put(
       foundBrother.save();
 
       res.status(200).json(foundBrother);
-    });
-  }
-);
-
-/**
- * GET Endpoint for edit form (one brother)
- * @route GET api/brothers/edit/:brotherId
- * @desc retrieve specific form info about brother with brotherId
- */
-brotherController.get(
-  '/edit/:brotherId',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    const { brotherId } = req.params;
-
-    Brother.findById(brotherId, (error, brother) => {
-      if (error) {
-        return res.status(404).json({ message: `No brother found: ${error}` });
-      }
-
-      res.status(200).json({
-        email: brother.email,
-        biography: brother.biography,
-        major: brother.major,
-        graduatingYear: brother.graduatingYear,
-      });
     });
   }
 );

@@ -67,9 +67,7 @@ const Edit = (props) => {
 
   const assignInputValues = async () => {
     try {
-      const apiResponse = await axios.get(
-        `/api/brothers/edit/${props.auth.user.id}`
-      );
+      const apiResponse = await axios.get('/api/brothers/me/edit');
 
       // Cache current state for client-side validation
       setCurrentBrotherData(apiResponse.data);
