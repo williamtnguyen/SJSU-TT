@@ -88,25 +88,35 @@ brotherController.post(
         return res.status(400).json({ email: 'Email already exists' });
       }
 
-      let fileExtension = req.file.originalname.split('.');
-      fileExtension = fileExtension[fileExtension.length - 1];
-      const filePath = `${req.body.pledgeClass}/${req.body.studentID}.${fileExtension}`;
-      await uploadToS3(
-        'brother-headshots',
-        filePath,
-        req.file.buffer,
-        req.file.mimetype
-      );
+      // Only upload file to S3 if included in form
+      let filePath;
+      if (req.file) {
+        let fileExtension = req.file.originalname.split('.');
+        fileExtension = fileExtension[fileExtension.length - 1];
+        // Prefer to use student IDs for image paths moving forward, but use phone number if missing
+        filePath = req.body.studentID
+          ? `${req.body.pledgeClass}/${req.body.studentID}.${fileExtension}`
+          : `${req.body.pledgeClass}/${req.body.phoneNumber}.${fileExtension}`;
+
+        await uploadToS3(
+          'brother-headshots',
+          filePath,
+          req.file.buffer,
+          req.file.mimetype
+        );
+      }
 
       const newBrother = new Brother({
         name: req.body.name,
         email: req.body.email,
         studentID: req.body.studentID,
+        phoneNumber: req.body.phoneNumber,
         password: `${req.body.pledgeClass}-${req.body.graduatingYear}`,
         major: req.body.major,
         graduatingYear: req.body.graduatingYear,
         pledgeClass: req.body.pledgeClass,
         position: req.body.position,
+        isGraduated: req.body.isGraduated === 'true',
         biography: '',
         imagePath: filePath,
       });

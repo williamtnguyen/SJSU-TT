@@ -35,12 +35,19 @@ function validateRegisterInput(requestBody) {
   } else if (!Validator.isEmail(data.email)) {
     errors.email = 'Email field must be valid';
   }
-  if (Validator.isEmpty(data.studentID)) {
-    errors.studentID = 'Student ID is required';
-  } else if (!Validator.isNumeric(data.studentID)) {
-    errors.studentID = 'Student ID must be a number';
-  } else if (!Validator.isLength(data.studentID, { min: 9, max: 9 })) {
-    errors.studentID = 'Student ID must be 9 characters';
+  if (!Validator.isEmpty(data.studentID)) {
+    if (!Validator.isNumeric(data.studentID)) {
+      errors.studentID = 'Student ID must be a number';
+    } else if (!Validator.isLength(data.studentID, { min: 9, max: 9 })) {
+      errors.studentID = 'Student ID must be 9 characters';
+    }
+  }
+  if (Validator.isEmpty(data.phoneNumber)) {
+    errors.phoneNumber = 'Phone number field is required';
+  } else if (!Validator.isNumeric(data.phoneNumber)) {
+    errors.phoneNumber = 'Phone number must be a number';
+  } else if (!Validator.isLength(data.phoneNumber, { min: 10, max: 10 })) {
+    errors.phoneNumber = 'Phone number must be 10 digits';
   }
   if (Validator.isEmpty(data.major)) {
     errors.major = 'Major field is required';

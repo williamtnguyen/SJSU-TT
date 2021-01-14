@@ -17,10 +17,12 @@ const Register = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [studentID, setStudentID] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(-1);
   const [major, setMajor] = useState('Aerospace Engineering');
   const [graduatingYear, setGraduatingYear] = useState(-1);
   const [pledgeClass, setPledgeClass] = useState('Alpha');
   const [position, setPosition] = useState('Member');
+  const [isGraduated, setIsGraduated] = useState(false);
   const [imageFile, setImageFile] = useState('');
   const [wasRegistered, setWasRegistered] = useState(false);
   const [registeredBrother, setRegisteredBrother] = useState('');
@@ -51,6 +53,9 @@ const Register = (props) => {
       case 'studentID':
         setStudentID(event.target.value);
         break;
+      case 'phoneNumber':
+        setPhoneNumber(event.target.value);
+        break;
       case 'major':
         setMajor(event.target.value);
         break;
@@ -62,6 +67,9 @@ const Register = (props) => {
         break;
       case 'position':
         setPosition(event.target.value);
+        break;
+      case 'isGraduated':
+        setIsGraduated(!isGraduated);
         break;
       default:
         console.error('Unknown input ID');
@@ -80,10 +88,12 @@ const Register = (props) => {
       name,
       email,
       studentID,
+      phoneNumber,
       major,
       graduatingYear,
       pledgeClass,
       position,
+      isGraduated,
       imageFile,
     };
 
@@ -149,7 +159,9 @@ const Register = (props) => {
                   <span className="invalid-feedback">{errors.email}</span>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="studentID">Student ID</label>
+                  <label htmlFor="studentID">
+                    Student ID (leave empty if Alumni)
+                  </label>
                   <input
                     type="number"
                     id="studentID"
@@ -161,6 +173,20 @@ const Register = (props) => {
                     })}
                   />
                   <span className="invalid-feedback">{errors.studentID}</span>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="phoneNumber">Phone Number</label>
+                  <input
+                    type="number"
+                    id="phoneNumber"
+                    placeholder="Enter phone number (Numeric values only)"
+                    onChange={(event) => handleChange(event)}
+                    error={errors.phoneNumber}
+                    className={classnames('form-control', {
+                      'is-invalid': errors.phoneNumber,
+                    })}
+                  />
+                  <span className="invalid-feedback">{errors.phoneNumber}</span>
                 </div>
                 <div className="form-group">
                   <label htmlFor="major">Major</label>
@@ -231,6 +257,19 @@ const Register = (props) => {
                   <span className="invalid-feedback">{errors.position}</span>
                 </div>
                 <div className="form-group">
+                  <div className="form-check pl-0">
+                    <input
+                      type="checkbox"
+                      id="isGraduated"
+                      onChange={(event) => handleChange(event)}
+                      className="form-check-input"
+                    />
+                    <label htmlFor="isGraduated" className="form-check-label">
+                      Is Graduated?
+                    </label>
+                  </div>
+                </div>
+                <div className="form-group">
                   <label htmlFor="imageFile">Image</label>
                   <input
                     type="file"
@@ -239,7 +278,7 @@ const Register = (props) => {
                     className="form-control-file"
                   />
                 </div>
-                <button type="submit" className="btn btn-warning">
+                <button type="submit" className="btn btn-warning mt-3">
                   Submit
                 </button>
               </form>

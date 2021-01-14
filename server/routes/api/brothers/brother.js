@@ -29,6 +29,10 @@ const BrotherSchema = new Schema({
   },
   studentID: {
     type: Number,
+    required: false, // e-board never kept track of student IDs :)))
+  },
+  phoneNumber: {
+    type: Number,
     required: true,
   },
   password: {
@@ -53,6 +57,10 @@ const BrotherSchema = new Schema({
     type: String,
     required: true,
     enum: Object.values(PositionEnum),
+  },
+  isGraduated: {
+    type: Boolean,
+    required: true,
   },
   biography: {
     type: String,
