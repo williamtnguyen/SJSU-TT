@@ -252,27 +252,27 @@ Homepage.propTypes = {
   data: PropTypes.shape({
     brotherhood: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.element.isRequired,
+        fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
     professional: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.element.isRequired,
+        fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
     community: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.element.isRequired,
+        fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
     mark: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.element.isRequired,
+        fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
     pledgeEventPic: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.element.isRequired,
+        fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
   }).isRequired,

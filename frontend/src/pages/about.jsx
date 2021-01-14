@@ -137,7 +137,7 @@ About.propTypes = {
   data: PropTypes.shape({
     logo: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.element.isRequired,
+        fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
   }).isRequired,
