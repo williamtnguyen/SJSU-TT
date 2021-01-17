@@ -1,4 +1,4 @@
-const MajorEnum = Object.freeze({
+export const MajorEnum = Object.freeze({
   AEROSPACE: 'Aerospace Engineering',
   BIOMEDICAL: 'Biomedical Engineering',
   CIVIL: 'Civil Engineering',
@@ -12,7 +12,7 @@ const MajorEnum = Object.freeze({
   SOFTWARE: 'Software Engineering',
 });
 
-const PledgeClassEnum = Object.freeze({
+export const PledgeClassEnum = Object.freeze({
   FOUNDING: 'Founding',
   ALPHA: 'Alpha',
   BETA: 'Beta',
@@ -20,7 +20,7 @@ const PledgeClassEnum = Object.freeze({
   DELTA: 'Delta',
 });
 
-const PositionEnum = Object.freeze({
+export const PositionEnum = Object.freeze({
   MEMBER: 'Member',
   PRESIDENT: 'Regent',
   VICE_PRESIDENT: 'Vice Regent',
@@ -38,5 +38,3 @@ const PositionEnum = Object.freeze({
   RISK_MANAGEMENT: 'Risk Management',
   WEBMASTER: 'Webmaster',
 });
-
-module.exports = { MajorEnum, PledgeClassEnum, PositionEnum };

@@ -8,7 +8,7 @@ import { editBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
 import editStyles from './edit.module.scss';
 
-import { MajorEnum } from '../../../../server/routes/api/util/enums/brother-enums';
+import { MajorEnum } from '../../util/enums/brother-enums';
 
 /**
  * Returns an object of changed fields for currently logged in user

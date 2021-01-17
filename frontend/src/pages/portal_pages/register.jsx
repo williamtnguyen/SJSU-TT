@@ -11,7 +11,7 @@ import {
   MajorEnum,
   PledgeClassEnum,
   PositionEnum,
-} from '../../../../server/routes/api/util/enums/brother-enums';
+} from '../../util/enums/brother-enums';
 
 const Register = (props) => {
   const [name, setName] = useState('');
