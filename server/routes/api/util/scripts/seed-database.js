@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const actives = require('./actives-example');
 const Brother = require('../../brothers/brother');
 
@@ -35,6 +36,11 @@ const seedDB = () => {
       biography: '',
       imagePath: s3FilePath,
     });
+
+    // Hash password before storing in database
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(newBrother.password, salt);
+    newBrother.password = hash;
 
     newBrother
       .save()
