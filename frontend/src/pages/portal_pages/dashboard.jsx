@@ -7,10 +7,7 @@ import { logoutBrother } from '../../redux/actions/authActions';
 import Navbar from '../../components/NavBar';
 import dashboardStyles from './dashboard.module.scss';
 
-import {
-  PledgeClassEnum,
-  PositionEnum,
-} from '../../../../server/routes/api/util/enums/brother-enums';
+import { PledgeClassEnum, PositionEnum } from '../../util/enums/brother-enums';
 
 /**
  * Tells if the logged in user can view a TaskBar item with expectedPosition
@@ -56,7 +53,7 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
           </Link>
         </div>
       )}
-      {positionHasFeature(PledgeClassEnum.Webmaster, position) && (
+      {positionHasFeature(PositionEnum.WEBMASTER, position) && (
         <div>
           <Link
             to="/portal/register"

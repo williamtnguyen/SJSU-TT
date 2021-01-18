@@ -28,11 +28,11 @@ const BrotherSchema = new Schema({
     required: true,
   },
   studentID: {
-    type: Number,
+    type: String,
     required: false, // e-board never kept track of student IDs :)))
   },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   password: {
