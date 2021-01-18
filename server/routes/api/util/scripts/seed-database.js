@@ -1,4 +1,4 @@
-const actives = require('./actives');
+const actives = require('./actives-example');
 const Brother = require('../../brothers/brother');
 
 /**
