@@ -5,7 +5,6 @@ import axios from 'axios';
 import { navigate } from '@reach/router';
 import classnames from 'classnames';
 import { editBrother } from '../../redux/actions/authActions';
-import Navbar from '../../components/NavBar';
 import editStyles from './edit.module.scss';
 
 import { MajorEnum } from '../../util/enums/brother-enums';
@@ -131,7 +130,6 @@ const Edit = (props) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Navbar />
       <section className={editStyles.root}>
         <div
           className="container"

@@ -24,7 +24,7 @@ const NavBar = () => {
             <GatsbyLink to="/about">About</GatsbyLink>
           </Nav.Item>
           <Nav.Item>
-            <GatsbyLink to="/brothers">Brothers</GatsbyLink>
+            <GatsbyLink to="/portal/brothers">Brothers</GatsbyLink>
           </Nav.Item>
           <Nav.Item>
             <GatsbyLink to="/rush">Rush</GatsbyLink>

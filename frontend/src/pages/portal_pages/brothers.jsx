@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import NavBar from '../../components/NavBar';
 import logo from '../../assets/images/thetatau.png';
 import brothersStyles from './brothers.module.scss';
 
@@ -19,7 +18,6 @@ const Brothers = () => {
 
   return (
     <div>
-      <NavBar />
       <section id="header" className="brothers-background">
         <div className="inner">
           <img id="logo-vector" src={logo} alt="Logo" />

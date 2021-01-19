@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { loginBrother } from '../../redux/actions/authActions';
-import Navbar from '../../components/NavBar';
 import loginStyles from './login.module.scss';
 
 const Login = (props) => {
@@ -49,7 +48,6 @@ const Login = (props) => {
 
   return (
     <div>
-      <Navbar />
       <section className={loginStyles.root}>
         <div className="container" style={{ maxWidth: '500px' }}>
           <div className="card">
@@ -85,8 +83,7 @@ const Login = (props) => {
                     onChange={(event) => handleChange(event)}
                     error={errors.password}
                     className={classnames('form-control', {
-                      'is-invalid':
-                        errors.password || errors.passwordincorrect,
+                      'is-invalid': errors.password || errors.passwordincorrect,
                     })}
                   />
                   <span className="invalid-feedback">

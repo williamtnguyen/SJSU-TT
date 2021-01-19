@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from '@reach/router';
 import { logoutBrother } from '../../redux/actions/authActions';
-import Navbar from '../../components/NavBar';
 import dashboardStyles from './dashboard.module.scss';
 
 import { PledgeClassEnum, PositionEnum } from '../../util/enums/brother-enums';
@@ -153,7 +152,6 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      <Navbar />
       <div className={dashboardStyles.root}>
         <div className={`${dashboardStyles.body} row no-gutters`}>
           <div className="col-md-2">
