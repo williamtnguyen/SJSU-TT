@@ -21,18 +21,25 @@ require('../../../config/passport')(passport);
  * @route GET api/brothers
  * @desc retrieve all brothers
  */
-brotherController.get(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Brother.find({}, (error, allBrothers) => {
-      if (error) {
-        return res.status(404).json({ message: `No brothers found: ${error}` });
+brotherController.get('/', (req, res) => {
+  Brother.find({}, (error, allBrothers) => {
+    if (error) {
+      return res.status(404).json({ message: `No brothers found: ${error}` });
+    }
+    const response = {
+      actives: [],
+      alumni: [],
+    };
+    allBrothers.forEach((brother) => {
+      if (brother.isGraduated) {
+        response.alumni.push(brother);
+      } else {
+        response.actives.push(brother);
       }
-      res.status(200).json(allBrothers);
     });
-  }
-);
+    res.status(200).json(response);
+  });
+});
 
 /**
  * GET Endpoint (one brother)
@@ -97,9 +104,13 @@ brotherController.post(
         filePath = req.body.studentID
           ? `${req.body.pledgeClass}/${req.body.studentID}.${fileExtension}`
           : `${req.body.pledgeClass}/${req.body.phoneNumber}.${fileExtension}`;
+        const bucketName =
+          process.env.NODE_ENV === 'development'
+            ? 'brother-headshots-dev'
+            : 'brother-headshots-prod';
 
         await uploadToS3(
-          'brother-headshots',
+          bucketName,
           filePath,
           req.file.buffer,
           req.file.mimetype

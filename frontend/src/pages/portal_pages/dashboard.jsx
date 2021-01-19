@@ -195,7 +195,7 @@ TaskBar.defaultProps = {
 
 DashboardContent.propTypes = {
   name: PropTypes.string,
-  studentID: PropTypes.number,
+  studentID: PropTypes.string,
   pledgeClass: PropTypes.string,
   position: PropTypes.string,
   major: PropTypes.string,
@@ -205,7 +205,7 @@ DashboardContent.propTypes = {
 
 DashboardContent.defaultProps = {
   name: '',
-  studentID: -1,
+  studentID: '',
   pledgeClass: '',
   position: '',
   major: '',

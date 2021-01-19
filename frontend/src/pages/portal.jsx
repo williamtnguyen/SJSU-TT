@@ -3,6 +3,7 @@ import { Router } from '@reach/router';
 import Helmet from 'react-helmet';
 
 import Sample from './portal_pages/sample';
+import Brothers from './portal_pages/brothers';
 import Login from './portal_pages/login';
 import PrivateRoute from '../components/PrivateRoute';
 import Dashboard from './portal_pages/dashboard';
@@ -27,6 +28,7 @@ const Portal = () => {
       <Router basepath="/portal">
         <Sample path="/sample" />
         <Sample path="/sample/:resultsAmount" />
+        <Brothers path="/brothers" />
         <Login path="/login" />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/register" component={Register} />
