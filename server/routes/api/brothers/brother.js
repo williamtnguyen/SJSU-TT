@@ -66,7 +66,7 @@ const BrotherSchema = new Schema({
     type: String,
     required: false,
   },
-  demeritCount: {
+  meritCount: {
     type: Number,
     default: 15,
     required: isCurrentlyPledging,
