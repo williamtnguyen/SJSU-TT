@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { Router } from '@reach/router';
 import Helmet from 'react-helmet';
 
+import Navbar from '../components/NavBar';
+import Footer from '../components/Footer';
+
 import Sample from './portal_pages/sample';
+import Brothers from './portal_pages/brothers';
 import Login from './portal_pages/login';
 import PrivateRoute from '../components/PrivateRoute';
 import Dashboard from './portal_pages/dashboard';
@@ -24,14 +28,17 @@ const Portal = () => {
   return (
     <>
       <Helmet title={siteTitle} />
+      <Navbar />
       <Router basepath="/portal">
         <Sample path="/sample" />
         <Sample path="/sample/:resultsAmount" />
+        <Brothers path="/brothers" />
         <Login path="/login" />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/register" component={Register} />
         <PrivateRoute path="/edit" component={Edit} />
       </Router>
+      <Footer />
     </>
   );
 };

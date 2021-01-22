@@ -21,6 +21,7 @@
     "react/no-did-update-set-state": "off",
     "operator-linebreak": "off",
     "no-console": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "implicit-arrow-linebreak": "off"
   }
 }

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import classnames from 'classnames';
 import { registerBrother } from '../../redux/actions/authActions';
-import Navbar from '../../components/NavBar';
 import registerStyles from './register.module.scss';
 
 import {
@@ -103,7 +102,6 @@ const Register = (props) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Navbar />
       <section className={registerStyles.root}>
         <div
           className="container"
