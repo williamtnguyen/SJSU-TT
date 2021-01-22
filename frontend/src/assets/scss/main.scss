@@ -1,11 +1,11 @@
-@import "libs 2/vars";
-@import "libs 2/functions";
-@import "libs 2/mixins";
-@import "libs 2/skel";
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic");
-@import url("../css/font-awesome.min.css");
-@import "~bootstrap/dist/css/bootstrap.min.css";
-@import "css-grid";
+@import 'libs 2/vars';
+@import 'libs 2/functions';
+@import 'libs 2/mixins';
+@import 'libs 2/skel';
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic');
+@import url('../css/font-awesome.min.css');
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'css-grid';
 /*
 	Photon by HTML5 UP
 	html5up.net | @ajlkn
@@ -14,19 +14,19 @@
 
 @include skel-breakpoints(
   (
-    xlarge: "(max-width: 1680px)",
-    large: "(max-width: 1280px)",
-    medium: "(max-width: 980px)",
-    small: "(max-width: 736px)",
-    xsmall: "(max-width: 480px)",
-    xxsmall: "(max-width: 360px)",
+    xlarge: '(max-width: 1680px)',
+    large: '(max-width: 1280px)',
+    medium: '(max-width: 980px)',
+    small: '(max-width: 736px)',
+    xsmall: '(max-width: 480px)',
+    xxsmall: '(max-width: 360px)',
   )
 );
 
 @include skel-layout(
   (
-    reset: "full",
-    boxModel: "border",
+    reset: 'full',
+    boxModel: 'border',
   )
 );
 
@@ -128,8 +128,8 @@ body {
     *,
     *:before,
     *:after {
-      @include vendor("animation", "none !important");
-      @include vendor("transition", "none !important");
+      @include vendor('animation', 'none !important');
+      @include vendor('transition', 'none !important');
     }
   }
 }
@@ -147,10 +147,10 @@ textarea {
 
 a {
   @include vendor(
-    "transition",
+    'transition',
     (
-      "color #{_duration(transition)} ease-in-out",
-      "border-color #{_duration(transition)} ease-in-out"
+      'color #{_duration(transition)} ease-in-out',
+      'border-color #{_duration(transition)} ease-in-out'
     )
   );
   border-bottom: dotted 1px _palette(fg);
@@ -332,7 +332,7 @@ header {
 
     &:after {
       background: _palette(border);
-      content: "";
+      content: '';
       display: inline-block;
       height: 1px;
       margin-top: (_size(element-margin) * 0.75);
@@ -371,12 +371,12 @@ label {
   margin: 0 0 (_size(element-margin) * 0.5) 0;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
+input[type='text'],
+input[type='password'],
+input[type='email'],
 select,
 textarea {
-  @include vendor("appearance", "none");
+  @include vendor('appearance', 'none');
   background: _palette(border-bg);
   border-radius: _size(border-radius);
   border: none;
@@ -404,7 +404,7 @@ textarea {
 
   &:before {
     color: _palette(border);
-    content: "\f078";
+    content: '\f078';
     display: block;
     height: _size(element-height);
     line-height: _size(element-height);
@@ -421,9 +421,9 @@ textarea {
   }
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
+input[type='text'],
+input[type='password'],
+input[type='email'],
 select {
   height: _size(element-height);
 }
@@ -432,9 +432,9 @@ textarea {
   padding: 0.75em 1em;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
-  @include vendor("appearance", "none");
+input[type='checkbox'],
+input[type='radio'] {
+  @include vendor('appearance', 'none');
   display: block;
   float: left;
   margin-right: -2em;
@@ -457,7 +457,7 @@ input[type="radio"] {
       background: _palette(border-bg);
       border-radius: _size(border-radius);
       border: solid 1px _palette(border);
-      content: "";
+      content: '';
       display: inline-block;
       height: (_size(element-height) * 0.6);
       left: 0;
@@ -474,7 +474,7 @@ input[type="radio"] {
       background: _palette(dark, bg);
       border-color: _palette(dark, bg);
       color: _palette(dark, fg-bold);
-      content: "\f00c";
+      content: '\f00c';
     }
   }
 
@@ -485,7 +485,7 @@ input[type="radio"] {
   }
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   & + label {
     &:before {
       border-radius: _size(border-radius);
@@ -493,7 +493,7 @@ input[type="checkbox"] {
   }
 }
 
-input[type="radio"] {
+input[type='radio'] {
   & + label {
     &:before {
       border-radius: 100%;
@@ -716,7 +716,7 @@ ul {
       text-align: center;
 
       .icon {
-        @include vendor("transform", "rotate(45deg)");
+        @include vendor('transform', 'rotate(45deg)');
         border-radius: _size(border-radius);
         border: solid 1px _palette(border);
         display: inline-block;
@@ -727,7 +727,7 @@ ul {
         width: 8em;
 
         &:before {
-          @include vendor("transform", "rotate(-45deg)");
+          @include vendor('transform', 'rotate(-45deg)');
           display: inline-block;
           line-height: inherit;
         }
@@ -898,17 +898,17 @@ table {
 
 /* Button */
 
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
 button,
 .button {
-  @include vendor("appearance", "none");
+  @include vendor('appearance', 'none');
   @include vendor(
-    "transition",
+    'transition',
     (
-      "background-color #{_duration(transition)} ease-in-out",
-      "color #{_duration(transition)} ease-in-out"
+      'background-color #{_duration(transition)} ease-in-out',
+      'color #{_duration(transition)} ease-in-out'
     )
   );
   background-color: transparent;
@@ -1018,9 +1018,9 @@ button,
     }
   }
 
-  input[type="submit"],
-  input[type="reset"],
-  input[type="button"],
+  input[type='submit'],
+  input[type='reset'],
+  input[type='button'],
   button,
   .button {
     box-shadow: inset 0 0 0 1px _palette(dark, border);
@@ -1087,28 +1087,28 @@ button,
 /* Header */
 
 .home-background {
-  background-image: url("../images/student-union.jpg");
+  background-image: url('../images/student-union.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .rush-background {
-  background-image: url("../images/towerlawn.jpg");
+  background-image: url('../images/towerlawn.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .brothers-background {
-  background-image: url("../images/davidson.jpg");
+  background-image: url('../images/davidson.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .about-background {
-  background-image: url("../images/gradbuilding.jpg");
+  background-image: url('../images/gradbuilding.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -1117,12 +1117,14 @@ button,
 #header {
   @include padding(9em, 0, (0, 0, _size(element-margin), 0));
   @include dark(#883a3a);
-  background-attachment: fixed;
+  // Really GPU intensive, makes page laggy and scrolls jittery
+  // background-attachment: fixed;
   background-position: top left;
   background-size: fill;
   overflow: hidden;
   position: relative;
   text-align: center;
+  will-change: transform;
 
   h1 {
     margin: 0;
@@ -1138,7 +1140,7 @@ button,
 
     &:after {
       background: _palette(dark, border);
-      content: "";
+      content: '';
       height: 100vh;
       left: 50%;
       position: absolute;
@@ -1148,29 +1150,29 @@ button,
   }
 
   .inner {
-    @include vendor("transition", ("transform 1.5s ease", "opacity 2s ease"));
-    @include vendor("transition-delay", "0.25s");
-    @include vendor("transform", "scale(1)");
+    @include vendor('transition', ('transform 1.5s ease', 'opacity 2s ease'));
+    @include vendor('transition-delay', '0.25s');
+    @include vendor('transform', 'scale(1)');
     opacity: 1;
     position: relative;
     z-index: 1;
 
     .actions {
-      @include vendor("transition", "transform 1.25s ease");
-      @include vendor("transition-delay", "1s");
-      @include vendor("transform", "translateY(0)");
+      @include vendor('transition', 'transform 1.25s ease');
+      @include vendor('transition-delay', '1s');
+      @include vendor('transform', 'translateY(0)');
       opacity: 1;
     }
   }
 
   &:after {
-    @include vendor("transition", "opacity 1s ease");
+    @include vendor('transition', 'opacity 1s ease');
     background-image: linear-gradient(
       45deg,
       _palette(accent3-alt),
       _palette(accent6-alt)
     );
-    content: "";
+    content: '';
     height: 100%;
     left: 0;
     opacity: 0;
@@ -1183,11 +1185,11 @@ button,
 .body.is-loading {
   #header {
     .inner {
-      @include vendor("transform", "scale(1.05)");
+      @include vendor('transform', 'scale(1.05)');
       opacity: 0;
 
       .actions {
-        @include vendor("transform", "translateY(30em)");
+        @include vendor('transform', 'translateY(30em)');
         opacity: 0;
       }
     }
@@ -1199,7 +1201,7 @@ button,
 }
 
 #four {
-  background-image: url("../images/student-union.jpg");
+  background-image: url('../images/student-union.jpg');
   background-position: top left;
 }
 
@@ -1435,9 +1437,9 @@ button,
 
   /* Button */
 
-  input[type="submit"],
-  input[type="reset"],
-  input[type="button"],
+  input[type='submit'],
+  input[type='reset'],
+  input[type='button'],
   button,
   .button {
     height: 3em;
@@ -1512,9 +1514,9 @@ button,
 
   /* Button */
 
-  input[type="submit"],
-  input[type="reset"],
-  input[type="button"],
+  input[type='submit'],
+  input[type='reset'],
+  input[type='button'],
   .button {
     padding: 0;
   }

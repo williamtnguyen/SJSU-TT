@@ -41,8 +41,11 @@ const Brothers = () => {
               {brothers.actives.map(
                 (brother) =>
                   brother.imagePath && (
-                    // eslint-disable-next-line no-underscore-dangle
-                    <div className="col-md-3" key={brother._id}>
+                    <div
+                      className="col-xl-3 col-lg-6 col-sm-12"
+                      // eslint-disable-next-line no-underscore-dangle
+                      key={brother._id}
+                    >
                       <div className={brothersStyles.card__container}>
                         <div
                           className={
