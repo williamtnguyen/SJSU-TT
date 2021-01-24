@@ -4,6 +4,7 @@ const passport = require('passport');
 
 const Merit = require('./merit');
 const Brother = require('../brothers/brother');
+const validateMeritRequestInput = require('../util/form-validation/merit-request');
 const { PositionEnum } = require('../util/enums/brother-enums');
 const { MeritOperationEnum } = require('../util/enums/merit-enums');
 
@@ -64,6 +65,37 @@ meritController.get(
       });
       res.status(200).json(response);
     });
+  }
+);
+
+/**
+ * POST Endpoint (submit merit request from active)
+ * @route POST api/merits
+ * @desc add a pending merit request
+ */
+meritController.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    // Form input validation
+    const { errors, isValid } = validateMeritRequestInput(req.body);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    const { pledgeName, pledgeID, issuerID, operation, description } = req.body;
+    const newMerit = new Merit({
+      pledge: pledgeID,
+      issuer: issuerID,
+      operation,
+      description,
+    });
+    newMerit
+      .save()
+      .then((storedMerit) => res.status(200).json({ pledgeName, storedMerit }))
+      .catch((error) => {
+        throw new Error(`Error: ${error}`);
+      });
   }
 );
 

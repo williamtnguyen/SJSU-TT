@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import classnames from 'classnames';
-import { registerBrother } from '../../redux/actions/authActions';
+import { registerBrother } from '../../redux/actions/brotherActions';
 import registerStyles from './register.module.scss';
 
 import {

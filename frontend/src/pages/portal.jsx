@@ -12,6 +12,7 @@ import PrivateRoute from '../components/PrivateRoute';
 import Dashboard from './portal_pages/dashboard';
 import Register from './portal_pages/register';
 import Edit from './portal_pages/edit';
+import MeritForm from './portal_pages/merit-form';
 
 import persistLogin from '../util/persist-login';
 
@@ -37,6 +38,7 @@ const Portal = () => {
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/register" component={Register} />
         <PrivateRoute path="/edit" component={Edit} />
+        <PrivateRoute path="/merit-form" component={MeritForm} />
       </Router>
       <Footer />
     </>

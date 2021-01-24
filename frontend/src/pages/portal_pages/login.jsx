@@ -3,7 +3,7 @@ import { navigate } from '@reach/router';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { loginBrother } from '../../redux/actions/authActions';
+import { loginBrother } from '../../redux/actions/brotherActions';
 import loginStyles from './login.module.scss';
 
 const Login = (props) => {

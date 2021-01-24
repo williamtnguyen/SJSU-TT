@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from '@reach/router';
-import { logoutBrother } from '../../redux/actions/authActions';
+import { logoutBrother } from '../../redux/actions/brotherActions';
 import dashboardStyles from './dashboard.module.scss';
 
 import { PledgeClassEnum, PositionEnum } from '../../util/enums/brother-enums';
@@ -39,16 +39,16 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
       </div>
       <div>
         <Link to="/portal/edit" className={dashboardStyles.task__bar__item}>
-          Edit profile
+          Edit Profile
         </Link>
       </div>
       {!isCurrentlyPledging(pledgeClass) && (
         <div>
           <Link
-            to="/portal/dashboard"
+            to="/portal/merit-form"
             className={dashboardStyles.task__bar__item}
           >
-            Demerit pledge
+            Pledge Merit Form
           </Link>
         </div>
       )}
@@ -58,7 +58,7 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
             to="/portal/register"
             className={dashboardStyles.task__bar__item}
           >
-            Register brother
+            Register Brother
           </Link>
         </div>
       )}

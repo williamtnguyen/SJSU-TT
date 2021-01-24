@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { navigate } from '@reach/router';
 import classnames from 'classnames';
-import { editBrother } from '../../redux/actions/authActions';
+import { editBrother } from '../../redux/actions/brotherActions';
 import editStyles from './edit.module.scss';
 
 import { MajorEnum } from '../../util/enums/brother-enums';
