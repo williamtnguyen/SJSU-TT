@@ -42,6 +42,36 @@ brotherController.get('/', (req, res) => {
 });
 
 /**
+ * GET Endpoint (all brothers in a pledge class)
+ * @route GET api/brothers/:pledgeClass
+ * @desc retrieve all bros in a pledge class
+ */
+brotherController.get(
+  '/:pledgeClass',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { pledgeClass } = req.params;
+
+    Brother.find({ pledgeClass }, (error, pledges) => {
+      if (error) {
+        return res
+          .status(404)
+          .json({ message: `No brothers exist in ${pledgeClass}: ${error}` });
+      }
+
+      const response = {};
+      pledges.forEach((pledge) => {
+        response[pledge.name] = {
+          id: pledge.id,
+          meritCount: pledge.meritCount,
+        };
+      });
+      res.status(200).json(response);
+    });
+  }
+);
+
+/**
  * GET Endpoint (one brother)
  * @route GET api/brothers/me/:page
  * @desc retrieve all info needed about brother depending on what page

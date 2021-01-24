@@ -2,7 +2,10 @@
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './setAuthToken';
 import store from '../redux/store';
-import { setCurrentBrother, logoutBrother } from '../redux/actions/authActions';
+import {
+  setCurrentBrother,
+  logoutBrother,
+} from '../redux/actions/brotherActions';
 
 const persistLogin = () => {
   // Checks for JSON Web Token in localStorage (should be refactored) to persist user logins

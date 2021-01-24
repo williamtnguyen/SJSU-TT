@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import authReducer from './authReducer';
+import brotherReducer from './brotherReducer';
+import meritReducer from './meritReducer';
 import errorReducer from './errorReducer';
 
 export default combineReducers({
-  auth: authReducer,
+  auth: brotherReducer,
+  merit: meritReducer,
   errors: errorReducer,
 });
