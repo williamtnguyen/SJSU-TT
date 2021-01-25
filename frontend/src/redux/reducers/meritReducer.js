@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
     case DISPATCH_REQUEST:
       return {
         ...state,
-        wasDispatched: true,
+        wasDispatched: action.payload.pledgeName !== null,
         dispatchedRequestPledge: action.payload.pledgeName,
       };
     default:
