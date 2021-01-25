@@ -158,8 +158,36 @@ meritController.put(
       });
     }
     meritObject.isDispatched = true;
+    meritObject.isApproved = isMeritApproved;
     meritObject.save();
     res.status(200).json(meritObject);
+  }
+);
+
+/**
+ * DELETE Endpoint (delete merit requests in 'dispatched' tab)
+ * @route api/merits
+ * @desc delete an already dispatched merit request
+ */
+meritController.delete(
+  '/:meritRequestID',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    // Check if JWT sent in request is pledge parent or webmaster
+    checkIfUserEndpointAccess(req, res, [
+      PositionEnum.PLEDGE_PARENT,
+      PositionEnum.WEBMASTER,
+    ]);
+
+    const { meritRequestID } = req.params;
+    try {
+      const deleteResult = await Merit.deleteOne({ _id: meritRequestID });
+      res.status(200).json(deleteResult);
+    } catch (error) {
+      return res
+        .status(404)
+        .json({ message: 'Merit Request with this ID does not exist' });
+    }
   }
 );
 

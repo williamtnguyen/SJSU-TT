@@ -11,4 +11,5 @@ export const MeritManagerTabEnum = Object.freeze({
 export const MeritRequestDispatchEnum = Object.freeze({
   APPROVE: 'Approve',
   DISAPPROVE: 'Disapprove',
+  DELETE: 'Delete',
 });

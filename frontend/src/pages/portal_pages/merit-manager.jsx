@@ -6,6 +6,8 @@ import { navigate } from '@reach/router';
 import {
   dispatchMeritRequest,
   clearLastDispatchedRequest,
+  deleteMeritRequest,
+  clearLastDeletedRequest,
 } from '../../redux/actions/meritActions';
 import meritManagerStyles from './merit-manager.module.scss';
 
@@ -84,8 +86,11 @@ const MeritRequestSummary = ({
   selectedMeritRequest,
   selectedTab,
   handleDispatch,
+  handleDelete,
   wasDispatched,
   dispatchedRequestPledge,
+  wasDeleted,
+  deletedRequestPledge,
 }) => {
   const [noSelectionError, setNoSelectionError] = useState(false);
 
@@ -102,17 +107,29 @@ const MeritRequestSummary = ({
     }
   };
 
+  const handleDeleteWrapper = () => {
+    if (!isEmpty(selectedMeritRequest)) {
+      setNoSelectionError(false);
+      handleDelete();
+    } else {
+      setNoSelectionError(true);
+    }
+  };
+
   return (
     <div className="col-lg-6 col-md-1">
       {noSelectionError && (
         <p className={meritManagerStyles.error__message}>
-          Nothing is selected. Cannot dispatch request.
+          Nothing is selected. Cannot dispatch/delete request.
         </p>
       )}
       {wasDispatched && (
         <p>
           Merit request for {dispatchedRequestPledge} successfully dispatched.
         </p>
+      )}
+      {wasDeleted && (
+        <p>Merit request for {deletedRequestPledge} successfully deleted.</p>
       )}
       <div className={meritManagerStyles.merit__request__summary}>
         <h3 className="mb-3">Selected Merit Request:</h3>
@@ -141,11 +158,18 @@ const MeritRequestSummary = ({
               <span>
                 {selectedMeritRequest.isDispatched ? 'Dispatched' : 'Pending'}
               </span>
+              {selectedMeritRequest.isApproved !== null && (
+                <span>
+                  {selectedMeritRequest.isApproved
+                    ? ', Approved'
+                    : ', Disapproved'}
+                </span>
+              )}
             </div>
           </div>
         )}
       </div>
-      {selectedTab === MeritManagerTabEnum.PENDING && (
+      {selectedTab === MeritManagerTabEnum.PENDING ? (
         <div className={meritManagerStyles.dispatch__button__group}>
           <button
             onClick={(event) => handleDispatchWrapper(event)}
@@ -162,6 +186,17 @@ const MeritRequestSummary = ({
             className={`btn btn-danger ${meritManagerStyles.dispatch__button}`}
           >
             Disapprove Merit Request
+          </button>
+        </div>
+      ) : (
+        <div className={meritManagerStyles.dispatch__button__group}>
+          <button
+            onClick={() => handleDeleteWrapper()}
+            id={MeritRequestDispatchEnum.DELETE}
+            type="button"
+            className="btn btn-warning"
+          >
+            Delete Merit Request
           </button>
         </div>
       )}
@@ -184,6 +219,8 @@ const MeritManager = (props) => {
 
   const [wasDispatched, setWasDispatched] = useState(false);
   const [dispatchedRequestPledge, setDispatchedRequestPledge] = useState('');
+  const [wasDeleted, setWasDeleted] = useState(false);
+  const [deletedRequestPledge, setDeletedRequestPledge] = useState('');
 
   const [fetchError, setFetchError] = useState(false);
 
@@ -195,6 +232,17 @@ const MeritManager = (props) => {
         setWasDispatched(true);
         setDispatchedRequestPledge(props.merit.dispatchedRequestPledge);
         setSelectedMeritRequest({});
+      } else {
+        setWasDispatched(false);
+        setDispatchedRequestPledge('');
+      }
+      if (props.merit.wasDeleted && props.merit.deletedRequestPledge) {
+        setWasDeleted(true);
+        setDeletedRequestPledge(props.merit.deletedRequestPledge);
+        setSelectedMeritRequest({});
+      } else {
+        setWasDeleted(false);
+        setDeletedRequestPledge('');
       }
     } else {
       setDidMount(true);
@@ -203,6 +251,8 @@ const MeritManager = (props) => {
     didMount,
     props.merit.wasDispatched,
     props.merit.dispatchedRequestPledge,
+    props.merit.wasDeleted,
+    props.merit.deletedRequestPledge,
   ]);
 
   const getMeritRequests = async () => {
@@ -228,6 +278,15 @@ const MeritManager = (props) => {
   const setSelectedMeritRequestWrapper = (meritRequest) => {
     setSelectedMeritRequest(meritRequest);
     props.clearLastDispatchedRequest();
+    props.clearLastDeletedRequest();
+  };
+
+  // Handler function for deleting merit requests in 'dispatched' tab
+  const handleDelete = () => {
+    // eslint-disable-next-line no-underscore-dangle
+    const meritRequestID = selectedMeritRequest._id;
+    const { pledgeName } = selectedMeritRequest;
+    props.deleteMeritRequest(meritRequestID, pledgeName);
   };
 
   const redirectToDashboard = () => {
@@ -267,8 +326,11 @@ const MeritManager = (props) => {
                   selectedMeritRequest={selectedMeritRequest}
                   selectedTab={selectedTab}
                   handleDispatch={handleDispatch}
+                  handleDelete={handleDelete}
                   wasDispatched={wasDispatched}
                   dispatchedRequestPledge={dispatchedRequestPledge}
+                  wasDeleted={wasDeleted}
+                  deletedRequestPledge={deletedRequestPledge}
                 />
               </div>
             )}
@@ -325,24 +387,33 @@ MeritRequestSummary.propTypes = {
     operation: PropTypes.string,
     description: PropTypes.string,
     isDispatched: PropTypes.bool,
+    isApproved: PropTypes.bool,
   }),
   selectedTab: PropTypes.string,
   handleDispatch: PropTypes.func,
+  handleDelete: PropTypes.func,
   wasDispatched: PropTypes.bool,
   dispatchedRequestPledge: PropTypes.string,
+  wasDeleted: PropTypes.bool,
+  deletedRequestPledge: PropTypes.string,
 };
 
 MeritRequestSummary.defaultProps = {
   selectedMeritRequest: {},
   selectedTab: MeritManagerTabEnum.PENDING,
   handleDispatch: () => {},
+  handleDelete: () => {},
   wasDispatched: false,
   dispatchedRequestPledge: '',
+  wasDeleted: false,
+  deletedRequestPledge: '',
 };
 
 MeritManager.propTypes = {
   dispatchMeritRequest: PropTypes.func.isRequired,
   clearLastDispatchedRequest: PropTypes.func.isRequired,
+  deleteMeritRequest: PropTypes.func.isRequired,
+  clearLastDeletedRequest: PropTypes.func.isRequired,
   auth: PropTypes.shape({
     user: PropTypes.shape({
       id: PropTypes.string,
@@ -352,6 +423,8 @@ MeritManager.propTypes = {
   merit: PropTypes.shape({
     wasDispatched: PropTypes.bool,
     dispatchedRequestPledge: PropTypes.string,
+    wasDeleted: PropTypes.bool,
+    deletedRequestPledge: PropTypes.string,
   }),
 };
 
@@ -368,4 +441,6 @@ const mapStateToProps = (reduxState) => ({
 export default connect(mapStateToProps, {
   dispatchMeritRequest,
   clearLastDispatchedRequest,
+  deleteMeritRequest,
+  clearLastDeletedRequest,
 })(MeritManager);

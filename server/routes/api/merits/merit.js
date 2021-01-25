@@ -28,6 +28,11 @@ const MeritSchema = new Schema({
     default: false,
     required: false,
   },
+  isApproved: {
+    type: Boolean,
+    default: null,
+    required: this.isDispatched,
+  },
 });
 
 module.exports = mongoose.model('Merits', MeritSchema);
