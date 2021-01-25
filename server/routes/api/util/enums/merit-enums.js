@@ -1,6 +1,6 @@
 const MeritOperationEnum = Object.freeze({
-  INCREMENT: 'increment',
-  DECREMENT: 'decrement',
+  MERIT: 'Merit',
+  DEMERIT: 'Demerit',
 });
 
 module.exports = { MeritOperationEnum };

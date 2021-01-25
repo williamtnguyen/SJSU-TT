@@ -1,4 +1,4 @@
-import { MERIT_PLEDGE } from '../actions/types';
+import { MERIT_PLEDGE, DISPATCH_REQUEST } from '../actions/types';
 
 const initialState = {
   wasSubmitted: false,
@@ -12,6 +12,12 @@ export default function (state = initialState, action) {
         ...state,
         wasSubmitted: true,
         meritedPledge: action.payload.pledgeName,
+      };
+    case DISPATCH_REQUEST:
+      return {
+        ...state,
+        wasDispatched: true,
+        dispatchedRequestPledge: action.payload.pledgeName,
       };
     default:
       return state;

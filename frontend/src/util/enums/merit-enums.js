@@ -1,6 +1,14 @@
-const MeritOperationEnum = Object.freeze({
-  INCREMENT: 'increment',
-  DECREMENT: 'decrement',
+export const MeritOperationEnum = Object.freeze({
+  MERIT: 'Merit',
+  DEMERIT: 'Demerit',
 });
 
-export default MeritOperationEnum;
+export const MeritManagerTabEnum = Object.freeze({
+  PENDING: 'Pending',
+  DISPATCHED: 'Dispatched',
+});
+
+export const MeritRequestDispatchEnum = Object.freeze({
+  APPROVE: 'Approve',
+  DISAPPROVE: 'Disapprove',
+});

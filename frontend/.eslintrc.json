@@ -23,6 +23,7 @@
     "no-console": "off",
     "comma-dangle": "off",
     "implicit-arrow-linebreak": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "react/jsx-curly-newline": "off"
   }
 }
