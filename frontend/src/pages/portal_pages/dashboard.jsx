@@ -15,7 +15,7 @@ import { PledgeClassEnum, PositionEnum } from '../../util/enums/brother-enums';
  */
 const positionHasFeature = (expectedPosition, actualPosition) => {
   return (
-    actualPosition === PositionEnum.Webmaster ||
+    actualPosition === PositionEnum.WEBMASTER ||
     actualPosition === expectedPosition
   );
 };
@@ -42,6 +42,11 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
           Edit Profile
         </Link>
       </div>
+      <div>
+        <Link to="/portal/merits" className={dashboardStyles.task__bar__item}>
+          Pledge Merits
+        </Link>
+      </div>
       {!isCurrentlyPledging(pledgeClass) && (
         <div>
           <Link
@@ -49,6 +54,16 @@ const TaskBar = ({ pledgeClass, position, handleLogout }) => {
             className={dashboardStyles.task__bar__item}
           >
             Pledge Merit Form
+          </Link>
+        </div>
+      )}
+      {positionHasFeature(PositionEnum.PLEDGE_PARENT, position) && (
+        <div>
+          <Link
+            to="/portal/merit-manager"
+            className={dashboardStyles.task__bar__item}
+          >
+            Pledge Merit Manager
           </Link>
         </div>
       )}

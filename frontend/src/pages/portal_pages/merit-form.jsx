@@ -8,7 +8,7 @@ import { submitMeritRequest } from '../../redux/actions/meritActions';
 import meritFormStyles from './merit-form.module.scss';
 
 import { PledgeClassEnum } from '../../util/enums/brother-enums';
-import MeritOperationEnum from '../../util/enums/merit-enums';
+import { MeritOperationEnum } from '../../util/enums/merit-enums';
 
 /* No pledge class: set to null, otherwise use the enum */
 const CURR_PLEDGE_CLASS = PledgeClassEnum.GAMMA;
@@ -17,7 +17,7 @@ const MeritForm = (props) => {
   const [didMount, setDidMount] = useState(false);
   const [pledges, setPledges] = useState([]);
   const [selectedPledge, setSelectedPledge] = useState('');
-  const [operation, setOperation] = useState(MeritOperationEnum.DECREMENT);
+  const [operation, setOperation] = useState(MeritOperationEnum.DEMERIT);
   const [description, setDescription] = useState('');
 
   const [fetchError, setFetchError] = useState(false);
@@ -90,6 +90,7 @@ const MeritForm = (props) => {
 
     const meritData = {
       pledgeName: selectedPledge,
+      issuerName: props.auth.user.name,
       pledgeID: pledges[selectedPledge].id,
       issuerID: props.auth.user.id,
       operation,
@@ -158,11 +159,11 @@ const MeritForm = (props) => {
                   <div className="form-group">
                     <div className="form-check form-check-inline">
                       <input
-                        checked={operation === MeritOperationEnum.INCREMENT}
+                        checked={operation === MeritOperationEnum.MERIT}
                         id="merit"
                         onChange={(event) => handleChange(event)}
                         type="radio"
-                        value={MeritOperationEnum.INCREMENT}
+                        value={MeritOperationEnum.MERIT}
                         name="meritRadioButton"
                         className="form-check-input"
                       />
@@ -170,11 +171,11 @@ const MeritForm = (props) => {
                         Merit
                       </label>
                       <input
-                        checked={operation === MeritOperationEnum.DECREMENT}
+                        checked={operation === MeritOperationEnum.DEMERIT}
                         id="demerit"
                         onChange={(event) => handleChange(event)}
                         type="radio"
-                        value={MeritOperationEnum.DECREMENT}
+                        value={MeritOperationEnum.DEMERIT}
                         name="meritRadioButton"
                         className="form-check-input"
                       />

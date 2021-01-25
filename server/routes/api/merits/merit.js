@@ -4,8 +4,16 @@ const { Schema } = mongoose;
 const { MeritOperationEnum } = require('../util/enums/merit-enums');
 
 const MeritSchema = new Schema({
-  pledge: { type: Schema.Types.ObjectId, ref: 'Brothers' },
-  issuer: { type: Schema.Types.ObjectId, ref: 'Brothers' },
+  pledgeName: {
+    type: String,
+    required: true,
+  },
+  issuerName: {
+    type: String,
+    required: true,
+  },
+  pledgeID: { type: Schema.Types.ObjectId, ref: 'Brothers' },
+  issuerID: { type: Schema.Types.ObjectId, ref: 'Brothers' },
   operation: {
     type: String,
     required: true,

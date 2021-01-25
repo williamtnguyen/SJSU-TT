@@ -83,16 +83,26 @@ meritController.post(
       return res.status(400).json(errors);
     }
 
-    const { pledgeName, pledgeID, issuerID, operation, description } = req.body;
+    const {
+      pledgeName,
+      issuerName,
+      pledgeID,
+      issuerID,
+      operation,
+      description,
+    } = req.body;
+
     const newMerit = new Merit({
-      pledge: pledgeID,
-      issuer: issuerID,
+      pledgeName,
+      issuerName,
+      pledgeID,
+      issuerID,
       operation,
       description,
     });
     newMerit
       .save()
-      .then((storedMerit) => res.status(200).json({ pledgeName, storedMerit }))
+      .then((storedMerit) => res.status(200).json({ storedMerit }))
       .catch((error) => {
         throw new Error(`Error: ${error}`);
       });
@@ -115,15 +125,17 @@ meritController.put(
     ]);
 
     const { isMeritApproved, meritPayload } = req.body;
-    const { meritObjectID, pledgeID, operation } = meritPayload;
+    const { pledgeID, operation } = meritPayload;
+    // eslint-disable-next-line no-underscore-dangle
+    const meritObjectID = meritPayload._id;
 
     // If pledge parent sees that merit request by active is legit, increment/decrement merit count from pledge
     if (isMeritApproved) {
       const pledgeObject = await Brother.findById(pledgeID);
 
-      if (pledgeObject && operation === MeritOperationEnum.INCREMENT) {
+      if (pledgeObject && operation === MeritOperationEnum.MERIT) {
         pledgeObject.meritCount += 1;
-      } else if (pledgeObject && operation === MeritOperationEnum.DECREMENT) {
+      } else if (pledgeObject && operation === MeritOperationEnum.DEMERIT) {
         pledgeObject.meritCount -= 1;
       } else {
         return res.status(404).json({
@@ -147,6 +159,7 @@ meritController.put(
     }
     meritObject.isDispatched = true;
     meritObject.save();
+    res.status(200).json(meritObject);
   }
 );
 
