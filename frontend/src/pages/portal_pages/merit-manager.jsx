@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { navigate } from '@reach/router';
-import { dispatchMeritRequest } from '../../redux/actions/meritActions';
+import {
+  dispatchMeritRequest,
+  clearLastDispatchedRequest,
+} from '../../redux/actions/meritActions';
 import meritManagerStyles from './merit-manager.module.scss';
 
 import {
@@ -17,6 +20,11 @@ const MeritRequestTable = ({
   setSelectedTab,
   setSelectedMeritRequest,
 }) => {
+  const setSelectedTabWrapper = (tab) => {
+    setSelectedTab(tab);
+    setSelectedMeritRequest({});
+  };
+
   return (
     <div className="col-lg-6 col-md-1">
       <div className="btn-group mb-3" role="group">
@@ -25,7 +33,7 @@ const MeritRequestTable = ({
             return (
               <button
                 key={tab}
-                onClick={() => setSelectedTab(tab)}
+                onClick={() => setSelectedTabWrapper(tab)}
                 type="button"
                 className="btn btn-warning"
               >
@@ -36,7 +44,7 @@ const MeritRequestTable = ({
           return (
             <button
               key={tab}
-              onClick={() => setSelectedTab(tab)}
+              onClick={() => setSelectedTabWrapper(tab)}
               type="button"
               className="btn btn-light"
             >
@@ -161,6 +169,10 @@ const MeritRequestSummary = ({
   );
 };
 
+/**
+ * Parent component
+ * @param {*} props stuff from redux
+ */
 const MeritManager = (props) => {
   const [didMount, setDidMount] = useState(false);
   const [allMeritRequests, setAllMeritRequests] = useState({
@@ -213,6 +225,11 @@ const MeritManager = (props) => {
     props.dispatchMeritRequest(dispatchData);
   };
 
+  const setSelectedMeritRequestWrapper = (meritRequest) => {
+    setSelectedMeritRequest(meritRequest);
+    props.clearLastDispatchedRequest();
+  };
+
   const redirectToDashboard = () => {
     navigate('/portal/dashboard');
   };
@@ -244,7 +261,7 @@ const MeritManager = (props) => {
                   selectedTab={selectedTab}
                   setSelectedTab={setSelectedTab}
                   selectedMeritRequest={selectedMeritRequest}
-                  setSelectedMeritRequest={setSelectedMeritRequest}
+                  setSelectedMeritRequest={setSelectedMeritRequestWrapper}
                 />
                 <MeritRequestSummary
                   selectedMeritRequest={selectedMeritRequest}
@@ -325,6 +342,7 @@ MeritRequestSummary.defaultProps = {
 
 MeritManager.propTypes = {
   dispatchMeritRequest: PropTypes.func.isRequired,
+  clearLastDispatchedRequest: PropTypes.func.isRequired,
   auth: PropTypes.shape({
     user: PropTypes.shape({
       id: PropTypes.string,
@@ -347,4 +365,7 @@ const mapStateToProps = (reduxState) => ({
   merit: reduxState.merit,
 });
 
-export default connect(mapStateToProps, { dispatchMeritRequest })(MeritManager);
+export default connect(mapStateToProps, {
+  dispatchMeritRequest,
+  clearLastDispatchedRequest,
+})(MeritManager);

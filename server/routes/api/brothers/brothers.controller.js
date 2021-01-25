@@ -59,10 +59,15 @@ brotherController.get(
           .json({ message: `No brothers exist in ${pledgeClass}: ${error}` });
       }
 
-      const response = {};
+      const response = {
+        userPledgeClass: '',
+        currentPledges: {},
+      };
+      response.userPledgeClass = req.user.pledgeClass;
       pledges.forEach((pledge) => {
-        response[pledge.name] = {
+        response.currentPledges[pledge.name] = {
           id: pledge.id,
+          studentID: pledge.studentID,
           meritCount: pledge.meritCount,
         };
       });

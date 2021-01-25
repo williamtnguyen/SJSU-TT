@@ -7,11 +7,9 @@ import classnames from 'classnames';
 import { submitMeritRequest } from '../../redux/actions/meritActions';
 import meritFormStyles from './merit-form.module.scss';
 
-import { PledgeClassEnum } from '../../util/enums/brother-enums';
 import { MeritOperationEnum } from '../../util/enums/merit-enums';
 
-/* No pledge class: set to null, otherwise use the enum */
-const CURR_PLEDGE_CLASS = PledgeClassEnum.GAMMA;
+import CURR_PLEDGE_CLASS from '../../util/curr-pledge-class';
 
 const MeritForm = (props) => {
   const [didMount, setDidMount] = useState(false);
@@ -25,7 +23,7 @@ const MeritForm = (props) => {
   const [submitErrors, setSubmitErrors] = useState({});
 
   const [wasSubmitted, setWasSubmitted] = useState(false);
-  const [meritedBrother, setMeritedBrother] = useState('');
+  const [meritedPledge, setMeritedPledge] = useState('');
 
   useEffect(() => {
     if (didMount) {
@@ -42,7 +40,7 @@ const MeritForm = (props) => {
   useEffect(() => {
     if (props.merit.wasSubmitted && props.merit.meritedPledge) {
       setWasSubmitted(true);
-      setMeritedBrother(props.merit.meritedPledge);
+      setMeritedPledge(props.merit.meritedPledge);
       setSubmitErrors({});
     } else if (props.errors) {
       setSubmitErrors(props.errors);
@@ -54,8 +52,8 @@ const MeritForm = (props) => {
       const apiResponse = await axios.get(
         `/api/brothers/${currentPledgeClass}`
       );
-      setPledges(apiResponse.data);
-      setSelectedPledge(Object.keys(apiResponse.data)[0]);
+      setPledges(apiResponse.data.currentPledges);
+      setSelectedPledge(Object.keys(apiResponse.data.currentPledges)[0]);
       setFetchError(false);
     } catch (error) {
       setFetchError(true);
@@ -124,7 +122,7 @@ const MeritForm = (props) => {
               </h1>
               {/* Success message when a pledge is merited/demerited */}
               {wasSubmitted && (
-                <p>Merit request for {meritedBrother} submitted!</p>
+                <p>Merit request for {meritedPledge} submitted!</p>
               )}
               {noPledgeClass ? (
                 <div>

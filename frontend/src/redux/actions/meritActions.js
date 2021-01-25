@@ -54,6 +54,13 @@ export const dispatchMeritRequest = (dispatchData) => (dispatch) => {
     });
 };
 
+// Helper function that changes global state of
+// 'isDispatched' to false and 'dispatchedRequestPledge' to null
+// so MeritManager comp knows when they become true
+export const clearLastDispatchedRequest = () => (dispatch) => {
+  dispatch(updateDispatchSuccessMessage(null));
+};
+
 const updateDispatchSuccessMessage = (pledgeName) => {
   return {
     type: DISPATCH_REQUEST,
