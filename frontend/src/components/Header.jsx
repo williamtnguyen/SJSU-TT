@@ -33,10 +33,6 @@ const Header = () => (
           <p>
             <b>Co-ed Professional Engineering Fraternity | SJSU Chapter</b>
           </p>
-          <div id="extend-height" />
-          <ul className="">
-            <li />
-          </ul>
         </div>
       </section>
     )}

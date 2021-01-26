@@ -11,41 +11,29 @@ class About extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
     const { data } = this.props;
-    const { logo } = data;
+    const { history, pledgeEventPic } = data;
 
     return (
       <section>
         <Helmet title={siteTitle} />
         <NavBar />
         <section id="header" className="about-background">
-          <Img
-            fluid={logo.childImageSharp.fluid}
-            alt="Theta Tau Logo"
-            style={{
-              margin: 'auto',
-              width: '17%',
-              minWidth: '100px',
-            }}
-          />
           <h1>
             <strong>About Us</strong>
           </h1>
           <p>
             <b>Theta Tau SJSU Colony</b>
           </p>
-          <div id="extend-height" />
         </section>
         <div className="about">
           <section className="main style1 special">
-            <div className="grid-wrapper left-text">
-              <div className="col-12">
+            <div className="row left-text about-block justify-content-md-center">
+              <div className="col-md-6">
                 <header className="major">
                   <h2>
                     <b>Fraternity History</b>
                   </h2>
                 </header>
-              </div>
-              <div className="col-12">
                 <p className="history-text">
                   Founded at the University of Minnesota in 1904, Theta Tau is
                   the nation's oldest and foremost fraternity for engineers.
@@ -70,20 +58,32 @@ class About extends React.Component {
                   are interested in building friendships, improving their
                   professional lives, and becoming the strong foundation upon
                   which the fraternity is built. Are you the person we are
-                  looking for?{' '}
+                  looking for?
                 </p>
+              </div>
+              <div className="col-md-5">
+                <Img
+                  fluid={history.childImageSharp.fluid}
+                  alt="history-pic"
+                  className="image fit"
+                />
               </div>
             </div>
 
-            <div className="grid-wrapper left-text">
-              <div className="col-12">
+            <div className="row left-text about-block justify-content-md-center">
+              <div className="col-md-5 d-flex align-items-bottom">
+                <Img
+                  fluid={pledgeEventPic.childImageSharp.fluid}
+                  alt="history-pic"
+                  className="image fit history"
+                />
+              </div>
+              <div className="col-md-6">
                 <header className="major">
                   <h2>
                     <b>Chapter History</b>
                   </h2>
                 </header>
-              </div>
-              <div className="col-12">
                 <p className="history-text">
                   In spring of 2018, Mark Muendelein met a handful of brothers
                   from the Epsilon Delta chapter of Theta Tau chartered at UC
@@ -123,7 +123,14 @@ class About extends React.Component {
 
 export const query = graphql`
   query {
-    logo: file(relativePath: { eq: "thetatau.png" }) {
+    history: file(relativePath: { eq: "history.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    pledgeEventPic: file(relativePath: { eq: "pledge-event-cropped.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -136,6 +143,16 @@ export const query = graphql`
 About.propTypes = {
   data: PropTypes.shape({
     logo: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.shape.isRequired,
+      }).isRequired,
+    }).isRequired,
+    history: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.shape.isRequired,
+      }).isRequired,
+    }).isRequired,
+    pledgeEventPic: PropTypes.shape({
       childImageSharp: PropTypes.shape({
         fluid: PropTypes.shape.isRequired,
       }).isRequired,

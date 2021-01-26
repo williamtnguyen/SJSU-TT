@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import logo from '../../assets/images/thetatau.png';
 import brothersStyles from './brothers.module.scss';
 
 const Brothers = () => {
@@ -20,14 +19,12 @@ const Brothers = () => {
     <div>
       <section id="header" className="brothers-background">
         <div className="inner">
-          <img id="logo-vector" src={logo} alt="Logo" />
           <h1>
             <strong>Meet the Brothers</strong>
           </h1>
           <p>
             <b>Theta Tau SJSU Colony</b>
           </p>
-          <div id="extend-height" />
         </div>
       </section>
 

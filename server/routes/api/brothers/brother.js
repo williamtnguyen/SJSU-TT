@@ -73,7 +73,7 @@ const BrotherSchema = new Schema({
   },
   imagePath: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

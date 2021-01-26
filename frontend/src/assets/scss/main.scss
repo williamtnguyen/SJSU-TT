@@ -34,11 +34,18 @@
 
 .left-text {
   display: inline-block;
+
   h3 {
     text-align: left;
   }
   p {
     text-align: left;
+  }
+
+  &.about-block {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 80px;
   }
 }
 
@@ -61,7 +68,7 @@ nav {
 }
 
 .history-text {
-  max-width: 70%;
+  max-width: 80%;
   position: relative;
   text-align: left;
   display: inline-block;
@@ -641,10 +648,15 @@ input[type='radio'] {
   &.fit {
     display: block;
     margin: 0 0 _size(element-margin) 0;
+    height: fit-content;
     width: 100%;
 
     img {
       width: 100%;
+    }
+
+    &.history {
+      margin-top: 80px;
     }
   }
 }
@@ -1087,31 +1099,46 @@ button,
 /* Header */
 
 .home-background {
-  background-image: url('../images/student-union.jpg');
+  background-image: url('../images/index-banner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .rush-background {
-  background-image: url('../images/towerlawn.jpg');
+  background-image: url('../images/rush-banner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: bottom !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .brothers-background {
-  background-image: url('../images/davidson.jpg');
+  background-image: url('../images/brothers-banner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .about-background {
-  background-image: url('../images/gradbuilding.jpg');
+  background-image: url('../images/about-banner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #header {
@@ -1119,15 +1146,19 @@ button,
   @include dark(#883a3a);
   // Really GPU intensive, makes page laggy and scrolls jittery
   // background-attachment: fixed;
-  background-position: top left;
+
+  height: 95vh;
+  background-position: center center;
   background-size: fill;
-  overflow: hidden;
-  position: relative;
   text-align: center;
   will-change: transform;
 
+  // overflow: hidden;
+  // position: relative;
+
   h1 {
-    margin: 0;
+    font-size: 60px;
+    font-weight: 300;
   }
 
   p {
@@ -1201,8 +1232,8 @@ button,
 }
 
 #four {
-  background-image: url('../images/student-union.jpg');
-  background-position: top left;
+  background-image: url('../images/joining.jpg');
+  background-position: center left;
 }
 
 /* Footer */
@@ -1211,7 +1242,7 @@ button,
   @include padding(6em, 0, (0, 0, _size(element-margin), 0));
   @include dark(#883a3a);
   background-attachment: fixed, fixed, fixed;
-  background-color: #883a3a;
+  background-color: #6d2e2e;
   background-position: top left, center center, center center;
   background-size: cover, cover, cover;
   text-align: center;
