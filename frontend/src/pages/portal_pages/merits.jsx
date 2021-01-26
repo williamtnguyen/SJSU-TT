@@ -38,10 +38,10 @@ const Merits = () => {
   };
 
   const getRowColor = (meritCount) => {
-    if (meritCount >= 10) {
+    if (meritCount >= 11) {
       return 'table-success';
     }
-    if (meritCount >= 5) {
+    if (meritCount >= 6) {
       return 'table-warning';
     }
     return 'table-danger';

@@ -1,4 +1,8 @@
-import { MERIT_PLEDGE, DISPATCH_REQUEST } from '../actions/types';
+import {
+  MERIT_PLEDGE,
+  DISPATCH_REQUEST,
+  DELETE_REQUEST,
+} from '../actions/types';
 
 const initialState = {
   wasSubmitted: false,
@@ -18,6 +22,12 @@ export default function (state = initialState, action) {
         ...state,
         wasDispatched: action.payload.pledgeName !== null,
         dispatchedRequestPledge: action.payload.pledgeName,
+      };
+    case DELETE_REQUEST:
+      return {
+        ...state,
+        wasDeleted: action.payload.pledgeName !== null,
+        deletedRequestPledge: action.payload.pledgeName,
       };
     default:
       return state;
