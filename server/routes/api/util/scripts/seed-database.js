@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
-// const actives = require('./actives');
-const actives = require('./actives-example');
-// const alumni = require('./alumni');
-const alumni = require('./actives-example');
+const actives = require('./actives');
+// const actives = require('./actives-example');
+const alumni = require('./alumni');
+// const alumni = require('./actives-example');
 const Brother = require('../../brothers/brother');
 
 const foosWithNoHeadshot = {
