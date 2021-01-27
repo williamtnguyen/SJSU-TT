@@ -70,7 +70,9 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-# super duper secret stuffs
+# secret stuff
 secrets.json
 actives.js
 alumni.js
+server-cert.pem
+server-key.pem
