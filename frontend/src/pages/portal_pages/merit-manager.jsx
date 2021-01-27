@@ -257,7 +257,9 @@ const MeritManager = (props) => {
 
   const getMeritRequests = async () => {
     try {
-      const apiResponse = await axios.get('/api/merits');
+      const apiResponse = await axios.get(
+        `${process.env.BACKEND_API_URL}/api/merits`
+      );
       setAllMeritRequests(apiResponse.data);
     } catch (error) {
       setFetchError(true);

@@ -14,7 +14,9 @@ const Brothers = () => {
 
   const fetchBrothers = async () => {
     const tab = parseQueryParameter();
-    const apiResponse = await axios.get(`/api/brothers/${tab}`);
+    const apiResponse = await axios.get(
+      `${process.env.BACKEND_API_URL}/api/brothers/${tab}`
+    );
     setBrothers(apiResponse.data);
   };
 

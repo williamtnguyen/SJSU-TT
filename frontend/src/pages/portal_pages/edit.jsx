@@ -66,7 +66,9 @@ const Edit = (props) => {
 
   const assignInputValues = async () => {
     try {
-      const apiResponse = await axios.get('/api/brothers/me/edit');
+      const apiResponse = await axios.get(
+        `${process.env.BACKEND_API_URL}/api/brothers/me/edit`
+      );
 
       // Cache current state for client-side validation
       setCurrentBrotherData(apiResponse.data);

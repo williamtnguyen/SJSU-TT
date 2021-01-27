@@ -154,7 +154,9 @@ const Dashboard = (props) => {
 
   const fetchBrotherData = async () => {
     try {
-      const apiResponse = await axios.get('/api/brothers/me/dashboard');
+      const apiResponse = await axios.get(
+        `${process.env.BACKEND_API_URL}/api/brothers/me/dashboard`
+      );
       setBrotherData(apiResponse.data);
     } catch (error) {
       setFetchError(true);
