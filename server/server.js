@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fs = require('fs');
-const https = require('https');
 const cors = require('cors');
 const AWS = require('aws-sdk');
 
@@ -62,15 +61,9 @@ switch (process.env.NODE_ENV) {
     console.error('NODE_ENV not specified');
 }
 
-const sslOptions = {
-  key: fs.readFileSync('./certs/server-key.pem'),
-  cert: fs.readFileSync('./certs/server-cert.pem'),
-};
-
 // Start server
 const PORT = process.env.PORT || 5000;
-const server = https.createServer(sslOptions, app);
-server.listen(PORT, (error) => {
+app.listen(PORT, (error) => {
   if (error) {
     throw new Error(error);
   }

@@ -74,5 +74,3 @@ yarn-error.log
 secrets.json
 actives.js
 alumni.js
-server-cert.pem
-server-key.pem
