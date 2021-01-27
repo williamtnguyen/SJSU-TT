@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <Navbar
       expand="lg"
-      style={{ padding: '20px 10px', backgroundColor: '#883a3a' }}
+      style={{ padding: '20px 10px', backgroundColor: '#6d2e2e' }}
     >
       <GatsbyLink to="/">
         <span className="navbar-brand mb-0 h1" style={{ color: 'white' }}>

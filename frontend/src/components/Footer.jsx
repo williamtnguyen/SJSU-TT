@@ -42,8 +42,9 @@ const Footer = () => {
             --Ecclesiastes 9:10
           </p>
         </small>
-        &copy; 2020 | ΘT @ SJSU
-        <li>Made with ❤ by Jonathan Wong & John Tran</li>
+        ΘT @ SJSU
+        <li>Made with ❤ by Webmaster Committee</li>
+        <li>&copy; 2021</li>
       </ul>
     </section>
   );

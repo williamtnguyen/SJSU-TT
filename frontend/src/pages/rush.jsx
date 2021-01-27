@@ -11,44 +11,38 @@ class Rush extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
     const { data } = this.props;
-    const { logo, rushSchedule } = data;
+    const { rushSchedule } = data;
 
     return (
       <section>
         <Helmet title={siteTitle} />
         <NavBar />
         <section id="header" className="rush-background">
-          <Img
-            fluid={logo.childImageSharp.fluid}
-            alt="Theta Tau Logo"
-            style={{
-              margin: 'auto',
-              width: '17%',
-              minWidth: '100px',
-            }}
-          />
           <h1>
-            <strong>Rush Spring 2020</strong>
+            <strong>Rush Spring 2021</strong>
           </h1>
           <p>
             <b>Theta Tau SJSU Colony</b>
           </p>
-          <div id="extend-height" />
         </section>
 
         <div className="rush">
           <section className="main style1 special">
-            <div className="grid-wrapper">
+            <div className="grid-wrapper mb-5">
               <div className="col-12">
                 <header className="major">
-                  <h2>Spring 2020 Rush Schedule</h2>
+                  <h2>Spring 2021 Rush Schedule</h2>
                 </header>
-                <span className="image fit">
-                  <Img
-                    fluid={rushSchedule.childImageSharp.fluid}
-                    alt="Theta Tau Logo"
-                  />
-                </span>
+                <div className="row justify-content-md-center">
+                  <div className="col-md-7">
+                    <span className="image fit">
+                      <Img
+                        fluid={rushSchedule.childImageSharp.fluid}
+                        alt="Theta Tau Logo"
+                      />
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -247,14 +241,7 @@ class Rush extends React.Component {
 
 export const query = graphql`
   query {
-    logo: file(relativePath: { eq: "thetatau.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    rushSchedule: file(relativePath: { eq: "springrushschedule.png" }) {
+    rushSchedule: file(relativePath: { eq: "springrushschedule1.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid

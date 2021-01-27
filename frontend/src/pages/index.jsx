@@ -46,25 +46,6 @@ class Homepage extends React.Component {
                 </Row>
               </Col>
             </Container>
-            {/* <div className="grid-wrapper">
-              <div className="col-6">
-                <header className="major">
-                  <h2>About Theta Tau</h2>
-                </header>
-                <p>
-                  Theta Tau is the largest and oldest Co-ed Engineering
-                  Fraternity in the United States. The purpose of Theta Tau is
-                  to develop and maintain a high standard of professional
-                  interest among its members, and to unite them in a strong bond
-                  of fraternal fellowship.
-                </p>
-              </div>
-              <div className="col-6">
-                <span className="image fit">
-                  <<Img fluid={pledgeEventPic.childImageSharp.fluid} />
-                </span>
-              </div>
-            </div> */}
           </section>
 
           <section id="two" className="main style2">
@@ -84,8 +65,8 @@ class Homepage extends React.Component {
                       <h2>A Message From Our Founding Regent</h2>
                     </header>
                     <p>
-                      "Hi, I’m Mark and I started a chapter of Theta Tau here at
-                      SJSU because I’m a firm believer in building things that
+                      "Hey, I’m Mark and I started Theta Tau here at SJSU
+                      because I’m a firm believer in building things that
                       matter. Theta Tau is a professional engineering fraternity
                       that combines two of the things that I think matter most:
                       career and community. Come check us out!"
@@ -109,7 +90,7 @@ class Homepage extends React.Component {
               </p>
               <Row>
                 <Col sm={4}>
-                  <span className="image fit">
+                  <span className="image fit pillar-pic">
                     <Img
                       fluid={brotherhood.childImageSharp.fluid}
                       alt="Brotherhood event"
@@ -132,7 +113,7 @@ class Homepage extends React.Component {
                   </ul>
                 </Col>
                 <Col sm={4}>
-                  <span className="image fit">
+                  <span className="image fit pillar-pic">
                     <Img
                       fluid={professional.childImageSharp.fluid}
                       alt="Professional event"
@@ -154,7 +135,7 @@ class Homepage extends React.Component {
                   </ul>
                 </Col>
                 <Col sm={4}>
-                  <span className="image fit">
+                  <span className="image fit pillar-pic">
                     <Img
                       fluid={community.childImageSharp.fluid}
                       alt="Community event"
@@ -187,19 +168,6 @@ class Homepage extends React.Component {
               <p>
                 <b>Check us out at Rush every semester!</b>
               </p>
-              <ul className="actions uniform">
-                <li>
-                  {/* <a href="/" className="button special">
-                    Subscribe
-                  </a>
-                </li>
-                <li>
-                  <a href="/rush" className="button">
-
-                    Rush Fall 2019
-                  </a> */}
-                </li>
-              </ul>
             </div>
           </section>
         </div>
@@ -224,7 +192,7 @@ export const query = graphql`
         }
       }
     }
-    community: file(relativePath: { eq: "rush-tabling-cropped.jpg" }) {
+    community: file(relativePath: { eq: "community-service.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -238,7 +206,7 @@ export const query = graphql`
         }
       }
     }
-    pledgeEventPic: file(relativePath: { eq: "pledge-event-cropped.png" }) {
+    pledgeEventPic: file(relativePath: { eq: "pledge-event-cropped.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
