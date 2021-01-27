@@ -50,7 +50,7 @@ const MeritForm = (props) => {
   const fetchAllPledges = async (currentPledgeClass) => {
     try {
       const apiResponse = await axios.get(
-        `/api/brothers/${currentPledgeClass}`
+        `/api/brothers/class/${currentPledgeClass}`
       );
       setPledges(apiResponse.data.currentPledges);
       setSelectedPledge(Object.keys(apiResponse.data.currentPledges)[0]);

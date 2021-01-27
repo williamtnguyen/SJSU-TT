@@ -21,24 +21,22 @@ require('../../../config/passport')(passport);
  * @route GET api/brothers
  * @desc retrieve all brothers
  */
-brotherController.get('/', (req, res) => {
-  Brother.find({}, (error, allBrothers) => {
-    if (error) {
-      return res.status(404).json({ message: `No brothers found: ${error}` });
-    }
-    const response = {
-      actives: [],
-      alumni: [],
-    };
-    allBrothers.forEach((brother) => {
-      if (brother.isGraduated) {
-        response.alumni.push(brother);
-      } else {
-        response.actives.push(brother);
+brotherController.get('/:tab', (req, res) => {
+  const { tab } = req.params;
+  const returnAlumni = tab === 'alumni';
+
+  Brother.find(
+    {
+      email: { $ne: 'sjsuthetatauwebmaster@gmail.com' },
+      isGraduated: { $eq: returnAlumni },
+    },
+    (error, allBrothers) => {
+      if (error) {
+        return res.status(404).json({ message: `No brothers found: ${error}` });
       }
-    });
-    res.status(200).json(response);
-  });
+      res.status(200).json(allBrothers);
+    }
+  );
 });
 
 /**
@@ -47,7 +45,7 @@ brotherController.get('/', (req, res) => {
  * @desc retrieve all bros in a pledge class
  */
 brotherController.get(
-  '/:pledgeClass',
+  '/class/:pledgeClass',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { pledgeClass } = req.params;
