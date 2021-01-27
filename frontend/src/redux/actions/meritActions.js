@@ -14,7 +14,7 @@ import {
 // eslint-disable-next-line import/prefer-default-export
 export const submitMeritRequest = (meritData) => (dispatch) => {
   axios
-    .post('/api/merits', meritData)
+    .post(`${process.env.BACKEND_API_URL}/api/merits`, meritData)
     .then((response) => {
       console.log(response);
       dispatch(
@@ -45,7 +45,7 @@ const updateMeritRequestSuccessMessage = (pledgeName) => {
  */
 export const dispatchMeritRequest = (dispatchData) => (dispatch) => {
   axios
-    .put('/api/merits', dispatchData)
+    .put(`${process.env.BACKEND_API_URL}/api/merits`, dispatchData)
     .then((response) => {
       console.log(response);
       dispatch(updateDispatchSuccessMessage(response.data.pledgeName));
@@ -84,7 +84,7 @@ export const deleteMeritRequest = (meritRequestID, pledgeName) => (
   dispatch
 ) => {
   axios
-    .delete(`/api/merits/${meritRequestID}`)
+    .delete(`${process.env.BACKEND_API_URL}/api/merits/${meritRequestID}`)
     .then((response) => {
       console.log(response);
       dispatch(updateDeleteSuccessMessage(pledgeName));

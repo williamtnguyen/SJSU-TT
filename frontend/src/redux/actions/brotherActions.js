@@ -16,7 +16,7 @@ import {
 export const registerBrother = (brotherData) => (dispatch) => {
   const formData = makeFormData(brotherData);
   axios
-    .post('/api/brothers/register', formData)
+    .post(`${process.env.BACKEND_API_URL}/api/brothers/register`, formData)
     .then((response) => {
       console.log(response);
       dispatch(updateRegisterSuccessMessage(brotherData.name));
@@ -57,7 +57,7 @@ export const updateRegisterSuccessMessage = (registeredBrother) => {
  */
 export const loginBrother = (brotherData) => (dispatch) => {
   axios
-    .post('/api/brothers/login', brotherData)
+    .post(`${process.env.BACKEND_API_URL}/api/brothers/login`, brotherData)
     .then((response) => {
       // Store token in localStorage, then as auth header in all axios requests
       const { token } = response.data;
@@ -90,7 +90,7 @@ export const editBrother = (brotherId, brotherName, editedFields) => (
   dispatch
 ) => {
   axios
-    .put('/api/brothers/me', editedFields)
+    .put(`${process.env.BACKEND_API_URL}/api/brothers/me`, editedFields)
     .then((response) => {
       console.log(response);
       dispatch(updateEditSuccessMessage(brotherName));

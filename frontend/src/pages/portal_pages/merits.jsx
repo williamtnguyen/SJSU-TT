@@ -28,7 +28,7 @@ const Merits = () => {
   const fetchPledges = async () => {
     try {
       const apiResponse = await axios.get(
-        `/api/brothers/class/${CURR_PLEDGE_CLASS}`
+        `${process.env.BACKEND_API_URL}/api/brothers/class/${CURR_PLEDGE_CLASS}`
       );
       setPledges(apiResponse.data.currentPledges);
       setCurrUserIsPledge(
