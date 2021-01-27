@@ -1,14 +1,15 @@
 const bcrypt = require('bcryptjs');
-// const actives = require('./actives');
-const actives = require('./actives-example');
-// const alumni = require('./alumni');
-const alumni = require('./actives-example');
+const actives = require('./actives');
+// const actives = require('./actives-example');
+const alumni = require('./alumni');
+// const alumni = require('./actives-example');
 const Brother = require('../../brothers/brother');
 
 const foosWithNoHeadshot = {
   'Andrew Each': true,
   'Parker Grube': true,
   'Manuel Chavez': true, // has headshot but no phoneNumber or studentID
+  'Nicholas Ong': true, // has headshot but no phoneNumber or studentID
 };
 
 /**
