@@ -4,15 +4,40 @@ import axios from 'axios';
 import brothersStyles from './brothers.module.scss';
 
 const Brothers = () => {
-  const [brothers, setBrothers] = useState({ actives: [], alumni: [] });
+  const [brothers, setBrothers] = useState([]);
+  const [selectedTab, setSelectedTab] = useState('Actives');
 
   useEffect(() => {
     fetchBrothers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchBrothers = async () => {
-    const apiResponse = await axios.get('/api/brothers/');
+    const tab = parseQueryParameter();
+    const apiResponse = await axios.get(`/api/brothers/${tab}`);
     setBrothers(apiResponse.data);
+  };
+
+  const parseQueryParameter = () => {
+    if (!window.location.search) {
+      window.history.replaceState(
+        null,
+        null,
+        `${window.location.origin}${window.location.pathname}?tab=actives`
+      );
+      return 'actives';
+    }
+    const tab = new URLSearchParams(window.location.search).get('tab');
+    if (tab !== 'actives' && tab !== 'alumni') {
+      window.history.replaceState(
+        null,
+        null,
+        `${window.location.origin}${window.location.pathname}?tab=actives`
+      );
+      return 'actives';
+    }
+    setSelectedTab(tab === 'actives' ? 'Actives' : 'Alumni');
+    return tab;
   };
 
   return (
@@ -32,10 +57,37 @@ const Brothers = () => {
         <section className="main">
           <div className="container">
             <header className="major">
-              <h2>Active Brothers</h2>
+              <h2>{selectedTab}</h2>
             </header>
+            <div className="dropdown mb-5">
+              <div className="d-flex justify-content-end">
+                <button
+                  className="btn btn-md dropdown-toggle float-right"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  {selectedTab}
+                </button>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <a
+                    className="dropdown-item"
+                    href={`/portal/brothers?tab=${
+                      selectedTab === 'Actives' ? 'alumni' : 'actives'
+                    }`}
+                  >
+                    {selectedTab === 'Actives' ? 'Alumni' : 'Actives'}
+                  </a>
+                </div>
+              </div>
+            </div>
             <div className="row">
-              {brothers.actives.map(
+              {brothers.map(
                 (brother) =>
                   brother.imagePath && (
                     <div
@@ -62,11 +114,11 @@ const Brothers = () => {
                             <span>{brother.major}</span>
                           </div>
                           <div className={brothersStyles.card__info__item}>
-                            <h6>Graduating Class:</h6>
+                            <h6>Graduating Year:</h6>
                             <span>{brother.graduatingYear}</span>
                           </div>
                           <div className={brothersStyles.card__info__item}>
-                            <h6>Pledge Class:</h6>
+                            <h6>Class:</h6>
                             <span>{brother.pledgeClass}</span>
                           </div>
                           <div className={brothersStyles.card__info__item}>

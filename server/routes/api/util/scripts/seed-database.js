@@ -85,7 +85,7 @@ const seedDB = () => {
       pledgeClass: graduatedBrother.pledgeClass,
       position: graduatedBrother.position,
       isGraduated: graduatedBrother.isGraduated,
-      isActive: true,
+      isActive: false,
       biography: '',
       imagePath: s3FilePath,
     });
