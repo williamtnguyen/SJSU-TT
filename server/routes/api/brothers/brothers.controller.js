@@ -196,6 +196,11 @@ brotherController.post('/login', (req, res) => {
     if (!brother) {
       return res.status(404).json({ emailnotfound: 'Email not found' });
     }
+    if (brother.isGraduated || !brother.isActive) {
+      return res
+        .status(403)
+        .json({ inactive: 'No inactive members or alumni beyond this point' });
+    }
 
     const isMatch = bcrypt.compareSync(req.body.password, brother.password);
     if (isMatch) {
