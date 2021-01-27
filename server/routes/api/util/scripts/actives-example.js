@@ -11,7 +11,7 @@ const actives = [
     studentID: '123456789',
     phoneNumber: '0123456789',
     major: MajorEnum.SOFTWARE,
-    graduatingYear: 9999,
+    graduatingYear: 3001,
     pledgeClass: PledgeClassEnum.FOUNDING,
     position: PositionEnum.WEBMASTER,
     isGraduated: true,

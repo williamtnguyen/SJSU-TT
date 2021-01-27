@@ -9,6 +9,7 @@ const MajorEnum = Object.freeze({
   INDUSTRIAL: 'Industrial Engineering',
   MATH: 'Math',
   MECHANICAL: 'Mechanical Engineering',
+  PACKAGING: 'Packaging',
   SOFTWARE: 'Software Engineering',
 });
 

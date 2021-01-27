@@ -33,7 +33,7 @@ const BrotherSchema = new Schema({
   },
   phoneNumber: {
     type: String,
-    required: true,
+    required: false,
   },
   password: {
     type: String,
@@ -46,7 +46,7 @@ const BrotherSchema = new Schema({
   },
   graduatingYear: {
     type: Number,
-    required: true,
+    required: false, // e-board never kept track of grad years for founding/alpha
   },
   pledgeClass: {
     type: String,
@@ -59,6 +59,10 @@ const BrotherSchema = new Schema({
     enum: Object.values(PositionEnum),
   },
   isGraduated: {
+    type: Boolean,
+    required: true,
+  },
+  isActive: {
     type: Boolean,
     required: true,
   },
