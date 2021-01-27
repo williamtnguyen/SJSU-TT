@@ -33,7 +33,7 @@ const seedDB = () => {
       s3FilePath = null;
     } else if (activeBrother.studentID) {
       s3FilePath = `${activeBrother.pledgeClass}/${activeBrother.studentID}.jpg`;
-    } else { 
+    } else {
       s3FilePath = `${activeBrother.pledgeClass}/${activeBrother.phoneNumber}.jpg`;
     }
 
@@ -85,11 +85,7 @@ const seedDB = () => {
       pledgeClass: graduatedBrother.pledgeClass,
       position: graduatedBrother.position,
       isGraduated: graduatedBrother.isGraduated,
-<<<<<<< HEAD
       isActive: false,
-=======
-      isActive: true,
->>>>>>> Add alumni info file and seed script
       biography: '',
       imagePath: s3FilePath,
     });
