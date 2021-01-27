@@ -17,6 +17,7 @@
     "aws-sdk": "^2.809.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "gatsby-cli": "^2.12.99",
     "is-empty": "^1.2.0",

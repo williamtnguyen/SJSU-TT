@@ -3,7 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fs = require('fs');
+const cors = require('cors');
 const AWS = require('aws-sdk');
+
+// Allows requests from diff origins
+app.use(cors());
 
 // Middleware for parsing form inputs
 app.use(bodyParser.urlencoded({ extended: false }));
