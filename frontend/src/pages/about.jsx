@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 class About extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
@@ -28,7 +30,7 @@ class About extends React.Component {
         <div className="about">
           <section className="main style1 special">
             <div className="row left-text about-block justify-content-md-center">
-              <div className="col-md-6">
+              <div className="col-md-6 col-sm-1">
                 <header className="major">
                   <h2>
                     <b>Fraternity History</b>
@@ -61,7 +63,7 @@ class About extends React.Component {
                   looking for?
                 </p>
               </div>
-              <div className="col-md-5">
+              <div className="col-md-5 col-sm-1">
                 <Img
                   fluid={history.childImageSharp.fluid}
                   alt="history-pic"
@@ -71,14 +73,14 @@ class About extends React.Component {
             </div>
 
             <div className="row left-text about-block justify-content-md-center">
-              <div className="col-md-5 d-flex align-items-bottom">
+              <div className="col-md-5 col-sm-1 d-flex align-items-bottom">
                 <Img
                   fluid={pledgeEventPic.childImageSharp.fluid}
                   alt="history-pic"
                   className="image fit history"
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 col-sm-1">
                 <header className="major">
                   <h2>
                     <b>Chapter History</b>
