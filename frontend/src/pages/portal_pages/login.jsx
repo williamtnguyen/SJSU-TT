@@ -56,6 +56,7 @@ const Login = (props) => {
                 <b>Login</b>
               </h1>
               <p>SJSU Theta Tau Actives Only</p>
+              <p className={loginStyles.error__message}>{errors.inactive}</p>
               <form noValidate onSubmit={(event) => handleSubmit(event)}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
