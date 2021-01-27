@@ -10,11 +10,14 @@ const Merits = () => {
   const [pledges, setPledges] = useState({});
   const [currUserIsPledge, setCurrUserIsPledge] = useState(true);
   const [fetchError, setFetchError] = useState(false);
+  const [noPledgeClass, setNoPledgeClass] = useState(false);
 
   useEffect(() => {
     if (didMount) {
       if (CURR_PLEDGE_CLASS) {
         fetchPledges();
+      } else {
+        setNoPledgeClass(true);
       }
     } else {
       setDidMount(true);
@@ -68,7 +71,11 @@ const Merits = () => {
             <b>{CURR_PLEDGE_CLASS} Class</b> merit count
           </h1>
           <div className={meritsStyles.card__content}>
-            {fetchError ? (
+            {noPledgeClass ? (
+              <div>
+                <p>No pledge class at the moment.</p>
+              </div>
+            ) : fetchError ? (
               <p>Cannot fetch pledge information.</p>
             ) : (
               <div className={meritsStyles.table__container}>
