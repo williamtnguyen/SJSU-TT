@@ -34,6 +34,7 @@ const PositionEnum = Object.freeze({
   RUSH: 'Rush',
   COMMUNITY_SERVICE: 'Community Service',
   FUNDRAISING: 'Fundraising',
+  TREASURER: 'Treasurer',
   PROFESSIONALISM: 'Professionalism',
   PUBLIC_RELATIONS: 'Public Relations',
   RISK_MANAGEMENT: 'Risk Management',

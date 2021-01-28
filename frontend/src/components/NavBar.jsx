@@ -29,9 +29,9 @@ const NavBar = () => {
           <Nav.Item>
             <GatsbyLink to="/rush">Rush</GatsbyLink>
           </Nav.Item>
-          <Nav.Item>
+          {/* <Nav.Item>
             <a href="https://forms.gle/vpZQPmBSQcVA2MeJ8">Apply</a>
-          </Nav.Item>
+          </Nav.Item> */}
           <Nav.Item>
             <GatsbyLink to="/portal/dashboard">Dashboard</GatsbyLink>
           </Nav.Item>
