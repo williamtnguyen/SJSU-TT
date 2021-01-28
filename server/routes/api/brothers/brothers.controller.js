@@ -250,7 +250,13 @@ brotherController.put(
     }
 
     Object.entries(delta).forEach(([key, value]) => {
-      req.user[key] = value;
+      if (key === 'password') {
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(value, salt);
+        req.user[key] = hash;
+      } else {
+        req.user[key] = value;
+      }
     });
     req.user.save();
 
