@@ -126,7 +126,7 @@ const MeritForm = (props) => {
               )}
               {noPledgeClass ? (
                 <div>
-                  <p>No pledge class at the moment</p>
+                  <p>No pledge class at the moment.</p>
                 </div>
               ) : fetchError ? (
                 <div>
