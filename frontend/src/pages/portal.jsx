@@ -24,7 +24,10 @@ import persistLogin from '../util/persist-login';
 const Portal = () => {
   useEffect(() => {
     // Checks localStorage for JWT and ensures authorized users can visit PrivateRoutes
-    persistLogin();
+    // (excludes brother page which is public facing)
+    if (!window.location.pathname.startsWith('/portal/brothers')) {
+      persistLogin();
+    }
   }, []);
 
   const siteTitle = 'Theta Tau | SJSU';

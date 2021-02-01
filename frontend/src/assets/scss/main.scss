@@ -33,8 +33,6 @@
 // JON-made
 
 .left-text {
-  display: inline-block;
-
   h3 {
     text-align: left;
   }
@@ -68,7 +66,7 @@ nav {
 }
 
 .history-text {
-  max-width: 80%;
+  width: 80%;
   position: relative;
   text-align: left;
   display: inline-block;
@@ -1103,6 +1101,10 @@ button,
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .rush-background {
