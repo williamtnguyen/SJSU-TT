@@ -83,13 +83,13 @@ class Homepage extends React.Component {
               <header className="major">
                 <h2>Our 3 Pillars</h2>
               </header>
-              <p>
+              <p className="mb-5">
                 The purpose of Theta Tau is to develop and maintain a high
                 standard of professional interest amongst its members, and to
                 unite them in a strong bond of fraternal fellowship.
               </p>
               <Row>
-                <Col sm={4}>
+                <Col lg={4} md={1}>
                   <span className="image fit pillar-pic">
                     <Img
                       fluid={brotherhood.childImageSharp.fluid}
@@ -112,7 +112,7 @@ class Homepage extends React.Component {
                     </li>
                   </ul>
                 </Col>
-                <Col sm={4}>
+                <Col lg={4} md={1}>
                   <span className="image fit pillar-pic">
                     <Img
                       fluid={professional.childImageSharp.fluid}
@@ -134,7 +134,7 @@ class Homepage extends React.Component {
                     </li>
                   </ul>
                 </Col>
-                <Col sm={4}>
+                <Col lg={4} md={1}>
                   <span className="image fit pillar-pic">
                     <Img
                       fluid={community.childImageSharp.fluid}
