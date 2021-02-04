@@ -6,14 +6,25 @@ import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
+import CompanyCarousel from '../components/CompanyCarousel';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import aboutStyles from './about.module.scss';
 
 class About extends React.Component {
   render() {
     const siteTitle = 'Theta Tau | SJSU';
     const { data } = this.props;
-    const { history, pledgeEventPic } = data;
+    const {
+      logo,
+      pledgeEventPic,
+      brotherhood1,
+      brotherhood2,
+      brotherhood3,
+      service1,
+      service2,
+      service3,
+    } = data;
 
     return (
       <section>
@@ -30,7 +41,7 @@ class About extends React.Component {
         <div className="about">
           <section className="main style1 special">
             <div className="row left-text about-block justify-content-md-center">
-              <div className="col-lg-6 col-md-1 d-flex align-items-md-center order-2 order-lg-1">
+              <div className="col-lg-6 col-md-12 d-flex align-items-md-center order-2 order-lg-1">
                 <div>
                   <header className="major">
                     <h2>
@@ -65,24 +76,28 @@ class About extends React.Component {
                   </p>
                 </div>
               </div>
-              <div className="col-lg-5 col-md-1 d-flex align-items-md-center order-1 order-lg-2">
-                <Img
-                  fluid={history.childImageSharp.fluid}
-                  alt="history-pic"
-                  className="image fit"
-                />
+              <div className="col-lg-5 col-md-12 order-1 order-lg-2">
+                <div className={aboutStyles.spinning__logo}>
+                  <Img
+                    fluid={logo.childImageSharp.fluid}
+                    alt="history-pic"
+                    style={{
+                      width: '50%',
+                    }}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="row left-text about-block justify-content-md-center">
-              <div className="col-lg-5 col-md-1 d-flex align-items-md-center">
+              <div className="col-lg-5 col-md-12 d-flex align-items-md-center">
                 <Img
                   fluid={pledgeEventPic.childImageSharp.fluid}
                   alt="history-pic"
                   className="image fit history"
                 />
               </div>
-              <div className="col-lg-6 col-md-1 d-flex align-items-md-center">
+              <div className="col-lg-6 col-md-12 d-flex align-items-md-center">
                 <div>
                   <header className="major">
                     <h2>
@@ -119,6 +134,125 @@ class About extends React.Component {
               </div>
             </div>
           </section>
+
+          <div className="row main style2 special about-block d-flex justify-content-start">
+            <div className="col-md-8 d-flex justify-content-start">
+              <div className={aboutStyles.pillar__container}>
+                <header className="major">
+                  <h2>
+                    <b>Brotherhood</b>
+                  </h2>
+                </header>
+                <p>
+                  Theta Tau facilitates an environment for like-minded
+                  individuals to grow professionally & personally, build
+                  life-long connections, and find community in their craft. From
+                  exciting rush events, to an immersive pledge process, to
+                  big-littles & fams, Theta Tau at SJSU continues to bring
+                  engineers of same and different disciplines together.
+                </p>
+              </div>
+            </div>
+            <div className="col-12 mt-4">
+              <div className={aboutStyles.pillar__container}>
+                <div className="row justify-content-center">
+                  <div className="col-lg-4">
+                    <Img
+                      fluid={brotherhood1.childImageSharp.fluid}
+                      alt="history-pic"
+                      className="image fit"
+                    />
+                  </div>
+                  <div className="col-lg-4">
+                    <Img
+                      fluid={brotherhood2.childImageSharp.fluid}
+                      alt="history-pic"
+                      className="image fit"
+                    />
+                  </div>
+                  <div className="col-lg-4">
+                    <Img
+                      fluid={brotherhood3.childImageSharp.fluid}
+                      alt="history-pic"
+                      className="image fit"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="row pl-5 pl-md-0 about-block d-flex justify-content-start">
+            <div className="col-md-8 d-flex justify-content-start">
+              <div className={aboutStyles.pillar__container}>
+                <header className="major">
+                  <h2>
+                    <b>Professionalism</b>
+                  </h2>
+                </header>
+                <p>
+                  Theta Tau at SJSU strives to put its members in the best
+                  position achieve their professional goals. Our members help
+                  eachother professionally through resume workshops,
+                  mock-interview preparation, and mentorship. Our organization
+                  has alumni and active members with industry experience at some
+                  pretty amazing companies:
+                </p>
+              </div>
+            </div>
+            <div className="col-12 mt-5">
+              <div className={aboutStyles.pillar__container}>
+                <div className={aboutStyles.job__carousel}>
+                  <CompanyCarousel />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row main style2 special about-block d-flex justify-content-start mb-0">
+          <div className="col-md-8 d-flex justify-content-start">
+            <div className={aboutStyles.pillar__container}>
+              <header className="major">
+                <h2>
+                  <b>Community Service</b>
+                </h2>
+              </header>
+              <p>
+                We love to get together and give back. As engineers, we believe
+                that it is important in our profession to have a sense of
+                empathy for our community. Our passion for community service
+                also ultimately strengthens our brotherhood.
+              </p>
+            </div>
+          </div>
+          <div className="col-12 mt-4">
+            <div className={aboutStyles.pillar__container}>
+              <div className="row justify-content-center">
+                <div className="col-lg-4">
+                  <Img
+                    fluid={service1.childImageSharp.fluid}
+                    alt="history-pic"
+                    className="image fit"
+                  />
+                </div>
+                <div className="col-lg-4">
+                  <Img
+                    fluid={service2.childImageSharp.fluid}
+                    alt="history-pic"
+                    className="image fit"
+                  />
+                </div>
+                <div className="col-lg-4">
+                  <Img
+                    fluid={service3.childImageSharp.fluid}
+                    alt="history-pic"
+                    className="image fit"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <Footer />
@@ -129,7 +263,7 @@ class About extends React.Component {
 
 export const query = graphql`
   query {
-    history: file(relativePath: { eq: "history.jpg" }) {
+    logo: file(relativePath: { eq: "thetatau.png" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -137,6 +271,48 @@ export const query = graphql`
       }
     }
     pledgeEventPic: file(relativePath: { eq: "pledge-event-cropped.png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    brotherhood1: file(relativePath: { eq: "about-brotherhood1.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    brotherhood2: file(relativePath: { eq: "about-brotherhood2.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    brotherhood3: file(relativePath: { eq: "about-brotherhood3.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    service1: file(relativePath: { eq: "about-service1.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    service2: file(relativePath: { eq: "about-service2.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    service3: file(relativePath: { eq: "about-service3.jpg" }) {
       childImageSharp {
         fluid {
           ...GatsbyImageSharpFluid
@@ -153,12 +329,37 @@ About.propTypes = {
         fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
-    history: PropTypes.shape({
+    pledgeEventPic: PropTypes.shape({
       childImageSharp: PropTypes.shape({
         fluid: PropTypes.shape.isRequired,
       }).isRequired,
     }).isRequired,
-    pledgeEventPic: PropTypes.shape({
+    brotherhood1: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.shape.isRequired,
+      }).isRequired,
+    }).isRequired,
+    brotherhood2: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.shape.isRequired,
+      }).isRequired,
+    }).isRequired,
+    brotherhood3: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.shape.isRequired,
+      }).isRequired,
+    }).isRequired,
+    service1: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.shape.isRequired,
+      }).isRequired,
+    }).isRequired,
+    service2: PropTypes.shape({
+      childImageSharp: PropTypes.shape({
+        fluid: PropTypes.shape.isRequired,
+      }).isRequired,
+    }).isRequired,
+    service3: PropTypes.shape({
       childImageSharp: PropTypes.shape({
         fluid: PropTypes.shape.isRequired,
       }).isRequired,

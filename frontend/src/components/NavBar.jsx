@@ -14,7 +14,11 @@ const NavBar = () => {
           Theta Tau | SJSU
         </span>
       </GatsbyLink>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-controls="basic-navbar-nav"
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav>
           <Nav.Item>
