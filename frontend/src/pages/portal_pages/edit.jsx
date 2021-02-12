@@ -18,7 +18,7 @@ const findDelta = (currentBrotherData, updatedBrotherData) => {
   const delta = {};
   Object.keys(updatedBrotherData).forEach((field) => {
     if (
-      (field !== 'password' || updatedBrotherData[field] !== '') &&
+      updatedBrotherData[field] !== '' &&
       currentBrotherData[field] !== updatedBrotherData[field]
     ) {
       delta[field] = updatedBrotherData[field];
@@ -34,13 +34,20 @@ const isEmpty = (object) => {
 const Edit = (props) => {
   const [currentBrotherData, setCurrentBrotherData] = useState({});
   const [newEmail, setNewEmail] = useState('');
+
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
   const [newBio, setNewBio] = useState('');
   const [newMajor, setNewMajor] = useState('');
   const [newGradYear, setNewGradYear] = useState('');
 
   const [fetchError, setFetchError] = useState(false);
   const [noEditError, setNoEditError] = useState(false);
+  const [samePasswordError, setSamePasswordError] = useState(false);
+  const [newPasswordMatchError, setNewPasswordMatchError] = useState(false);
   const [submitErrors, setSubmitErrors] = useState({});
 
   const [wasEdited, setWasEdited] = useState(false);
@@ -58,6 +65,8 @@ const Edit = (props) => {
       setWasEdited(true);
       setEditedBrother(props.auth.editedBrother);
       setSubmitErrors({});
+      setNewPasswordMatchError(false);
+      setSamePasswordError(false);
     } else if (props.errors) {
       setSubmitErrors(props.errors);
     }
@@ -91,8 +100,17 @@ const Edit = (props) => {
       case 'email':
         setNewEmail(event.target.value);
         break;
-      case 'password':
+      case 'isChangingPassword':
+        setIsChangingPassword(!isChangingPassword);
+        break;
+      case 'oldPassword':
+        setOldPassword(event.target.value);
+        break;
+      case 'newPassword':
         setNewPassword(event.target.value);
+        break;
+      case 'confirmNewPassword':
+        setConfirmNewPassword(event.target.value);
         break;
       case 'major':
         setNewMajor(event.target.value);
@@ -111,20 +129,33 @@ const Edit = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (isChangingPassword && oldPassword === newPassword) {
+      setSamePasswordError(true);
+      return;
+    }
+    if (isChangingPassword && newPassword !== confirmNewPassword) {
+      setNewPasswordMatchError(true);
+      return;
+    }
+
     const formData = {
       email: newEmail,
-      password: newPassword,
       major: newMajor,
       graduatingYear: newGradYear,
       biography: newBio,
     };
-
     const delta = findDelta(currentBrotherData, formData);
-    const fieldsEdited = !isEmpty(delta);
+    const fieldsEdited = !isEmpty(delta) || isChangingPassword;
+
     if (!fieldsEdited) {
       setNoEditError(true);
     } else {
       setNoEditError(false);
+
+      if (isChangingPassword) {
+        delta.oldPassword = oldPassword;
+        delta.newPassword = newPassword;
+      }
       // Make API call and set global state
       props.editBrother(props.auth.user.id, props.auth.user.name, delta);
     }
@@ -158,7 +189,17 @@ const Edit = (props) => {
               {wasEdited && <p>{editedBrother} was successfully edited!</p>}
               {noEditError && (
                 <p className={editStyles.error__message}>
-                  No fields were edited
+                  No fields were edited.
+                </p>
+              )}
+              {samePasswordError && (
+                <p className={editStyles.error__message}>
+                  Cannot reuse the same password.
+                </p>
+              )}
+              {newPasswordMatchError && (
+                <p className={editStyles.error__message}>
+                  New passwords do not match.
                 </p>
               )}
               {fetchError ? (
@@ -188,21 +229,77 @@ const Edit = (props) => {
                     </span>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      id="password"
-                      placeholder="Enter new password"
-                      onChange={(event) => handleChange(event)}
-                      error={submitErrors.name}
-                      className={classnames('form-control', {
-                        'is-invalid': submitErrors.password,
-                      })}
-                    />
-                    <span className="invalid-feedback">
-                      {submitErrors.password}
-                    </span>
+                    <div className="form-check pl-0">
+                      <input
+                        type="checkbox"
+                        id="isChangingPassword"
+                        onChange={(event) => handleChange(event)}
+                        className="form-check-input"
+                      />
+                      <label
+                        htmlFor="isChangingPassword"
+                        className="form-check-label"
+                      >
+                        Changing your password?
+                      </label>
+                    </div>
                   </div>
+                  {isChangingPassword && (
+                    <div className="form-group">
+                      <label htmlFor="oldPassword">Old Password</label>
+                      <input
+                        type="password"
+                        id="oldPassword"
+                        placeholder="Enter old password"
+                        onChange={(event) => handleChange(event)}
+                        error={submitErrors.password}
+                        className={classnames('form-control', {
+                          'is-invalid': submitErrors.password,
+                        })}
+                      />
+                      <span className="invalid-feedback">
+                        {submitErrors.password}
+                      </span>
+                    </div>
+                  )}
+                  {isChangingPassword && (
+                    <div className="form-group">
+                      <label htmlFor="newPassword">New Password</label>
+                      <input
+                        type="password"
+                        id="newPassword"
+                        placeholder="Enter new password"
+                        onChange={(event) => handleChange(event)}
+                        error={submitErrors.password}
+                        className={classnames('form-control', {
+                          'is-invalid': submitErrors.password,
+                        })}
+                      />
+                      <span className="invalid-feedback">
+                        {submitErrors.password}
+                      </span>
+                    </div>
+                  )}
+                  {isChangingPassword && (
+                    <div className="form-group">
+                      <label htmlFor="confirmNewPassword">
+                        Confirm New Password
+                      </label>
+                      <input
+                        type="password"
+                        id="confirmNewPassword"
+                        placeholder="Confirm new password"
+                        onChange={(event) => handleChange(event)}
+                        error={submitErrors.password}
+                        className={classnames('form-control', {
+                          'is-invalid': submitErrors.password,
+                        })}
+                      />
+                      <span className="invalid-feedback">
+                        {submitErrors.password}
+                      </span>
+                    </div>
+                  )}
                   <div className="form-group">
                     <label htmlFor="major">Major</label>
                     <select

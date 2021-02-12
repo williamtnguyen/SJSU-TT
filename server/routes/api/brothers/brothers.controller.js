@@ -243,17 +243,18 @@ brotherController.put(
     }
 
     if (
-      delta.password &&
-      bcrypt.compareSync(delta.password, req.user.password)
+      delta.oldPassword &&
+      delta.newPassword &&
+      !bcrypt.compareSync(delta.oldPassword, req.user.password)
     ) {
-      return res.status(400).json({ password: 'Cannot reuse password' });
+      return res.status(400).json({ password: 'Old password was incorrect' });
     }
 
     Object.entries(delta).forEach(([key, value]) => {
-      if (key === 'password') {
+      if (key === 'newPassword') {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(value, salt);
-        req.user[key] = hash;
+        req.user.password = hash;
       } else {
         req.user[key] = value;
       }
