@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": ["eslint-config-airbnb", "eslint-config-react-app"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": false
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "react/no-unescaped-entities": 0,
+    "arrow-body-style": "off",
+    "react/jsx-one-expression-per-line": [0],
+    "object-curly-newline": "off",
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/no-did-update-set-state": "off",
+    "operator-linebreak": "off",
+    "no-console": "off",
+    "comma-dangle": "off",
+    "implicit-arrow-linebreak": "off",
+    "no-nested-ternary": "off",
+    "react/jsx-curly-newline": "off",
+    "import/newline-after-import": "off",
+    "import/first": 1,
+    "react/self-closing-comp": "off",
+    "react/jsx-closing-tag-location": "off",
+    "import/no-cycle": "off"
+  }
+}

@@ -1,0 +1,46 @@
+.root {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.nav__logo {
+  display: flex;
+}
+
+#nav__crest {
+  height: 40px;
+}
+
+#nav__main {
+  font-size: 25px;
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+#sjsu__text {
+  font-weight: 300;
+}
+
+.link h1 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 400;
+  color: #932432;
+  transition: 0.3s;
+}
+
+.link h1:hover {
+  color: #d14254;
+}
+
+.nav__items {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+}
