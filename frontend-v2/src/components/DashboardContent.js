@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { DashboardContext } from '../pages/dashboard';
+import AccountOverview from './dashboard-content/AccountOverview';
+import EditProfile from './dashboard-content/EditProfile';
 
 const ContentMap = {
-  accountOverview: <h1>Account Overview</h1>,
-  editProfile: <h1>Edit Profile</h1>,
+  accountOverview: <AccountOverview />,
+  editProfile: <EditProfile />,
   meritTable: <h1>Merits Table</h1>,
   meritForm: <h1>Merits Forms</h1>,
   calendar: <h1>Calendar</h1>,

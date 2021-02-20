@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 import thetaTauCrest from '../images/theta-tau-crest-black.png';
 import navigationStyles from '../styles/components/navigation-bar.module.scss';
 
 const NavigationBar = () => {
+  const { isAuthenticated, user } = useContext(UserContext);
+
   return (
     <div className={`${navigationStyles.root} container`}>
       <div>
@@ -31,7 +34,11 @@ const NavigationBar = () => {
           <h1>Rush</h1>
         </Link>
         <Link to="/dashboard" className={navigationStyles.link}>
-          <h1>Dashboard</h1>
+          {isAuthenticated ? (
+            <h1>{user.name.split(' ')[0]}</h1>
+          ) : (
+            <h1>Dashboard</h1>
+          )}
         </Link>
       </div>
     </div>

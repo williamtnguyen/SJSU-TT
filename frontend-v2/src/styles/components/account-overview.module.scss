@@ -1,0 +1,35 @@
+.root {
+  padding: 5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.headshot {
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid lightgrey;
+}
+
+.name {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.profile__item {
+  margin-bottom: 0.5rem;
+
+  h3 {
+    display: inline;
+    margin-right: 10px;
+    font-weight: 600;
+  }
+  span {
+    font-weight: 500;
+  }
+}

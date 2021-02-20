@@ -30,6 +30,8 @@
     "import/first": 1,
     "react/self-closing-comp": "off",
     "react/jsx-closing-tag-location": "off",
-    "import/no-cycle": "off"
+    "import/no-cycle": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }
