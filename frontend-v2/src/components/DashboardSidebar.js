@@ -28,7 +28,7 @@ const DashboardSidebar = () => {
         <Menu.Item key="accountOverview">Account overview</Menu.Item>
         <Menu.Item key="editProfile">Edit your profile</Menu.Item>
         <Menu.Item key="meritTable">Pledge merits table</Menu.Item>
-        <Menu.Item key="meritForm">Pledge merit form</Menu.Item>
+        <Menu.Item key="meritRequest">Submit a merit request</Menu.Item>
         <Menu.Item key="calendar">Event calendar</Menu.Item>
       </SubMenu>
       <SubMenu

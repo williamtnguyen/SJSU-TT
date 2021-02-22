@@ -59,15 +59,16 @@ brotherController.get(
 
       const response = {
         userPledgeClass: '',
-        currentPledges: {},
+        currentPledges: [],
       };
       response.userPledgeClass = req.user.pledgeClass;
       pledges.forEach((pledge) => {
-        response.currentPledges[pledge.name] = {
-          id: pledge.id,
+        response.currentPledges.push({
+          key: pledge.id,
+          name: pledge.name,
           studentID: pledge.studentID,
           meritCount: pledge.meritCount,
-        };
+        });
       });
       res.status(200).json(response);
     });
@@ -161,6 +162,7 @@ brotherController.post(
         pledgeClass: req.body.pledgeClass,
         position: req.body.position,
         isGraduated: req.body.isGraduated === 'true',
+        isActive: req.body.isActive === 'true',
         biography: '',
         imagePath: filePath,
       });

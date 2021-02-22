@@ -1,0 +1,30 @@
+.root {
+  padding: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.title {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  img {
+    height: 40px;
+    margin-left: 10px;
+  }
+}

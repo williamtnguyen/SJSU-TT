@@ -2,7 +2,7 @@
   padding: 5rem;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
 }
 
 .form__container {
@@ -42,19 +42,6 @@
   color: green;
 }
 
-.password__toggle {
-  display: flex;
-
-  p {
-    margin-right: 1rem;
-  }
-}
-
-.password__fields,
-.other__fields {
-  margin-top: 0.75rem;
-}
-
 .number__input {
   width: 100%;
 }
@@ -66,14 +53,4 @@
   font-size: 1rem;
   font-weight: 400;
   margin-top: 1rem;
-}
-
-.illustration__col {
-  display: flex;
-  align-items: center;
-}
-
-.illustration img {
-  max-height: 100%;
-  max-width: 100%;
 }

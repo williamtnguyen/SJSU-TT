@@ -1,6 +1,16 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { Row, Col, Form, Input, Button, Switch } from 'antd';
+import {
+  Row,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Button,
+  Switch,
+  Spin,
+} from 'antd';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { UserContext } from '../../contexts/UserContext';
 import editStyles from '../../styles/components/edit-profile.module.scss';
@@ -8,7 +18,9 @@ import editStyles from '../../styles/components/edit-profile.module.scss';
 import thetaTauCrest from '../../images/theta-tau-crest-black.png';
 import editIllustration from '../../images/edit-illustration.png';
 
+import { MajorEnum } from '../../util/enums/brother-enums';
 const { TextArea } = Input;
+const { Option } = Select;
 
 const EditProfile = () => {
   const { user } = useContext(UserContext);
@@ -17,6 +29,7 @@ const EditProfile = () => {
 
   const [isChangingPassword, setIsChangingPassword] = useState(false);
 
+  const [isFetching, setIsFetching] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [fetchError, setFetchError] = useState(false);
   const [noEditError, setNoEditError] = useState(false);
@@ -48,6 +61,7 @@ const EditProfile = () => {
     } catch (error) {
       setFetchError(true);
     }
+    setIsFetching(false);
   };
 
   const handleToggle = (event) => {
@@ -55,14 +69,16 @@ const EditProfile = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.error('Failed:', errorInfo);
   };
 
   const onFinish = async (values) => {
+    console.log(values);
     setFormSubmitted(true);
 
     if (isChangingPassword && values.oldPassword === values.newPassword) {
       setSamePassError(true);
+      setFormSubmitted(false);
       return;
     }
     if (
@@ -70,6 +86,7 @@ const EditProfile = () => {
       values.newPassword !== values.confirmNewPassword
     ) {
       setNewPassMatchError(true);
+      setFormSubmitted(false);
       return;
     }
 
@@ -84,6 +101,7 @@ const EditProfile = () => {
 
     if (!fieldsEdited) {
       setNoEditError(true);
+      setFormSubmitted(false);
     } else {
       setNoEditError(false);
 
@@ -93,7 +111,7 @@ const EditProfile = () => {
       }
 
       try {
-        axios.put(
+        await axios.put(
           `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/me`,
           delta
         );
@@ -109,121 +127,151 @@ const EditProfile = () => {
 
   return (
     <div className={editStyles.root}>
-      <Row gutter={32} className={editStyles.row}>
-        <Col sm={24} md={12}>
-          <div className={editStyles.form__container}>
-            <div className={editStyles.title}>
-              <h1>Edit Profile</h1>
-              <img src={thetaTauCrest} alt="theta-tau-crest" />
-            </div>
-            {submitSuccess && (
-              <p className={editStyles.success__message}>
-                {user.name} successfully updated.
-              </p>
-            )}
-
-            <Form
-              form={form}
-              layout="vertical"
-              name="basic"
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-            >
-              <Form.Item
-                label="Email"
-                name="email"
-                validateStatus={formErrors ? 'error' : ''}
-                help={errorMessages.email}
-              >
-                <Input placeholder="Please enter email" />
-              </Form.Item>
-
-              <div className={editStyles.password__toggle}>
-                <p>Changing password?</p>
-                <Switch
-                  checkedChildren={<CheckOutlined />}
-                  unCheckedChildren={<CloseOutlined />}
-                  onChange={handleToggle}
-                />
+      {isFetching ? (
+        <Spin size="large" />
+      ) : fetchError ? (
+        <h1>Could not fetch user data.</h1>
+      ) : (
+        <Row gutter={32} className={editStyles.row}>
+          <Col sm={24} md={12}>
+            <div className={editStyles.form__container}>
+              <div className={editStyles.title}>
+                <h1>Edit Profile</h1>
+                <img src={thetaTauCrest} alt="theta-tau-crest" />
               </div>
-
-              {isChangingPassword && (
-                <div className={editStyles.password__fields}>
-                  <Form.Item
-                    label="Old Password"
-                    name="oldPassword"
-                    validateStatus={formErrors ? 'error' : ''}
-                    help={errorMessages.password}
-                  >
-                    <Input.Password placeholder="Please enter old password" />
-                  </Form.Item>
-                  <Form.Item
-                    label="New Password"
-                    name="newPassword"
-                    validateStatus={formErrors ? 'error' : ''}
-                    help={errorMessages.password}
-                  >
-                    <Input.Password placeholder="Please enter new password" />
-                  </Form.Item>
-                  <Form.Item
-                    label="Confirm New Password"
-                    name="confirmNewPassword"
-                    validateStatus={formErrors ? 'error' : ''}
-                    help={errorMessages.password}
-                  >
-                    <Input.Password placeholder="Please confirm new password" />
-                  </Form.Item>
-                </div>
+              {noEditError && (
+                <p className={editStyles.error__message}>No edits were made.</p>
+              )}
+              {samePassError && (
+                <p className={editStyles.error__message}>
+                  You may not use the same password.
+                </p>
+              )}
+              {newPassMatchError && (
+                <p className={editStyles.error__message}>
+                  Passwords do not match.
+                </p>
+              )}
+              {submitSuccess && (
+                <p className={editStyles.success__message}>
+                  {user.name} successfully updated.
+                </p>
               )}
 
-              <div className={editStyles.other__fields}>
+              <Form
+                form={form}
+                layout="vertical"
+                name="basic"
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+              >
                 <Form.Item
-                  label="Major"
-                  name="major"
+                  label="Email"
+                  name="email"
                   validateStatus={formErrors ? 'error' : ''}
-                  help={errorMessages.major}
+                  help={errorMessages.email}
                 >
-                  <Input placeholder="Please enter major" />
+                  <Input placeholder="Please enter email" />
                 </Form.Item>
-                <Form.Item
-                  label="Graduating Year"
-                  name="graduatingYear"
-                  validateStatus={formErrors ? 'error' : ''}
-                  help={errorMessages.major}
-                >
-                  <Input placeholder="Please enter graduating year" />
-                </Form.Item>
-                <Form.Item
-                  label="Biography"
-                  name="biography"
-                  rules={[{ required: false }]}
-                  validateStatus={formErrors ? 'error' : ''}
-                  help={errorMessages.major}
-                >
-                  <TextArea placeholder="Please enter biography" />
-                </Form.Item>
-              </div>
 
-              <Form.Item>
-                <Button
-                  type="primary"
-                  shape="round"
-                  htmlType="submit"
-                  loading={formSubmitted}
-                  className={editStyles.submit__button}
-                >
-                  EDIT PROFILE
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-        </Col>
-        <Col sm={24} md={12} className={editStyles.illustration__col}>
-          <div className={editStyles.illustration}>
-            <img src={editIllustration} alt="edit-illustration" />
-          </div>
-        </Col>
-      </Row>
+                <div className={editStyles.password__toggle}>
+                  <p>Changing password?</p>
+                  <Switch
+                    checkedChildren={<CheckOutlined />}
+                    unCheckedChildren={<CloseOutlined />}
+                    onChange={handleToggle}
+                  />
+                </div>
+
+                {isChangingPassword && (
+                  <div className={editStyles.password__fields}>
+                    <Form.Item
+                      label="Old Password"
+                      name="oldPassword"
+                      validateStatus={formErrors ? 'error' : ''}
+                      help={errorMessages.password}
+                    >
+                      <Input.Password placeholder="Please enter old password" />
+                    </Form.Item>
+                    <Form.Item
+                      label="New Password"
+                      name="newPassword"
+                      validateStatus={formErrors ? 'error' : ''}
+                      help={errorMessages.password}
+                    >
+                      <Input.Password placeholder="Please enter new password" />
+                    </Form.Item>
+                    <Form.Item
+                      label="Confirm New Password"
+                      name="confirmNewPassword"
+                      validateStatus={formErrors ? 'error' : ''}
+                      help={errorMessages.password}
+                    >
+                      <Input.Password placeholder="Please confirm new password" />
+                    </Form.Item>
+                  </div>
+                )}
+
+                <div className={editStyles.other__fields}>
+                  <Form.Item
+                    label="Major"
+                    name="major"
+                    validateStatus={formErrors ? 'error' : ''}
+                    help={errorMessages.major}
+                  >
+                    <Select defaultValue={currBrotherData.major}>
+                      {Object.values(MajorEnum).map((majorListItem) => {
+                        return (
+                          <Option key={majorListItem} value={majorListItem}>
+                            {majorListItem}
+                          </Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+                  <Form.Item
+                    label="Graduating Year"
+                    name="graduatingYear"
+                    validateStatus={formErrors ? 'error' : ''}
+                    help={errorMessages.major}
+                  >
+                    <InputNumber
+                      placeholder="Please enter graduating year"
+                      className={editStyles.number__input}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    label="Biography"
+                    name="biography"
+                    rules={[{ required: false }]}
+                    validateStatus={formErrors ? 'error' : ''}
+                    help={errorMessages.major}
+                  >
+                    <TextArea placeholder="Please enter biography" />
+                  </Form.Item>
+                </div>
+
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    shape="round"
+                    htmlType="submit"
+                    loading={formSubmitted}
+                    className={editStyles.submit__button}
+                  >
+                    EDIT PROFILE
+                  </Button>
+                </Form.Item>
+              </Form>
+            </div>
+          </Col>
+          <Col sm={24} md={12} className={editStyles.illustration__col}>
+            <div className={editStyles.illustration}>
+              <img src={editIllustration} alt="edit-illustration" />
+            </div>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 };
@@ -237,7 +285,9 @@ const findDelta = (currentBrotherData, updatedBrotherData) => {
   const delta = {};
   Object.keys(updatedBrotherData).forEach((field) => {
     if (
-      (updatedBrotherData[field] === '' && field === 'biography') ||
+      (field === 'biography' &&
+        currentBrotherData[field] !== '' &&
+        updatedBrotherData[field] === '') ||
       (updatedBrotherData[field] !== '' &&
         currentBrotherData[field] !== updatedBrotherData[field])
     ) {
