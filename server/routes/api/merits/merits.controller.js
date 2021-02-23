@@ -186,12 +186,13 @@ meritController.put(
         });
       }
 
-      // bye bye pledge
-      if (pledgeObject.meritCount <= 0) {
-        await Brother.deleteOne({ _id: pledgeID });
-      } else {
-        pledgeObject.save();
-      }
+      // // bye bye pledge
+      // if (pledgeObject.meritCount <= 0) {
+      //   await Brother.deleteOne({ _id: pledgeID });
+      // } else {
+      //   pledgeObject.save();
+      // }
+      pledgeObject.save();
     }
 
     const meritObject = await Merit.findById(meritObjectID);

@@ -72,7 +72,7 @@ const BrotherSchema = new Schema({
   },
   meritCount: {
     type: Number,
-    default: 15,
+    default: 0,
     required: isCurrentlyPledging,
   },
   imagePath: {

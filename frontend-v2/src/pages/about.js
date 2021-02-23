@@ -150,7 +150,6 @@ const About = () => {
                 alt="brotherhood-pic"
                 className={aboutStyles.service__picture}
               />
-              <p>Alum Rock Clean Up</p>
             </Col>
             <Col md={8} className={aboutStyles.image__col}>
               <img
@@ -158,7 +157,6 @@ const About = () => {
                 alt="brotherhood-pic"
                 className={aboutStyles.service__picture}
               />
-              <p>Tree Planting</p>
             </Col>
             <Col md={8} className={aboutStyles.image__col}>
               <img
@@ -166,7 +164,6 @@ const About = () => {
                 alt="brotherhood-pic"
                 className={aboutStyles.service__picture}
               />
-              <p>Soup Kitchen Volunteering</p>
             </Col>
           </Row>
         </div>
