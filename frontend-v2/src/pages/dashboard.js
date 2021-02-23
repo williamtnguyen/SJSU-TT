@@ -15,8 +15,11 @@ const Dashboard = () => {
   const [didMount, setDidMount] = useState(false);
   const { isAuthenticated } = useContext(UserContext);
 
+  const [brotherData, setBrotherData] = useState({});
   const [selectedTabIndex, setSelectedTabIndex] = useState('accountOverview');
   const dashboardContext = {
+    brotherData,
+    setBrotherData,
     selectedTabIndex,
     setSelectedTabIndex,
   };

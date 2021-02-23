@@ -2,16 +2,18 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Spin, Button } from 'antd';
 import { UserContext } from '../../contexts/UserContext';
+import { DashboardContext } from '../../pages/dashboard';
 import overviewStyles from '../../styles/components/account-overview.module.scss';
 
-const AccountOverview = (props) => {
+const AccountOverview = () => {
   const { setIsAuthenticated, setUser } = useContext(UserContext);
-  const [brotherData, setBrotherData] = useState({});
+  const { brotherData, setBrotherData } = useContext(DashboardContext);
   const [isFetching, setIsFetching] = useState(true);
   const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     fetchCurrBrotherData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCurrBrotherData = async () => {
