@@ -47,7 +47,7 @@ const MeritManagerSummary = ({
 
         {noSelectionError && (
           <p className={summaryStyles.error__message}>
-            Nothing is selected. Cannot dispatch/delete request
+            Nothing is selected. Cannot dispatch/delete request.
           </p>
         )}
         {wasDispatched && (

@@ -33,3 +33,20 @@
     font-weight: 500;
   }
 }
+
+.signout__button {
+  height: 2.5rem;
+  padding: 0 2rem;
+  background-color: #932432;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  color: white;
+
+  &:hover,
+  &:focus {
+    background-color: #d14254;
+    color: white;
+  }
+}

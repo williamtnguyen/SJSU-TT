@@ -1,0 +1,129 @@
+.root {
+  height: fit-content;
+  width: 100%;
+}
+
+.banner {
+  height: 65vh;
+  width: 100%;
+  position: relative;
+}
+
+.banner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.banner__text,
+.banner__overlay {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.banner__overlay {
+  background-color: black;
+  opacity: 0.5;
+}
+
+.banner__text {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.banner__text h1 {
+  color: white;
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.logo__container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 50vh;
+  }
+}
+
+.chapter__history__block,
+.brotherhood__block,
+.professionalism__block,
+.community__service__block {
+  padding: 5rem 0;
+  height: fit-content;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    font-size: 2rem;
+    color: #6d2e2e;
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+}
+
+.brotherhood__block,
+.community__service__block {
+  background-color: #d9dcdf;
+}
+
+.image__col {
+  margin-top: 2rem;
+}
+
+@media (max-width: 800px) {
+  .image__col {
+    margin-bottom: 2rem;
+  }
+}
+
+.brotherhood__picture,
+.service__picture {
+  width: 95%;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+}
+
+.service__picture {
+  margin-bottom: 1rem;
+}
+
+.job__carousel {
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.job__carousel::before,
+.job__carousel::after {
+  position: absolute;
+  top: 0;
+  width: 10rem;
+  height: 100%;
+  content: '';
+  z-index: 1;
+}
+
+.job__carousel::before {
+  left: 0;
+  background: linear-gradient(to right, #fff 0%, transparent 100%);
+}
+
+.job__carousel::after {
+  right: 0;
+  background: linear-gradient(to left, #fff 0%, transparent 100%);
+}

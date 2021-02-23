@@ -32,7 +32,7 @@ const NavigationBar = () => {
           <Link to="/about" className={navigationStyles.link}>
             <h1>About</h1>
           </Link>
-          <Link to="/brothers" className={navigationStyles.link}>
+          <Link to="/brothers?tab=actives" className={navigationStyles.link}>
             <h1>Brothers</h1>
           </Link>
           <Link to="/rush" className={navigationStyles.link}>
@@ -69,7 +69,7 @@ const NavigationBar = () => {
           <Link to="/about" className={navigationStyles.link}>
             <h1>About</h1>
           </Link>
-          <Link to="/brothers" className={navigationStyles.link}>
+          <Link to="/brothers?tab=actives" className={navigationStyles.link}>
             <h1>Brothers</h1>
           </Link>
           <Link to="/rush" className={navigationStyles.link}>

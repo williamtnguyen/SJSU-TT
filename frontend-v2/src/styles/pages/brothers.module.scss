@@ -1,0 +1,146 @@
+.root {
+  height: fit-content;
+  width: 100%;
+}
+
+.banner {
+  height: 65vh;
+  width: 100%;
+  position: relative;
+}
+
+.banner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.banner__text,
+.banner__overlay {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.banner__overlay {
+  background-color: black;
+  opacity: 0.5;
+}
+
+.banner__text {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.banner__text h1 {
+  color: white;
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.headshots__grid__container {
+  height: fit-content;
+  padding: 5rem 0;
+}
+
+.dropdown__container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 3rem;
+}
+
+.dropdown__button {
+  height: 2.5rem;
+  padding: 0 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.spinner__container {
+  display: flex;
+  justify-content: center;
+}
+
+.card__container {
+  height: 250px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    .card__overlay {
+      opacity: 0.9;
+    }
+
+    .card__info {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .card__container {
+    height: 50vh;
+  }
+}
+
+.brother__headshot__container {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.brother__headshot {
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+
+  // helps optimize browser repaints
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.card__overlay {
+  opacity: 0;
+  background: #ffffff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+.card__info {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  padding: 30px 20px;
+  text-align: left;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+.card__info__item {
+  margin-bottom: 5px;
+
+  h3 {
+    display: inline;
+    margin-right: 5px;
+    font-weight: 400;
+  }
+}
+
+.brother__name {
+  font-weight: 400;
+  margin-top: 20px;
+  text-align: center;
+}

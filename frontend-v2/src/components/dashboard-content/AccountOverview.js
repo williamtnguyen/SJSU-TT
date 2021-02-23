@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { Spin } from 'antd';
+import { Spin, Button } from 'antd';
+import { UserContext } from '../../contexts/UserContext';
 import overviewStyles from '../../styles/components/account-overview.module.scss';
 
-const AccountOverview = () => {
+const AccountOverview = (props) => {
+  const { setIsAuthenticated, setUser } = useContext(UserContext);
   const [brotherData, setBrotherData] = useState({});
   const [isFetching, setIsFetching] = useState(true);
   const [fetchError, setFetchError] = useState(false);
@@ -22,6 +24,12 @@ const AccountOverview = () => {
     } catch (error) {
       setFetchError(true);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setUser({});
+    setIsAuthenticated(false);
   };
 
   return (
@@ -57,6 +65,15 @@ const AccountOverview = () => {
           <div className={overviewStyles.profile__item}>
             <h3>Graduating Year:</h3>
             <span>{brotherData.graduatingYear}</span>
+          </div>
+          <div className={overviewStyles.profile__item}>
+            <Button
+              onClick={handleLogout}
+              shape="round"
+              className={overviewStyles.signout__button}
+            >
+              SIGN OUT
+            </Button>
           </div>
         </>
       )}

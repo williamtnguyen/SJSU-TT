@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import CoverCarousel from '../components/CoverCarousel';
-import Footer from '../components/Footer';
 
 import aboutThetaTau from '../images/pledge-event-cropped.jpg';
 import brotherhoodIcon from '../images/brotherhood-icon.png';
@@ -89,8 +88,6 @@ const Landing = () => {
           <p>Learn more about us at rush!</p>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };
