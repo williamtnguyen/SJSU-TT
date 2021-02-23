@@ -65,6 +65,8 @@ meritController.get(
           issuerName: merit.issuerName,
           operation: merit.operation,
           description: merit.description,
+          isDispatched: merit.isDispatched,
+          isApproved: merit.isApproved,
         };
         if (merit.isDispatched) {
           response.dispatched.push(reducedMerit);

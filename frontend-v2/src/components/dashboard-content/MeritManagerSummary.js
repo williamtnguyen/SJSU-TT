@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import {
@@ -77,6 +78,18 @@ const MeritManagerSummary = ({
           <h3>Description:</h3>
           <p>{selectedMeritRequest.description}</p>
         </div>
+      </div>
+      <div className={summaryStyles.summary__item}>
+        <h3>Status:</h3>
+        {!isEmpty(selectedMeritRequest) && (
+          <span>
+            {!selectedMeritRequest.isDispatched
+              ? 'PENDING'
+              : selectedMeritRequest.isApproved
+              ? 'APPROVED'
+              : 'DISAPPROVED'}
+          </span>
+        )}
       </div>
 
       {selectedTab === MeritManagerTabEnum.PENDING ? (
