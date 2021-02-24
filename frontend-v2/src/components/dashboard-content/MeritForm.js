@@ -12,6 +12,7 @@ const { Option } = Select;
 
 const MeritForm = () => {
   const { user } = useContext(UserContext);
+  const [form] = Form.useForm();
   const [pledges, setPledges] = useState([]);
   const [operation, setOperation] = useState(MeritOperationEnum.DEMERIT);
 
@@ -58,9 +59,9 @@ const MeritForm = () => {
   const onFinish = async (values) => {
     setFormSubmitted(true);
     const meritData = {
-      pledgeName: pledges[values.pledgeIndex].name,
+      pledgeName: values.pledgeIndex ? pledges[values.pledgeIndex].name : null,
       issuerName: user.name,
-      pledgeID: pledges[values.pledgeIndex].key,
+      pledgeID: values.pledgeIndex ? pledges[values.pledgeIndex].key : null,
       issuerID: user.id,
       operation,
       description: values.description,
@@ -77,6 +78,7 @@ const MeritForm = () => {
       setFormErrors(true);
       setErrorMesages(error.response.data);
     }
+    form.resetFields();
     setFormSubmitted(false);
   };
 
@@ -98,6 +100,7 @@ const MeritForm = () => {
           )}
 
           <Form
+            form={form}
             layout="vertical"
             name="basic"
             onFinish={onFinish}

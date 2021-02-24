@@ -7,6 +7,7 @@ export const MajorEnum = Object.freeze({
   ELECTRICAL: 'Electrical Engineering',
   GENERAL: 'General Engineering',
   INDUSTRIAL: 'Industrial Engineering',
+  INDUSTRIAL_TECH: 'Industrial Technology',
   MATH: 'Math',
   MECHANICAL: 'Mechanical Engineering',
   PACKAGING: 'Packaging',
@@ -22,6 +23,7 @@ export const PledgeClassEnum = Object.freeze({
 });
 
 export const PositionEnum = Object.freeze({
+  PLEDGE: 'Pledge',
   MEMBER: 'Member',
   PRESIDENT: 'Regent',
   VICE_PRESIDENT: 'Vice Regent',

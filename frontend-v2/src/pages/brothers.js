@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Menu, Dropdown, Button, Row, Col, Spin } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import brotherStyles from '../styles/pages/brothers.module.scss';
 
+import CURR_PLEDGE_CLASS from '../util/curr-pledge-class';
 import brothersBanner from '../images/brothers-banner.jpg';
 
-const Brothers = () => {
+const Brothers = (props) => {
   const [isFetching, setIsFetching] = useState(true);
   const [brothers, setBrothers] = useState([]);
   const [selectedTab, setSelectedTab] = useState('Actives');
@@ -14,9 +16,10 @@ const Brothers = () => {
   useEffect(() => {
     fetchBrothers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.history.location]);
 
   const fetchBrothers = async () => {
+    setIsFetching(true);
     const tab = parseQueryParameter();
     const apiResponse = await axios.get(
       `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/${tab}`
@@ -75,7 +78,8 @@ const Brothers = () => {
             <Row gutter={[32, 32]}>
               {brothers.map(
                 (brother) =>
-                  brother.imagePath && (
+                  brother.imagePath &&
+                  brother.pledgeClass !== CURR_PLEDGE_CLASS && (
                     // eslint-disable-next-line no-underscore-dangle
                     <Col xs={24} md={6} key={brother._id}>
                       <div className={brotherStyles.card__container}>
@@ -132,16 +136,16 @@ const DropDownMenu = (selectedTab) => {
   return (
     <Menu>
       <Menu.Item key="1">
-        <a
-          href={`/brothers?tab=${
+        <Link
+          to={`/brothers?tab=${
             selectedTab === 'Actives' ? 'alumni' : 'actives'
           }`}
         >
           {selectedTab === 'Actives' ? 'Alumni' : 'Actives'}
-        </a>
+        </Link>
       </Menu.Item>
     </Menu>
   );
 };
 
-export default Brothers;
+export default withRouter(Brothers);
