@@ -88,28 +88,33 @@ meritController.get(
   '/requests/me',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // eslint-disable-next-line no-underscore-dangle
-    Merit.find({}, (error, meritRequests) => {
-      if (error) {
-        console.log(error);
-        return res
-          .status(404)
-          .json({ message: `No merit payloads found: ${error}` });
-      }
-      const reducedRequests = meritRequests.map((request) => ({
+    Merit.find(
+      {
         // eslint-disable-next-line no-underscore-dangle
-        key: request._id,
-        pledgeName: request.pledgeName,
-        operation: request.operation,
-        description: request.description,
-        status: !request.isDispatched
-          ? 'PENDING'
-          : request.isApproved
-          ? 'APPROVED'
-          : 'DISAPPROVED',
-      }));
-      return res.status(200).json(reducedRequests);
-    });
+        issuerID: req.user._id,
+      },
+      (error, meritRequests) => {
+        if (error) {
+          console.log(error);
+          return res
+            .status(404)
+            .json({ message: `No merit payloads found: ${error}` });
+        }
+        const reducedRequests = meritRequests.map((request) => ({
+          // eslint-disable-next-line no-underscore-dangle
+          key: request._id,
+          pledgeName: request.pledgeName,
+          operation: request.operation,
+          description: request.description,
+          status: !request.isDispatched
+            ? 'PENDING'
+            : request.isApproved
+            ? 'APPROVED'
+            : 'DISAPPROVED',
+        }));
+        return res.status(200).json(reducedRequests);
+      }
+    );
   }
 );
 

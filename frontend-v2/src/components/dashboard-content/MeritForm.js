@@ -31,6 +31,7 @@ const MeritForm = () => {
     } else {
       setNoPledgeClass(true);
     }
+    console.log(pledges[0]);
   }, []);
 
   const fetchAllPledges = async (currentPledgeClass) => {
@@ -59,9 +60,9 @@ const MeritForm = () => {
   const onFinish = async (values) => {
     setFormSubmitted(true);
     const meritData = {
-      pledgeName: values.pledgeIndex ? pledges[values.pledgeIndex].name : null,
+      pledgeName: pledges[values.pledgeIndex].name,
       issuerName: user.name,
-      pledgeID: values.pledgeIndex ? pledges[values.pledgeIndex].key : null,
+      pledgeID: pledges[values.pledgeIndex].key,
       issuerID: user.id,
       operation,
       description: values.description,
@@ -112,7 +113,10 @@ const MeritForm = () => {
               validateStatus={formErrors ? 'error' : ''}
               help={errorMessages.major}
             >
-              <Select placeholder="Please choose a pledge">
+              <Select
+                placeholder="Please choose a pledge"
+                onChange={(value) => console.log(value)}
+              >
                 {pledges.map((pledgeObject, index) => {
                   return (
                     <Option key={pledgeObject.key} value={index}>
