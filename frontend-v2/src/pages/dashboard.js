@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
 import { UserContext } from '../contexts/UserContext';
@@ -34,19 +35,29 @@ const Dashboard = () => {
   return (
     didMount &&
     (isAuthenticated ? (
-      <div className={dashboardStyles.root}>
-        <h1>
-          <UserOutlined className={dashboardStyles.heading__icon} />
-          Active Member Dashboard
-        </h1>
+      <>
+        <Helmet>
+          <title>Theta Tau | Dashboard</title>
+          <meta
+            name="description"
+            content="Our website also serves as a dashboard for active members, pledges, and officers to handle internal operations. SJSU Theta Tau active members only."
+          />
+        </Helmet>
 
-        <div className={dashboardStyles.dashboard__container}>
-          <DashboardContext.Provider value={dashboardContext}>
-            <DashboardSidebar />
-            <DashboardContent />
-          </DashboardContext.Provider>
+        <div className={dashboardStyles.root}>
+          <h1>
+            <UserOutlined className={dashboardStyles.heading__icon} />
+            Active Member Dashboard
+          </h1>
+
+          <div className={dashboardStyles.dashboard__container}>
+            <DashboardContext.Provider value={dashboardContext}>
+              <DashboardSidebar />
+              <DashboardContent />
+            </DashboardContext.Provider>
+          </div>
         </div>
-      </div>
+      </>
     ) : (
       <Redirect to="/login" />
     ))

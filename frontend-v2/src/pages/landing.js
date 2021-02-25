@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Row, Col } from 'antd';
 import CoverCarousel from '../components/CoverCarousel';
 
@@ -13,6 +14,14 @@ import landingStyles from '../styles/pages/landing.module.scss';
 const Landing = () => {
   return (
     <>
+      <Helmet>
+        <title>Theta Tau | SJSU</title>
+        <meta
+          name="description"
+          content="Theta Tau is a co-ed Engineering Fraternity here at San Jose State. The purpose of Theta Tau is to develop and maintain a high standard of professional interest among its members, and to unite them in a strong bond of fraternal fellowship."
+        />
+      </Helmet>
+
       <CoverCarousel />
 
       <div className={landingStyles.about__block}>

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Input, Button } from 'antd';
@@ -48,49 +49,59 @@ const Login = (props) => {
   };
 
   return (
-    <div className={loginStyles.root}>
-      <div className={loginStyles.form__container}>
-        <div className={loginStyles.title}>
-          <h1>Sign In</h1>
-          <img src={thetaTauCrest} alt="theta-tau-crest" />
-        </div>
-        <p>SJSU TT Actives Only</p>
-        <Form
-          layout="vertical"
-          name="basic"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
-          <Form.Item
-            label="Email"
-            name="email"
-            validateStatus={formErrors ? 'error' : ''}
-            help={errorMessages.email}
+    <>
+      <Helmet>
+        <title>Theta Tau | Login</title>
+        <meta
+          name="description"
+          content="Login to the dashboard. SJSU Theta Tau active members only."
+        />
+      </Helmet>
+
+      <div className={loginStyles.root}>
+        <div className={loginStyles.form__container}>
+          <div className={loginStyles.title}>
+            <h1>Sign In</h1>
+            <img src={thetaTauCrest} alt="theta-tau-crest" />
+          </div>
+          <p>SJSU TT Actives Only</p>
+          <Form
+            layout="vertical"
+            name="basic"
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
           >
-            <Input placeholder="Please enter email" />
-          </Form.Item>
-          <Form.Item
-            label="Password"
-            name="password"
-            validateStatus={formErrors ? 'error' : ''}
-            help={errorMessages.password}
-          >
-            <Input.Password placeholder="Please enter password" />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              shape="round"
-              htmlType="submit"
-              loading={formSubmitted}
-              className={loginStyles.submit__button}
+            <Form.Item
+              label="Email"
+              name="email"
+              validateStatus={formErrors ? 'error' : ''}
+              help={errorMessages.email}
             >
-              SIGN IN
-            </Button>
-          </Form.Item>
-        </Form>
+              <Input placeholder="Please enter email" />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              validateStatus={formErrors ? 'error' : ''}
+              help={errorMessages.password}
+            >
+              <Input.Password placeholder="Please enter password" />
+            </Form.Item>
+            <Form.Item>
+              <Button
+                type="primary"
+                shape="round"
+                htmlType="submit"
+                loading={formSubmitted}
+                className={loginStyles.submit__button}
+              >
+                SIGN IN
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
