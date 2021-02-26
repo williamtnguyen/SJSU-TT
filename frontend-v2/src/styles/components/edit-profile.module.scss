@@ -1,0 +1,79 @@
+.root {
+  padding: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form__container {
+  height: fit-content;
+  width: 100%;
+  min-width: 500px;
+}
+
+.title {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  img {
+    height: 40px;
+    margin-left: 10px;
+  }
+}
+
+.error__message,
+.success__message {
+  margin: 2rem 0;
+}
+
+.error__message {
+  color: red;
+}
+
+.success__message {
+  color: green;
+}
+
+.password__toggle {
+  display: flex;
+
+  p {
+    margin-right: 1rem;
+  }
+}
+
+.password__fields,
+.other__fields {
+  margin-top: 0.75rem;
+}
+
+.number__input {
+  width: 100%;
+}
+
+.submit__button {
+  height: 2rem;
+  padding: 0 2rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+.illustration__col {
+  display: flex;
+  align-items: center;
+}
+
+.illustration img {
+  max-height: 100%;
+  max-width: 100%;
+}

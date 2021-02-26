@@ -1,13 +1,17 @@
 const bcrypt = require('bcryptjs');
 // const actives = require('./actives');
 const actives = require('./actives-example');
+
 // const alumni = require('./alumni');
 const alumni = require('./actives-example');
+
+// const delta = require('./delta-pledge');
+const delta = require('./actives-example');
+
 const Brother = require('../../brothers/brother');
 
 const foosWithNoHeadshot = {
   'Andrew Each': true,
-  'Parker Grube': true,
   'Manuel Chavez': true, // has headshot but no phoneNumber or studentID
   'Nicholas Ong': true, // has headshot but no phoneNumber or studentID
 };
@@ -86,6 +90,36 @@ const seedDB = () => {
       position: graduatedBrother.position,
       isGraduated: graduatedBrother.isGraduated,
       isActive: false,
+      biography: '',
+      imagePath: s3FilePath,
+    });
+
+    // Hash password before storing in database
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(newBrother.password, salt);
+    newBrother.password = hash;
+
+    newBrother
+      .save()
+      .then((storedBrother) => console.log(`${storedBrother.name} added to DB`))
+      .catch((error) => console.error('Error:', error));
+  });
+
+  delta.forEach((pledgeBrother) => {
+    const s3FilePath = `${pledgeBrother.pledgeClass}/cute_puppy.jpg`;
+
+    const newBrother = new Brother({
+      name: pledgeBrother.name,
+      email: pledgeBrother.email,
+      studentID: pledgeBrother.studentID ? pledgeBrother.studentID : null,
+      phoneNumber: pledgeBrother.phoneNumber,
+      password: 'cool-pledge-class-delta-yeah',
+      major: pledgeBrother.major,
+      graduatingYear: pledgeBrother.graduatingYear,
+      pledgeClass: pledgeBrother.pledgeClass,
+      position: pledgeBrother.position,
+      isGraduated: pledgeBrother.isGraduated,
+      isActive: true,
       biography: '',
       imagePath: s3FilePath,
     });

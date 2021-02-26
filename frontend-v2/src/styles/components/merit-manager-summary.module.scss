@@ -1,0 +1,63 @@
+.title {
+  font-weight: 600;
+}
+
+.error__message {
+  color: red;
+}
+
+.success__message {
+  color: green;
+}
+
+.summary__item {
+  margin-bottom: 1rem;
+
+  h3 {
+    display: inline;
+    margin-right: 10px;
+    font-weight: 600;
+  }
+}
+
+.button__group {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    height: 2rem;
+    padding: 0 2rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 1rem;
+  }
+
+  .approve {
+    background-color: #249333;
+
+    &:hover,
+    &:focus {
+      background-color: #2fbe42;
+    }
+  }
+  .disapprove {
+    background-color: #932432;
+
+    &:hover,
+    &:focus {
+      background-color: #d14254;
+    }
+  }
+  .delete {
+    background-color: #fff020;
+    color: black;
+    border: 1px solid lightgrey;
+
+    &:hover,
+    &:focus {
+      background-color: #fff9a4;
+    }
+  }
+}

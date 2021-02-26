@@ -5,12 +5,12 @@ cache:
   directories:
     - '$HOME/.npm'
 install:
-  - cd frontend
+  - cd frontend-v2
   - npm i
   - cd ../server
   - npm i
 script:
   - npm run lint
-  - cd ../frontend
+  - cd ../frontend-v2
   - npm run lint
   - npm run build

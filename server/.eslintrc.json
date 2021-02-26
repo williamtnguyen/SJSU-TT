@@ -20,6 +20,7 @@
     "no-process-exit": "off",
     "import/newline-after-import": "off",
     "consistent-return": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-nested-ternary": "off"
   }
 }
