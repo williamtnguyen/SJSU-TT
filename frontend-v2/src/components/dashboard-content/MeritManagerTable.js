@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Tabs } from 'antd';
 import { MeritManagerTabEnum } from '../../util/enums/merit-enums';
-import tableStyles from '../../styles/components/merit-manager-table.module.scss';
 
 const { TabPane } = Tabs;
 

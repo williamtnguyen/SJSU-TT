@@ -76,7 +76,7 @@ const MeritManager = () => {
     const { pledgeName } = selectedMeritRequest;
 
     try {
-      const apiResponse = await axios.delete(
+      await axios.delete(
         `${process.env.REACT_APP_BACKEND_API_URL}/api/merits/${meritRequestID}`
       );
       setWasDeleted(true);

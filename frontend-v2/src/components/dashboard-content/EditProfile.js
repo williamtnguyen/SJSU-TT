@@ -73,7 +73,6 @@ const EditProfile = () => {
   };
 
   const onFinish = async (values) => {
-    console.log(values);
     setFormSubmitted(true);
 
     if (isChangingPassword && values.oldPassword === values.newPassword) {

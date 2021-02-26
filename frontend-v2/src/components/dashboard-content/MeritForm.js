@@ -31,7 +31,6 @@ const MeritForm = () => {
     } else {
       setNoPledgeClass(true);
     }
-    console.log(pledges[0]);
   }, []);
 
   const fetchAllPledges = async (currentPledgeClass) => {
