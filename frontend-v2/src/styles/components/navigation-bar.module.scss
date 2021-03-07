@@ -1,5 +1,10 @@
 .root {
   height: 10vh;
+  border-bottom: 1px solid lightgrey;
+}
+
+.nav__container {
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

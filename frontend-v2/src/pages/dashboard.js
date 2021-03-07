@@ -45,11 +45,6 @@ const Dashboard = () => {
         </Helmet>
 
         <div className={dashboardStyles.root}>
-          <h1>
-            <UserOutlined className={dashboardStyles.heading__icon} />
-            Active Member Dashboard
-          </h1>
-
           <div className={dashboardStyles.dashboard__container}>
             <DashboardContext.Provider value={dashboardContext}>
               <DashboardSidebar />
