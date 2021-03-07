@@ -193,12 +193,6 @@ meritController.put(
         });
       }
 
-      // // bye bye pledge
-      // if (pledgeObject.meritCount <= 0) {
-      //   await Brother.deleteOne({ _id: pledgeID });
-      // } else {
-      //   pledgeObject.save();
-      // }
       pledgeObject.save();
     }
 
@@ -210,6 +204,7 @@ meritController.put(
     }
     meritObject.isDispatched = true;
     meritObject.isApproved = isMeritApproved;
+    meritObject.dispatchDate = new Date();
     meritObject.save();
     res.status(200).json(meritObject);
   }
