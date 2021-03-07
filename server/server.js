@@ -7,6 +7,7 @@ const cors = require('cors');
 const AWS = require('aws-sdk');
 
 // const seedDB = require('./routes/api/util/scripts/seed-database');
+// const changeBrotherInformation = require('./routes/api/util/scripts/change-brother-info');
 
 // Allows requests from diff origins
 app.use(cors());
@@ -41,6 +42,7 @@ switch (process.env.NODE_ENV) {
         throw new Error(error);
       });
     // seedDB();
+    // changeBrotherInformation();
     break;
   case 'production':
     mongoose
@@ -56,6 +58,7 @@ switch (process.env.NODE_ENV) {
         throw new Error(error);
       });
     // seedDB();
+    // changeBrotherInformation();
     break;
   default:
     console.error('NODE_ENV not specified');
