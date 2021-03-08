@@ -35,7 +35,7 @@ const MeritSchema = new Schema({
   },
   submissionDate: {
     type: Date,
-    default: Date.now,
+    required: false,
   },
   dispatchDate: {
     type: Date,

@@ -1,50 +1,78 @@
-import React, { useState } from 'react';
+/* eslint-disable indent */
+import React from 'react';
 import { Table, Tabs } from 'antd';
 import { MeritManagerTabEnum } from '../../util/enums/merit-enums';
+import { operationTags, statusTags } from '../../util/table-tags';
+import tableStyles from '../../styles/components/merit-manager-table.module.scss';
 
 const { TabPane } = Tabs;
 
 const MeritManagerTable = ({
   allMeritRequests,
+  selectedTab,
   setSelectedTab,
+  setIsModalVisible,
   selectedMeritRequest,
   setSelectedMeritRequest,
 }) => {
-  const [selectedRowKeysArray, setSelectedRowKeysArray] = useState([]);
-
-  const tableColumns = [
-    {
-      title: 'Pledge',
-      dataIndex: 'pledgeName',
-    },
-    {
-      title: 'Issuer',
-      dataIndex: 'issuerName',
-    },
-    {
-      title: 'Operation',
-      dataIndex: 'operation',
-    },
-  ];
+  const tableColumns =
+    selectedTab === MeritManagerTabEnum.PENDING
+      ? [
+          {
+            title: 'Pledge',
+            dataIndex: 'pledgeName',
+          },
+          {
+            title: 'Issuer',
+            dataIndex: 'issuerName',
+          },
+          {
+            title: 'Operation',
+            dataIndex: 'operation',
+            render: (operation) => operationTags[operation],
+          },
+          {
+            title: 'Submission Date',
+            dataIndex: 'submissionDate',
+          },
+        ]
+      : [
+          {
+            title: 'Pledge',
+            dataIndex: 'pledgeName',
+          },
+          {
+            title: 'Issuer',
+            dataIndex: 'issuerName',
+          },
+          {
+            title: 'Operation',
+            dataIndex: 'operation',
+            render: (operation) => operationTags[operation],
+          },
+          {
+            title: 'Status',
+            dataIndex: 'status',
+            render: (status) => statusTags[status],
+          },
+          {
+            title: 'Submission Date',
+            dataIndex: 'submissionDate',
+          },
+          {
+            title: 'Dispatch Date',
+            dataIndex: 'dispatchDate',
+          },
+        ];
 
   const handleChange = (event) => {
     setSelectedTab(event);
-    setSelectedRowKeysArray([]);
     setSelectedMeritRequest({});
-  };
-
-  const rowSelection = {
-    type: 'radio',
-    selectedRowKeys: selectedRowKeysArray,
-    onChange: (selectedRowKeys, selectedRows) => {
-      setSelectedRowKeysArray(selectedRowKeys);
-      setSelectedMeritRequest(selectedRows[0]);
-    },
   };
 
   return (
     <Tabs
-      defaultActiveKey="pending"
+      defaultActiveKey={selectedTab}
       onChange={handleChange}
       key={selectedMeritRequest}
     >
@@ -53,11 +81,16 @@ const MeritManagerTable = ({
         key={MeritManagerTabEnum.PENDING}
       >
         <Table
-          rowSelection={rowSelection}
-          pagination={{ position: ['bottomLeft'] }}
+          onRow={(record) => ({
+            onClick: () => {
+              setIsModalVisible(true);
+              setSelectedMeritRequest(record);
+            },
+          })}
           columns={tableColumns}
           dataSource={allMeritRequests.pending}
           size="middle"
+          className={tableStyles.table}
         />
       </TabPane>
       <TabPane
@@ -65,11 +98,16 @@ const MeritManagerTable = ({
         key={MeritManagerTabEnum.DISPATCHED}
       >
         <Table
-          rowSelection={rowSelection}
-          pagination={{ position: ['bottomLeft'] }}
+          onRow={(record) => ({
+            onClick: () => {
+              setIsModalVisible(true);
+              setSelectedMeritRequest(record);
+            },
+          })}
           columns={tableColumns}
           dataSource={allMeritRequests.dispatched}
           size="middle"
+          className={tableStyles.table}
         />
       </TabPane>
     </Tabs>

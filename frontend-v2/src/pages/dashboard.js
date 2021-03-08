@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router-dom';
-import { UserOutlined } from '@ant-design/icons';
 import { UserContext } from '../contexts/UserContext';
 import DashboardSidebar from '../components/DashboardSidebar';
 import DashboardContent from '../components/DashboardContent';

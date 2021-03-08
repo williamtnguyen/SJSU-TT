@@ -3,6 +3,12 @@ export const MeritOperationEnum = Object.freeze({
   DEMERIT: 'Demerit',
 });
 
+export const MeritStatusEnum = Object.freeze({
+  PENDING: 'Pending',
+  APPROVED: 'Approved',
+  DISAPPROVED: 'Disapproved',
+});
+
 export const MeritManagerTabEnum = Object.freeze({
   PENDING: 'Pending',
   DISPATCHED: 'Dispatched',

@@ -6,7 +6,10 @@ const Merit = require('./merit');
 const Brother = require('../brothers/brother');
 const validateMeritRequestInput = require('../util/form-validation/merit-request');
 const { PositionEnum } = require('../util/enums/brother-enums');
-const { MeritOperationEnum } = require('../util/enums/merit-enums');
+const {
+  MeritOperationEnum,
+  MeritStatusEnum,
+} = require('../util/enums/merit-enums');
 
 // Passport.js config (JWT extracttion from request headers)
 meritController.use(passport.initialize());
@@ -46,36 +49,50 @@ meritController.get(
       PositionEnum.WEBMASTER,
     ]);
 
-    Merit.find({}, (error, allMerits) => {
-      if (error) {
-        return res
-          .status(404)
-          .json({ message: `No merit payloads found: ${error}` });
-      }
-      const response = {
-        pending: [],
-        dispatched: [],
-      };
-      allMerits.forEach((merit) => {
-        const reducedMerit = {
-          // eslint-disable-next-line no-underscore-dangle
-          key: merit._id,
-          pledgeName: merit.pledgeName,
-          pledgeID: merit.pledgeID,
-          issuerName: merit.issuerName,
-          operation: merit.operation,
-          description: merit.description,
-          isDispatched: merit.isDispatched,
-          isApproved: merit.isApproved,
-        };
-        if (merit.isDispatched) {
-          response.dispatched.push(reducedMerit);
-        } else {
-          response.pending.push(reducedMerit);
+    Merit.find(
+      {},
+      null,
+      { sort: { submissionDate: -1 } },
+      (error, allMerits) => {
+        if (error) {
+          return res
+            .status(404)
+            .json({ message: `No merit payloads found: ${error}` });
         }
-      });
-      res.status(200).json(response);
-    });
+        const response = {
+          pending: [],
+          dispatched: [],
+        };
+        allMerits.forEach((merit) => {
+          const reducedMerit = {
+            // eslint-disable-next-line no-underscore-dangle
+            key: merit._id,
+            pledgeName: merit.pledgeName,
+            pledgeID: merit.pledgeID,
+            issuerName: merit.issuerName,
+            operation: merit.operation,
+            description: merit.description,
+            status: !merit.isDispatched
+              ? MeritStatusEnum.PENDING
+              : merit.isApproved
+              ? MeritStatusEnum.APPROVED
+              : MeritStatusEnum.DISAPPROVED,
+            submissionDate: merit.submissionDate
+              ? merit.submissionDate.toLocaleDateString()
+              : 'N/A',
+            dispatchDate: merit.dispatchDate
+              ? merit.dispatchDate.toLocaleDateString()
+              : 'N/A',
+          };
+          if (merit.isDispatched) {
+            response.dispatched.push(reducedMerit);
+          } else {
+            response.pending.push(reducedMerit);
+          }
+        });
+        res.status(200).json(response);
+      }
+    );
   }
 );
 
@@ -93,6 +110,8 @@ meritController.get(
         // eslint-disable-next-line no-underscore-dangle
         issuerID: req.user._id,
       },
+      null,
+      { sort: { submissionDate: -1 } },
       (error, meritRequests) => {
         if (error) {
           console.log(error);
@@ -107,10 +126,18 @@ meritController.get(
           operation: request.operation,
           description: request.description,
           status: !request.isDispatched
-            ? 'PENDING'
+            ? MeritStatusEnum.PENDING
             : request.isApproved
-            ? 'APPROVED'
-            : 'DISAPPROVED',
+            ? MeritStatusEnum.APPROVED
+            : MeritStatusEnum.DISAPPROVED,
+          submissionDate: request.submissionDate
+            ? request.submissionDate.toLocaleDateString()
+            : 'N/A',
+          dispatchDate: request.dispatchDate
+            ? request.dispatchDate.toLocaleDateString()
+            : request.submissionDate
+            ? '-'
+            : 'N/A',
         }));
         return res.status(200).json(reducedRequests);
       }
@@ -149,6 +176,7 @@ meritController.post(
       issuerID,
       operation,
       description,
+      submissionDate: new Date(),
     });
     newMerit
       .save()

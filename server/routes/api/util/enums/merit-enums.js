@@ -3,4 +3,10 @@ const MeritOperationEnum = Object.freeze({
   DEMERIT: 'Demerit',
 });
 
-module.exports = { MeritOperationEnum };
+const MeritStatusEnum = Object.freeze({
+  PENDING: 'Pending',
+  APPROVED: 'Approved',
+  DISAPPROVED: 'Disapproved',
+});
+
+module.exports = { MeritOperationEnum, MeritStatusEnum };

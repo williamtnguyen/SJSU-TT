@@ -8,12 +8,12 @@ import thetaTauCrest from '../../images/theta-tau-crest-black.png';
 const { TabPane } = Tabs;
 
 const MeritRequest = () => {
-  const [selectedTab, setSelectedTab] = useState('');
+  const [selectedTab, setSelectedTab] = useState('meritForm');
 
   return (
     <div className={requestStyles.root}>
       <Row className={requestStyles.row}>
-        <Col sm={24} md={selectedTab === 'meritForm' ? 12 : 18}>
+        <Col sm={24} md={selectedTab === 'meritForm' ? 12 : 24}>
           <div className={requestStyles.title}>
             <h1>Merit Request</h1>
             <img src={thetaTauCrest} alt="theta-tau-crest" />
