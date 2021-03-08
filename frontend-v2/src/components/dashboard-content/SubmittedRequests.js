@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Spin } from 'antd';
+import { operationTags, statusTags } from '../../util/table-tags';
 
 const SubmittedRequests = () => {
   const [isFetching, setIsFetching] = useState(true);
@@ -31,14 +32,25 @@ const SubmittedRequests = () => {
     {
       title: 'Operation',
       dataIndex: 'operation',
+      render: (operation) => operationTags[operation],
     },
     {
       title: 'Description',
       dataIndex: 'description',
+      width: '40%',
     },
     {
       title: 'Status',
       dataIndex: 'status',
+      render: (status) => statusTags[status],
+    },
+    {
+      title: 'Submission Date',
+      dataIndex: 'submissionDate',
+    },
+    {
+      title: 'Dispatch Date',
+      dataIndex: 'dispatchDate',
     },
   ];
 

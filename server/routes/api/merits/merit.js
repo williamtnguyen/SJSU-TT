@@ -33,6 +33,14 @@ const MeritSchema = new Schema({
     default: null,
     required: this.isDispatched,
   },
+  submissionDate: {
+    type: Date,
+    required: false,
+  },
+  dispatchDate: {
+    type: Date,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model('Merits', MeritSchema);

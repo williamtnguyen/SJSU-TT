@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Row, Col, Spin } from 'antd';
+import { Row, Col, Spin, Modal } from 'antd';
 import {
   MeritManagerTabEnum,
   MeritRequestDispatchEnum,
@@ -15,6 +15,7 @@ const MeritManager = () => {
     dispatched: [],
   });
   const [selectedTab, setSelectedTab] = useState(MeritManagerTabEnum.PENDING);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedMeritRequest, setSelectedMeritRequest] = useState({});
   const [wasDispatched, setWasDispatched] = useState(false);
   const [dispatchedRequestPledge, setDispatchedRequestPledge] = useState('');
@@ -56,6 +57,7 @@ const MeritManager = () => {
       setWasDispatched(true);
       setDispatchedRequestPledge(apiResponse.data.pledgeName);
       setSelectedMeritRequest({});
+      setIsModalVisible(false);
     } catch (error) {
       setWasDispatched(false);
       setDispatchedRequestPledge('');
@@ -82,6 +84,7 @@ const MeritManager = () => {
       setWasDeleted(true);
       setDeletedRequestPledge(pledgeName);
       setSelectedMeritRequest({});
+      setIsModalVisible(false);
     } catch (error) {
       setWasDeleted(false);
       setDeletedRequestPledge('');
@@ -91,22 +94,44 @@ const MeritManager = () => {
   return (
     <div className={meritStyles.root}>
       <h1 className={meritStyles.title}>Merit Manager</h1>
+      <p>Select a row to view merit request details.</p>
+
+      {wasDispatched && (
+        <p className={meritStyles.success__message}>
+          Merit request for {dispatchedRequestPledge} successfully dispatched.
+        </p>
+      )}
+      {wasDeleted && (
+        <p className={meritStyles.success__message}>
+          Merit request for {deletedRequestPledge} successfully deleted.
+        </p>
+      )}
+
       {isFetching ? (
         <Spin size="large" />
       ) : fetchError ? (
         <h1>Could not fetch merits from server.</h1>
       ) : (
-        <Row gutter={32}>
-          <Col sm={24} md={12}>
-            <MeritManagerTable
-              allMeritRequests={allMeritRequests}
-              selectedTab={selectedTab}
-              setSelectedTab={setSelectedTab}
-              selectedMeritRequest={selectedMeritRequest}
-              setSelectedMeritRequest={setSelectedMeritRequestWrapper}
-            />
-          </Col>
-          <Col sm={24} md={12} style={{ paddingLeft: '2rem' }}>
+        <>
+          <Row gutter={32}>
+            <Col sm={24} md={18}>
+              <MeritManagerTable
+                allMeritRequests={allMeritRequests}
+                selectedTab={selectedTab}
+                setSelectedTab={setSelectedTab}
+                setIsModalVisible={setIsModalVisible}
+                selectedMeritRequest={selectedMeritRequest}
+                setSelectedMeritRequest={setSelectedMeritRequestWrapper}
+              />
+            </Col>
+          </Row>
+
+          <Modal
+            visible={isModalVisible}
+            centered
+            footer={null}
+            onCancel={() => setIsModalVisible(false)}
+          >
             <MeritManagerSummary
               selectedMeritRequest={selectedMeritRequest}
               selectedTab={selectedTab}
@@ -117,8 +142,8 @@ const MeritManager = () => {
               wasDeleted={wasDeleted}
               deletedRequestPledge={deletedRequestPledge}
             />
-          </Col>
-        </Row>
+          </Modal>
+        </>
       )}
     </div>
   );

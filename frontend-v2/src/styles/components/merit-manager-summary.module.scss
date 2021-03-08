@@ -1,13 +1,7 @@
 .title {
-  font-weight: 600;
-}
-
-.error__message {
-  color: red;
-}
-
-.success__message {
-  color: green;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
 .summary__item {
@@ -21,7 +15,7 @@
 }
 
 .button__group {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-around;
 
