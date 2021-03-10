@@ -1,10 +1,14 @@
 /* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, Spin } from 'antd';
+import { Table, Spin, Statistic } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import meritStyles from '../../styles/components/merits-table.module.scss';
 
 import CURR_PLEDGE_CLASS from '../../util/curr-pledge-class';
+import PLEDGE_PROCESS_END_DATE from '../../util/pledge-process-end-date';
+
+const { Countdown } = Statistic;
 
 const MeritsTable = () => {
   const [noPledgeClass, setNoPledgeClass] = useState(false);
@@ -19,6 +23,7 @@ const MeritsTable = () => {
     } else {
       setNoPledgeClass(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchPledges = async () => {
@@ -75,6 +80,21 @@ const MeritsTable = () => {
           <h1 className={meritStyles.title}>
             <b>{CURR_PLEDGE_CLASS}</b> class merit table
           </h1>
+
+          <div className={meritStyles.statistics}>
+            <Countdown
+              title="Countdown to end of pledge process:"
+              value={PLEDGE_PROCESS_END_DATE}
+              format="D:HH:mm:ss"
+            />
+            <Statistic
+              title="Pledges currently eligible to cross:"
+              value={pledges.filter((pledge) => pledge.meritCount >= 10).length}
+              prefix={<UserOutlined />}
+              suffix={`/ ${pledges.length}`}
+            />
+          </div>
+
           <Table columns={tableColumns} dataSource={pledges} size="middle" />
         </div>
       )}

@@ -16,7 +16,7 @@
   height: fit-content;
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   h1 {
     font-size: 2rem;
@@ -28,4 +28,8 @@
     height: 40px;
     margin-left: 10px;
   }
+}
+
+.subtitle {
+  margin-bottom: 2rem;
 }

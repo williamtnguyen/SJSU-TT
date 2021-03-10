@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Spin } from 'antd';
-import { operationTags, statusTags } from '../../util/table-tags';
+import operationTags from '../tags/OperationTags';
+import StatusTag from '../tags/StatusTag';
 
 const SubmittedRequests = () => {
   const [isFetching, setIsFetching] = useState(true);
@@ -42,7 +43,7 @@ const SubmittedRequests = () => {
     {
       title: 'Status',
       dataIndex: 'status',
-      render: (status) => statusTags[status],
+      render: (status, row) => <StatusTag status={status} meritRequest={row} />,
     },
     {
       title: 'Submission Date',

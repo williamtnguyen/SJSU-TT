@@ -1,6 +1,6 @@
-const { PledgeClassEnum } = require('./enums/brother-enums');
+import { PledgeClassEnum } from './enums/brother-enums';
 
 /* No pledge class: set to null, otherwise use the enum */
 const CURR_PLEDGE_CLASS = PledgeClassEnum.DELTA;
 
-module.exports = CURR_PLEDGE_CLASS;
+export default CURR_PLEDGE_CLASS;

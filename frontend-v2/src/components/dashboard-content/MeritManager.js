@@ -42,11 +42,11 @@ const MeritManager = () => {
   };
 
   // Handler function for approving/disapproving merit requests
-  const handleDispatch = async (buttonType) => {
+  const handleDispatch = async (buttonType, meritAmount) => {
     const isMeritApproved = buttonType === MeritRequestDispatchEnum.APPROVE;
     const dispatchData = {
       isMeritApproved,
-      meritPayload: selectedMeritRequest,
+      meritPayload: { ...selectedMeritRequest, meritAmount },
     };
 
     try {
@@ -126,23 +126,24 @@ const MeritManager = () => {
             </Col>
           </Row>
 
-          <Modal
-            visible={isModalVisible}
-            centered
-            footer={null}
-            onCancel={() => setIsModalVisible(false)}
-          >
-            <MeritManagerSummary
-              selectedMeritRequest={selectedMeritRequest}
-              selectedTab={selectedTab}
-              handleDispatch={handleDispatch}
-              handleDelete={handleDelete}
-              wasDispatched={wasDispatched}
-              dispatchedRequestPledge={dispatchedRequestPledge}
-              wasDeleted={wasDeleted}
-              deletedRequestPledge={deletedRequestPledge}
-            />
-          </Modal>
+          {isModalVisible && (
+            <Modal
+              visible={isModalVisible}
+              footer={null}
+              onCancel={() => setIsModalVisible(false)}
+            >
+              <MeritManagerSummary
+                selectedMeritRequest={selectedMeritRequest}
+                selectedTab={selectedTab}
+                handleDispatch={handleDispatch}
+                handleDelete={handleDelete}
+                wasDispatched={wasDispatched}
+                dispatchedRequestPledge={dispatchedRequestPledge}
+                wasDeleted={wasDeleted}
+                deletedRequestPledge={deletedRequestPledge}
+              />
+            </Modal>
+          )}
         </>
       )}
     </div>

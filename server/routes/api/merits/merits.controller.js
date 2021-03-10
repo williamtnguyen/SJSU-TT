@@ -83,6 +83,7 @@ meritController.get(
             dispatchDate: merit.dispatchDate
               ? merit.dispatchDate.toLocaleDateString()
               : 'N/A',
+            meritAmount: merit.meritAmount,
           };
           if (merit.isDispatched) {
             response.dispatched.push(reducedMerit);
@@ -138,6 +139,7 @@ meritController.get(
             : request.submissionDate
             ? '-'
             : 'N/A',
+          meritAmount: request.meritAmount,
         }));
         return res.status(200).json(reducedRequests);
       }
@@ -203,18 +205,17 @@ meritController.put(
     ]);
 
     const { isMeritApproved, meritPayload } = req.body;
-    const { pledgeID, operation } = meritPayload;
-    // eslint-disable-next-line no-underscore-dangle
+    const { pledgeID, operation, meritAmount } = meritPayload;
     const meritObjectID = meritPayload.key;
 
-    // If pledge parent sees that merit request by active is legit, increment/decrement merit count from pledge
+    // If pledge parent sees that merit request by active is legit, increment/decrement meritAmount from pledge
     if (isMeritApproved) {
       const pledgeObject = await Brother.findById(pledgeID);
 
       if (pledgeObject && operation === MeritOperationEnum.MERIT) {
-        pledgeObject.meritCount += 1;
+        pledgeObject.meritCount += meritAmount;
       } else if (pledgeObject && operation === MeritOperationEnum.DEMERIT) {
-        pledgeObject.meritCount -= 1;
+        pledgeObject.meritCount -= meritAmount;
       } else {
         return res.status(404).json({
           message: 'No associated pledge found with ID in request body',
@@ -230,6 +231,7 @@ meritController.put(
         message: 'No associated merit object found with ID in request body',
       });
     }
+    meritObject.meritAmount = meritAmount;
     meritObject.isDispatched = true;
     meritObject.isApproved = isMeritApproved;
     meritObject.dispatchDate = new Date();
