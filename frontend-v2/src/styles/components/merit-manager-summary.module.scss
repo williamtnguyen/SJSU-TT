@@ -14,10 +14,41 @@
   }
 }
 
+.operation__toggle {
+  display: flex;
+  margin: 2rem 0;
+
+  p {
+    margin: 0;
+  }
+  p:nth-of-type(1) {
+    margin-right: 1rem;
+  }
+  p:nth-of-type(2) {
+    margin-left: 1rem;
+  }
+}
+
+.curr__operation__text {
+  color: #1890ff;
+}
+
+.other__operation__text {
+  color: lightgrey;
+}
+
+.amount__input__label {
+  margin-right: 1rem;
+}
+
+.amount__input__icon {
+  margin-right: 5px;
+}
+
 .button__group {
   margin-top: 1rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 
   button {
     height: 2rem;

@@ -23,6 +23,10 @@ const MeritRequest = () => {
             onChange={(activeKey) => setSelectedTab(activeKey)}
           >
             <TabPane tab="Merit Form" key="meritForm">
+              <p className={requestStyles.subtitle}>
+                Submit a request for merit or demerit, and Pledge Parents will
+                determine the amount added or subtracted.
+              </p>
               <MeritForm />
             </TabPane>
             <TabPane tab="Submitted Requests" key="submittedRequests">

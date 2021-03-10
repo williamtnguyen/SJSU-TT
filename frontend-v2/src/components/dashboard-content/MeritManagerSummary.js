@@ -1,11 +1,13 @@
 /* eslint-disable indent */
 import React, { useState } from 'react';
-import { Row, Col, Button, Divider } from 'antd';
+import { Row, Col, Button, Divider, Switch, InputNumber } from 'antd';
+import { CloseOutlined, CheckOutlined, AuditOutlined } from '@ant-design/icons';
 import {
   MeritManagerTabEnum,
   MeritRequestDispatchEnum,
 } from '../../util/enums/merit-enums';
-import { operationTags, statusTags } from '../../util/table-tags';
+import operationTags from '../tags/OperationTags';
+import StatusTag from '../tags/StatusTag';
 import summaryStyles from '../../styles/components/merit-manager-summary.module.scss';
 
 const MeritManagerSummary = ({
@@ -15,6 +17,8 @@ const MeritManagerSummary = ({
   handleDelete,
 }) => {
   const [noSelectionError, setNoSelectionError] = useState(false);
+  const [operation, setOperation] = useState(MeritRequestDispatchEnum.APPROVE);
+  const [meritAmount, setMeritAmount] = useState(1);
 
   const isEmpty = (object) => {
     return Object.values(object).length === 0;
@@ -23,7 +27,10 @@ const MeritManagerSummary = ({
   const handleDispatchWrapper = (buttonType) => {
     if (!isEmpty(selectedMeritRequest)) {
       setNoSelectionError(false);
-      handleDispatch(buttonType);
+      handleDispatch(
+        buttonType,
+        buttonType === MeritRequestDispatchEnum.APPROVE ? meritAmount : null
+      );
     } else {
       setNoSelectionError(true);
     }
@@ -36,6 +43,14 @@ const MeritManagerSummary = ({
     } else {
       setNoSelectionError(true);
     }
+  };
+
+  const handleToggle = (toggled) => {
+    setOperation(
+      toggled
+        ? MeritRequestDispatchEnum.APPROVE
+        : MeritRequestDispatchEnum.DISAPPROVE
+    );
   };
 
   return (
@@ -69,7 +84,12 @@ const MeritManagerSummary = ({
           <Col sm={24} md={12}>
             <div className={summaryStyles.summary__item}>
               <h3>Status:</h3>
-              <span>{statusTags[selectedMeritRequest.status]}</span>
+              <span>
+                <StatusTag
+                  status={selectedMeritRequest.status}
+                  meritRequest={selectedMeritRequest}
+                />
+              </span>
             </div>
             <div className={summaryStyles.summary__item}>
               <h3>Submission Date:</h3>
@@ -91,31 +111,80 @@ const MeritManagerSummary = ({
         </Row>
       </div>
 
+      <Divider />
+
       {selectedTab === MeritManagerTabEnum.PENDING ? (
-        <div className={summaryStyles.button__group}>
-          <Button
-            onClick={() =>
-              handleDispatchWrapper(MeritRequestDispatchEnum.APPROVE)
-            }
-            type="primary"
-            shape="round"
-            htmlType="button"
-            className={summaryStyles.approve}
-          >
-            APPROVE
-          </Button>
-          <Button
-            onClick={() =>
-              handleDispatchWrapper(MeritRequestDispatchEnum.DISAPPROVE)
-            }
-            type="primary"
-            shape="round"
-            htmlType="button"
-            className={summaryStyles.disapprove}
-          >
-            DISAPPROVE
-          </Button>
-        </div>
+        <>
+          <div className={summaryStyles.operation__toggle}>
+            <p
+              className={
+                operation === MeritRequestDispatchEnum.DISAPPROVE
+                  ? summaryStyles.curr__operation__text
+                  : summaryStyles.other__operation__text
+              }
+            >
+              Disapprove
+            </p>
+            <Switch
+              checkedChildren={<CheckOutlined />}
+              unCheckedChildren={<CloseOutlined />}
+              onChange={handleToggle}
+              defaultChecked
+            />
+            <p
+              className={
+                operation === MeritRequestDispatchEnum.APPROVE
+                  ? summaryStyles.curr__operation__text
+                  : summaryStyles.other__operation__text
+              }
+            >
+              Approve
+            </p>
+          </div>
+
+          {operation === MeritRequestDispatchEnum.APPROVE && (
+            <div>
+              <span className={summaryStyles.amount__input__label}>
+                <AuditOutlined className={summaryStyles.amount__input__icon} />
+                Merit Amount:
+              </span>
+              <InputNumber
+                min={1}
+                max={10}
+                defaultValue={meritAmount}
+                onChange={(amount) => setMeritAmount(amount)}
+              />
+            </div>
+          )}
+
+          <div className={summaryStyles.button__group}>
+            {operation === MeritRequestDispatchEnum.APPROVE ? (
+              <Button
+                onClick={() =>
+                  handleDispatchWrapper(MeritRequestDispatchEnum.APPROVE)
+                }
+                type="primary"
+                shape="round"
+                htmlType="button"
+                className={summaryStyles.approve}
+              >
+                APPROVE
+              </Button>
+            ) : (
+              <Button
+                onClick={() =>
+                  handleDispatchWrapper(MeritRequestDispatchEnum.DISAPPROVE)
+                }
+                type="primary"
+                shape="round"
+                htmlType="button"
+                className={summaryStyles.disapprove}
+              >
+                DISAPPROVE
+              </Button>
+            )}
+          </div>
+        </>
       ) : (
         <div className={summaryStyles.button__group}>
           <Button

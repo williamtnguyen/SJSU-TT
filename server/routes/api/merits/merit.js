@@ -33,6 +33,11 @@ const MeritSchema = new Schema({
     default: null,
     required: this.isDispatched,
   },
+  meritAmount: {
+    type: Number,
+    default: 1, // accounts for documents with missing meritAmount field
+    required: false,
+  },
   submissionDate: {
     type: Date,
     required: false,

@@ -2,7 +2,8 @@
 import React from 'react';
 import { Table, Tabs } from 'antd';
 import { MeritManagerTabEnum } from '../../util/enums/merit-enums';
-import { operationTags, statusTags } from '../../util/table-tags';
+import operationTags from '../tags/OperationTags';
+import StatusTag from '../tags/StatusTag';
 import tableStyles from '../../styles/components/merit-manager-table.module.scss';
 
 const { TabPane } = Tabs;
@@ -53,7 +54,9 @@ const MeritManagerTable = ({
           {
             title: 'Status',
             dataIndex: 'status',
-            render: (status) => statusTags[status],
+            render: (status, row) => (
+              <StatusTag status={status} meritRequest={row} />
+            ),
           },
           {
             title: 'Submission Date',
