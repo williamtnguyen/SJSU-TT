@@ -50,7 +50,7 @@ meritController.get(
     ]);
 
     Merit.find(
-      {},
+      req.query,
       null,
       { sort: { submissionDate: -1 } },
       (error, allMerits) => {
