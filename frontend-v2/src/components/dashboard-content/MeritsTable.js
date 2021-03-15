@@ -23,6 +23,7 @@ const MeritsTable = () => {
     } else {
       setNoPledgeClass(true);
     }
+    setIsFetching(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,7 +39,6 @@ const MeritsTable = () => {
     } catch (error) {
       setFetchError(true);
     }
-    setIsFetching(false);
   };
 
   const tableColumns = currUserIsPledge
