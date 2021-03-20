@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Row, Col, Spin, Modal } from 'antd';
@@ -5,11 +6,16 @@ import {
   MeritManagerTabEnum,
   MeritRequestDispatchEnum,
 } from '../../util/enums/merit-enums';
+import MeritManagerFilter from './MeritManagerFilter';
 import MeritManagerTable from './MeritManagerTable';
 import MeritManagerSummary from './MeritManagerSummary';
 import meritStyles from '../../styles/components/merit-manager.module.scss';
 
 const MeritManager = () => {
+  const [queryFilter, setQueryFilter] = useState({
+    pledgeID: '',
+    issuerID: '',
+  });
   const [allMeritRequests, setAllMeritRequests] = useState({
     pending: [],
     dispatched: [],
@@ -22,17 +28,20 @@ const MeritManager = () => {
   const [wasDeleted, setWasDeleted] = useState(false);
   const [deletedRequestPledge, setDeletedRequestPledge] = useState('');
 
-  const [isFetching, setIsFetching] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
   const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     getMeritRequests();
-  }, [wasDispatched, wasDeleted]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wasDispatched, wasDeleted, queryFilter]);
 
   const getMeritRequests = async () => {
+    const queryString = createQueryString(queryFilter);
+    setIsFetching(true);
     try {
       const apiResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/merits`
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/merits${queryString}`
       );
       setAllMeritRequests(apiResponse.data);
     } catch (error) {
@@ -107,22 +116,28 @@ const MeritManager = () => {
         </p>
       )}
 
-      {isFetching ? (
-        <Spin size="large" />
-      ) : fetchError ? (
+      {fetchError ? (
         <h1>Could not fetch merits from server.</h1>
       ) : (
         <>
           <Row gutter={32}>
             <Col sm={24} md={18}>
-              <MeritManagerTable
-                allMeritRequests={allMeritRequests}
-                selectedTab={selectedTab}
-                setSelectedTab={setSelectedTab}
-                setIsModalVisible={setIsModalVisible}
-                selectedMeritRequest={selectedMeritRequest}
-                setSelectedMeritRequest={setSelectedMeritRequestWrapper}
+              <MeritManagerFilter
+                queryFilter={queryFilter}
+                setQueryFilter={setQueryFilter}
               />
+              {isFetching ? (
+                <Spin size="large" />
+              ) : (
+                <MeritManagerTable
+                  allMeritRequests={allMeritRequests}
+                  selectedTab={selectedTab}
+                  setSelectedTab={setSelectedTab}
+                  setIsModalVisible={setIsModalVisible}
+                  selectedMeritRequest={selectedMeritRequest}
+                  setSelectedMeritRequest={setSelectedMeritRequestWrapper}
+                />
+              )}
             </Col>
           </Row>
 
@@ -148,6 +163,14 @@ const MeritManager = () => {
       )}
     </div>
   );
+};
+
+// Creates a query string based on the filter params
+const createQueryString = (queryObject) => {
+  const queryString = Object.keys(queryObject)
+    .map((param) => queryObject[param] && `${param}=${queryObject[param]}`)
+    .join('&');
+  return queryString === '&' ? '' : `?${queryString}`;
 };
 
 export default MeritManager;

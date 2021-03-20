@@ -31,6 +31,7 @@ const MeritForm = () => {
     } else {
       setNoPledgeClass(true);
     }
+    setIsFetching(false);
   }, []);
 
   const fetchAllPledges = async (currentPledgeClass) => {
@@ -43,7 +44,6 @@ const MeritForm = () => {
     } catch (error) {
       setFetchError(true);
     }
-    setIsFetching(false);
   };
 
   const handleToggle = (toggled) => {
