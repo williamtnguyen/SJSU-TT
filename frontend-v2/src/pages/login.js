@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
@@ -11,10 +11,19 @@ import loginStyles from '../styles/pages/login.module.scss';
 import thetaTauCrest from '../images/theta-tau-crest-black.png';
 
 const Login = (props) => {
-  const { setIsAuthenticated, setUser } = useContext(UserContext);
+  const { isAuthenticated, setIsAuthenticated, setUser } = useContext(
+    UserContext
+  );
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState(false);
   const [errorMessages, setErrorMessages] = useState({});
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/dashboard');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
 
   const onFinish = async (values) => {
     setFormSubmitted(true);
@@ -35,7 +44,6 @@ const Login = (props) => {
       const decodedToken = jwtDecode(token);
       setUser(decodedToken);
       setIsAuthenticated(true);
-      props.history.push('/dashboard');
     } catch (error) {
       setFormErrors(true);
       setErrorMessages(error.response.data);
