@@ -25,10 +25,12 @@ const MeritManagerFilter = ({ queryFilter, setQueryFilter }) => {
   const fetchPledgesAndActives = async () => {
     try {
       const pledgesResponse = await axios.get(
-        `/api/brothers/class/${CURR_PLEDGE_CLASS}`
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/class/${CURR_PLEDGE_CLASS}`
       );
       setPledges(pledgesResponse.data.currentPledges);
-      const activesResponse = await axios.get('/api/brothers/actives');
+      const activesResponse = await axios.get(
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/actives`
+      );
       setActives(
         activesResponse.data.filter(
           (activeObject) => activeObject.pledgeClass !== CURR_PLEDGE_CLASS
@@ -72,6 +74,8 @@ const MeritManagerFilter = ({ queryFilter, setQueryFilter }) => {
         <>
           {isFetching ? (
             <Spin indicator={<LoadingOutlined spin />} />
+          ) : fetchError ? (
+            <h3>Could not fetch pledge and active filters.</h3>
           ) : (
             <div className={filterStyles.dropdowns__container}>
               <Divider />
