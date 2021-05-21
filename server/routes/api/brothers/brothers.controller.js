@@ -30,6 +30,9 @@ brotherController.get('/:tab', (req, res) => {
       email: { $ne: 'sjsuthetatauwebmaster@gmail.com' },
       isGraduated: { $eq: returnAlumni },
     },
+    {
+      password: 0,
+    },
     (error, allBrothers) => {
       if (error) {
         return res.status(404).json({ message: `No brothers found: ${error}` });
