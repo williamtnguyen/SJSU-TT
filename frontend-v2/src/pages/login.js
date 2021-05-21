@@ -26,7 +26,7 @@ const Login = (props) => {
 
     try {
       const apiResponse = await axios.post(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/login`,
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/auth/login`,
         brotherData
       );
       const { token } = apiResponse.data;
