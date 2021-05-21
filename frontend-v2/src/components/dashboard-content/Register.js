@@ -53,7 +53,7 @@ const Register = () => {
 
     try {
       const apiResponse = await axios.post(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/register`,
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/auth/register`,
         formData
       );
       setSubmitSuccess(true);
