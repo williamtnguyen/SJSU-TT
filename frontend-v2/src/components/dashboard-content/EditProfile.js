@@ -16,7 +16,6 @@ import { UserContext } from '../../contexts/UserContext';
 import editStyles from '../../styles/components/edit-profile.module.scss';
 
 import thetaTauCrest from '../../images/theta-tau-crest-black.png';
-import editIllustration from '../../images/edit-illustration.png';
 
 import { MajorEnum } from '../../util/enums/brother-enums';
 const { TextArea } = Input;
@@ -262,11 +261,6 @@ const EditProfile = () => {
                   </Button>
                 </Form.Item>
               </Form>
-            </div>
-          </Col>
-          <Col sm={24} md={12} className={editStyles.illustration__col}>
-            <div className={editStyles.illustration}>
-              <img src={editIllustration} alt="edit-illustration" />
             </div>
           </Col>
         </Row>

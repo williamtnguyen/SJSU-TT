@@ -38,7 +38,11 @@ const About = () => {
         <div className={aboutStyles.chapter__history__block}>
           <div className="container">
             <Row gutter={32}>
-              <Col sm={24} md={16}>
+              <Col
+                sm={24}
+                md={16}
+                className={aboutStyles.chapter__history__text}
+              >
                 <h1>Chapter History</h1>
                 <p>
                   In spring of 2018, Mark Muendelein met a handful of brothers

@@ -74,6 +74,12 @@
   }
 }
 
+.chapter__history__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .brotherhood__block,
 .community__service__block {
   background-color: #d9dcdf;
