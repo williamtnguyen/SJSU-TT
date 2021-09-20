@@ -12,6 +12,7 @@ const MajorEnum = Object.freeze({
   MECHANICAL: 'Mechanical Engineering',
   PACKAGING: 'Packaging',
   SOFTWARE: 'Software Engineering',
+  CNS: 'Computer Network Systems',
 });
 
 const PledgeClassEnum = Object.freeze({
@@ -20,6 +21,7 @@ const PledgeClassEnum = Object.freeze({
   BETA: 'Beta',
   GAMMA: 'Gamma',
   DELTA: 'Delta',
+  EPSILON: 'Epsilon',
 });
 
 const PositionEnum = Object.freeze({

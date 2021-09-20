@@ -8,7 +8,9 @@ const AWS = require('aws-sdk');
 
 // const seedDB = require('./routes/api/util/scripts/seed-database');
 // const changeBrotherInformation = require('./routes/api/util/scripts/change-brother-info');
-
+const addEpsilon = require('./routes/api/util/scripts/add-epsilon');
+const removeDelta = require('./routes/api/util/scripts/reset-delta');
+const updatePos = require('./routes/api/util/scripts/update-pos');
 // Allows requests from diff origins
 app.use(cors());
 
@@ -43,6 +45,9 @@ switch (process.env.NODE_ENV) {
       });
     // seedDB();
     // changeBrotherInformation();
+    removeDelta();
+    //addEpsilon();
+    updatePos();
     break;
   case 'production':
     mongoose
