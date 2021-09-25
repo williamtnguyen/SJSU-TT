@@ -12,6 +12,7 @@ export const MajorEnum = Object.freeze({
   MECHANICAL: 'Mechanical Engineering',
   PACKAGING: 'Packaging',
   SOFTWARE: 'Software Engineering',
+  CNS: 'Computer Network Systems',
 });
 
 export const PledgeClassEnum = Object.freeze({
@@ -20,6 +21,7 @@ export const PledgeClassEnum = Object.freeze({
   BETA: 'Beta',
   GAMMA: 'Gamma',
   DELTA: 'Delta',
+  EPSILON: 'Epsilon',
 });
 
 export const PositionEnum = Object.freeze({
@@ -36,6 +38,7 @@ export const PositionEnum = Object.freeze({
   RUSH: 'Rush',
   COMMUNITY_SERVICE: 'Community Service',
   FUNDRAISING: 'Fundraising',
+  TREASURER: 'Treasurer',
   PROFESSIONALISM: 'Professionalism',
   PUBLIC_RELATIONS: 'Public Relations',
   RISK_MANAGEMENT: 'Risk Management',
