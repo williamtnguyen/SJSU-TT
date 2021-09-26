@@ -6,7 +6,7 @@ import carousel1 from '../images/index-carousel1.png';
 import carousel2 from '../images/index-carousel2.jpg';
 import carousel3 from '../images/index-carousel3.jpg';
 import carousel4 from '../images/index-carousel4.jpg';
-import carousel5 from '../images/index-carousel5.jpg';
+import carousel5 from '../images/index-carousel5.jpeg';
 import carousel6 from '../images/index-carousel6.jpg';
 import thetaTauLogo from '../images/theta-tau-logo.png';
 

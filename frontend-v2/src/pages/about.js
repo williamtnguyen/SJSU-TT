@@ -7,7 +7,7 @@ import aboutStyles from '../styles/pages/about.module.scss';
 import aboutBanner from '../images/about-banner.jpg';
 import thetaTauLogo from '../images/theta-tau-logo.png';
 import brotherhood1 from '../images/about-brotherhood1.jpg';
-import brotherhood2 from '../images/about-brotherhood2.jpg';
+import brotherhood2 from '../images/about-brotherhood2.jpeg';
 import brotherhood3 from '../images/about-brotherhood3.jpg';
 import service1 from '../images/about-service1.jpg';
 import service2 from '../images/about-service2.jpg';
