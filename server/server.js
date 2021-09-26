@@ -39,7 +39,7 @@ switch (process.env.NODE_ENV) {
       })
       .then(() => {
         console.log('DEVELOPMENT MODE: Connected to MongoDB Atlas\n');
-        seedDB();
+        // seedDB();
       })
       .catch((error) => {
         throw new Error(error);
@@ -55,7 +55,7 @@ switch (process.env.NODE_ENV) {
       })
       .then(() => {
         console.log('PRODUCTION MODE: Connected to MongoDB container\n');
-        seedDB();
+        // seedDB();
       })
       .catch((error) => {
         throw new Error(error);
