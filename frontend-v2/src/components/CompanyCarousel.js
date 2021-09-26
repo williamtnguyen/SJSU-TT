@@ -18,6 +18,7 @@ import paypal from '../images/company-logos/paypal.png';
 import sap from '../images/company-logos/sap.png';
 import ul from '../images/company-logos/ul.png';
 import youtube from '../images/company-logos/youtube.png';
+import nfl from '../images/company-logos/nfl.png';
 
 const CompanyCarousel = () => {
   return (

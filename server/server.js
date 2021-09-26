@@ -6,8 +6,7 @@ const fs = require('fs');
 const cors = require('cors');
 const AWS = require('aws-sdk');
 
-// const seedDB = require('./routes/api/util/scripts/seed-database');
-// const changeBrotherInformation = require('./routes/api/util/scripts/change-brother-info');
+const seedDB = require('./routes/api/util/scripts/seed-database');
 
 // Allows requests from diff origins
 app.use(cors());
@@ -36,13 +35,15 @@ switch (process.env.NODE_ENV) {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
+        useFindAndModify: false,
       })
-      .then(() => console.log('Development mode: Connected to MongoDB Atlas'))
+      .then(() => {
+        console.log('DEVELOPMENT MODE: Connected to MongoDB Atlas\n');
+        // seedDB();
+      })
       .catch((error) => {
         throw new Error(error);
       });
-    // seedDB();
-    // changeBrotherInformation();
     break;
   case 'production':
     mongoose
@@ -50,15 +51,15 @@ switch (process.env.NODE_ENV) {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
+        useFindAndModify: false,
       })
-      .then(() =>
-        console.log('Production mode: Connected to MongoDB container')
-      )
+      .then(() => {
+        console.log('PRODUCTION MODE: Connected to MongoDB container\n');
+        // seedDB();
+      })
       .catch((error) => {
         throw new Error(error);
       });
-    // seedDB();
-    // changeBrotherInformation();
     break;
   default:
     console.error('NODE_ENV not specified');

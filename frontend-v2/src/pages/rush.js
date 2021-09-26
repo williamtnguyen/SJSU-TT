@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Row, Col, Divider } from 'antd';
 import rushStyles from '../styles/pages/rush.module.scss';
 import rushBanner from '../images/rush-banner.jpg';
-import rushSchedule from '../images/springrushschedule.png';
+import rushSchedule from '../images/rush-F21.png';
 
 const Rush = () => {
   return (
@@ -31,7 +31,7 @@ const Rush = () => {
           <div className="container">
             <Row className={rushStyles.schedule__row}>
               <Col md={15} className={rushStyles.schedule__col}>
-                <h1 className={rushStyles.title}>Spring 2021 Rush Schedule</h1>
+                <h1 className={rushStyles.title}>Fall 2021 Rush Schedule</h1>
                 <img src={rushSchedule} alt="rush-schedule" />
               </Col>
             </Row>

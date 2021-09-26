@@ -27,6 +27,9 @@ brotherController.get('/:tab', (req, res) => {
     {
       password: 0,
     },
+    {
+      sort: 'name',
+    },
     (error, allBrothers) => {
       if (error) {
         return res.status(404).json({ message: `No brothers found: ${error}` });
