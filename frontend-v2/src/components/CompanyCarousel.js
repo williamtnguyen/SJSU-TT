@@ -34,6 +34,11 @@ const CompanyCarousel = () => {
         alt="company-logo"
       />
       <img
+        src={nfl}
+        className={carouselStyles.company__logo}
+        alt="company-logo"
+      />
+      <img
         src={appliedMaterials}
         className={carouselStyles.company__logo}
         alt="company-logo"
