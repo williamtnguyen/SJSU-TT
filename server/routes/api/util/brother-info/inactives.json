@@ -50,40 +50,7 @@
     "imagePath": "Beta/014063478.jpg",
     "__v": 0
   },
-  {
-    "meritCount": 0,
-    "_id": "6035d0a58538b0001867adab",
-    "name": "Jeanelle Bentajado",
-    "email": "jbentajado98@gmail.com",
-    "studentID": "010890750",
-    "phoneNumber": "4083983964",
-    "major": "Mechanical Engineering",
-    "graduatingYear": 2021,
-    "pledgeClass": "Alpha",
-    "position": "Member",
-    "isGraduated": false,
-    "isActive": false,
-    "biography": "",
-    "imagePath": "Alpha/010890750.jpg",
-    "__v": 0
-  },
-  {
-    "meritCount": 0,
-    "_id": "6035d0a58538b0001867adad",
-    "name": "Jose Altube",
-    "email": "josealtube12@gmail.com",
-    "studentID": "013384995",
-    "phoneNumber": "4085900643",
-    "major": "Electrical Engineering",
-    "graduatingYear": 2022,
-    "pledgeClass": "Beta",
-    "position": "Member",
-    "isGraduated": false,
-    "isActive": false,
-    "biography": "",
-    "imagePath": "Beta/013384995.jpg",
-    "__v": 0
-  },
+  
   {
     "meritCount": 0,
     "_id": "6035d0a68538b0001867adb4",

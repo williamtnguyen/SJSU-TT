@@ -43,7 +43,7 @@ const About = () => {
                 md={16}
                 className={aboutStyles.chapter__history__text}
               >
-                <h1>Chapter History</h1>
+                <h1>Canidate Chapter History</h1>
                 <p>
                   In spring of 2018, Mark Muendelein met a handful of brothers
                   from the Epsilon Delta chapter of Theta Tau chartered at UC
@@ -77,6 +77,36 @@ const About = () => {
                 <div className={aboutStyles.logo__container}>
                   <img src={thetaTauLogo} alt="theta-tau-logo" />
                 </div>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div className={aboutStyles.national__history__block}>
+          <div className="container">
+            <Row gutter={32}>
+              <Col
+                sm={24}
+                md={30}
+                className={aboutStyles.chapter__history__text}
+              >
+                <h1>Theta Tau National History</h1>
+                <p>
+                  Theta Tau is the oldest, largest, and foremost Fraternity for Engineers.
+                  Since its founding at the University of Minnesota in 1904, over 40,000 have
+                  been initiated over the years. With emphasis on quality and a strong fraternal
+                  bond, the Fraternity has chapters only at ABET accredited schools and limits the
+                  number of student members in any one of its chapters across the nation.
+                </p>
+                <h2>Purpose</h2>
+                <p>
+                  The purpose of Theta Tau is to develop and maintain a high standard of
+                  professional interest among its members, and to unite them in a strong bond
+                  of fraternal fellowship.
+                  <br />
+                  <br />
+                  For more information, please follow the link to the National Website <a href="https://thetatau.org/" target="_blank">here</a>.
+                </p>
               </Col>
             </Row>
           </div>

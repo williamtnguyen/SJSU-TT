@@ -54,6 +54,7 @@
 }
 
 .chapter__history__block,
+.national__history__block,
 .brotherhood__block,
 .professionalism__block,
 .community__service__block {
@@ -80,8 +81,10 @@
   justify-content: center;
 }
 
+.chapter__history__block,
 .brotherhood__block,
-.community__service__block {
+.community__service__block
+{
   background-color: #d9dcdf;
 }
 

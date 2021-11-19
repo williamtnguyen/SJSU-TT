@@ -1,6 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Row, Col } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faInstagram
+} from '@fortawesome/free-brands-svg-icons';
 import CoverCarousel from '../components/CoverCarousel';
 
 import aboutThetaTau from '../images/pledge-event-cropped.jpg';
@@ -95,6 +99,12 @@ const Landing = () => {
         <div className={landingStyles.joining__text}>
           <h1>Interested in joining?</h1>
           <p>Learn more about us at rush!</p>
+          <p>Contact us! thetatau.sjsu@gmail.com</p>
+          <div className="social-container">
+            <a href="https://www.instagram.com/sjsuthetatau/?hl=en" className="insta social">
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </a>
+          </div>
         </div>
       </div>
     </>

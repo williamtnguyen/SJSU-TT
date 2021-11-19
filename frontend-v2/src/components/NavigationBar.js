@@ -36,9 +36,9 @@ const NavigationBar = () => {
             <Link to="/brothers?tab=actives" className={navigationStyles.link}>
               <h1>Brothers</h1>
             </Link>
-            {/* <Link to="/rush" className={navigationStyles.link}>
+            <Link to="/rush" className={navigationStyles.link}>
               <h1>Rush</h1>
-            </Link> */}
+            </Link>
             <Link to="/dashboard" className={navigationStyles.link}>
               {isAuthenticated ? (
                 <div className={navigationStyles.avatar}>
