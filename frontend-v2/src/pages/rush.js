@@ -27,7 +27,7 @@ const Rush = () => {
           </div>
         </div>
 
-        <div className={rushStyles.schedule__container}>
+        {/* <div className={rushStyles.schedule__container}>
           <div className="container">
             <Row className={rushStyles.schedule__row}>
               <Col md={15} className={rushStyles.schedule__col}>
@@ -36,7 +36,7 @@ const Rush = () => {
               </Col>
             </Row>
           </div>
-        </div>
+          </div> */}
 
         <div className="container">
           <Divider />
