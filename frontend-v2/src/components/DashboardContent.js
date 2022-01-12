@@ -7,6 +7,7 @@ import MeritsTable from './dashboard-content/MeritsTable';
 import MeritRequest from './dashboard-content/MeritRequest';
 import EventCalendar from './dashboard-content/EventCalendar';
 import Register from './dashboard-content/Register';
+import WebmasterAdmin from './dashboard-content/WebmasterAdmin';
 import MeritManager from './dashboard-content/MeritManager';
 
 const ContentMap = {
@@ -16,6 +17,7 @@ const ContentMap = {
   meritRequest: <MeritRequest />,
   calendar: <EventCalendar />,
   register: <Register />,
+  webmasterAdmin: <WebmasterAdmin />,
   meritManager: <MeritManager />,
 };
 

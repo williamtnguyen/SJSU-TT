@@ -43,6 +43,7 @@ const DashboardSidebar = () => {
           title="Webmaster Functions"
         >
           <Menu.Item key="register">Register a brother</Menu.Item>
+          <Menu.Item key="webmasterAdmin">Edit existing brothers</Menu.Item>
         </SubMenu>
       )}
 
