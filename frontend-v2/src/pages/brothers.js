@@ -23,7 +23,7 @@ const Brothers = (props) => {
     setIsFetching(true);
     const tab = parseQueryParameter();
     const apiResponse = await axios.get(
-      `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/${tab}`
+      `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers?brotherType=${tab}`
     );
     setBrothers(apiResponse.data);
     setIsFetching(false);
@@ -48,7 +48,7 @@ const Brothers = (props) => {
       return 'actives';
     }
     setSelectedTab(tab === 'actives' ? 'Actives' : 'Alumni');
-    return tab;
+    return tab.charAt(0).toUpperCase() + tab.substring(1);
   };
 
   return (
@@ -153,8 +153,7 @@ const DropDownMenu = (selectedTab) => {
     <Menu>
       <Menu.Item key="1">
         <Link
-          to={`/brothers?tab=${
-            selectedTab === 'Actives' ? 'alumni' : 'actives'
+          to={`/brothers?tab=${selectedTab === 'Actives' ? 'alumni' : 'actives'
           }`}
         >
           {selectedTab === 'Actives' ? 'Alumni' : 'Actives'}

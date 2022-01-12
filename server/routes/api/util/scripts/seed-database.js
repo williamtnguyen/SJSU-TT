@@ -4,6 +4,7 @@ const actives = require('../brother-info/actives.json');
 const alumni = require('../brother-info/alumni.json');
 const pledges = require('../brother-info/pledgesF21info');
 const officers = require('../brother-info/officersF21');
+const inactives = require('../brother-info/inactives.json');
 
 const Brother = require('../../brothers/brother');
 const Merit = require('../../merits/merit');
@@ -13,6 +14,7 @@ const BrothersTypeEnum = Object.freeze({
   ACTIVES: 'actives',
   ALUMNI: 'alumni',
   PLEDGES: 'pledges',
+  INACTIVES: 'inactives',
 });
 const SaveOperationEnum = Object.freeze({
   ADD: 'added to DB',
@@ -42,6 +44,7 @@ async function seedDB() {
     await populateDBWith(actives, BrothersTypeEnum.ACTIVES);
     await populateDBWith(alumni, BrothersTypeEnum.ALUMNI);
     await populateDBWith(pledges, BrothersTypeEnum.PLEDGES);
+    await populateDBWith(inactives, BrothersTypeEnum.INACTIVES);
     await turnPrevPledgesActive(PREVIOUS_PLEDGE_CLASS);
     await updatePositions(officers);
   } catch (error) {
@@ -103,7 +106,7 @@ async function populateDBWith(brothers, brothersType) {
       pledgeClass: brother.pledgeClass,
       position: brother.position,
       isGraduated: brother.isGraduated,
-      isActive: true,
+      isActive: brother.isActive ? brother.isActive : false,
       biography: brother.biography ? brother.biography : '',
       imagePath: s3FilePath,
     });

@@ -15,15 +15,33 @@ require('../../../config/passport')(passport);
  * @route GET api/brothers
  * @desc retrieve all brothers
  */
-brotherController.get('/:tab', (req, res) => {
-  const { tab } = req.params;
-  const returnAlumni = tab === 'alumni';
+brotherController.get('/', (req, res) => {
+  const { brotherType, pledgeClass } = req.query;
+  if (!brotherType) console.error('brotherType is a mandatory parameter');
+  const queryObj = {};
+  switch (brotherType) {
+    case 'Alumni':
+      queryObj.isGraduated = { $eq: true };
+      queryObj.email = { $ne: 'sjsuthetatauwebmaster@gmail.com' };
+      break;
+    case 'Actives':
+      queryObj.isGraduated = { $eq: false };
+      queryObj.isActive = { $eq: true };
+      queryObj.email = { $ne: 'sjsuthetatauwebmaster@gmail.com' };
+      break;
+    case 'Inactives':
+      queryObj.isGraduated = { $eq: false };
+      queryObj.isActive = { $eq: false };
+      break;
+    default:
+      console.error('Unknown brother type passed');
+  }
+  if (pledgeClass && pledgeClass !== 'All') {
+    queryObj.pledgeClass = { $eq: pledgeClass };
+  }
 
   Brother.find(
-    {
-      email: { $ne: 'sjsuthetatauwebmaster@gmail.com' },
-      isGraduated: { $eq: returnAlumni },
-    },
+    queryObj,
     {
       password: 0,
     },
@@ -41,6 +59,7 @@ brotherController.get('/:tab', (req, res) => {
 
 /**
  * GET Endpoint (all brothers in a pledge class)
+ * Separate endpoint responding ONLY with fields necessary for pledge merits page
  * @route GET api/brothers/:pledgeClass
  * @desc retrieve all bros in a pledge class
  */

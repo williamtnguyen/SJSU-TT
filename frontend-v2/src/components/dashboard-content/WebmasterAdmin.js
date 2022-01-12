@@ -28,7 +28,6 @@ const { Option } = Select;
 
 const WebmasterAdmin = () => {
   // left table state
-  // const [selectedTab, setSelectedTab] = useState('Actives');
   const [queryParams, setQueryParams] = useState({
     brotherType: 'Actives',
     pledgeClass: 'All',
@@ -44,11 +43,18 @@ const WebmasterAdmin = () => {
 
   const fetchBrothers = async () => {
     setIsFetching(true);
+    const queryString = createQueryParamString(queryParams);
     const apiResponse = await axios.get(
-      `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/${queryParams.brotherType.toLowerCase()}`
+      `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/${queryString}`
     );
+    console.log(apiResponse);
     setBrothers(apiResponse.data);
+    setSelectedBrother(apiResponse.data[0]);
     setIsFetching(false);
+  };
+
+  const createQueryParamString = (queryParamsObj) => {
+    return Object.entries(queryParamsObj).reduce((acc, curr, index) => `${acc}${index === 0 ? '' : '&'}${curr[0]}=${curr[1]}`, '?');
   };
 
   const updateQueryParams = (key, value) => {
@@ -97,6 +103,14 @@ const WebmasterAdmin = () => {
     },
   ];
 
+  if (isFetching) {
+    return (
+      <div className={adminStyles.spinner__container}>
+        <Spin size="large" />
+      </div>
+    );
+  }
+
   return (
     <div className={adminStyles.root}>
       <Row gutter={32}>
@@ -126,14 +140,52 @@ const WebmasterAdmin = () => {
               <span className={adminStyles.dropdown__label__left}>class</span>
             </div>
 
-            {isFetching ? (
-              <div className={adminStyles.spinner__container}>
-                <Spin size="large" />
-              </div>
-            ) : (
-              <Table columns={tableColumns} dataSource={brothers} size="middle"></Table>
-            )}
+            <Table columns={tableColumns} dataSource={brothers} size="middle"></Table>
           </div>
+        </Col>
+
+        <Col sm={24} md={10} className={adminStyles.edit__column}>
+          <div className={adminStyles.card__container}>
+            <div
+              className={
+                adminStyles.brother__headshot__container
+              }
+            >
+              <img
+                className={adminStyles.brother__headshot}
+                src={`${process.env.REACT_APP_HEADSHOT_S3_BUCKET_URL}/${selectedBrother.imagePath}`}
+                alt="brother-headshot"
+              />
+            </div>
+            <div className={adminStyles.card__overlay} />
+            <div className={adminStyles.card__info}>
+              <div className={adminStyles.card__info__item}>
+                <h3>Major:</h3>
+                <span>{selectedBrother.major}</span>
+              </div>
+              <div className={adminStyles.card__info__item}>
+                <h3>Graduating Year:</h3>
+                <span>{selectedBrother.graduatingYear}</span>
+              </div>
+              <div className={adminStyles.card__info__item}>
+                <h3>Class:</h3>
+                <span>{selectedBrother.pledgeClass}</span>
+              </div>
+              <div className={adminStyles.card__info__item}>
+                <h3>Position:</h3>
+                <span>{selectedBrother.position}</span>
+              </div>
+              {selectedBrother.biography !== '' && (
+                <div className={adminStyles.card__info__item}>
+                  <h3>Bio:</h3>
+                  <span>{selectedBrother.biography}</span>
+                </div>
+              )}
+            </div>
+          </div>
+          <h2 className={adminStyles.brother__name}>
+            {selectedBrother.name}
+          </h2>
         </Col>
       </Row>
     </div>
