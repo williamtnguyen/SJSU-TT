@@ -45,6 +45,10 @@
   }
 }
 
+.table tr:hover {
+  cursor: pointer;
+}
+
 .spinner__container {
   width: 100%;
   height: 100vh;
@@ -88,6 +92,9 @@
   overflow: hidden;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .brother__headshot {
@@ -140,4 +147,8 @@
   font-weight: 400;
   margin-top: 20px;
   text-align: center;
+}
+
+.form {
+  width: 70%;
 }
