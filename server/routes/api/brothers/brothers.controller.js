@@ -5,10 +5,32 @@ const passport = require('passport');
 
 const Brother = require('./brother');
 const validateEditInput = require('../util/form-validation/edit');
+const validateWebmasterEditInput = require('../util/form-validation/webmaster-edit');
+const { PositionEnum } = require('../util/enums/brother-enums');
+const { fileMiddleware, uploadToS3 } = require('../services/upload-s3');
 
 // Passport.js config (JWT extraction from request headers)
 brotherController.use(passport.initialize());
 require('../../../config/passport')(passport);
+
+// Helper function: checks if user in JWT has access to an endpoint
+const checkIfUserEndpointAccess = (
+  requestObject,
+  responseObject,
+  positionsWithAccess
+) => {
+  let hasAccess = false;
+  positionsWithAccess.forEach((position) => {
+    if (position === requestObject.user.position) hasAccess = true;
+  });
+
+  if (!hasAccess) {
+    return responseObject.status(403).json({
+      message: `Forbidden: API endpoint only for use of: ${positionsWithAccess.toString()}`,
+    });
+  }
+  return hasAccess;
+};
 
 /**
  * GET Endpoint (all brothers)
@@ -129,8 +151,8 @@ brotherController.get(
 
 /**
  * EDIT Endpoint
- * @route PUT api/brothers/edit
- * @desc edit a bro page
+ * @route PUT api/brothers/me
+ * @desc edit currently logged in bro
  */
 brotherController.put(
   '/me',
@@ -139,7 +161,7 @@ brotherController.put(
     const delta = req.body;
 
     // Form validation
-    const { errors, isValid } = validateEditInput(req.body);
+    const { errors, isValid } = validateEditInput(delta);
     if (!isValid) {
       return res.status(400).json(errors);
     }
@@ -163,6 +185,62 @@ brotherController.put(
     });
     req.user.save();
 
+    res.status(200).json(req.user);
+  }
+);
+
+/**
+ * EDIT Endpoint
+ * @route PUT api/brothers/edit
+ * @desc edit any bro as webmaster
+ */
+brotherController.put(
+  '/edit',
+  [fileMiddleware, passport.authenticate('jwt', { session: false })],
+  async (req, res) => {
+    // Check if JWT sent in request is webmaster
+    checkIfUserEndpointAccess(req, res, [PositionEnum.WEBMASTER]);
+
+    const delta = req.body;
+    // eslint-disable-next-line no-underscore-dangle
+    delete delta._id;
+
+    const { errors, isValid } = validateWebmasterEditInput(delta);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    let editedBro;
+    try {
+      // eslint-disable-next-line no-underscore-dangle
+      editedBro = await Brother.findById(req.body.editedBroId);
+    } catch (error) {
+      return res.status(404).json({ message: 'Brother at _id not found' });
+    }
+
+    Object.entries(delta).forEach(([key, value]) => {
+      if (key === 'newPassword') {
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(value, salt);
+        editedBro.password = hash;
+      } else {
+        editedBro[key] = value;
+      }
+    });
+    if (req.file) {
+      const bucketName =
+        process.env.NODE_ENV === 'development'
+          ? 'brother-headshots-dev'
+          : 'brother-headshots-prod';
+      // fml
+      await uploadToS3(
+        bucketName,
+        delta.imagePath ? delta.imagePath : editedBro.imagePath,
+        req.file.buffer,
+        req.file.mimetype
+      );
+    }
+    editedBro.save();
     res.status(200).json(req.user);
   }
 );

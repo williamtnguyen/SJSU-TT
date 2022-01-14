@@ -36,11 +36,11 @@ const Rush = () => {
               </Col>
             </Row>
           </div>
-          </div> */}
+        </div>
 
         <div className="container">
           <Divider />
-        </div>
+        </div> */}
 
         <div className={rushStyles.faq__container}>
           <div className="container">

@@ -29,7 +29,7 @@ const MeritManagerFilter = ({ queryFilter, setQueryFilter }) => {
       );
       setPledges(pledgesResponse.data.currentPledges);
       const activesResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/actives`
+        `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/?brotherType=Actives`
       );
       setActives(
         activesResponse.data.filter(

@@ -76,6 +76,7 @@ const WebmasterAdmin = () => {
 
   const setSelectedBroAndAssignInputVals = (brother) => {
     setSelectedBrother(brother);
+    setSubmitSuccess(false);
     if (!brother) {
       return form.resetFields();
     }
@@ -113,37 +114,9 @@ const WebmasterAdmin = () => {
     console.error('Failed:', errorInfo);
   };
 
-  const onFinish = async (values) => {
+  const onFinish = async (formValues) => {
     setFormSubmitted(true);
-    const {
-      name,
-      email,
-      studentID,
-      phoneNUmber,
-      major,
-      graduatingYear,
-      pledgeClass,
-      position,
-      isGraduated,
-      isActive,
-      biography,
-      imagePath,
-    } = values;
-    const formData = {
-      name,
-      email,
-      studentID,
-      phoneNUmber,
-      major,
-      graduatingYear,
-      pledgeClass,
-      position,
-      isGraduated,
-      isActive,
-      biography,
-      imagePath,
-    };
-    const delta = findDelta(selectedBrother, formData);
+    const delta = findDelta(selectedBrother, formValues);
     const fieldsEdited = !isEmpty(delta);
 
     if (!fieldsEdited) {
@@ -152,9 +125,25 @@ const WebmasterAdmin = () => {
     } else {
       setNoEditError(false);
 
-      // TODO: PUT call
-      setSubmitSuccess(true);
-      setFormSubmitted(false);
+      try {
+        // eslint-disable-next-line no-underscore-dangle
+        const reqBody = { ...delta, editedBroId: selectedBrother._id };
+        if (reqBody.upload?.file.originFileObj) {
+          reqBody.imageFile = reqBody.upload.file.originFileObj;
+          delete reqBody.upload;
+        }
+        const formData = makeFormData(reqBody);
+        await axios.put(
+          `${process.env.REACT_APP_BACKEND_API_URL}/api/brothers/edit`,
+          formData,
+        );
+        setSubmitSuccess(true);
+        setFormSubmitted(false);
+      } catch (error) {
+        setFormErrors(true);
+        setErrorMessages(error.response.data);
+        setFormSubmitted(false);
+      }
     }
   };
 
@@ -437,6 +426,25 @@ const WebmasterAdmin = () => {
                   })}
                 </Select>
               </Form.Item>
+
+              <Form.Item
+                label="Image Path"
+                name="imagePath"
+                validateStatus={formErrors ? 'error' : ''}
+                help={errorMessages.imagePath}
+              >
+                <Input placeholder="Please enter image path" />
+              </Form.Item>
+              <Form.Item name="upload" label="New Headshot" valuePropName="file">
+                <Upload
+                  name="headshot"
+                  accept="image/png, image/jpeg"
+                  listType="picture"
+                >
+                  <Button icon={<UploadOutlined />}>Click to upload</Button>
+                </Upload>
+              </Form.Item>
+
               <Form.Item name="isGraduated" valuePropName="checked">
                 <Checkbox>Is Graduated?</Checkbox>
               </Form.Item>
@@ -474,7 +482,7 @@ const WebmasterAdmin = () => {
 };
 
 /**
- * Returns an object of changed fields for currently logged in user
+ * Returns an object of changed fields for currently selected brother
  * @param {*} currentBrotherData data currently saved in DB
  * @param {*} updatedBrotherData data currently in form inputs
  */
@@ -496,6 +504,17 @@ const findDelta = (currentBrotherData, updatedBrotherData) => {
 
 const isEmpty = (object) => {
   return Object.keys(object).length === 0;
+};
+
+// Creates a FormData object to pass to Register endpoint (allows for file inputs)
+const makeFormData = (brotherData) => {
+  const formData = new FormData();
+  const entries = Object.entries(brotherData);
+
+  for (const [key, value] of entries) {
+    formData.append(key, value);
+  }
+  return formData;
 };
 
 export default WebmasterAdmin;
