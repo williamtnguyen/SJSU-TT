@@ -163,7 +163,7 @@
         "graduatingYear": 2022,
         "pledgeClass": "Alpha",
         "position": "Historian",
-        "isGraduated": false,
+        "isGraduated": true,
         "isActive": true,
         "biography": "",
         "imagePath": "Alpha/013581191.jpg",

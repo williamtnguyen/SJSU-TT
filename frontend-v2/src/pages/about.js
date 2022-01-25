@@ -43,7 +43,7 @@ const About = () => {
                 md={16}
                 className={aboutStyles.chapter__history__text}
               >
-                <h1>Canidate Chapter History</h1>
+                <h1>Candidate Chapter History</h1>
                 <p>
                   In spring of 2018, Mark Muendelein met a handful of brothers
                   from the Epsilon Delta chapter of Theta Tau chartered at UC
@@ -211,6 +211,29 @@ const About = () => {
                 />
               </Col>
             </Row>
+          </div>
+        </div>
+
+        <div className={aboutStyles.credit__block}>
+          <div className="container">
+            <Row gutter={32}>
+              <Col sm={24} md={16}>
+                <h3>Photo Credits:</h3>
+                <br />
+                <p>
+                  Historian Fall 2018 - Spring 2019: Jeyson Retumalta <br />
+                  Additional photographers: Ada La (Spring 2019)
+                  <br />
+                  <br />
+                  Historian Fall 2019 - Spring 2021: Elizabeth Huang  <br />
+                  Additional photographers: Ada La & Pushpal Patil (Fall 2019)
+                  <br />
+                  <br />
+                  Historian Fall 2021 - Present: Sunny Chen
+                </p>
+              </Col>
+            </Row>
+
           </div>
         </div>
       </div>

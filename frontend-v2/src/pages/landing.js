@@ -99,7 +99,7 @@ const Landing = () => {
         <div className={landingStyles.joining__text}>
           <h1>Interested in joining?</h1>
           <p>Learn more about us at rush!</p>
-          <p>Contact us! thetatau.sjsu@gmail.com</p>
+          <p>Contact us: thetatau.sjsu@gmail.com</p>
           <div className="social-container">
             <a href="https://www.instagram.com/sjsuthetatau/?hl=en" className="insta social">
               <FontAwesomeIcon icon={faInstagram} size="2x" />

@@ -74,6 +74,23 @@
     font-weight: 300;
   }
 }
+.credit__block {
+  padding: 0.6rem;
+  height: fit-content;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    font-size: 2rem;
+    color: #6d2e2e;
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+}
 
 .chapter__history__text {
   display: flex;
