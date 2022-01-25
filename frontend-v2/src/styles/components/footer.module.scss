@@ -31,3 +31,18 @@
 #sjsu__text {
   font-weight: 300;
 }
+
+.footer__icon__container {
+  width: 70px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer__icon {
+  font-size: 25px;
+  color: white;
+
+  &:hover {
+    color: gray;
+  }
+}

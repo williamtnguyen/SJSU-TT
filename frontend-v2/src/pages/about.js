@@ -44,6 +44,7 @@ const About = () => {
                 className={aboutStyles.chapter__history__text}
               >
                 <h1>Candidate Chapter History</h1>
+
                 <p>
                   In spring of 2018, Mark Muendelein met a handful of brothers
                   from the Epsilon Delta chapter of Theta Tau chartered at UC

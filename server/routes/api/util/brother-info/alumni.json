@@ -164,6 +164,7 @@
         "pledgeClass": "Alpha",
         "position": "Historian",
         "isGraduated": true,
+
         "isActive": true,
         "biography": "",
         "imagePath": "Alpha/013581191.jpg",
@@ -503,7 +504,7 @@
         "graduatingYear": 2022,
         "pledgeClass": "Beta",
         "position": "Member",
-        "isGraduated": false,
+        "isGraduated": true,
         "isActive": false,
         "biography": "",
         "imagePath": "Beta/013384995.jpg",
