@@ -7,12 +7,32 @@ const passport = require('passport');
 const { SecretOrKey } = JSON.parse(fs.readFileSync('config/secrets.json'));
 
 const Brother = require('./brother');
+const { PositionEnum } = require('../util/enums/brother-enums');
 const validateRegisterInput = require('../util/form-validation/register');
 const validateLoginInput = require('../util/form-validation/login');
 const { fileMiddleware, uploadToS3 } = require('../services/upload-s3');
 
 authController.use(passport.initialize());
 require('../../../config/passport')(passport);
+
+// Helper function: checks if user in JWT has access to an endpoint
+const checkIfUserEndpointAccess = (
+  requestObject,
+  responseObject,
+  positionsWithAccess
+) => {
+  let hasAccess = false;
+  positionsWithAccess.forEach((position) => {
+    if (position === requestObject.user.position) hasAccess = true;
+  });
+
+  if (!hasAccess) {
+    return responseObject.status(403).json({
+      message: `Forbidden: API endpoint only for use of: ${positionsWithAccess.toString()}`,
+    });
+  }
+  return hasAccess;
+};
 
 /**
  * REGISTER Endpoint
@@ -24,6 +44,9 @@ authController.post(
   '/register',
   [fileMiddleware, passport.authenticate('jwt', { session: false })],
   async (req, res) => {
+    // Check if JWT sent in request is webmaster
+    checkIfUserEndpointAccess(req, res, [PositionEnum.WEBMASTER]);
+
     // Form input validation
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {

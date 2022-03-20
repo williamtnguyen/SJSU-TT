@@ -11,7 +11,7 @@
     "pledgeClass": "Alpha",
     "position": "Historian",
     "isGraduated": false,
-    "isActive": true,
+    "isActive": false,
     "biography": "",
     "imagePath": "Alpha/013581191.jpg",
     "__v": 0
@@ -28,7 +28,7 @@
     "pledgeClass": "Gamma",
     "position": "Member",
     "isGraduated": false,
-    "isActive": true,
+    "isActive": false,
     "biography": "",
     "imagePath": "Gamma/012022361.jpg",
     "__v": 0
@@ -45,12 +45,11 @@
     "pledgeClass": "Beta",
     "position": "Member",
     "isGraduated": false,
-    "isActive": true,
+    "isActive": false,
     "biography": "",
     "imagePath": "Beta/014063478.jpg",
     "__v": 0
   },
-  
   {
     "meritCount": 0,
     "_id": "6035d0a68538b0001867adb4",

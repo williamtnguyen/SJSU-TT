@@ -1,0 +1,154 @@
+.root {
+  padding: 5rem;
+  min-height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  height: fit-content;
+  width: 100%;
+  min-width: 500px;
+}
+
+.title {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  img {
+    height: 40px;
+    margin-left: 10px;
+  }
+}
+
+.dropdown {
+  &__container {
+    margin: 2rem 0;
+  }
+  
+  &__label {
+    &__left {
+      margin-left: 10px;
+    }
+    &__right {
+      margin-right: 10px;
+    }
+  }
+}
+
+.table tr:hover {
+  cursor: pointer;
+}
+
+.spinner__container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit__column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card__container {
+  height: 250px;
+  width: 250px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    .card__overlay {
+      opacity: 0.9;
+    }
+
+    .card__info {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .card__container {
+    height: 50vh;
+  }
+}
+
+.brother__headshot__container {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brother__headshot {
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+
+  // helps optimize browser repaints
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.card__overlay {
+  opacity: 0;
+  background: #ffffff;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+.card__info {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  padding: 30px 20px;
+  text-align: left;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+.card__info__item {
+  margin-bottom: 5px;
+  overflow: hidden;
+
+  h3 {
+    display: inline;
+    margin-right: 5px;
+    font-weight: 400;
+  }
+}
+
+.brother__name {
+  font-weight: 400;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form {
+  width: 70%;
+}

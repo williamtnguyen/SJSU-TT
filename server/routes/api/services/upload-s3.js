@@ -42,6 +42,7 @@ const uploadToS3 = async (bucketName, key, buffer, mimetype) => {
     ContentType: mimetype,
     ContentDisposition: 'inline',
     ACL: 'public-read',
+    CacheControl: 'no-cache',
   };
 
   const putResult = S3.putObject(uploadParams).promise();
