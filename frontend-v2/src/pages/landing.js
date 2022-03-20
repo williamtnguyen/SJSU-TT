@@ -95,6 +95,7 @@ const Landing = () => {
         <div className={landingStyles.joining__text}>
           <h1>Interested in joining?</h1>
           <p>Learn more about us at rush!</p>
+          <p>Contact us: thetatau.sjsu@gmail.com</p>
         </div>
       </div>
     </>
